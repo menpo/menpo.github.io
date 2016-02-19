@@ -1,6 +1,17 @@
 ## Table of Contents
 
 * [The Menpo Project](/homepage.md)
+* [Website](/projects/website/content/pages/home.md)
+  * [FAQ](/projects/website/content/pages/faq.md)
+  * [Notebooks](/projects/website/content/pages/notebooks.md)
+  * [The Menpo Team](/projects/website/content/pages/team.md)
+  * [Installation](/projects/website/content/pages/installation/index.md)
+    * [Linux](/projects/website/content/pages/installation/linux/index.md)
+    * [OS X](/projects/website/content/pages/installation/osx/index.md)
+    * [Windows](/projects/website/content/pages/installation/windows/index.md)
+    * [Linux (Expert)](/projects/website/content/pages/installation/linux/expert.md)
+    * [OS X (Expert)](/projects/website/content/pages/installation/osx/expert.md)
+    * [Windows (Export)](/projects/website/content/pages/installation/windows/expert.md)
 * [Menpo](/projects/menpo/README.md)
   * [API homepage](/projects/menpo/docs/book/userguide.md)
   * [Index](/projects/menpo/docs/book/userguide/index.md)

@@ -1,3 +1,6 @@
 [submodule "projects/menpo"]
 	path = projects/menpo
 	url = git@github.com:menpo/menpo.git
+[submodule "projects/website"]
+	path = projects/website
+	url = git@github.com:menpo/website.git

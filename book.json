@@ -3,7 +3,7 @@
   "structure": {
     "readme": "homepage.md"
   },
-  "plugins": ["edit-link", "prism", "-highlight", "github"],
+  "plugins": ["edit-link", "prism", "github"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/menpo/menpo/tree/master",
