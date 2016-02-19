@@ -1,7 +1,7 @@
 {
   "title": "The Menpo Book",
   "structure": {
-    "readme": "Welcome.md"
+    "readme": "homepage.md"
   },
   "plugins": ["edit-link", "prism", "-highlight", "github"],
   "pluginsConfig": {

@@ -1,7 +1,13 @@
 ## Table of Contents
 
-* [Welcome](/Welcome.md)
-* [Introduction](/chapters/introduction/README.md)
-  * [Motivation](/chapters/introduction/Motivation.md)
-  * [The Menpo Project](/chapters/introduction/Structure.md)
-  * [This Book](/chapters/introduction/ThisBook.md)
+* [The Menpo Project](/homepage.md)
+* [Menpo](/projects/menpo/README.md)
+  * [API homepage](/projects/menpo/docs/book/userguide.md)
+  * [Index](/projects/menpo/docs/book/userguide/index.md)
+  * [Quick start](/projects/menpo/docs/book/userguide/quick_start.md)
+  * [Introduction](/projects/menpo/docs/book/userguide/introduction.md)  
+  * [Data types](/projects/menpo/docs/book/userguide/datatypes.md)
+  * [Consistency](/projects/menpo/docs/book/userguide/consistency.md)
+  * [Vectorizing](/projects/menpo/docs/book/userguide/vectorizing.md)
+  * [Visualization](/projects/menpo/docs/book/userguide/visualization.md)
+  * [Changelog](/projects/menpo/docs/book/userguide/changelog.md)
