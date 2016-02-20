@@ -4,3 +4,15 @@
 [submodule "projects/website"]
 	path = projects/website
 	url = git@github.com:menpo/website.git
+[submodule "projects/menpofit"]
+	path = projects/menpofit
+	url = git@github.com:menpo/menpofit.git
+[submodule "projects/menpo3d"]
+	path = projects/menpo3d
+	url = git@github.com:menpo/menpo3d.git
+[submodule "projects/menpowidgets"]
+	path = projects/menpowidgets
+	url = git@github.com:menpo/menpowidgets.git
+[submodule "projects/menpodetect"]
+	path = projects/menpodetect
+	url = git@github.com:menpo/menpodetect.git
