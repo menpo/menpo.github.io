@@ -1,16 +1,7 @@
 {
-  "title": "The Menpo Book",
+  "title": "The Menpo Project",
   "structure": {
     "readme": "homepage.md"
   },
-  "plugins": ["toggle-chapters", "edit-link", "github"],
-  "pluginsConfig": {
-    "edit-link": {
-      "base": "https://github.com/menpo/menpo/tree/master",
-      "label": "Edit This Page"
-    },
-    "github": {
-      "url": "https://github.com/menpo/menpo/"
-    }
-  }
+  "plugins": ["toggle-chapters"]
 }
