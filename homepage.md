@@ -29,36 +29,36 @@ The Menpo Project also provides:
 
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 
-  - <strong style="font-size: 125%">``menpo``</strong> - The heart of the Menpo Project. `menpo` contains all core functionality needed for 
+  - <strong style="font-size: 125%">``menpo``</strong> - The heart of the Menpo Project. `menpo` contains all core functionality needed for
     the project in well tested, mature, stable package. `menpo` is the `numpy` of the Menpo ecosystem - the foundation upon which all else is built.  
     [![Github Release][m_shield]][m_gh] [![BSD License][bsd_shield]][m_lic]
 
-  - <strong style="font-size: 125%">``menpofit``</strong> - It includes implementations of state-of-the-art 2D deformable models. Each implementation 
-    includes training and fitting code. `menpofit` contains the crown jewels of the Menpo Project - most people are interested in using 
+  - <strong style="font-size: 125%">``menpofit``</strong> - It includes implementations of state-of-the-art 2D deformable models. Each implementation
+    includes training and fitting code. `menpofit` contains the crown jewels of the Menpo Project - most people are interested in using
     the Menpo Project for the `menpofit` package.  
     [![Github Release][mf_shield]][mf_gh] [![BSD License][bsd_shield]][mf_lic]
 
-  - <strong style="font-size: 125%">``menpodetect``</strong> - It wraps a number of existing projects that provide functionalities for training and 
-    fitting generic object detection techniques. It is designed in order to have full compatibility with `menpofit`. Not all of the wrapped 
+  - <strong style="font-size: 125%">``menpodetect``</strong> - It wraps a number of existing projects that provide functionalities for training and
+    fitting generic object detection techniques. It is designed in order to have full compatibility with `menpofit`. Not all of the wrapped
     projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.  
     [![Github Release][md_shield]][md_gh] [![BSD License][bsd_shield]][md_lic]
 
-  - <strong style="font-size: 125%">``menpo3d``</strong> - A specialized library for working with 3D data. It is largely separate from the 
-    core `menpo` library as it has dependencies on a number of large, 3D specific projects (like `VTK`, `mayavi`, `assimp`) which many people using 
+  - <strong style="font-size: 125%">``menpo3d``</strong> - A specialized library for working with 3D data. It is largely separate from the
+    core `menpo` library as it has dependencies on a number of large, 3D specific projects (like `VTK`, `mayavi`, `assimp`) which many people using
     the Menpo Project would have no use for. You'll want to install `menpo3d` if you need to import and export 3D mesh data or perform advanced mesh processing.  
     [![Github Release][m3d_shield]][m3d_gh] [![BSD License][bsd_shield]][m3d_lic]
 
   - <strong style="font-size: 125%">``menpowidgets``</strong> - A key goal of the Menpo Project is to accelerate research in 2D and 3D computer vision by
-    providing powerful visualization tools. `menpowidgets` contains a collection of Jupyter Notebook Widgets for fancy visualization and interactive 
+    providing powerful visualization tools. `menpowidgets` contains a collection of Jupyter Notebook Widgets for fancy visualization and interactive
     inspection of the state of all Menpo objects.  
     [![Github Release][mw_shield]][mw_gh] [![BSD License][bsd_shield]][mw_lic]
 
-  - <strong style="font-size: 125%">``menpocli``</strong> - Command Line Interface (CLI) for the Menpo Project that allows to readily use pre-trained 
+  - <strong style="font-size: 125%">``menpocli``</strong> - Command Line Interface (CLI) for the Menpo Project that allows to readily use pre-trained
     state-of-the-art `menpofit` facial models. This is useful for people that only care to quickly acquire facial landmarks on their images.  
     [![Github Release][mc_shield]][mc_gh] [![BSD License][bsd_shield]][mc_lic]
 
-  - <strong style="font-size: 125%"> [``landmarker.io``](https://www.landmarker.io)</strong> - An interactive web-based tool for manual annotation of 
-    2D images and 3D meshes. Useful to quickly landmark a single image, or organize a large annotation effort for thousands of files. 
+  - <strong style="font-size: 125%"> [``landmarker.io``](https://www.landmarker.io)</strong> - An interactive web-based tool for manual annotation of
+    2D images and 3D meshes. Useful to quickly landmark a single image, or organize a large annotation effort for thousands of files.
     Features like Snap Mode and Dropbox compatibility make it unique.
 
 
@@ -90,10 +90,10 @@ The majority of the software exists within a family of Python packages, each des
 
 ## Why 'Menpo'?
 
-> Menpo were facial armours which covered all or part of the face and provided 
-> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord) 
-> of the kabuto would be tied under the chin of the menpo. There were small 
-> hooks called ori-kugi or posts called odome located on various places to 
+> Menpo were facial armours which covered all or part of the face and provided
+> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)
+> of the kabuto would be tied under the chin of the menpo. There were small
+> hooks called ori-kugi or posts called odome located on various places to
 > help secure the kabuto's chin cord.
 >
 > --- [Wikipedia, Menpo](https://en.wikipedia.org/wiki/Mempo)
@@ -102,17 +102,17 @@ The majority of the software exists within a family of Python packages, each des
 
 ## Get Started
 
-The Menpo Project is written in **Python** and we provide a simple and easy method of installation using [Conda](http://conda.pydata.org/). 
+The Menpo Project is written in **Python** and we provide a simple and easy method of installation using [Conda](http://conda.pydata.org/).
 After setting up a Python ``conda`` environment, all the packages of the Menpo Project can be installed as
 ```
 conda install -c menpo menpoproject
 ```
-We _stronly_ suggest you head over to the [installation instructions](installation/index.md) to get started. 
-We recommend the use of ``conda`` due to the fact that the Menpo Project also includes compiled ``C/C++`` code 
+We _strongly_ suggest you head over to the [installation instructions](installation/index.md) to get started. 
+We recommend the use of ``conda`` due to the fact that the Menpo Project also includes compiled ``C/C++`` code
 which may be complicated to compile on various platforms.
 
 ## User Group and Issues
-If you wish to get in contact with the Menpo developers, you can do so via various channels. 
+If you wish to get in contact with the Menpo developers, you can do so via various channels.
 If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/).
 
 If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users).
