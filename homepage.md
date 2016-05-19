@@ -1,5 +1,5 @@
 <center>
-  <img src="img/logo/menpo_medium.png" alt="The Menpo Project"><br/>
+  <img src="img/logo/menpo.png" alt="The Menpo Project" width="30%"><br/>
   <strong style="font-size: 250%">The Menpo Project</strong>
 </center>
 
@@ -107,7 +107,7 @@ After setting up a Python ``conda`` environment, all the packages of the Menpo P
 ```
 conda install -c menpo menpoproject
 ```
-We _strongly_ suggest you head over to the [installation instructions](installation/index.md) to get started. 
+We _strongly_ suggest you head over to the [installation instructions](installation/index.md) to get started.
 We recommend the use of ``conda`` due to the fact that the Menpo Project also includes compiled ``C/C++`` code
 which may be complicated to compile on various platforms.
 

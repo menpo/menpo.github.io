@@ -1,7 +1,8 @@
 {
   "title": "The Menpo Project",
+  "author": "The Menpo Team",
   "structure": {
     "readme": "homepage.md"
   },
-  "plugins": ["toggle-chapters"]
+  "plugins": ["toggle-chapters", "katex"]
 }

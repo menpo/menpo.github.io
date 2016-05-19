@@ -29,12 +29,12 @@ Citing the Menpo Project
 ========================
 If you are using the Menpo Project, please cite the following paper:
 
-> J. Alabort-i-Medina<sup font-size: 75%;	line-height: 0;	position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>, 
-> E. Antonakos<sup font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>, 
+> J. Alabort-i-Medina<sup font-size: 75%;	line-height: 0;	position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>,
+> E. Antonakos<sup font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>,
 > J. Booth<sup>\*</sup>, P. Snape<sup>\*</sup>, and S. Zafeiriou. _(\* Joint first authorship)_<br/>
 > **Menpo: A Comprehensive Platform for Parametric Image Alignment and Visual Deformable Models**,
 > *In Proceedings of the ACM International Conference on Multimedia, MM ’14*, New York, NY, USA, pp. 679-682, 2014. ACM.<br/>
-[<a href="citation/menpo14.pdf"><font color="1A75FF">pdf</font></a>]
+[<a href="../../citation/menpo14.pdf"><font color="1A75FF">pdf</font></a>]
 [<a href="javascript:toggleBibtex('menpo14')"><font color="1A75FF">bibtex</font></a>]
 <div id="bib_menpo14" class="bibtex noshow">
 <pre>

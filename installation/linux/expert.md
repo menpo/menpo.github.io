@@ -1,43 +1,62 @@
 Linux Expert Installation
 =========================
 
-We assume you are very familiar with the Linux environment and with entering
-commands inside a terminal. If you feel uncomfortable with this, or at
-any time you feel confused, please refer to the
-[full instructions.](index.md)
-
 **It is important to note that as part of the installation, you will be creating
 an isolated environment to execute Python inside. Make sure that this
 environment is activated in order to be able to use Menpo!**
 
-  1. Download and install
-     [Miniconda for Python 2](http://conda.pydata.org/miniconda.html)
-     on Linux. Make sure to choose the correct architecture (32/64) for your
-     copy of Linux.
+  1. Download and install [Miniconda](http://conda.pydata.org/miniconda.html)
+     either for Python 2 or for Python 3 on Linux. Make sure to choose the
+     correct architecture (32/64) for your copy of Linux.
   2. Install Conda by executing the installation script you just downloaded:
 
-        ::console
+        ```
         $ cd ~/Downloads
-        $ chmod +x Miniconda-3.4.2-Linux-x86_64.sh
-        $ ./Miniconda-3.4.2-Linux-x86_64.sh
+        $ chmod +x Miniconda3-latest-Linux-x86_64.sh
+        $ ./Miniconda3-latest-Linux-x86_64.sh
+        ```
 
   3. After following the instructions you should be able to access `conda` from
      a terminal.
   4. Create a fresh conda environment by using
 
-        :::console
+        ```
         $ conda create -n menpo python
+        ```
 
   5. Activate the environment by executing:
 
-        :::console
+        ```
         $ source activate menpo
         (menpo)$
+        ```
 
-  6. Install Menpo and **all** of it's dependencies:
+  6. Install the whole Menpo Project and **all** of its dependencies:
 
-        :::console
+        ```
+        (menpo)$ conda install -c menpo menpoproject
+        ```
+
+     If you don't need all the packages, you can explicitly install a specific package
+     with its dependencies as:
+
+        ```
         (menpo)$ conda install -c menpo menpo
+        (menpo)$ conda install -c menpo menpofit
+        (menpo)$ conda install -c menpo menpodetect
+        (menpo)$ conda install -c menpo menpowidgets
+        (menpo)$ conda install -c menpo menpocli
+        (menpo)$ conda install -c menpo menpo3d
+        ```
 
-  7. Head over to the [notebooks page](../../notebooks.md) to begin
+  7. Head over to the [Examples](../../examples/index.md) page to begin
      experimenting with Menpo.
+
+     We strongly advise you to read the _User Guides_ for all the packages in order to
+     understand the basic concepts behind the Menpo Project. They can be found in:
+     - [`menpo`](../../userguide/menpo/index.md)
+     - [`menpodetect`](../../userguide/menpodetect/index.md)
+     - [`menpofit`](../../userguide/menpofit/index.md)
+     - [`menpowidgets`](../../userguide/menpowidgets/index.md)
+     - [`menpocli`](../../userguide/menpocli/index.md)
+     - [`menpo3d`](../../userguide/menpo3d/index.md)

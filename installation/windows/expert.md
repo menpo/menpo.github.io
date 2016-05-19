@@ -1,37 +1,53 @@
-Title: Windows Expert Installation
-url: installation/windows/expert.html
-save_as: installation/windows/expert.html
-
-We assume you are very familiar with the Windows environment and with entering
-commands in to the command prompt. If you feel uncomfortable with this, or at
-any time you feel confused, please refer to the
-[full instructions.](index.md)
+Windows Expert Installation
+===========================
 
 **It is important to note that as part of the installation, you will be creating
 an isolated environment to execute Python inside. Make sure that this
 environment is activated in order to be able to use Menpo!**
 
-  1. Download and install
-     [Miniconda for Python 2](http://conda.pydata.org/miniconda.html)
-     on Windows. Make sure to choose the correct architecture (32/64) for your
-     copy of Windows.
+  1. Download and install [Miniconda](http://conda.pydata.org/miniconda.html)
+     either for Python 2 or for Python 3 on Windows. Make sure to choose the correct architecture (32/64) for your copy of Windows.
   2. After following the instructions you should be able to access `python`
      and `conda` from a command prompt.
   3. Create a fresh conda environment by using
 
-        :::console
+        ```
         C:\>conda create -n menpo python
+        ```
 
   4. Activate the environment by executing:
 
-        :::console
+        ```
         C:\>activate menpo
         [menpo] C:\>
+        ```
 
-  5. Install Menpo and **all** of it's dependencies:
+  5. Install the whole Menpo Project and **all** of its dependencies:
 
-        :::console
+        ```
+        [menpo] C:\>conda install -c menpo menpoproject
+        ```
+
+     If you don't need all the packages, you can explicitly install a specific package
+     with its dependencies as:
+
+        ```
         [menpo] C:\>conda install -c menpo menpo
+        [menpo] C:\>conda install -c menpo menpofit
+        [menpo] C:\>conda install -c menpo menpodetect
+        [menpo] C:\>conda install -c menpo menpowidgets
+        [menpo] C:\>conda install -c menpo menpocli
+        [menpo] C:\>conda install -c menpo menpo3d
+        ```
 
-  6. Head over to the [notebooks page](../../notebooks.md) to begin
+  6. Head over to the [Examples](../../examples/index.md) page to begin
      experimenting with Menpo.
+     
+     We strongly advise you to read the _User Guides_ for all the packages in order to
+     understand the basic concepts behind the Menpo Project. They can be found in:
+     - [`menpo`](../../userguide/menpo/index.md)
+     - [`menpodetect`](../../userguide/menpodetect/index.md)
+     - [`menpofit`](../../userguide/menpofit/index.md)
+     - [`menpowidgets`](../../userguide/menpowidgets/index.md)
+     - [`menpocli`](../../userguide/menpocli/index.md)
+     - [`menpo3d`](../../userguide/menpo3d/index.md)
