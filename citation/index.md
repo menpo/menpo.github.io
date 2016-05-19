@@ -27,7 +27,8 @@ div.bibtex pre { font-size: 60%; overflow: auto;  width: 100%; padding: 0em 0em;
 
 Citing the Menpo Project
 ========================
-If you are using the Menpo Project, please cite the following paper:
+If you are using the Menpo Project for **any academic paper** within any discipline,
+please cite the following paper:
 
 > J. Alabort-i-Medina<sup font-size: 75%;	line-height: 0;	position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>,
 > E. Antonakos<sup font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>,

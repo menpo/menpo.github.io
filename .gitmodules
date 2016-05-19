@@ -1,3 +1,0 @@
-[submodule "projects/website"]
-	path = projects/website
-	url = git@github.com:menpo/website.git
