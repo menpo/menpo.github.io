@@ -30,6 +30,7 @@
 * [menpowidgets](/userguide/menpowidgets/index.md)
 * [menpocli](/userguide/menpocli/index.md)
 * [menpo3d](/userguide/menpo3d/index.md)
+* [landmarker.io](/userguide/landmarker.io/index.md)
 * [Examples](/examples/index.md)
 * [Citation](/citation/index.md)
 * [FAQ](/faq.md)

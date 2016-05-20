@@ -1,6 +1,15 @@
 # IPython notebook
 An interactive Python document.
 
+# Landmark Points
+Landmarks are
+
+# Deformable Models
+Deformable models are ...
+
+# Parametric Shape Model
+A shape model is ...
+
 # Active Appearance Model
 A form of deformable model.
 
