@@ -1,5 +1,5 @@
 <center>
-  <img src="img/logo/menpo.png" alt="The Menpo Project" width="30%"><br/>
+  <img src="img/logo/menpoproject_white_medium.png" alt="The Menpo Project" width="30%"></br>
   <strong style="font-size: 250%">The Menpo Project</strong>
 </center>
 
@@ -8,13 +8,13 @@ MAIN DESCRIPTION
 -->
 The Menpo Project is an ecosystem of open-source software based on Python that provides end-to-end solution for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
 
-* **Active Appearance Model**
-* **Supervised Decent Method**
-* **Ensemble of Regression Trees** (powered by [dlib](http://dlib.net/))
-* **Constrained Local Model**
-* **Active Shape Model**
-* **Active Pictorial Structures**
-* **Lucas-Kanade Image Alignment** and **Active Template Model**
+* **Active Appearance Model (AAM)**
+* **Supervised Descent Method (SDM)**
+* **Ensemble of Regression Trees (ERT)** (powered by [dlib](http://dlib.net/ "dlib C++ Library"))
+* **Constrained Local Model (CLM)**
+* **Active Shape Model (ASM)**
+* **Active Pictorial Structures (APS)**
+* **Lucas-Kanade (LK)** and **Active Template Model (ATM)**
 
 The Menpo Project also provides:
 * a web-based tool for **annotation of bulk data** for model training
@@ -26,7 +26,15 @@ The Menpo Project also provides:
 ---------------------------------------
 
 ## Packages
-
+<center>
+  <a href="/userguide/menpo/index.md" title="menpo"><img src="img/logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
+  <a href="/userguide/menpofit/index.md" title="menpofit"><img src="img/logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
+  <a href="/userguide/menpodetect/index.md" title="menpodetect"><img src="img/logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
+  <a href="/userguide/menpowidgets/index.md" title="menpowidgets"><img src="img/logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
+  <a href="/userguide/menpo3d/index.md" title="menpo3d"><img src="img/logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
+  <a href="/userguide/menpocli/index.md" title="menpocli"><img src="img/logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
+  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="img/logo/landmarker_medium.png" alt="landmarker.io" width="13%"></a>
+</center>
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 
   - <strong style="font-size: 125%">``menpo``</strong> - The heart of the Menpo Project. `menpo` contains all core functionality needed for
@@ -107,14 +115,14 @@ After setting up a Python ``conda`` environment, all the packages of the Menpo P
 ```
 conda install -c menpo menpoproject
 ```
-We _strongly_ suggest you head over to the [installation instructions](installation/index.md) to get started.
+We _strongly_ suggest you head over to the [installation instructions](installation/index.md "Full Installation Instructions") to get started.
 We recommend the use of ``conda`` due to the fact that the Menpo Project also includes compiled ``C/C++`` code
 which may be complicated to compile on various platforms.
 
 ## User Group and Issues
 If you wish to get in contact with the Menpo developers, you can do so via various channels.
-If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/).
+If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/ "The Menpo Project on Github").
 
-If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users).
+If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users "menpo-users").
 
 Follow [@teammenpo](www.twitter.com/teammenpo) for updates on the Menpo Project, or tweet at us any questions you have.

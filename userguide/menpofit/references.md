@@ -1,7 +1,7 @@
 References
 ==========
 
-This is an indicative list of papers relevant to the methods that are implemented in MenpoFit. They are listed in alphabetical order of the first author's surname.
+This is an indicative list of papers relevant to the methods that are implemented in `menpofit`. They are listed in alphabetical order of the first author's surname.
 
 1.  J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.
 2.  J. Alabort-i-Medina, and S. Zafeiriou. "Bayesian Active Appearance Models", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
@@ -34,4 +34,3 @@ This is an indicative list of papers relevant to the methods that are implemente
 29. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Robust and efficient parametric face alignment", IEEE International Conference on Computer Vision (ICCV), 2011.
 30. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Subspace Learning from Image Gradient Orientations", IEEE Transactions on Pattern Analysis and Machine Intelligence. vol. 34, no. 12, pp. 2454-2466, 2012.
 31. X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.
-

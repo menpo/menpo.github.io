@@ -4,11 +4,23 @@ An interactive Python document.
 # Landmark Points
 Landmarks are
 
+# In-The-Wild
+It means...
+
 # Deformable Models
 Deformable models are ...
 
 # Parametric Shape Model
 A shape model is ...
+
+# Affine Image Alignment
+It is a ...
+
+# Deformable Image Alignment
+It is a ...
+
+# Landmark Localization
+It is a ...
 
 # Active Appearance Model
 A form of deformable model.
@@ -28,8 +40,8 @@ A form of deformable model.
 # Ensemble of Regression Trees
 A form of deformable model.
 
-# Lucas-Kanade Image Alignment
+# Lucas-Kanade
 A form of deformable model.
 
-# Supervised Decent Method
+# Supervised Descent Method
 Another form of deformable model.
