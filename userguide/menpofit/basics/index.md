@@ -6,8 +6,8 @@ For example, all deformable models are trained in _multiple scales_ and the fitt
 
 In the following sections, we present the main concepts behind all methods implemented in `menpofit`. Specifically:
 
-  1. [**Importing Images**](importing.md)
-  2. [**Training**](training.md)
-  3. [**Fitting**](fitting.md)
-  4. [**Fitting Result**](result.md)
-  5. [**Visualizing Objects**](visualization.md)
+  1. [Importing Images](importing.md)
+  2. [Training](training.md)
+  3. [Fitting](fitting.md)
+  4. [Fitting Result](result.md)
+  5. [Visualizing Objects](visualization.md)
