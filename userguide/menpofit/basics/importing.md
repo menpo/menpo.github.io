@@ -158,7 +158,7 @@ visualize_images(training_images)
 
 where each image will be loaded and pre-processed when indexed for visualization.
 
-![Visualize images widget](../../../../img/userguide/visualize_images.gif "Visualize images widget")
+![Visualize images widget](visualize_images.gif "Visualize images widget")
 
 In case you wish to get rid of the `LazyList` and load the images in memory, it can be easily done as:
 

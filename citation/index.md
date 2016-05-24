@@ -59,5 +59,5 @@ address = {New York, NY, USA}
 </div>
 
 <center>
-  <img src="../img/logo/menpo_small.png" alt="The Menpo Project"><br/>
+  <img src="../logo/menpoproject_white_medium.png" alt="The Menpo Project" width="15%">
 </center>

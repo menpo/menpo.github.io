@@ -1,5 +1,5 @@
 <center>
-  <img src="img/logo/menpoproject_white_medium.png" alt="The Menpo Project" width="30%"></br>
+  <img src="logo/menpoproject_white_medium.png" alt="The Menpo Project" width="30%"></br>
   <strong style="font-size: 250%">The Menpo Project</strong>
 </center>
 
@@ -27,13 +27,13 @@ The Menpo Project also provides:
 
 ## Packages
 <center>
-  <a href="/userguide/menpo/index.md" title="menpo"><img src="img/logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
-  <a href="/userguide/menpofit/index.md" title="menpofit"><img src="img/logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
-  <a href="/userguide/menpodetect/index.md" title="menpodetect"><img src="img/logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
-  <a href="/userguide/menpowidgets/index.md" title="menpowidgets"><img src="img/logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
-  <a href="/userguide/menpo3d/index.md" title="menpo3d"><img src="img/logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
-  <a href="/userguide/menpocli/index.md" title="menpocli"><img src="img/logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
-  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="img/logo/landmarker_medium.png" alt="landmarker.io" width="13%"></a>
+  <a href="/userguide/menpo/index.md" title="menpo"><img src="logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
+  <a href="/userguide/menpofit/index.md" title="menpofit"><img src="logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
+  <a href="/userguide/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
+  <a href="/userguide/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
+  <a href="/userguide/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
+  <a href="/userguide/menpocli/index.md" title="menpocli"><img src="logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
+  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarker_medium.png" alt="landmarker.io" width="13%"></a>
 </center>
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 

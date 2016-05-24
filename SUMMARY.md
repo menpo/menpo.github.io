@@ -2,7 +2,7 @@
 
 * [The Menpo Project](/homepage.md)
 * [Manifesto](/manifesto.md)
-* [The Menpo Team](/team.md)
+* [The Menpo Team](/team/index.md)
 * [Installation](/installation/index.md)
   * [Windows](/installation/windows/index.md)
     * [Beginner](/installation/windows/beginner.md)

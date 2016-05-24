@@ -1,5 +1,5 @@
 <center>
-  <img src="../../img/logo/menpofit_white_medium.png" alt="menpofit" width="30%"><br/>
+  <img src="../../logo/menpofit_white_medium.png" alt="menpofit" width="30%"><br/>
   <strong style="font-size: 250%">menpofit</strong>
 </center>
 
