@@ -10,7 +10,7 @@
 
 The methods that are implemented in `menpofit` are:
 - **Lucas-Kanade (LK)**
-  - _Optimization Algorithms:_ Forward/Inverse Additive, Forward/Inverse Compositional
+  - _Optimization Algorithms:_ Forward Additive, Forward/Inverse Compositional
   - _Residuals:_ SSD, Fourier SSD, ECC, Gradient Correlation, Gradient Images
 
 
