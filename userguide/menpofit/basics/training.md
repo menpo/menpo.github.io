@@ -15,10 +15,10 @@ In all our core classes, this is controlled using the following three parameters
 **reference_shape** (`PointCloud`)  
 First, the size of the training images is normalized by rescaling them so that the scale of their ground truth shapes matches the scale of this reference shape. In case no reference shape is provided by the user, then the mean of the ground shapes is used. This step is essential in order to ensure consistency among the extracted features of the images.
 
-**diagonal** (`int`)
+**diagonal** (`int`)  
 This parameter is used to rescale the reference shape so that the diagonal of its bounding box matches the provided value. This rescaling takes place before normalizing the training images' size. Thus, this parameter controls the resolution of the model at the highest scale.
 
-**scales** (`tuple` of `float`)
+**scales** (`tuple` of `float`)  
 A tuple with the scale value at each level, provided in ascending order, i.e. from lowest to highest scale. These values are proportional to the final resolution achieved through the reference shape normalization.
 
 The multi-scale training pattern followed by all `menpofit` methods is summarized in the following _pseudocode_:
@@ -58,15 +58,16 @@ parameter, which will split the provided set of training images into batches of 
 
 
 ### <a name="example"></a>4. Training Example
-Given the above basic assumptions, an example of a typical call for training a deformable model using `HolisticAAM` is:
+Given the above basic assumptions and using the `training_images` loaded in the [Importing Images](importing.md) section,
+an example of a typical call for training a deformable model using `HolisticAAM` is:
 
 ```python
 from menpofit.aam import HolisticAAM
 from menpo.feature import fast_dsift
 
 aam = HolisticAAM(training_images, reference_shape=None,
-                  diagonal=200, scales=(0.25, 0.5, 1.0),
-                  holistic_features=fast_dsift, verbose=True)
+                  diagonal=180, scales=(0.25, 0.5, 1.0),
+                  holistic_features=igo, verbose=True)
 ```
 
 The `verbose` flag allows printing the training progress:

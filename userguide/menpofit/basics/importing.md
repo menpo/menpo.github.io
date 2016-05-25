@@ -158,7 +158,10 @@ visualize_images(training_images)
 
 where each image will be loaded and pre-processed when indexed for visualization.
 
-![Visualize images widget](visualize_images.gif "Visualize images widget")
+<video width="100%" autoplay loop>
+  <source src="visualize_images.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
 In case you wish to get rid of the `LazyList` and load the images in memory, it can be easily done as:
 
