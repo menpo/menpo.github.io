@@ -1,4 +1,4 @@
-# IPython notebook
+# Jupyter notebook
 An interactive Python document.
 
 # Landmark Points
@@ -13,26 +13,8 @@ Deformable models are ...
 # Parametric Shape Model
 A shape model is ...
 
-# Active Appearance Model
-A form of deformable model.
+# Generative Model
+A generative model is
 
-# Active Pictorial Structures
-A form of deformable model.
-
-# Active Shape Model
-A form of deformable model.
-
-# Active Template Model
-A form of deformable model.
-
-# Constrained Local Model
-A form of deformable model.
-
-# Ensemble of Regression Trees
-A form of deformable model.
-
-# Lucas-Kanade
-A form of deformable model.
-
-# Supervised Descent Method
-Another form of deformable model.
+# Discriminative Model
+A discriminative model is

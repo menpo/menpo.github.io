@@ -16,7 +16,7 @@ $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ with
 location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
 The warp function in this case is driven by an affine transform, thus $$\mathbf{p}$$ consists of 6 parameters.
 
-The optimization problem is expressed as minimizing the $$\ell_2$$ norm
+The Lucas-Kanade (LK) optimization problem is expressed as minimizing the $$\ell_2$$ norm
 $$
 \arg\min_{\mathbf{p}} \left\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \right\rVert^{2}
 $$

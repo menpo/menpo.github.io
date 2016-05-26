@@ -5,7 +5,9 @@ Frequently Asked Questions (FAQ)
   2. [How do I cite Menpo?](#citation)
   3. [How do I install a development version?](#how-do-i-install-a-development-version)
 
-### What license is Menpo under?
+---------------------------------------
+
+### <a name="what-license-is-menpo-under"></a>What license is Menpo under?
 Menpo is under the 3-clause BSD license which can be found
 [here](https://github.com/menpo/menpo/blob/master/LICENSE.txt). This means
 that you are free to use Menpo in commercial products as long as you retain
@@ -13,7 +15,8 @@ our copyright notice and do not use the *Imperial College London* name to
 promote your product. A list of contributors is given within the
 [authors file](https://github.com/menpo/menpo/blob/master/AUTHORS.txt).
 
-### How do I cite Menpo?
+
+### <a name="citation"></a>How do I cite Menpo?
 Menpo has been accepted to appear at the
 [ACM Multimedia 2014](http://acmmm.org/2014/) conference.
 
@@ -25,6 +28,6 @@ Therefore, this publication is the reference paper to cite if you use Menpo
 within **any academic paper**. We request that you if do use Menpo for an
 academic publication within any displicine that you cite Menpo!
 
-### How do I install a development version?
 
+### <a name="how-do-i-install-a-development-version"></a>How do I install a development version?
 Please see the [Development installation instructions](/installation/development.md)

@@ -20,7 +20,7 @@ The methods that are implemented in `menpofit` are:
 The methods that are implemented in `menpofit` are:
 - **Active Template Model (ATM)**
   - _Model Variants:_ Holistic, Patch-based, Masked, Linear, Linear Masked
-  - _Optimization Algorithm:_ Lucas-Kanade
+  - _Optimization Algorithm:_ Lucas-Kanade Gradient Descent
 
 
 #### Landmark Localization
