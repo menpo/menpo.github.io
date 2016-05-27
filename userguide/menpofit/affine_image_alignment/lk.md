@@ -20,7 +20,7 @@ The Lucas-Kanade (LK) optimization problem is expressed as minimizing the $$\ell
 $$
 \arg\min_{\mathbf{p}} \left\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \right\rVert^{2}
 $$
-with respect to the motion model parameters $$\mathbf{p}$$. Let's load an image $$\mathbf{t}$$ and create a template from it $$\bar{\mathbf{a}}$$
+with respect to the motion model parameters $$\mathbf{p}$$. Let's load an image $$\mathbf{t}$$ and create a template $$\bar{\mathbf{a}}$$ from it
 ```python
 import menpo.io as mio
 
@@ -143,7 +143,7 @@ from menpofit.fitter import noisy_shape_from_bounding_box
 gt_bb = takeo.landmarks['bounding_box'].lms
 # generate perturbed bounding box
 init_bb = noisy_shape_from_bounding_box(fitter.reference_shape, gt_bb,
-                                        noise_percentage=0.2,
+                                        noise_percentage=0.12,
                                         allow_alignment_rotation=True)
 # fit image
 result = fitter.fit_from_bb(takeo, init_bb, gt_shape=gt_bb, max_iters=80)

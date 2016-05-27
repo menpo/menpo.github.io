@@ -23,7 +23,7 @@ This is an indicative list of papers relevant to the methods that are implemente
 18. R. Gross, I. Matthews, and S. Baker. "Generic vs. person specific Active Appearance Models", Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.
 19. V. Kazemi, and J. Sullivan. "One millisecond face alignment with an  ensemble of regression trees", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
 20. B.D. Lucas, and T. Kanade, "An iterative image registration technique with an application to stereo vision", International Joint Conference on Artificial Intelligence, 1981.
-21. I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, 60(2): 135-164, 2004.
+21. I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.
 22. G. Papandreou, and P. Maragos. "Adaptive and constrained algorithms for  inverse compositional active appearance model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.
 23. D. Ross, J. Lim, R.S. Lin, and M.H. Yang. "Incremental Learning for Robust Visual Tracking". International Journal on Computer Vision, vol. 77, no. 1-3, pp. 125-141, 2007.
 24. J.M. Saragih, S. Lucey, and J.F. Cohn. "Deformable model fitting by regularized landmark mean-shift", International Journal of Computer Vision, vol. 91, no. 2, pp. 200–215, 2011.
