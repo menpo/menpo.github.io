@@ -32,6 +32,8 @@
     * [Fitting](/userguide/menpofit/basics/fitting.md)
     * [Fitting Result](/userguide/menpofit/basics/result.md)
     * [Visualizing Objects](/userguide/menpofit/basics/visualization.md)
+    * [Running Experiments](/userguide/menpofit/basics/experiments.md)
+  * [Point Distribution Model](/userguide/menpofit/pdm/index.md)
   * [Affine Image Alignment](/userguide/menpofit/affine_image_alignment/index.md)
     * [Lucas-Kanade](/userguide/menpofit/affine_image_alignment/lk.md)
   * [Deformable Image Alignment](/userguide/menpofit/deformable_image_alignment/index.md)

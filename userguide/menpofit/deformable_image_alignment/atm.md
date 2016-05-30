@@ -2,10 +2,9 @@ Active Template Model
 =====================
 
 1. [Definition](#definition)
-2. [Parametric Shape Model](#shape_model)
-3. [Warp Functions](#warp)
-4. [Fitting](#fitting)
-5. [References](#references)
+2. [Warp Functions](#warp)
+3. [Fitting](#fitting)
+4. [References](#references)
 
 ---------------------------------------
 
@@ -14,7 +13,8 @@ The aim of deformable image alignment is to find the optimal alignment between a
 with respect to the parameters of a parametric motion model. Note that both $$\bar{\mathbf{a}}$$ and $$\mathbf{t}$$ are vectorized.
 The motion model consists of a Warp function $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ within a target (reference) shape to its corresponding
 location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
-In the case of Active Template Model (ATM), the warp function is driven by a parametric shape model, where $$\mathbf{p}$$ is the set of *shape parameters*.
+In the case of Active Template Model (ATM), the warp function is driven by a Point Distributon Model (PDM), where $$\mathbf{p}$$ is the set of *shape parameters*.
+To read more about PDM, please refer to the [Point Distributon Model section](../pdm/index.md).
 
 Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature.
 The cost function of an ATM is exactly the same as in the case of [Lucas-Kanade](../affine_image_alignment/lk.md) for Affine Image Alignment.
@@ -57,28 +57,7 @@ plt.gca().set_title('Template');
   <img src="template.png" alt="template">
 </center>
 
-
-### <a name="shape_model"></a>2. Parametric Shape Model
-Let us denote a shape instance of an object with $$L$$ landmark points as a $$2L\times 1$$ vector
-$$
-\mathbf{s}=[x_1, y_1, \ldots, x_L, y_L]^T
-$$
-which consists of the Cartesian coordinates of the points $$(x_i, y_i), \forall i=1,\ldots,L$$.
-A parametric shape model is constructed by first aligning a set of $$N$$ training shapes $$\left\lbrace \mathbf{s}^1, \mathbf{s}^2, \ldots, \mathbf{s}^N \right\rbrace$$ using
-Generalized Procrustes Analysis and then applying Principal Component Analysis (PCA) on the aligned shapes.
-We further augment the acquired subspace with four eigenvectors that control the global similarity transform of the object,
-re-orthonormalize [[1](#1)] and keep the first $$n$$ eigenvectors. This results to a linear shape model of the form
-$$
-\left\lbrace\bar{\mathbf{s}}, \mathbf{U}_S\right\rbrace
-$$
-where $$\mathbf{U}_S\in\mathbb{R}^{2L\times n}$$ is an orthonormal basis of $$n$$ eigenvectors and $$\bar{\mathbf{s}}$$ is the mean shape vector.
-A new shape instance can be generated as
-$$
-\mathbf{s} = \bar{\mathbf{s}} + \mathbf{U}_S\mathbf{p}
-$$
-where $$\mathbf{p}=[p_1, p_2, \ldots, p_n]^T$$ is the shape parameters vector.
-
-Let's now load the shapes of LFPW trainset that will be used in order to train a parametric shape model:
+Let's also load the shapes of LFPW trainset that will be used in order to train the PDM:
 ```python
 from menpo.visualize import print_progress
 
@@ -93,12 +72,12 @@ from menpowidgets import visualize_pointclouds
 visualize_pointclouds(training_shapes)
 ```
 <video width="100%" autoplay loop>
-  <source src="visualize_pointclouds.mp4" type="video/mp4">
+  <source src="../pdm/visualize_pointclouds.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
 
-### <a name="warp"></a>3. Warp Functions
+### <a name="warp"></a>2. Warp Functions
 The warp function $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ of an ATM aims to warp the texture related to
 a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`.
 The `reference_shape` is usually the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your
@@ -156,7 +135,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="fitting"></a>4. Fitting
+### <a name="fitting"></a>3. Fitting
 The optimization of the ATM deformable image alignment is performed with the Lucas-Kanade gradient descent algorithm.
 This is the same as in the case of affine image transform, so you can refer to the [Lucas-Kanade](../affine_image_alignment/lk.md) chapter
 for more information. We currently support Inverse-Compositional and Formard-Compositional optimization.
@@ -259,5 +238,5 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="references"></a>5. References
+### <a name="references"></a>4. References
 <a name="1"></a>[1] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.

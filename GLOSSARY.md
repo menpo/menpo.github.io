@@ -10,9 +10,6 @@ It means...
 # Deformable Models
 Deformable models are ...
 
-# Parametric Shape Model
-A shape model is ...
-
 # Generative Model
 A generative model is
 
