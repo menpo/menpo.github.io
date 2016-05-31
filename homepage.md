@@ -33,7 +33,7 @@ The Menpo Project also provides:
   <a href="/userguide/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
   <a href="/userguide/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
   <a href="/userguide/menpocli/index.md" title="menpocli"><img src="logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
-  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarker_medium.png" alt="landmarker.io" width="13%"></a>
+  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_white_medium.png" alt="landmarker.io" width="13%"></a>
 </center>
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 
@@ -49,7 +49,7 @@ The majority of the software exists within a family of Python packages, each des
   - <strong style="font-size: 125%">``menpodetect``</strong> - It wraps a number of existing projects that provide functionalities for training and
     fitting generic object detection techniques. It is designed in order to have full compatibility with `menpofit`. Not all of the wrapped
     projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.  
-    [![Github Release][md_shield]][md_gh] [![BSD License][bsd_shield]][md_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35]
+    [![Github Release][md_shield]][md_gh] [![BSD License][bsd_shield]][md_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35] [![Coverage Status][cmd_shield]][cmd]
 
   - <strong style="font-size: 125%">``menpo3d``</strong> - A specialized library for working with 3D data. It is largely separate from the
     core `menpo` library as it has dependencies on a number of large, 3D specific projects (like `VTK`, `mayavi`, `assimp`) which many people using
@@ -101,6 +101,8 @@ The majority of the software exists within a family of Python packages, each des
   [python35]: https://img.shields.io/badge/Python-3.5-green.svg
   [cm]: https://coveralls.io/r/menpo/menpo
   [cm_shield]: http://img.shields.io/coveralls/menpo/menpo.svg?style=flat
+  [cmd]: https://coveralls.io/r/menpo/menpodetect
+  [cmd_shield]: http://img.shields.io/coveralls/menpo/menpodetect.svg?style=flat
 
 
 ---------------------------------------
