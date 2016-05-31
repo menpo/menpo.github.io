@@ -11,3 +11,4 @@ In the following sections, we present the main concepts behind all methods imple
   3. [Fitting](fitting.md)
   4. [Fitting Result](result.md)
   5. [Visualizing Objects](visualization.md)
+  6. [Running Experiments](experiments.md)

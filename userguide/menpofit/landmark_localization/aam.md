@@ -9,3 +9,4 @@ Active Appearance Model
 ---------------------------------------
 
 ### <a name="definition"></a>1. Definition
+**Will be updated soon!**

@@ -14,7 +14,7 @@ with respect to the parameters of a parametric motion model. Note that both $$\b
 The motion model consists of a Warp function $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ within a target (reference) shape to its corresponding
 location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
 In the case of Active Template Model (ATM), the warp function is driven by a Point Distributon Model (PDM), where $$\mathbf{p}$$ is the set of *shape parameters*.
-To read more about PDM, please refer to the [Point Distributon Model section](../pdm/index.md).
+To read more about PDM, please refer to the [Point Distributon Model section](../pdm/index.md). However, note that the PDM is built within the ATM constructor.
 
 Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature.
 The cost function of an ATM is exactly the same as in the case of [Lucas-Kanade](../affine_image_alignment/lk.md) for Affine Image Alignment.
