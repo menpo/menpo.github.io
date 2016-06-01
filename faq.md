@@ -40,7 +40,7 @@ The Menpo Project is under the 3-clause BSD license which can be found
 that you are free to use Menpo Project's packages (`menpo`, `menpofit`, `menpowidgets`, `menpo3d`) in commercial products as long as you retain
 our copyright notice and do not use the *Imperial College London* name to promote your product.
 The license of `menpodetect` is subject to the licenses of the packages that are wrapped.
-Please see the [Menpo Team](team/index.md) for a list of contributors.
+Please see the [Menpo Team](team.md) for a list of contributors.
 
 
 ### <a name="citation"></a>How do I cite the Menpo Project?
@@ -52,7 +52,7 @@ Therefore, this publication is the reference paper to cite if you use any packag
 > J. Booth<sup>\*</sup>, P. Snape<sup>\*</sup>, and S. Zafeiriou. _(\* Joint first authorship)_<br/>
 > **Menpo: A Comprehensive Platform for Parametric Image Alignment and Visual Deformable Models**,
 > *In Proceedings of the ACM International Conference on Multimedia, MM ’14*, New York, NY, USA, pp. 679-682, 2014. ACM.<br/>
-[<a href="citation/menpo14.pdf"><font color="1A75FF">pdf</font></a>]
+[<a href="../menpo14.pdf"><font color="1A75FF">pdf</font></a>]
 [<a href="javascript:toggleBibtex('menpo14')"><font color="1A75FF">bibtex</font></a>]
 <div id="bib_menpo14" class="bibtex noshow">
 <pre>
@@ -83,4 +83,4 @@ Please see the [Setting Up A Development Environment](/installation/development.
 
 
 ### <a name="pre_trained_models"></a>Can I use the Menpo Project as a black box to detect landmarks on facial images?
-The Menpo Project provides a command line tool for automatic landmark detection on facial images using pre-trained models. For more information. please refer to the [`menpocli`](userguide/menpocli/index.md) package.
+The Menpo Project provides a command line tool for automatic state-of-the-art landmark detection on facial images using pre-trained models. For more information. please refer to the [`menpocli`](/menpocli/index.md) package. However, note that the purpose of the Menpo Project is to provide solutions for modelling any deformable object; _there is nothing specific at all to human face_.

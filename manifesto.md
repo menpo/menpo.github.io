@@ -43,7 +43,7 @@ The above requirements are the building blocks of the kind of deformable modelin
 
 
 ### <a name="menpo_is_better"></a>What makes the Menpo Project better?
-The [`menpo`](userguide/menpo/index.md) package is a solid codebase that implements all of the above features well and makes it easy to
+The [`menpo`](/menpo/index.md) package is a solid codebase that implements all of the above features well and makes it easy to
 express a wide variety of computer vision and deformable modeling problems.
 The vast majority of **existing deformable modeling software** suffers from one or more of the following
 important issues:
@@ -52,7 +52,7 @@ important issues:
 * It is not well-structured which makes it very difficult to tweak and alter
 * It only focuses on a single method/model
 
-[`menpofit`](userguide/menpofit/index.md) overcomes the above issues by providing open-source training and fitting
+[`menpofit`](/menpofit/index.md) overcomes the above issues by providing open-source training and fitting
 code for multiple state-of-the-art deformable models under a unified protocol.
 We **strongly** believe that this is the only way towards reproducable and
 high-quality research.
@@ -74,10 +74,10 @@ It's from these requirements, and a desire by the team to make high quality open
 ### <a name="website"></a>This website
 This website focuses on explaining the core abstractions and datatypes which are heavily reused throughout all of the Menpo Project. If you are new to the project, this website is the best way to quickly get up to speed with how to use the Menpo Project.
 
-As is hopefully now clear, the core concepts and datatypes defined in [`menpo`](userguide/menpo/index.md) are reused across all of the Menpo Project. We've worked hard to keep this core API as compact as possible, as we know from experience it's never pleasant trying to get to grips with another projects sprawling API and design patterns if you just want to get a job done.
+As is hopefully now clear, the core concepts and datatypes defined in [`menpo`](/menpo/index.md) are reused across all of the Menpo Project. We've worked hard to keep this core API as compact as possible, as we know from experience it's never pleasant trying to get to grips with another projects sprawling API and design patterns if you just want to get a job done.
 
-The rest of this website is devoted to getting you to grips with the core [`menpo`](userguide/menpo/index.md) concepts and abstractions as quickly as possible. If you are at all interested in using any part of the Menpo Project, the 15 minutes it will take you to read through this website will be hugely beneficial to getting started quickly. Then we provide the same descriptions for [`menpofit`](userguide/menpofit/index.md), [`menpodetect`](userguide/menpodetect/index.md), [`menpowidgets`](userguide/menpowidgets/index.md) and [`menpo3d`](userguide/menpo3d/index.md).
+The rest of this website is devoted to getting you to grips with the core [`menpo`](/menpo/index.md) concepts and abstractions as quickly as possible. If you are at all interested in using any part of the Menpo Project, the 15 minutes it will take you to read through this website will be hugely beneficial to getting started quickly. Then we provide the same descriptions for [`menpofit`](/menpofit/index.md), [`menpodetect`](/menpodetect/index.md), [`menpowidgets`](/menpowidgets/index.md) and [`menpo3d`](/menpo3d/index.md).
 
 There will be examples throughout which you could try out and tweak as you go.
 
-As a final note, if you are only interested in using the Menpo Project as a black box for some of the [`menpofit`](userguide/menpofit/index.md) functionality, you are invited to checkout [`menpocli`](userguide/menpocli/index.md), our Command Line Interface. This is a cross platform set of executables for performing landmark detection on **facial** images, and requires no knowledge of Python or the rest of this website.
+As a final note, if you are only interested in using the Menpo Project as a black box for some of the [`menpofit`](/menpofit/index.md) functionality, you are invited to checkout [`menpocli`](/menpocli/index.md), our Command Line Interface. This is a cross platform set of executables for performing landmark detection on **facial** images, and requires no knowledge of Python or the rest of this website.

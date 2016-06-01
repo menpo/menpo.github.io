@@ -11,7 +11,7 @@ We are enthusiastic about social coding and we are very keen to receive contribu
 
 ### Joan Alabort-i-Medina
 <p style="float: left;">
-<img alt="Joan Alabort-i-Medina" src="joan_portrait.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<img alt="Joan Alabort-i-Medina" src="portraits/joan.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
 <a href="http://ibug.doc.ic.ac.uk/people/jalabort-i-medina" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
 <a href="mailto:joan.alabort@gmail.com" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
 <a href="http://github.com/jalabort" target="_blank"><i class="fa fa-github" style="color: black; font-size:120%;"></i></a>
@@ -30,7 +30,7 @@ Joan received his B.Sc. degree in Computer Science and Engineering from the [Uni
 
 ### Epameinondas Antonakos
 <p style="float: left;">
-<img alt="Epameinondas Antonakos" src="nontas_portrait.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<img alt="Epameinondas Antonakos" src="portraits/nontas.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
 <a href="http://nontas.github.io/" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
 <a href="mailto:antonakosn@gmail.com" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
 <a href="http://github.com/nontas" target="_blank"><i class="fa fa-github" style="color: black; font-size:120%;"></i></a>
@@ -49,7 +49,7 @@ Nontas received his Diploma degree in Electrical and Computer Engineering from [
 
 ### James Booth
 <p style="float: left;">
-<img alt="James Booth" src="james_portrait.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<img alt="James Booth" src="portraits/james.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
 <a href="http://www.jamesabooth.com" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
 <a href="mailto:jabooth@gmail.com" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
 <a href="http://github.com/jabooth" target="_blank"><i class="fa fa-github" style="color: black; font-size:120%;"></i></a>
@@ -68,7 +68,7 @@ James is a Ph.D. candidate supervised by [Dr. Stefanos Zafeiriou][stefanos_perso
 
 ### Patrick Snape
 <p style="float: left;">
-<img alt="Patrick Snape" src="patrick_portrait.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<img alt="Patrick Snape" src="portraits/patrick.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
 <a href="http://patricksnape.github.io/" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
 <a href="mailto:p.snape@imperial.ac.uk" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
 <a href="http://github.com/patricksnape" target="_blank"><i class="fa fa-github" style="color: black; font-size:120%;"></i></a>
@@ -87,7 +87,7 @@ Patrick received his MEng in Computer Science from [Imperial College London][imp
 
 ### Dr. Stefanos Zafeiriou
 <p style="float: left;">
-<img alt="Dr. Stefanos Zafeiriou" src="stefanos_portrait.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<img alt="Dr. Stefanos Zafeiriou" src="portraits/stefanos.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
 <a href="https://wp.doc.ic.ac.uk/szafeiri/" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
 <a href="mailto:s.zafeiriou@imperial.ac.uk" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
 <a href="http://ibug.doc.ic.ac.uk/people/szafeiriou" target="_blank"><i class="fa fa-bug" style="color: black; font-size:120%;"></i></a>

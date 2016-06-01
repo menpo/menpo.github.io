@@ -14,10 +14,10 @@ with respect to the parameters of a parametric motion model. Note that both $$\b
 The motion model consists of a Warp function $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ within a target (reference) shape to its corresponding
 location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
 In the case of Active Template Model (ATM), the warp function is driven by a Point Distributon Model (PDM), where $$\mathbf{p}$$ is the set of *shape parameters*.
-To read more about PDM, please refer to the [Point Distributon Model section](../pdm/index.md). However, note that the PDM is built within the ATM constructor.
+To read more about PDM, please refer to the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). However, note that the PDM is built within the ATM constructor.
 
 Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature.
-The cost function of an ATM is exactly the same as in the case of [Lucas-Kanade](../affine_image_alignment/lk.md) for Affine Image Alignment.
+The cost function of an ATM is exactly the same as in the case of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment.
 Specifically, it has the form
 $$
 \arg\min_{\mathbf{p}} \left\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \right\rVert^{2}
@@ -25,7 +25,7 @@ $$
 The difference has to do with the nature of the transform - and thus $$\mathbf{p}$$ - that is used in the motion model $$\mathcal{W}(\mathbf{p})$$.
 
 Let's first load a test image $$\mathbf{t}$$ and a template image $$\bar{\mathbf{a}}$$. We'll load two images of the same person (Amanda Peet, actress)
-from LFPW trainset (see [Importing Images](../basics/importing.md) for download instructions).
+from LFPW trainset (see [Importing Images](importing.md "Basics on how to import images") for download instructions).
 ```python
 from pathlib import Path
 import menpo.io as mio
@@ -54,7 +54,7 @@ template.view_landmarks(marker_face_colour='white', marker_edge_colour='black',
 plt.gca().set_title('Template');
 ```
 <center>
-  <img src="template.png" alt="template">
+  <img src="media/atm_template.png" alt="Template image">
 </center>
 
 Let's also load the shapes of LFPW trainset that will be used in order to train the PDM:
@@ -72,7 +72,7 @@ from menpowidgets import visualize_pointclouds
 visualize_pointclouds(training_shapes)
 ```
 <video width="100%" autoplay loop>
-  <source src="../pdm/visualize_pointclouds.mp4" type="video/mp4">
+  <source src="media/visualize_pointclouds_lfpw.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -122,7 +122,7 @@ and visualize it:
 atm.view_shape_models_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="../basics/view_shape_models_widget.mp4" type="video/mp4">
+  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -130,14 +130,14 @@ Your browser does not support the video tag.
 atm.view_atm_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="view_atm_widget.mp4" type="video/mp4">
+  <source src="media/atm_view_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
 
 ### <a name="fitting"></a>3. Fitting
 The optimization of the ATM deformable image alignment is performed with the Lucas-Kanade gradient descent algorithm.
-This is the same as in the case of affine image transform, so you can refer to the [Lucas-Kanade](../affine_image_alignment/lk.md) chapter
+This is the same as in the case of affine image transform, so you can refer to the [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") chapter
 for more information. We currently support Inverse-Compositional and Formard-Compositional optimization.
 
 Let's now create a `Fitter` using the ATM we created, as:
@@ -198,7 +198,7 @@ if len(bboxes) > 0:
                          render_markers=False, line_width=3);
 ```
 <center>
-  <img src="view_bbox.png" alt="view_bbox">
+  <img src="media/atm_view_bbox.png" alt="Visualize detected bounding box">
 </center>
 
 and fit the ATM as:
@@ -225,7 +225,7 @@ The result can be visualized as:
 result.view(render_initial_shape=True)
 ```
 <center>
-  <img src="view_result.png" alt="view_result">
+  <img src="media/atm_view_result.png" alt="Visualize_fitting_result">
 </center>
 
 or using a widget as:
@@ -233,7 +233,7 @@ or using a widget as:
 result.view_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="result_view_widget.mp4" type="video/mp4">
+  <source src="media/atm_result_view_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 

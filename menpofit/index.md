@@ -17,7 +17,7 @@
 > An Affine Image Alignment algorithm aims to find the optimal alignment between an input image and a template image with respect to the parameters of an affine transform.
 
 The methods that are implemented in `menpofit` are:
-- [**Lucas-Kanade (LK)**](affine_image_alignment/lk.md)
+- [**Lucas-Kanade (LK)**](lk.md "Lucas-Kanade")
   - _Optimization Algorithms:_ Forward Additive, Forward/Inverse Compositional
   - _Residuals:_ SSD, Fourier SSD, ECC, Gradient Correlation, Gradient Images
 
@@ -26,7 +26,7 @@ The methods that are implemented in `menpofit` are:
 > Deformable Image Alignment aims to get the otpimal alignment between an input image and a template image with respect to the parameters of a statistical parametric shape model.
 
 The methods that are implemented in `menpofit` are:
-- [**Active Template Model (ATM)**](deformable_image_alignment/atm.md)
+- [**Active Template Model (ATM)**](atm.md "Active Template Model")
   - _Model Variants:_ Holistic, Patch-based, Masked, Linear, Linear Masked
   - _Optimization Algorithm:_ Lucas-Kanade Gradient Descent
 
@@ -37,18 +37,21 @@ A deformable object is commonly represented with a set of landmarks which corres
 > Landmark Localization is the problem of localizing the landmark points that correspond to a deformable model in an input image.
 
 The models that are implemented in `menpofit` are:
-- [**Active Appearance Model (AAM)**](landmark_localization/aam.md)
+- [**Active Appearance Model (AAM)**](aam.md "Active Appearance Model")
   - _Model Variants:_ Holistic, Patch-based, Masked, Linear, Linear Masked
   - _Optimization Algorithms:_ Lucas-Kanade, Cascaded-Regression
-- [**Active Pictorial Structures (APS)**](landmark_localization/aps.md)
+- [**Active Pictorial Structures (APS)**](aps.md "Active Pictorial Structures")
   - _Model Variant:_ Generative
   - _Optimization Algorithm:_ Weighted Gauss-Newton Optimisation with fixed Jacobian and Hessian
-- [**Constrained Local Model (CLM)**](landmark_localization/clm.md)
+- [**Constrained Local Model (CLM)**](clm.md "Constrained Local Model")
   - Active Shape Model
   - Regularised Landmark Mean Shift
-- [**Ensemble of Regression Trees (ERT)**](landmark_localization/ert.md)
+- [**Ensemble of Regression Trees (ERT)**](ert.md "Ensemble of Regression Trees")
   - \[provided by [DLib](http://dlib.net/ "dlib C++ Library")\]
-- [**Supervised Descent Method (SDM)**](landmark_localization/sdm.md)
+- [**Supervised Descent Method (SDM)**](sdm.md "Supervised Descent Method")
   - _Model Variants:_ Non Parametric, Parametric Shape, Parametric Appearance, Fully Parametric
 
-Please see the [References](references.md "List of implemented papers.") for an indicative list of papers that are implemented in `menpofit`.
+You are highly encouraged to go through the fundamental concepts and assumptions that are made throughout `menpofit`, before reading about the actual methods.
+To do so, please visit the [**Basics**](basics.md "Basic concepts and assumptions in menpofit") section.
+
+Finally, please see the [References](references.md "List of implemented papers") for an indicative list of papers that are implemented in `menpofit`.

@@ -79,8 +79,8 @@ The `verbose` flag allows printing the training progress:
 ```
 
 <center>
-  <img src="face_shape.gif" alt="AAM on human face" width="55%">
-  <img src="face_model.gif" alt="AAM on human face" width="40%">
+  <img src="media/face_shape_model.gif" alt="AAM on human face" width="55%">
+  <img src="media/face_aam_model.gif" alt="AAM on human face" width="40%">
 </center>
 
 Information about any trained model can be retrieved by:

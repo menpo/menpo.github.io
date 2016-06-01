@@ -48,7 +48,7 @@ from menpowidgets import visualize_pointclouds
 visualize_pointclouds(training_shapes)
 ```
 <video width="100%" autoplay loop>
-  <source src="visualize_pointclouds.mp4" type="video/mp4">
+  <source src="media/visualize_pointclouds_lfpw.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -130,7 +130,7 @@ instance = shape_model.similarity_model.instance([100., -300., 0., 0.])
 instance.view(render_axes=False);
 ```
 <center>
-  <img src="instance_similarity.png" alt="instance_similarity" style="width: 40%">
+  <img src="media/pdm_instance_similarity.png" alt="New instance generated using the similarity transform components." style="width: 40%">
 </center>
 
 Similarly, a new instance using only the PCA components can be generated as
@@ -139,7 +139,7 @@ instance = shape_model.model.instance([2., -2., 2., 1.5], normalized_weights=Tru
 instance.view(render_axes=False);
 ```
 <center>
-  <img src="instance_pca.png" alt="instance_pca" style="width: 40%">
+  <img src="media/pdm_instance_pca.png" alt="New instance generated using the PCA components." style="width: 40%">
 </center>
 
 Note that in this case, the weights that are provided are normalized with respect to the corresponding eigenvalues.
@@ -152,7 +152,7 @@ shape_model.from_vector(params).target.view(render_axes=False);
 ```
 which returns the following instance
 <center>
-  <img src="instance.png" alt="instance" style="width: 40%">
+  <img src="media/pdm_instance.png" alt="New instance generated using both the similarity transform and PCA components." style="width: 40%">
 </center>
 
 
@@ -163,7 +163,7 @@ from menpowidgets import visualize_shape_model
 visualize_shape_model(shape_model.model)
 ```
 <video width="100%" autoplay loop>
-  <source src="../basics/view_shape_models_widget.mp4" type="video/mp4">
+  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -197,7 +197,7 @@ shape_model.target.view(render_axes=False, axes_x_limits=0.05, axes_y_limits=0.0
 plt.gca().set_title('Reconstructed shape');
 ```
 <center>
-  <img src="reconstruction.png" alt="reconstruction">
+  <img src="media/pdm_reconstruction.png" alt="reconstruction">
 </center>
 
 The procedure that is applied inside `set_target()` involves the following steps:
@@ -239,8 +239,8 @@ The Menpo Project is _not_ specific to the human face and can be used for any ki
 As an example, here are indicative parametric shape models for various deformable objects, such as
 the human body (skeleton), human hand, cat face and car sideview.
 <center>
-  <img src="body_model.gif" alt="body_model" style="width:19%;">
-  <img src="hand_model.gif" alt="hand_model" style="width:24%;">
-  <img src="cat_model.gif" alt="cat_model" style="width:24%;">
-  <img src="car_model.gif" alt="car_model" style="width:26%;">
+  <img src="media/body_shape_model.gif" alt="body_model" style="width:19%;">
+  <img src="media/hand_shape_model.gif" alt="hand_model" style="width:24%;">
+  <img src="media/cat_shape_model.gif" alt="cat_model" style="width:24%;">
+  <img src="media/car_shape_model.gif" alt="car_model" style="width:26%;">
 </center>

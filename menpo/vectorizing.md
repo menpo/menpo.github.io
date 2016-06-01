@@ -1,12 +1,12 @@
 Vectorizing
 ===========
 
-1. [Vectorizing Objects](#vectorizing)
+1. [Vectorizing Objects](#vectorizing_objects)
 2. [Key Points](#keypoints)
 
 ---------------------------------------
 
-### <a name="vectorizing"></a>1. Vectorizing Objects
+### <a name="vectorizing_objects"></a>1. Vectorizing Objects
 Computer Vision algorithms are frequently formulated as linear algebra problems in a high dimensional space, where each asset is stripped into a vector. In this high dimensional space we may perform any number of operations, but normally we can't stay in this space for the whole algorithm - we normally have to recast the vector back into it's original domain in order to perform other operations.
 
 An example of this might be seen with images, where the gradient of the intensity values of an image needs to be taken. This is a complex problem to solve in a vector space representation of the image, but trivial to solve in the image domain.
@@ -18,7 +18,7 @@ An example of this might be seen with images, where the gradient of the intensit
 - `from_vector_inplace()` - alter an object inplace to take on the new state
 
 <center>
-  <img src="vectorizing.jpg" alt="vectorizing" style="width: 80%">
+  <img src="media/vectorizing.jpg" alt="Vectorization is a basic functionality within menpo" style="width: 80%">
 </center>
 Vectorizing allows Menpo to have rich data types whilst
 simultaneously providing efficient linear algebra routines. Here an image is

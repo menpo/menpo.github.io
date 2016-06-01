@@ -10,6 +10,7 @@ The steps below are focused on the `menpo` package. However, the procedure is id
 for all the packages of the Menpo Project (`menpofit`,
 `menpowidgets`, `menpodetect`, `menpocli`, `menpo3d`).
 
+---------------------------------------
 
 ### <a name="clone"></a>1. Clone The Source Code From Github
 Go to [Github](https://github.com/menpo/menpo) and fork the `menpo` repository,

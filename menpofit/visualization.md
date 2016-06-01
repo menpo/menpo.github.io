@@ -30,7 +30,7 @@ aam.view_aam_widget()
 ```
 
 <video width="100%" autoplay loop>
-  <source src="view_aam_widget.mp4" type="video/mp4">
+  <source src="media/basics_view_aam_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -41,7 +41,7 @@ aam.view_shape_models_widget()
 ```
 
 <video width="100%" autoplay loop>
-  <source src="view_shape_models_widget.mp4" type="video/mp4">
+  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -52,7 +52,7 @@ aam.view_appearance_models_widget()
 ```
 
 <video width="100%" autoplay loop>
-  <source src="view_appearance_models_widget.mp4" type="video/mp4">
+  <source src="media/basics_view_appearance_models_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -67,7 +67,7 @@ Specifically, the initial and final shapes can be rendered as:
 result.view(render_initial_shape=True)
 ```
 <center>
-  <img src="result_view.png" alt="result_view">
+  <img src="media/basics_result_view.png" alt="Result visualization">
 </center>
 
 Similarly, the shapes acquired at each iteration can be visualized as:
@@ -76,7 +76,7 @@ Similarly, the shapes acquired at each iteration can be visualized as:
 result.view_iterations()
 ```
 <center>
-  <img src="result_view_iterations.png" alt="result_view_iterations">
+  <img src="media/basics_result_view_iterations.png" alt="Result's iterations visualization">
 </center>
 
 and the corresponding errors as:
@@ -85,7 +85,7 @@ and the corresponding errors as:
 result.plot_errors()
 ```
 <center>
-  <img src="plot_errors.png" alt="plot_errors">
+  <img src="media/basics_plot_errors.png" alt="Result's error plotting">
 </center>
 
 Finally, a fitting result can also be analysed through an interactive widget as:
@@ -94,6 +94,6 @@ Finally, a fitting result can also be analysed through an interactive widget as:
 result.view_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="result_view_widget.mp4" type="video/mp4">
+  <source src="media/basics_result_view_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>

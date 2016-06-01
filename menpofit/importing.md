@@ -159,7 +159,7 @@ visualize_images(training_images)
 where each image will be loaded and pre-processed when indexed for visualization.
 
 <video width="100%" autoplay loop>
-  <source src="visualize_images.mp4" type="video/mp4">
+  <source src="media/visualize_images_lfpw.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 

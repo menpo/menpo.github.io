@@ -43,7 +43,7 @@ template.view()
 plt.gca().set_title('Template');
 ```
 <center>
-  <img src="template.png" alt="template">
+  <img src="media/lk_template.png" alt="Template image">
 </center>
 
 
@@ -164,7 +164,7 @@ Of course, the fitting result can also be viewed using a widget:
 result.view_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="result_view_widget.mp4" type="video/mp4">
+  <source src="media/lk_result_view_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -177,7 +177,7 @@ visualize_images(fitter.warped_images(fr.image, fr.shapes))
 
 we can visualize the warped image per iteration as:
 <video width="100%" autoplay loop>
-  <source src="warped_images.mp4" type="video/mp4">
+  <source src="media/lk_warped_images.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 

@@ -27,13 +27,13 @@ The Menpo Project also provides:
 
 ## Packages
 <center>
-  <a href="/userguide/menpo/index.md" title="menpo"><img src="logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
-  <a href="/userguide/menpofit/index.md" title="menpofit"><img src="logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
-  <a href="/userguide/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
-  <a href="/userguide/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
-  <a href="/userguide/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
-  <a href="/userguide/menpocli/index.md" title="menpocli"><img src="logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
-  <a href="/userguide/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_white_medium.png" alt="landmarker.io" width="13%"></a>
+  <a href="/menpo/index.md" title="menpo"><img src="logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
+  <a href="/menpofit/index.md" title="menpofit"><img src="logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
+  <a href="/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
+  <a href="/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
+  <a href="/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
+  <a href="/menpocli/index.md" title="menpocli"><img src="logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
+  <a href="/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_white_medium.png" alt="landmarker.io" width="13%"></a>
 </center>
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 
@@ -136,4 +136,4 @@ If you have found a bug, or if any part of Menpo behaves in a way you do not exp
 
 If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users "menpo-users").
 
-Follow [@teammenpo](www.twitter.com/teammenpo) for updates on the Menpo Project, or tweet at us any questions you have.
+Follow [@teammenpo](www.twitter.com/teammenpo "The Menpo Project on Twitter") for updates on the Menpo Project, or tweet at us any questions you have.

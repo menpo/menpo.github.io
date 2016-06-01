@@ -12,7 +12,7 @@ Consistency
 ### <a name="images_and_pointclouds"></a>1. Working with Images and PointClouds
 Let's start with a quiz - which of the following is correct?
 <center>
-  <img src="indexing.jpg" alt="indexing" style="width: 60%">
+  <img src="media/indexing.jpg" alt="Indexing quiz" style="width: 60%">
 </center>
 
 Most would answer **b** - images are indexed from the top left, with `x` going across and `y` going down.

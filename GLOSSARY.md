@@ -1,5 +1,5 @@
 # Jupyter notebook
-A Jupyter Notebook is an interactive document produced by Jupyter which contains both computer code (e.g. Python) and rich text elements (paragraph, equations, figures, links, etc...). It is ran using common web browsers. A Notebook document is both human-readable containing the analysis description and the results (figures, tables, etc..) as well as executable which can be run to perform data analysis.
+A Jupyter Notebook is an interactive document produced by Jupyter which contains both computer code (e.g. Python) and rich text elements (paragraph, equations, figures, links, etc...). A new notebook can be initiated by running `jupyter notebook` in a terminal, which will launch the notebook in your web browser. A Notebook document is both human-readable containing the analysis description and the results (figures, tables, etc..) as well as executable which can be run to perform data analysis.
 
 # Landmark Points
 A deformable object is represented with a set of semantically meaningful points that correspond to its distinctive parts.

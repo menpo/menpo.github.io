@@ -42,12 +42,12 @@ environment is activated in order to be able to use Menpo!**
 
   6. Head over to the [Examples](../../examples/index.md) page to begin
      experimenting with Menpo.
-     
+
      We strongly advise you to read the _User Guides_ for all the packages in order to
      understand the basic concepts behind the Menpo Project. They can be found in:
-     - [`menpo`](../../userguide/menpo/index.md)
-     - [`menpodetect`](../../userguide/menpodetect/index.md)
-     - [`menpofit`](../../userguide/menpofit/index.md)
-     - [`menpowidgets`](../../userguide/menpowidgets/index.md)
-     - [`menpocli`](../../userguide/menpocli/index.md)
-     - [`menpo3d`](../../userguide/menpo3d/index.md)
+     - [`menpo`](../../menpo/index.md)
+     - [`menpodetect`](../../menpodetect/index.md)
+     - [`menpofit`](../../menpofit/index.md)
+     - [`menpowidgets`](../../menpowidgets/index.md)
+     - [`menpocli`](../../menpocli/index.md)
+     - [`menpo3d`](../../menpo3d/index.md)

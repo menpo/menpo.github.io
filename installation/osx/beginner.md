@@ -148,12 +148,12 @@ of [Examples](../../examples/index.md) using Jupyter notebook. Follow the instru
 
 We strongly advise you to read the _User Guides_ for all the packages in order to
 understand the basic concepts behind the Menpo Project. They can be found in:
-- [`menpo`](../../userguide/menpo/index.md)
-- [`menpodetect`](../../userguide/menpodetect/index.md)
-- [`menpofit`](../../userguide/menpofit/index.md)
-- [`menpowidgets`](../../userguide/menpowidgets/index.md)
-- [`menpocli`](../../userguide/menpocli/index.md)
-- [`menpo3d`](../../userguide/menpo3d/index.md)
+- [`menpo`](../../menpo/index.md)
+- [`menpodetect`](../../menpodetect/index.md)
+- [`menpofit`](../../menpofit/index.md)
+- [`menpowidgets`](../../menpowidgets/index.md)
+- [`menpocli`](../../menpocli/index.md)
+- [`menpo3d`](../../menpo3d/index.md)
 
 If you need more help you always ask on the
-[menpo-users](https://groups.google.com/forum/#!forum/menpo-users) mailing list.
+[menpo-users](https://groups.google.com/forum/#!forum/menpo-users "menpo-users") mailing list.

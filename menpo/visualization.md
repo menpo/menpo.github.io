@@ -33,7 +33,7 @@ image = mio.import_builtin_asset.lenna_png()
 image.view()
 ```
 <center>
-  <img src="view_image.png" alt="view_image">
+  <img src="media/view_image.png" alt="view_image">
 </center>
 
 Viewing the image landmarks:
@@ -41,7 +41,7 @@ Viewing the image landmarks:
 image.view_landmarks()
 ```
 <center>
-  <img src="view_landmarks.png" alt="view_landmarks">
+  <img src="media/view_landmarks.png" alt="view_landmarks">
 </center>
 
 Viewing the image with a native IPython widget:
@@ -49,7 +49,7 @@ Viewing the image with a native IPython widget:
 image.view_widget()
 ```
 <center>
-  <img src="view_widget.png" alt="view_widget">
+  <img src="media/view_widget.png" alt="view_widget">
 </center>
 
 ### <a name="images"></a>2. Visualizing A List Of 2D Images
@@ -64,7 +64,7 @@ images = list(mio.import_images('/path/to/images/'))
 visualize_images(images)
 ```
 <video width="100%" autoplay loop>
-  <source src="visualize_images.mp4" type="video/mp4">
+  <source src="media/visualize_images.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -76,7 +76,7 @@ pcloud = mio.import_builtin_asset.breakingbad_pts().lms
 pcloud.view()
 ```
 <center>
-  <img src="view_pointcloud.png" alt="view_pointcloud">
+  <img src="media/view_pointcloud.png" alt="view_pointcloud">
 </center>
 
 
