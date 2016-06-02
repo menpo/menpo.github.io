@@ -63,7 +63,7 @@ an example of a typical call for training a deformable model using `HolisticAAM`
 
 ```python
 from menpofit.aam import HolisticAAM
-from menpo.feature import fast_dsift
+from menpo.feature import igo
 
 aam = HolisticAAM(training_images, reference_shape=None,
                   diagonal=180, scales=(0.25, 0.5, 1.0),

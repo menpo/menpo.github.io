@@ -9,4 +9,8 @@ Active Appearance Model
 ---------------------------------------
 
 ### <a name="definition"></a>1. Definition
-**Will be updated soon!**
+Active Appearance Model (AAM) is a statistical deformable model of the shape and appearance of a deformable object class.
+AAM is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
+
+
+### <a name="definition"></a>1. References

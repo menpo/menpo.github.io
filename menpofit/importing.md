@@ -109,7 +109,7 @@ def process(image, crop_proportion=0.2, max_diagonal=400):
         image = image.rescale(float(max_diagonal) / d)
     return image
 
-path_to_images = '/home/nontas/Dropbox/lfpw/trainset/'
+path_to_images = '/path/to/lfpw/trainset/'
 training_images = []
 for img in print_progress(mio.import_images(path_to_images, verbose=True)):
     training_images.append(process(img))

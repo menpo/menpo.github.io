@@ -11,7 +11,11 @@
   </br>
 </center>
 
-`menpofit` is a Python package for building, fitting and manipulating state-of-the-art 2D deformable models. In practice, `menpofit` is providing solutions to the following problems:
+`menpofit` is Menpo Project's Python package for building, fitting and manipulating state-of-the-art 2D deformable models.
+
+We strongly advise you to first visit the [**Basics**](basics.md "Basic concepts and assumptions in menpofit") section in order to understand the fundamental concepts and assumptions that are made in `menpofit`, before reading about the actual methods.
+
+In practice, `menpofit` is providing solutions to the following problems:
 
 #### Affine Image Alignment
 > An Affine Image Alignment algorithm aims to find the optimal alignment between an input image and a template image with respect to the parameters of an affine transform.
@@ -50,8 +54,5 @@ The models that are implemented in `menpofit` are:
   - \[provided by [DLib](http://dlib.net/ "dlib C++ Library")\]
 - [**Supervised Descent Method (SDM)**](sdm.md "Supervised Descent Method")
   - _Model Variants:_ Non Parametric, Parametric Shape, Parametric Appearance, Fully Parametric
-
-You are highly encouraged to go through the fundamental concepts and assumptions that are made throughout `menpofit`, before reading about the actual methods.
-To do so, please visit the [**Basics**](basics.md "Basic concepts and assumptions in menpofit") section.
 
 Finally, please see the [References](references.md "List of implemented papers") for an indicative list of papers that are implemented in `menpofit`.
