@@ -5,6 +5,7 @@ Lucas-Kanade Image Alignment
 2. [Gradient Descent Optimization](#optimization)
 3. [Alignment and Visualization](#visualization)
 4. [References](#references)
+5. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/lk/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 

@@ -5,6 +5,7 @@ Active Template Model
 2. [Warp Functions](#warp)
 3. [Fitting](#fitting)
 4. [References](#references)
+5. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/atm/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 
@@ -97,7 +98,7 @@ The `MaskedATM` uses the same warp logic as the `HolsiticATM`. The only differen
 `reference_shape` is masked. The mask that is created by default consists of rectangular mask patches centered around the landmarks.
 
 **LinearATM**  
-The `LinearATM` utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model. The linear nature of such a warp
+The `LinearATM` utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model. The advantage is that the linear nature of such a warp
 function makes the computation of its Jacobian trivial.
 
 **LinearMaskedATM**  
@@ -138,7 +139,7 @@ Your browser does not support the video tag.
 ### <a name="fitting"></a>3. Fitting
 The optimization of the ATM deformable image alignment is performed with the Lucas-Kanade gradient descent algorithm.
 This is the same as in the case of affine image transform, so you can refer to the [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") chapter
-for more information. We currently support Inverse-Compositional and Formard-Compositional optimization.
+for more information. We currently support Inverse-Compositional and Forward-Compositional optimization.
 
 Let's now create a `Fitter` using the ATM we created, as:
 ```python
