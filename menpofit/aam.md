@@ -20,28 +20,30 @@ For a more in-depth explanation of AAM, please refer to the relevant literature 
 A shape instance of a deformable object is represented as $$\mathbf{s}=\left[x_1,y_1,\ldots,x_L,y_L\right]^T$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An AAM [[6](#6), [8](#8)] is trained using a set of $$N$$ images $$\{\mathbf{I}_1,\mathbf{I}_2,\ldots,\mathbf{I}_N\}$$ that are annotated with a set of
 $$L$$ landmarks and it consists of the following parts:
 
-**Shape Model**  
-The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is
-created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation).
-This results in
-$$
-\{\bar{\mathbf{s}}, \mathbf{U}_s\}
-$$
-where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=[p_1,p_2,\ldots,p_n]^T$$ is the vector of shape parameters.
+* **Shape Model**  
+  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
+  $$
+  \{\bar{\mathbf{s}}, \mathbf{U}_s\}
+  $$
+  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=[p_1,p_2,\ldots,p_n]^T$$ is the vector of shape parameters.
 
-**Motion Model**  
-The motion model consists of a warp function $$\mathcal{W}(\mathbf{p})$$ which is essential for warping the texture related to a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`. The `reference_shape` is by default the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your preference during construction of the AAM.
 
-**Appearance Model**  
-The appearance model is trained by:
-1. First extracting features from all the training images using the features function $$\mathcal{F}()$$ defined by `holistic_features`, i.e. $$\mathcal{F}(\mathbf{I}_i)$$, $$\forall i=1,\ldots,N$$
-2. Warping the feature images into the `reference_shape` in order to get $$\mathcal{F}(\mathbf{I}_i)(\mathcal{W}(\mathbf{p}_i))$$, $$\forall i=1,\ldots,N$$
-3. Vectorizing the warped images as $$\mathbf{a}_i= \mathcal{F}(\mathbf{I}_i)(\mathcal{W}(\mathbf{p}_i))$$, $$\forall i=1,\ldots,N$$ where $$\mathbf{a}_i\in\mathbb{R}^{M\times 1}$$
-4. Applying PCA on the acquired vectors which results in
-$$
-\{\bar{\mathbf{a}}, \mathbf{U}_a\}
-$$
-where $$\mathbf{U}_a\in\mathbb{R}^{M\times m}$$ is the orthonormal basis of $$m$$ eigenvectors and $$\bar{\mathbf{a}}\in\mathbb{R}^{M\times 1}$$ is the mean appearance vector. An new appearance instance can be generated as $$\mathbf{a}_{\mathbf{c}}=\bar{\mathbf{a}} + \mathbf{U}_a\mathbf{c}$$, where $$\mathbf{c}=[c_1,c_2,\ldots,c_m]^T$$ is the vector of appearance parameters.
+  * **Motion Model**  
+  The motion model consists of a warp function $$\mathcal{W}(\mathbf{p})$$ which is essential for warping the texture related to a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`. The `reference_shape` is by default the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your preference during construction of the AAM.
+
+
+  * **Appearance Model**  
+  The appearance model is trained by:
+    1. First extracting features from all the training images using the features function $$\mathcal{F}()$$ defined by `holistic_features`, i.e. $$\mathcal{F}(\mathbf{I}_i)$$, $$\forall i=1,\ldots,N$$
+    2. Warping the feature-based images into the `reference_shape` in order to get $$\mathcal{F}(\mathbf{I}_i)(\mathcal{W}(\mathbf{p}_i))$$, $$\forall i=1,\ldots,N$$
+    3. Vectorizing the warped images as $$\mathbf{a}_i= \mathcal{F}(\mathbf{I}_i)(\mathcal{W}(\mathbf{p}_i))$$, $$\forall i=1,\ldots,N$$ where $$\mathbf{a}_i\in\mathbb{R}^{M\times 1}$$
+    4. Applying PCA on the acquired vectors which results in
+    $$
+    \{\bar{\mathbf{a}}, \mathbf{U}_a\}
+    $$
+    where $$\mathbf{U}_a\in\mathbb{R}^{M\times m}$$ is the orthonormal basis of $$m$$ eigenvectors and $$\bar{\mathbf{a}}\in\mathbb{R}^{M\times 1}$$ is the mean appearance vector.
+
+  A new appearance instance can be generated as $$\mathbf{a}_{\mathbf{c}}=\bar{\mathbf{a}} + \mathbf{U}_a\mathbf{c}$$, where $$\mathbf{c}=[c_1,c_2,\ldots,c_m]^T$$ is the vector of appearance parameters.
 
 Before continuing, let's load the trainset of LFPW (see [Importing Images](importing.md "Basics on how to import images") for download instructions) as
 ```python
@@ -145,12 +147,15 @@ Your browser does not support the video tag.
 
 
 ### <a name="cost"></a>3. Cost Function
-The optimization of an AAM aims to minimize the following cost function
+Fitting an AAM on a test image involves the optimization of the following cost function
 $$
 \arg\min_{\mathbf{p}, \mathbf{c}} \left\lVert \mathbf{t}(\mathbf{p}) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \right\rVert^{2}
 $$
-with respect to the shape and appearance parameters.
+with respect to the shape and appearance parameters. Note that this cost function is very similar to the one of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment and [Active Template Model](atm.md "Active Template Model (ATM)") for Deformabe Image Alignment. The only difference has to do with the fact that an AAM aims to align the test image with a linear appearance model.
 
+This optimization can be solved by two approaches:
+1. [Lucas-Kanade Optimization](#lucas-kanade-fitting)  
+2. [Supervised Descent Optimization](#supervised-descent-fitting)
 
 #### <a name="lucas-kanade-fitting"></a>3.1. Lucas-Kanade Optimization
 

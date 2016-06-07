@@ -3,29 +3,35 @@ Active Template Model
 
 1. [Definition](#definition)
 2. [Warp Functions](#warp)
-3. [Fitting](#fitting)
+3. [Cost Function and Optimization](#cost)
 4. [References](#references)
 5. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/atm/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 
 ### <a name="definition"></a>1. Definition
-The aim of deformable image alignment is to find the optimal alignment between a constant template $$\bar{\mathbf{a}}$$ and an input image $$\mathbf{t}$$
-with respect to the parameters of a parametric motion model. Note that both $$\bar{\mathbf{a}}$$ and $$\mathbf{t}$$ are vectorized.
-The motion model consists of a Warp function $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ within a target (reference) shape to its corresponding
-location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
-In the case of Active Template Model (ATM), the warp function is driven by a Point Distributon Model (PDM), where $$\mathbf{p}$$ is the set of *shape parameters*.
-To read more about PDM, please refer to the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). However, note that the PDM is built within the ATM constructor.
+The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
+Active Template Model (ATM) is such method which is inspired by the [Lucas-Kanade Affine Image Alignment](lk.md "Lucas-Kanade Affine Image Alignment") and the [Active Appearance Model](aam.md "Active Appearance Model"). Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature. In this page, we provide a basic mathematical definition of an ATM and all its variations that are implemented within `menpofit`.
 
-Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature.
-The cost function of an ATM is exactly the same as in the case of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment.
-Specifically, it has the form
-$$
-\arg\min_{\mathbf{p}} \left\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \right\rVert^{2}
-$$
-The difference has to do with the nature of the transform - and thus $$\mathbf{p}$$ - that is used in the motion model $$\mathcal{W}(\mathbf{p})$$.
+A shape instance of a deformable object is represented as $$\mathbf{s}=\left[x_1,y_1,\ldots,x_L,y_L\right]^T$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An ATM is constructed using a template image that is annotated with $$L$$ landmark points and a set of $$N$$ shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ that are essential for building the hsape model. Specifically, it consists of the following parts:
 
-Let's first load a test image $$\mathbf{t}$$ and a template image $$\bar{\mathbf{a}}$$. We'll load two images of the same person (Amanda Peet, actress)
+* **Shape Model**  
+  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
+  $$
+  \{\bar{\mathbf{s}}, \mathbf{U}_s\}
+  $$
+  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=[p_1,p_2,\ldots,p_n]^T$$ is the vector of shape parameters.
+
+* **Motion Model**  
+  The motion model consists of a warp function $$\mathcal{W}(\mathbf{p})$$ which is essential for warping the texture related to a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`. The `reference_shape` is by default the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your preference during construction of the ATM.
+
+* **Template**  
+  The provided template image $$\mathbf{I}_a$$ which is annotated with landmarks $$\mathbf{s}_a$$ is further processed by:
+  1. First extracting features using the features function $$\mathcal{F}()$$ defined by `holistic_features`, i.e. $$\mathcal{F}(\mathbf{I}_a)$$
+  2. Warping the feature-based image into the `reference_shape` in order to get $$\mathcal{F}(\mathbf{I}_a)(\mathcal{W}(\mathbf{p}_a))$$
+  3. Vectorizing the warped image as $$\bar{\mathbf{a}} = \mathcal{F}(\mathbf{I}_a)(\mathcal{W}(\mathbf{p}_a))$$ where $$\bar{\mathbf{a}}\in\mathbb{R}^{M\times 1}$$
+
+Let's first load a test image and a template image $$\bar{\mathbf{a}}$$. We'll load two images of the same person (Amanda Peet, actress)
 from LFPW trainset (see [Importing Images](importing.md "Basics on how to import images") for download instructions).
 ```python
 from pathlib import Path
@@ -79,13 +85,13 @@ Your browser does not support the video tag.
 
 
 ### <a name="warp"></a>2. Warp Functions
-The warp function $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ of an ATM aims to warp the texture related to
-a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`.
-The `reference_shape` is usually the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your
-preference during construction of the ATM.
+With an abuse of notation, let us define
+$$
+\mathbf{t}(\mathcal{W}(\mathbf{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
+$$
+as the feature-based warped $$M\times 1$$ vector of an image $$\mathbf{I}$$ given its shape instance generated with parameters $$\mathbf{p}$$.
 
-`menpofit` provides five different ATM versions, which differ on the way that this appearance warping
-$$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ is performed.
+`menpofit` provides five different ATM versions, which differ on the way that this appearance warping $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ is performed.
 Specifically:
 
 **HolisticATM**  
@@ -136,7 +142,13 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="fitting"></a>3. Fitting
+### <a name="cost"></a>3. Cost Function and Optimization
+Fitting an ATM on a test image involves the optimization of the following cost function
+$$
+\arg\min_{\mathbf{p}} \left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} \right\rVert^{2}
+$$
+with respect to the shape parameters. Note that this cost function is exactly the same as in the case of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment. The only difference has to do with the nature of the transform - and thus $$\mathbf{p}$$ - that is used in the motion model $$\mathcal{W}(\mathbf{p})$$. Similarly, the cost function is very similar to the one of an [Active Appearance Model](aam.md "Active Appearance Model (AAM)") with the difference that an ATM has no appearance subspace.
+
 The optimization of the ATM deformable image alignment is performed with the Lucas-Kanade gradient descent algorithm.
 This is the same as in the case of affine image transform, so you can refer to the [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") chapter
 for more information. We currently support Inverse-Compositional and Forward-Compositional optimization.
