@@ -2,7 +2,7 @@ Lucas-Kanade Image Alignment
 ============================
 
 1. [Definition](#definition)
-2. [Gradient Descent Optimization](#optimization)
+2. [Optimization and Residuals](#optimization)
 3. [Alignment and Visualization](#visualization)
 4. [References](#references)
 5. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/lk/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
@@ -17,9 +17,9 @@ $$\mathcal{W}(\mathbf{x},\mathbf{p})$$ which maps each point $$\mathbf{x}$$ with
 location in a shape instance. The identity warp is defined as $$\mathcal{W}(\mathbf{x},\mathbf{0})=\mathbf{x}$$.
 The warp function in this case is driven by an affine transform, thus $$\mathbf{p}$$ consists of 6 parameters.
 
-The Lucas-Kanade (LK) optimization problem is expressed as minimizing the $$\ell_2$$ norm
+The Lucas-Kanade (LK) optimization problem is expressed as minimizing the $$\ell_{2}$$ norm
 $$
-\arg\min_{\mathbf{p}} \left\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \right\rVert^{2}
+\arg\min_{\mathbf{p}} \big\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \big\rVert^{2}
 $$
 with respect to the motion model parameters $$\mathbf{p}$$. Let's load an image $$\mathbf{t}$$ and create a template $$\bar{\mathbf{a}}$$ from it
 ```python
@@ -48,7 +48,7 @@ plt.gca().set_title('Template');
 </center>
 
 
-### <a name="optimization"></a>2. Gradient Descent Optimization
+### <a name="optimization"></a>2. Optimization and Residuals
 The existing gradient descent optimization techniques [[1](#1)] are categorized as:
 (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and
 (2) _additive_ or _compositional_ depending on the way the motion parameters are updated.
@@ -57,7 +57,7 @@ The existing gradient descent optimization techniques [[1](#1)] are categorized 
 Lucas and Kanade proposed the FA gradient descent in [[2](#2)]. By using an additive iterative update of the parameters,
 i.e. $$\mathbf{p}\leftarrow\mathbf{p}+\Delta\mathbf{p}$$, and having an initial estimate of $$\mathbf{p}$$, the cost function is expressed as minimizing
 $$
-\arg\min_{\Delta\mathbf{p}}\|\bar{\mathbf{a}}-\mathbf{t}(\mathcal{W}(\mathbf{p}+\Delta\mathbf{p}))\|^2
+\arg\min_{\Delta\mathbf{p}}\big\lVert\bar{\mathbf{a}}-\mathbf{t}(\mathcal{W}(\mathbf{p}+\Delta\mathbf{p}))\big\rVert^2
 $$
 with respect to $$\Delta\mathbf{p}$$.
 The solution is given by first linearizing around $$\mathbf{p}$$, thus using first order Taylor series expansion at $$\mathbf{p}+\Delta\mathbf{p}=\mathbf{p}\Rightarrow\Delta\mathbf{p}=\mathbf{0}$$.
@@ -66,36 +66,36 @@ $$\mathbf{t}(\mathcal{W}(\mathbf{p}+\Delta\mathbf{p}))\approx\mathbf{t}(\mathcal
 where $$\mathbf{J}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}=\nabla\mathbf{t}\frac{\partial\mathcal{W}}{\partial\mathbf{p}}$$ is the *image Jacobian*,
 consisting of the *image gradient* evaluated at $$\mathcal{W}(\mathbf{p})$$ and the *warp jacobian* evaluated at $$\mathbf{p}$$.
 The final solution is given by
-$$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^T_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}\left[\bar{\mathbf{a}}-\mathbf{t}(\mathcal{W}(\mathbf{p}))\right]$$
-where $$\mathbf{H}=\mathbf{J}^T_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}\mathbf{J}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}$$ is the Gauss-Newton approximation of the *Hessian matrix*.
+$$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}\left[\bar{\mathbf{a}}-\mathbf{t}(\mathcal{W}(\mathbf{p}))\right]$$
+where $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}\mathbf{J}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{p}}$$ is the Gauss-Newton approximation of the *Hessian matrix*.
 This method is forward because the warp projects into the image coordinate frame and additive because the iterative update of the motion parameters is computed
 by estimating a $$\Delta\mathbf{p}$$ incremental offset from the current parameters.
 
 ##### Forward-Compositional
 Compared to FA, in FC gradient descent we have the same warp direction for computing the parameters, but a compositional update of the form $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})$$. The minimization cost function in this case takes the form
 $$
-\arg\min_{\Delta\mathbf{p}}\|\bar{\mathbf{a}}-\mathbf{t}\left( \mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p}) \right)\|^2
+\arg\min_{\Delta\mathbf{p}}\big\lVert\bar{\mathbf{a}}-\mathbf{t}\left( \mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p}) \right)\big\rVert^2
 $$
 and the linearization is
 $$\|\bar{\mathbf{a}}-\mathbf{t}(\mathcal{W}(\mathbf{p}))-\mathbf{J}_{\mathbf{t}}|_{\Delta\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}\|^2$$,
 where the composition with the identity warp is $$\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\mathbf{0})=\mathcal{W}(\mathbf{p})$$.
-The image Jacobian in this case is expressed as $$\mathbf{J}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{t}(\mathcal{W}(\mathbf{p}))\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$.
+The image Jacobian in this case is expressed as $$\mathbf{J}_{\mathbf{t}}|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{t}(\mathcal{W}(\mathbf{p}))\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\Big|_{\mathbf{p}=\mathbf{0}}$$.
 Thus, with this formulation, the warp Jacobian is constant and can be precomputed, because it is evaluated at $$\mathbf{p}=\mathbf{0}$$.
 This precomputation slightly improves the algorithm's computational complexity compared to the FA case, even though the compositional update is more expensive than the additive one.
 
 ##### Inverse-Compositional
 In the IC optimization, the direction of the warp is reversed compared to the two previous techniques and the incremental warp is computed with respect to the template $$\bar{\mathbf{a}}$$ [[1](#1), [3](#3)]. The goal in this case is to minimize
 $$
-\arg\min_{\Delta\mathbf{p}}\|\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\|^2
+\arg\min_{\Delta\mathbf{p}}\big\lVert\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\big\rVert^2
 $$
 with respect to $$\Delta\mathbf{p}$$. The incremental warp $$\mathcal{W}(\Delta\mathbf{p})$$ is computed with respect to the template $$\bar{\mathbf{a}}$$,
 but the current warp $$\mathcal{W}(\mathbf{p})$$ is still applied on the input image. By linearizing around $$\Delta\mathbf{p}=\mathbf{0}$$ and using the identity warp,
 we have $$\|\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}\|^2$$
-where $$\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}=\nabla\bar{\mathbf{a}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$.
-Consequently, similar to the FC case, the increment is $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^T_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}\left[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\right]$$
-where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^T_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}$$.
+where $$\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}=\nabla\bar{\mathbf{a}}\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\Big|_{\mathbf{p}=\mathbf{0}}$$.
+Consequently, similar to the FC case, the increment is $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}\left[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\right]$$
+where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}$$.
 The compositional motion parameters update in each iteration is $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}$$.
-Since the gradient is always taken at the template, the warp Jacobian $$\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$
+Since the gradient is always taken at the template, the warp Jacobian $$\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\Big|_{\mathbf{p}=\mathbf{0}}$$
 and thus the Hessian matrix inverse remain constant and can be precomputed. This makes the IC algorithm both fast and efficient.
 
 ##### Residuals and Features

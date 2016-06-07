@@ -13,14 +13,14 @@ Active Template Model
 The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
 Active Template Model (ATM) is such method which is inspired by the [Lucas-Kanade Affine Image Alignment](lk.md "Lucas-Kanade Affine Image Alignment") and the [Active Appearance Model](aam.md "Active Appearance Model"). Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature. In this page, we provide a basic mathematical definition of an ATM and all its variations that are implemented within `menpofit`.
 
-A shape instance of a deformable object is represented as $$\mathbf{s}=\left[x_1,y_1,\ldots,x_L,y_L\right]^T$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An ATM is constructed using a template image that is annotated with $$L$$ landmark points and a set of $$N$$ shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ that are essential for building the hsape model. Specifically, it consists of the following parts:
+A shape instance of a deformable object is represented as $$\mathbf{s}=\big[x_1,y_1,\ldots,x_L,y_L\big]^{\mathsf{T}}$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An ATM is constructed using a template image that is annotated with $$L$$ landmark points and a set of $$N$$ shapes $$\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$$ that are essential for building the hsape model. Specifically, it consists of the following parts:
 
 * **Shape Model**  
-  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
+  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
   $$
-  \{\bar{\mathbf{s}}, \mathbf{U}_s\}
+  \big\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\big\rbrace
   $$
-  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=[p_1,p_2,\ldots,p_n]^T$$ is the vector of shape parameters.
+  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=\big[p_1,p_2,\ldots,p_n\big]^{\mathsf{T}}$$ is the vector of shape parameters.
 
 * **Motion Model**  
   The motion model consists of a warp function $$\mathcal{W}(\mathbf{p})$$ which is essential for warping the texture related to a shape instance generated with parameters $$\mathbf{p}$$ into a common `reference_shape`. The `reference_shape` is by default the mean shape $$\bar{\mathbf{s}}$$, however you can pass in a `reference_shape` of your preference during construction of the ATM.
@@ -145,7 +145,7 @@ Your browser does not support the video tag.
 ### <a name="cost"></a>3. Cost Function and Optimization
 Fitting an ATM on a test image involves the optimization of the following cost function
 $$
-\arg\min_{\mathbf{p}} \left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} \right\rVert^{2}
+\arg\min_{\mathbf{p}} \big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} \big\rVert^{2}
 $$
 with respect to the shape parameters. Note that this cost function is exactly the same as in the case of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment. The only difference has to do with the nature of the transform - and thus $$\mathbf{p}$$ - that is used in the motion model $$\mathcal{W}(\mathbf{p})$$. Similarly, the cost function is very similar to the one of an [Active Appearance Model](aam.md "Active Appearance Model (AAM)") with the difference that an ATM has no appearance subspace.
 

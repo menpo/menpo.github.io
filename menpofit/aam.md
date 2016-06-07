@@ -3,11 +3,12 @@ Active Appearance Model
 
 1. [Definition](#definition)
 2. [Warp Functions](#warp)
-3. [Cost Function](#cost)  
+3. [Cost Function and Optimization](#cost)  
    3.1. [Lucas-Kanade Optimization](#lucas-kanade-fitting)  
    3.2. [Supervised Descent Optimization](#supervised-descent-fitting)
-4. [References](#references)
-5. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/aam/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
+4. [Fitting Example](#fitting)
+5. [References](#references)
+6. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/aam/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 
@@ -17,15 +18,15 @@ AAM is a generative model which during fitting aims to recover a parametric desc
 In this page, we provide a basic mathematical definition of an AAM and all its variations that are implemented within `menpofit`.
 For a more in-depth explanation of AAM, please refer to the relevant literature in [References](#references) and especially [[1](#1)].
 
-A shape instance of a deformable object is represented as $$\mathbf{s}=\left[x_1,y_1,\ldots,x_L,y_L\right]^T$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An AAM [[6](#6), [8](#8)] is trained using a set of $$N$$ images $$\{\mathbf{I}_1,\mathbf{I}_2,\ldots,\mathbf{I}_N\}$$ that are annotated with a set of
+A shape instance of a deformable object is represented as $$\mathbf{s}=\big[x_1,y_1,\ldots,x_L,y_L\big]^{\mathsf{T}}$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$(x_i,y_i),\forall i=1,\ldots,L$$. An AAM [[6](#6), [8](#8)] is trained using a set of $$N$$ images $$\big\lbrace\mathbf{I}_1,\mathbf{I}_2,\ldots,\mathbf{I}_N\big\rbrace$$ that are annotated with a set of
 $$L$$ landmarks and it consists of the following parts:
 
 * **Shape Model**  
-  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\{\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\}$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
+  The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $$\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
   $$
-  \{\bar{\mathbf{s}}, \mathbf{U}_s\}
+  \big\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\big\rbrace
   $$
-  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=[p_1,p_2,\ldots,p_n]^T$$ is the vector of shape parameters.
+  where $$\mathbf{U}_s\in\mathbb{R}^{2L\times n}$$ is the orthonormal basis of $$n$$ eigenvectors (including the four similarity components) and $$\bar{\mathbf{s}}\in\mathbb{R}^{2L\times 1}$$ is the mean shape vector. An new shape instance can be generated as $$\mathbf{s}_{\mathbf{p}}=\bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}$$, where $$\mathbf{p}=\big[p_1,p_2,\ldots,p_n\big]^{\mathsf{T}}$$ is the vector of shape parameters.
 
 
   * **Motion Model**  
@@ -39,11 +40,11 @@ $$L$$ landmarks and it consists of the following parts:
     3. Vectorizing the warped images as $$\mathbf{a}_i= \mathcal{F}(\mathbf{I}_i)(\mathcal{W}(\mathbf{p}_i))$$, $$\forall i=1,\ldots,N$$ where $$\mathbf{a}_i\in\mathbb{R}^{M\times 1}$$
     4. Applying PCA on the acquired vectors which results in
     $$
-    \{\bar{\mathbf{a}}, \mathbf{U}_a\}
+    \big\lbrace\bar{\mathbf{a}}, \mathbf{U}_a\big\rbrace
     $$
     where $$\mathbf{U}_a\in\mathbb{R}^{M\times m}$$ is the orthonormal basis of $$m$$ eigenvectors and $$\bar{\mathbf{a}}\in\mathbb{R}^{M\times 1}$$ is the mean appearance vector.
 
-  A new appearance instance can be generated as $$\mathbf{a}_{\mathbf{c}}=\bar{\mathbf{a}} + \mathbf{U}_a\mathbf{c}$$, where $$\mathbf{c}=[c_1,c_2,\ldots,c_m]^T$$ is the vector of appearance parameters.
+  A new appearance instance can be generated as $$\mathbf{a}_{\mathbf{c}}=\bar{\mathbf{a}} + \mathbf{U}_a\mathbf{c}$$, where $$\mathbf{c}=\big[c_1,c_2,\ldots,c_m\big]^{\mathsf{T}}$$ is the vector of appearance parameters.
 
 Before continuing, let's load the trainset of LFPW (see [Importing Images](importing.md "Basics on how to import images") for download instructions) as
 ```python
@@ -75,7 +76,7 @@ from menpowidgets import visualize_images
 visualize_images(training_images)
 ```
 <video width="100%" autoplay loop>
-  <source src="media/visualize_images_lfpw.mp4" type="video/mp4">
+  <source src="media/visualize_images_lfpw_trimesh.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -94,24 +95,7 @@ Specifically:
 The `HolisticAAM` uses a holistic appearance representation obtained by warping the texture into the `reference_shape`
 with a non-linear warp function $$\mathcal{W}(\mathbf{p})$$. Two such warp functions are currently supported:
 Piecewise Affine Warp and Thin Plate Spline.
-
-**MaskedAAM**  
-The `MaskedAAM` uses the same warp logic as the `HolsiticAAM`. The only difference between them is that the
-`reference_shape` is masked. The mask that is created by default consists of rectangular mask patches centered around the landmarks.
-
-**LinearAAM**  
-The `LinearAAM` utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model. The advantage is that the linear nature of such a warp
-function makes the computation of its Jacobian trivial.
-
-**LinearMaskedAAM**  
-Similar to the relation between `HolisticAAM` and `MaskedAAM`, a `LinearMaskedAAM` is exactly the same with a
-`LinearAAM`, with the difference that the `reference_shape` is masked.
-
-**PatchAAM**  
-A `PatchAAM` represents the appearance in a patch-based fashion, i.e. rectangular patches are extracted around the landmark points.
-Thus, the warp function $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ simply _samples_ the patches centered around the landmarks of the shape instance generated with parameters $$\mathbf{p}$$.
-
-Let's now create a `HolisticAAM` using Dense SIFT features:
+Let's create a `HolisticAAM` using Dense SIFT features:
 ```python
 from menpofit.aam import HolisticAAM
 from menpo.feature import fast_dsift
@@ -133,7 +117,7 @@ Your browser does not support the video tag.
 aam.view_appearance_models_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
+  <source src="media/holistic_aam_view_appearance_models_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
@@ -141,15 +125,58 @@ Your browser does not support the video tag.
 aam.view_aam_widget()
 ```
 <video width="100%" autoplay loop>
-  <source src="media/atm_view_widget.mp4" type="video/mp4">
+  <source src="media/holistic_aam_view_aam_widget.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+**MaskedAAM**  
+The `MaskedAAM` uses the same warp logic as the `HolsiticAAM`. The only difference between them is that the
+`reference_shape` is masked. The mask that is created by default consists of rectangular mask patches centered around the landmarks.
+
+**LinearAAM**  
+The `LinearAAM` utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model. The advantage is that the linear nature of such a warp
+function makes the computation of its Jacobian trivial.
+
+**LinearMaskedAAM**  
+Similar to the relation between `HolisticAAM` and `MaskedAAM`, a `LinearMaskedAAM` is exactly the same with a
+`LinearAAM`, with the difference that the `reference_shape` is masked.
+
+**PatchAAM**  
+A `PatchAAM` represents the appearance in a patch-based fashion, i.e. rectangular patches are extracted around the landmark points.
+Thus, the warp function $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ simply _samples_ the patches centered around the landmarks of the shape instance generated with parameters $$\mathbf{p}$$.
+Let's create a `PatchAAM` using Dense SIFT features:
+```python
+from menpofit.aam import PatchAAM
+from menpo.feature import fast_dsift
+
+patch_aam = PatchAAM(training_images, group='PTS', patch_shape=[(15, 15), (23, 23)],
+                     diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
+                     max_shape_components=20, max_appearance_components=200,
+                     verbose=True)
+```
+and visualize it:
+```python
+patch_aam.view_appearance_models_widget()
+```
+<video width="100%" autoplay loop>
+  <source src="media/patch_aam_view_appearance_models_widget.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+```python
+patch_aam.view_aam_widget()
+```
+<video width="100%" autoplay loop>
+  <source src="media/patch_aam_view_aam_widget.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
 
-### <a name="cost"></a>3. Cost Function
+
+### <a name="cost"></a>3. Cost Function and Optimization
 Fitting an AAM on a test image involves the optimization of the following cost function
 $$
-\arg\min_{\mathbf{p}, \mathbf{c}} \left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \right\rVert^{2}
+\arg\min_{\mathbf{p}, \mathbf{c}} \big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \big\rVert^{2}
 $$
 with respect to the shape and appearance parameters. Note that this cost function is very similar to the one of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment and [Active Template Model](atm.md "Active Template Model (ATM)") for Deformabe Image Alignment. The only difference has to do with the fact that an AAM aims to align the test image with a linear appearance model.
 
@@ -161,30 +188,187 @@ This optimization can be solved by two approaches:
 The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and (2) _additive_ or _compositional_ depending on the way the motion parameters are updated. `menpofit` currently provides the **Forward-Compositional** and **Inverse-Compositional** version of five different algorithms. Below we briefly present the Inverse-Compositional of each one of them, however the Forward-Compositional can be derived in a similar fashion.
 
 * **Project-Out** (`ProjectOutInverseCompositional`, `ProjectOutForwardCompositional`)  
-  The Project-Out Inverse-Compositional (POIC) algorithm [[8](#8)] decouples shape and appearance by solving the AAM optimization problem in a subspace orthogonal to the appearance variation. This is achieved by "projecting-out" the appearance variation, thus working on the orthogonal complement of the appearance subspace $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T$$. The cost function has the form
+  The Project-Out Inverse-Compositional (POIC) algorithm [[8](#8)] decouples shape and appearance by solving the AAM optimization problem in a subspace orthogonal to the appearance variation. This is achieved by "projecting-out" the appearance variation, thus working on the orthogonal complement of the appearance subspace $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a\mathbf{U}_a^{\mathsf{T}}$$. The cost function has the form
   $$
-  \arg\min_{\Delta\mathbf{p}} {\left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) \right\rVert^{2}}_{\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T}
+  \arg\min_{\Delta\mathbf{p}} \Big\lVert \mathbf{t}\left(\mathcal{W}\left(\mathbf{p}\right)\right) - \bar{\mathbf{a}}\left(\mathcal{W}\left(\Delta\mathbf{p}\right)\right) \Big\rVert^{2}_{\hat{\mathbf{U}}}
   $$
   By taking the first-order Taylor expansion over $$\Delta\mathbf{p} = \mathbf{0}$$ we get $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$.
-  Thus, the incermental update of the shape parameters is computed as $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^T[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}]$$ where $$\mathbf{H}=\mathbf{J}^T\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
-  $$\mathbf{J} = (\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T)\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ is the Jacobian. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^T\left[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\right]$$ in order to reconstruct the appearance. Note that the Project-Out Inverse Compositional algorithm is computationaly fast because the Jacobian, Hessian and its inverse are constant and can be pre-computed. However, it is not robust, especially in cases with large appearance variation.
+  Thus, the incermental update of the shape parameters is computed as $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ where $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
+  $$\mathbf{J} = \hat{\mathbf{U}}_a\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ is the Jacobian. The shape parameters are updated at each iteration in a compositional manner, i.e. $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}$$. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ in order to reconstruct the appearance. Note that the Project-Out Inverse Compositional algorithm is computationaly fast because the Jacobian, Hessian and its inverse are constant and can be pre-computed. However, it is not robust, especially in cases with large appearance variation.
 
 
 * **Simultaneous** (`SimultaneousInverseCompositional`, `SimultaneousForwardCompositional`)  
   In the Simultaneous Inverse-Compositional (SIC) algorithm [[7](#7)], we aim to optimize simultaneously for the shape $$\mathbf{p}$$ and the appearance $$\mathbf{c}$$ parameters. The cost function has the form
   $$
-  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \left\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}\mathcal{W}(\Delta\mathbf{p})) \right\rVert^{2}
+  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \big\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}\mathcal{W}(\Delta\mathbf{p})) \big\rVert^{2}
   $$
-  where $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))=\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))+\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))(\mathbf{c}+\Delta\mathbf{c})$$. We denote by $$\Delta\mathbf{q}=[\Delta\mathbf{p}^T,\Delta\mathbf{c}^T]^T$$ the vector of concatenated parameters increments with length $$n+m$$. The linearization of $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))$$ around $$\Delta\mathbf{p}=\mathbf{0}$$ consists of two parts:
+  where $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p})) = \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) + \sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p}))$$ and $$\mathbf{u}_i$$ are the appearance eigenvectors, i.e. $$\mathbf{U}_a = \big[\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\big]$$. We denote by $$\Delta\mathbf{q}=\big[\Delta\mathbf{p}^{\mathsf{T}},\Delta\mathbf{c}^{\mathsf{T}}\big]^{\mathsf{T}}$$ the vector of concatenated parameters increments with length $$n+m$$. The linearization of $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))$$ around $$\Delta\mathbf{p}=\mathbf{0}$$ consists of two parts:
   the mean appearance vector approximation
-  $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\left.\mathbf{J}_{\bar{\mathbf{a}}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$
+  $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$
   and the linearized basis
-  $$\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))\approx\mathbf{U}_a+[\mathbf{J}_{\mathbf{u}_{1}}|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p},\ldots,\mathbf{J}_{\mathbf{u}_{m}}|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}]$$, where $$\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{u}_i\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ denotes the Jacobian with respect to the $$i^{th}$$ eigentexture at $$\Delta\mathbf{p}=\mathbf{0}$$. Then the final solution at each iteration is
-  $$\Delta\mathbf{q}=\mathbf{H}^{-1}\mathbf{J}^T[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}]$$
-  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^T\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\left[\left.\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}\right|_{\mathbf{p}=\mathbf{0}},\mathbf{U}_a\right]$$ with $$\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}|_{\mathbf{p}=\mathbf{0}}=\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}+\sum_{i=1}^{m}c_i\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}}$$.
-  At each iteration, we apply a compositional shape parameters update and an additive appearance parameters update $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$. The individual Jacobians $$\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}$$ and $$\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}},~\forall i=1,\ldots,m$$ are constant and can be precomputed. However, the total Jacobian $$\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}|_{\mathbf{p}=\mathbf{0}}$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. This makes the algorithm slow.
+  $$\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))\approx\mathbf{U}_a+\big[\mathbf{J}_{\mathbf{u}_{1}}\big|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}, \ldots, \mathbf{J}_{\mathbf{u}_{m}}\big|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}\big]$$, where $$\mathbf{J}_{\mathbf{u}_i}\big|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{u}_i\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ denotes the Jacobian with respect to the $$i^{th}$$ eigentexture at $$\Delta\mathbf{p}=\mathbf{0}$$. Then the final solution at each iteration is
+  $$\Delta\mathbf{q}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}\big]$$
+  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\big[\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}}, \mathbf{U}_a\big]$$ with $$\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}} = \nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i\left.\mathbf{J}_{\mathbf{u}_i}\right|_{\mathbf{p}=\mathbf{0}}$$.
+  At each iteration, we apply a compositional shape parameters update, i.e. $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}$$, and an additive appearance parameters update, i.e. $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$. The Jacobian of the mean appearance vectors and the eigenvectors $$\left.\mathbf{J}_{\mathbf{u}_i}\right|_{\mathbf{p}=\mathbf{0}},~\forall i=1,\ldots,m$$ are constant and can be precomputed. However, the total Jacobian $$\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}}$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. This makes the algorithm slow.
+
+
+* **Alternating** (`AlternatingInverseCompositional`, `AlternatingForwardCompositional`)  
+  blah blah blah
+
+
+* **Modified Alternating** (`ModifiedAlternatingInverseCompositional`, `ModifiedAlternatingForwardCompositional`)  
+  blah blah blah
+
+
+* **Wiberg** (`WibergInverseCompositional`, `WibergForwardCompositional`)  
+  blah blah blah
+
+Let's now create a Lucas-Kanade Fitter for the patch-based AAM that we trained above using the Wiberg Inverse-Compositional algorithm, as
+```python
+from menpofit.aam import LucasKanadeAAMFitter, WibergInverseCompositional
+
+fitter = LucasKanadeAAMFitter(patch_aam, lk_algorithm_cls=WibergInverseCompositional,
+                              n_shape=[5, 20], n_appearance=[30, 150])
+```
+
+Remember that you can always retrieve information about any trained model by:
+```python
+print(fitter)
+```
+
 
 #### <a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization
+
+
+### <a name="fitting"></a>4. Fitting Example
+Let's load a test image from LFPW testset and convert it to grayscale
+```python
+from pathlib import Path
+import menpo.io as mio
+
+path_to_lfpw = Path('/home/ea1812/Desktop/images/lfpw/testset/')
+
+image = mio.import_image(path_to_lfpw / 'image_0018.png')
+image = image.as_greyscale()
+```
+
+Let's also load a pre-trained face detector from `menpodetect` and try to find the face's bounding box in order to initialize the AAM fitting
+```python
+from menpodetect import load_dlib_frontal_face_detector
+
+# Load detector
+detect = load_dlib_frontal_face_detector()
+
+# Detect
+bboxes = detect(image)
+print("{} detected faces.".format(len(bboxes)))
+
+# View
+if len(bboxes) > 0:
+    image.view_landmarks(group='dlib_0', line_colour='red',
+                         render_markers=False, line_width=4);
+```
+<center>
+  <img src="media/aam_view_bbox.png" alt="Visualize bounding box initialization">
+</center>
+
+The fitting can be executed as
+```python
+# initial bbox
+initial_bbox = bboxes[0]
+
+# fit image
+result = fitter.fit_from_bb(image, initial_bbox, max_iters=[15, 5],
+                            gt_shape=image.landmarks['PTS'].lms)
+
+# print result
+print(result)
+```
+which prints
+```python
+Fitting result of 68 landmark points.
+Initial error: 0.1689
+Final error: 0.0213
+```
+
+The fitting result can be visualized as
+```python
+result.view(render_initial_shape=True)
+```
+<center>
+  <img src="media/aam_view_result.png" alt="Visualize fitting result">
+</center>
+
+and the fitting iterations as
+```python
+result.view_iterations()
+```
+<center>
+  <img src="media/aam_view_iterations.png" alt="Visualize fitting iterations">
+</center>
+
+Also, you can plot the fitting error per iteration as
+```python
+result.plot_errors()
+```
+<center>
+  <img src="media/aam_plot_errors.png" alt="Plot fitting error per iteration">
+</center>
+
+and of course the fitting result widget can be called as
+```python
+result.view_widget()
+```
+<video width="100%" autoplay loop>
+  <source src="media/patch_aam_view_result_widget.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+Let's try an image with a more challenging head pose
+```python
+import matplotlib.pyplot as plt
+
+# Load and convert to grayscale
+image = mio.import_image(path_to_lfpw / 'image_0117.png')
+image = image.as_greyscale()
+
+# Detect face
+bboxes = detect(image)
+
+if len(bboxes) > 0:
+    # Fit AAM
+    result = fitter.fit_from_bb(image, bboxes[0], max_iters=[15, 5],
+                                gt_shape=image.landmarks['PTS'].lms)
+    print(result)
+
+    # Visualize
+    plt.subplot(131);
+    image.view()
+    bboxes[0].view(line_width=3, render_markers=False)
+    plt.gca().set_title('Bounding box')
+
+    plt.subplot(132)
+    image.view()
+    result.initial_shape.view(marker_size=4)
+    plt.gca().set_title('Initial shape')
+
+    plt.subplot(133)
+    image.view()
+    result.final_shape.view(marker_size=4, figure_size=(15, 13))
+    plt.gca().set_title('Final shape')
+```
+<center>
+  <img src="media/aam_view_result_2.png" alt="Visualize fitting result">
+</center>
+
+and trigger the widget
+```python
+result.view_widget()
+```
+<video width="100%" autoplay loop>
+  <source src="media/patch_aam_view_result_widget_2.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
 
 ### <a name="references"></a>5. References
