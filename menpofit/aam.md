@@ -83,7 +83,7 @@ Your browser does not support the video tag.
 ### <a name="warp"></a>2. Warp Functions
 With an abuse of notation, let us define
 $$
-\mathbf{t}(\mathcal{p})\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
+\mathbf{t}(\mathcal{W}(\mathcal{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
 $$
 as the feature-based warped $$M\times 1$$ vector of an image $$\mathbf{I}$$ given its shape instance generated with parameters $$\mathbf{p}$$.
 
@@ -149,7 +149,7 @@ Your browser does not support the video tag.
 ### <a name="cost"></a>3. Cost Function
 Fitting an AAM on a test image involves the optimization of the following cost function
 $$
-\arg\min_{\mathbf{p}, \mathbf{c}} \left\lVert \mathbf{t}(\mathbf{p}) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \right\rVert^{2}
+\arg\min_{\mathbf{p}, \mathbf{c}} \left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \right\rVert^{2}
 $$
 with respect to the shape and appearance parameters. Note that this cost function is very similar to the one of [Lucas-Kanade](lk.md "Lucas-Kanade Affine Image Alignment") for Affine Image Alignment and [Active Template Model](atm.md "Active Template Model (ATM)") for Deformabe Image Alignment. The only difference has to do with the fact that an AAM aims to align the test image with a linear appearance model.
 
@@ -158,7 +158,31 @@ This optimization can be solved by two approaches:
 2. [Supervised Descent Optimization](#supervised-descent-fitting)
 
 #### <a name="lucas-kanade-fitting"></a>3.1. Lucas-Kanade Optimization
+The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and (2) _additive_ or _compositional_ depending on the way the motion parameters are updated. `menpofit` currently provides the **Forward-Compositional** and **Inverse-Compositional** version of five different algorithms. Below we briefly present the Inverse-Compositional of each one of them, however the Forward-Compositional can be derived in a similar fashion.
 
+* **Project-Out** (`ProjectOutInverseCompositional`, `ProjectOutForwardCompositional`)  
+  The Project-Out Inverse-Compositional (POIC) algorithm [[8](#8)] decouples shape and appearance by solving the AAM optimization problem in a subspace orthogonal to the appearance variation. This is achieved by "projecting-out" the appearance variation, thus working on the orthogonal complement of the appearance subspace $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T$$. The cost function has the form
+  $$
+  \arg\min_{\Delta\mathbf{p}} {\left\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) \right\rVert^{2}}_{\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T}
+  $$
+  By taking the first-order Taylor expansion over $$\Delta\mathbf{p} = \mathbf{0}$$ we get $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$.
+  Thus, the incermental update of the shape parameters is computed as $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^T[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}]$$ where $$\mathbf{H}=\mathbf{J}^T\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
+  $$\mathbf{J} = (\mathbf{I}_{eye}-\mathbf{U}_a{\mathbf{U}_a}^T)\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ is the Jacobian. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^T\left[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\right]$$ in order to reconstruct the appearance. Note that the Project-Out Inverse Compositional algorithm is computationaly fast because the Jacobian, Hessian and its inverse are constant and can be pre-computed. However, it is not robust, especially in cases with large appearance variation.
+
+
+* **Simultaneous** (`SimultaneousInverseCompositional`, `SimultaneousForwardCompositional`)  
+  In the Simultaneous Inverse-Compositional (SIC) algorithm [[7](#7)], we aim to optimize simultaneously for the shape $$\mathbf{p}$$ and the appearance $$\mathbf{c}$$ parameters. The cost function has the form
+  $$
+  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \left\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}\mathcal{W}(\Delta\mathbf{p})) \right\rVert^{2}
+  $$
+  where $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))=\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))+\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))(\mathbf{c}+\Delta\mathbf{c})$$. We denote by $$\Delta\mathbf{q}=[\Delta\mathbf{p}^T,\Delta\mathbf{c}^T]^T$$ the vector of concatenated parameters increments with length $$n+m$$. The linearization of $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))$$ around $$\Delta\mathbf{p}=\mathbf{0}$$ consists of two parts:
+  the mean appearance vector approximation
+  $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\left.\mathbf{J}_{\bar{\mathbf{a}}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$
+  and the linearized basis
+  $$\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))\approx\mathbf{U}_a+[\mathbf{J}_{\mathbf{u}_{1}}|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p},\ldots,\mathbf{J}_{\mathbf{u}_{m}}|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}]$$, where $$\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{u}_i\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ denotes the Jacobian with respect to the $$i^{th}$$ eigentexture at $$\Delta\mathbf{p}=\mathbf{0}$$. Then the final solution at each iteration is
+  $$\Delta\mathbf{q}=\mathbf{H}^{-1}\mathbf{J}^T[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}]$$
+  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^T\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\left[\left.\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}\right|_{\mathbf{p}=\mathbf{0}},\mathbf{U}_a\right]$$ with $$\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}|_{\mathbf{p}=\mathbf{0}}=\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}+\sum_{i=1}^{m}c_i\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}}$$.
+  At each iteration, we apply a compositional shape parameters update and an additive appearance parameters update $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$. The individual Jacobians $$\mathbf{J}_{\bar{\mathbf{a}}}|_{\mathbf{p}=\mathbf{0}}$$ and $$\mathbf{J}_{\mathbf{u}_i}|_{\mathbf{p}=\mathbf{0}},~\forall i=1,\ldots,m$$ are constant and can be precomputed. However, the total Jacobian $$\mathbf{J}_{\mathbf{a}_{\mathbf{c}}}|_{\mathbf{p}=\mathbf{0}}$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. This makes the algorithm slow.
 
 #### <a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization
 
