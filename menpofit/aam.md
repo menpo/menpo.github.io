@@ -14,7 +14,7 @@ Active Appearance Model
 
 ### <a name="definition"></a>1. Definition
 Active Appearance Model (AAM) is a statistical deformable model of the shape and appearance of a deformable object class.
-AAM is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
+It is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
 In this page, we provide a basic mathematical definition of an AAM and all its variations that are implemented within `menpofit`.
 For a more in-depth explanation of AAM, please refer to the relevant literature in [References](#references) and especially [[1](#1)].
 
@@ -69,7 +69,9 @@ for img in print_progress(mio.import_images(path_to_images, verbose=True)):
     # append to list
     training_images.append(img)
 ```
-and visualize them using an interactive widget:
+Note that we labeled the images using `face_ibug_68_to_face_ibug_68_trimesh`, in order to
+get a manually defined `TriMesh` for the Piecewise Affine Warp. However, this is not necessary and it only applies
+for `HolisticAAM`. We can visualize the images using an interactive widget as:
 ```python
 %matplotlib inline
 from menpowidgets import visualize_images
@@ -84,11 +86,11 @@ Your browser does not support the video tag.
 ### <a name="warp"></a>2. Warp Functions
 With an abuse of notation, let us define
 $$
-\mathbf{t}(\mathcal{W}(\mathcal{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
+\mathbf{t}(\mathcal{W}(\mathbf{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
 $$
 as the feature-based warped $$M\times 1$$ vector of an image $$\mathbf{I}$$ given its shape instance generated with parameters $$\mathbf{p}$$.
 
-`menpofit` provides five different AAM versions, which differ on the way that this appearance warping $$\mathbf{t}(\mathcal{p})$$ is performed.
+`menpofit` provides five different AAM versions, which differ on the way that this appearance warping $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ is performed.
 Specifically:
 
 **HolisticAAM**  
@@ -100,9 +102,9 @@ Let's create a `HolisticAAM` using Dense SIFT features:
 from menpofit.aam import HolisticAAM
 from menpo.feature import fast_dsift
 
-aam = HolisticAAM(training_images, group='face_ibug_68_trimesh',
-                  diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
-                  max_shape_components=20, max_appearance_components=150, verbose=True)
+aam = HolisticAAM(training_images, group='face_ibug_68_trimesh', diagonal=150,
+                  scales=(0.5, 1.0), holistic_features=fast_dsift, verbose=True,
+                  max_shape_components=20, max_appearance_components=150)
 ```
 and visualize it:
 ```python
@@ -185,42 +187,63 @@ This optimization can be solved by two approaches:
 2. [Supervised Descent Optimization](#supervised-descent-fitting)
 
 #### <a name="lucas-kanade-fitting"></a>3.1. Lucas-Kanade Optimization
-The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and (2) _additive_ or _compositional_ depending on the way the motion parameters are updated. `menpofit` currently provides the **Forward-Compositional** and **Inverse-Compositional** version of five different algorithms. Below we briefly present the Inverse-Compositional of each one of them, however the Forward-Compositional can be derived in a similar fashion.
+The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and (2) _additive_ or _compositional_ depending on the way the motion parameters are updated. `menpofit` currently provides the **Forward-Compositional** and **Inverse-Compositional** version of five different algorithms. All these algorithms are iterative and the shape parameters are updated at each iteration in a compositional manner as
+$$
+\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}
+$$
 
-* **Project-Out** (`ProjectOutInverseCompositional`, `ProjectOutForwardCompositional`)  
-  The Project-Out Inverse-Compositional (POIC) algorithm [[8](#8)] decouples shape and appearance by solving the AAM optimization problem in a subspace orthogonal to the appearance variation. This is achieved by "projecting-out" the appearance variation, thus working on the orthogonal complement of the appearance subspace $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a\mathbf{U}_a^{\mathsf{T}}$$. The cost function has the form
+Below we briefly present the Inverse-Compositional of each one of them, however the Forward-Compositional can be derived in a similar fashion.
+
+* **Project-Out**  
+  The Project-Out Inverse-Compositional algorithm [[8](#8)] decouples shape and appearance by solving the AAM optimization problem in a subspace orthogonal to the appearance variation. This is achieved by "projecting-out" the appearance variation, thus working on the orthogonal complement of the appearance subspace $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a\mathbf{U}_a^{\mathsf{T}}$$. The cost function has the form
   $$
-  \arg\min_{\Delta\mathbf{p}} \Big\lVert \mathbf{t}\left(\mathcal{W}\left(\mathbf{p}\right)\right) - \bar{\mathbf{a}}\left(\mathcal{W}\left(\Delta\mathbf{p}\right)\right) \Big\rVert^{2}_{\hat{\mathbf{U}}}
+  \arg\min_{\Delta\mathbf{p}} \Big\lVert \mathbf{t}\left(\mathcal{W}\left(\mathbf{p}\right)\right) - \bar{\mathbf{a}}\left(\mathcal{W}\left(\Delta\mathbf{p}\right)\right) \Big\rVert^{2}_{\hat{\mathbf{U}}_a}
   $$
-  By taking the first-order Taylor expansion over $$\Delta\mathbf{p} = \mathbf{0}$$ we get $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$.
-  Thus, the incermental update of the shape parameters is computed as $$\Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ where $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
-  $$\mathbf{J} = \hat{\mathbf{U}}_a\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ is the Jacobian. The shape parameters are updated at each iteration in a compositional manner, i.e. $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}$$. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ in order to reconstruct the appearance. Note that the Project-Out Inverse Compositional algorithm is computationaly fast because the Jacobian, Hessian and its inverse are constant and can be pre-computed. However, it is not robust, especially in cases with large appearance variation.
+  By taking the first-order Taylor expansion on the part of the model over $$\Delta\mathbf{p} = \mathbf{0}$$ we get $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) \approx \bar{\mathbf{a}} + \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$.
+  Thus, the incermental update of the shape parameters is computed as
+  $$
+  \Delta\mathbf{p} = \mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}\big]
+  $$
+  where $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
+  $$\mathbf{J} = \hat{\mathbf{U}}_a\nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$ is the projected-out Jacobian. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ in order to reconstruct the appearance. Note that the Jacobian, Hessian and its inverse are constant and can be pre-computed, which makes the Project Out Inverse Compositional fast with computational cost $$\mathcal{O}(nM+n^2)$$.
 
 
-* **Simultaneous** (`SimultaneousInverseCompositional`, `SimultaneousForwardCompositional`)  
-  In the Simultaneous Inverse-Compositional (SIC) algorithm [[7](#7)], we aim to optimize simultaneously for the shape $$\mathbf{p}$$ and the appearance $$\mathbf{c}$$ parameters. The cost function has the form
+* **Simultaneous**  
+  In the Simultaneous Inverse-Compositional algorithm [[7](#7)], we aim to optimize simultaneously for the shape $$\mathbf{p}$$ and the appearance $$\mathbf{c}$$ parameters. The cost function has the form
   $$
-  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \big\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}\mathcal{W}(\Delta\mathbf{p})) \big\rVert^{2}
+  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \Big\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) - \sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p})) \Big\rVert^{2}
   $$
-  where $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p})) = \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) + \sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p}))$$ and $$\mathbf{u}_i$$ are the appearance eigenvectors, i.e. $$\mathbf{U}_a = \big[\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\big]$$. We denote by $$\Delta\mathbf{q}=\big[\Delta\mathbf{p}^{\mathsf{T}},\Delta\mathbf{c}^{\mathsf{T}}\big]^{\mathsf{T}}$$ the vector of concatenated parameters increments with length $$n+m$$. The linearization of $$\mathbf{a}_{\mathbf{c}+\Delta\mathbf{c}}(\mathcal{W}(\Delta\mathbf{p}))$$ around $$\Delta\mathbf{p}=\mathbf{0}$$ consists of two parts:
+  where $$\mathbf{u}_i$$ are the appearance eigenvectors, i.e. $$\mathbf{U}_a = \big[\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\big]$$. Note that the appearance parameters are updated in an additive manner, i.e. $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$. We denote by $$\Delta\mathbf{q}=\big[\Delta\mathbf{p}^{\mathsf{T}},\Delta\mathbf{c}^{\mathsf{T}}\big]^{\mathsf{T}}$$ the vector of concatenated parameters increments with length $$n+m$$. The linearization of the model part around $$\Delta\mathbf{p}=\mathbf{0}$$ consists of two parts:
   the mean appearance vector approximation
-  $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p}))\approx\bar{\mathbf{a}}+\nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$
-  and the linearized basis
-  $$\mathbf{U}_a(\mathcal{W}(\Delta\mathbf{p}))\approx\mathbf{U}_a+\big[\mathbf{J}_{\mathbf{u}_{1}}\big|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}, \ldots, \mathbf{J}_{\mathbf{u}_{m}}\big|_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}\big]$$, where $$\mathbf{J}_{\mathbf{u}_i}\big|_{\mathbf{p}=\mathbf{0}}=\nabla\mathbf{u}_i\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}}$$ denotes the Jacobian with respect to the $$i^{th}$$ eigentexture at $$\Delta\mathbf{p}=\mathbf{0}$$. Then the final solution at each iteration is
-  $$\Delta\mathbf{q}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}\big]$$
-  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\big[\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}}, \mathbf{U}_a\big]$$ with $$\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}} = \nabla{\bar{\mathbf{a}}}\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i\left.\mathbf{J}_{\mathbf{u}_i}\right|_{\mathbf{p}=\mathbf{0}}$$.
-  At each iteration, we apply a compositional shape parameters update, i.e. $$\mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}$$, and an additive appearance parameters update, i.e. $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$. The Jacobian of the mean appearance vectors and the eigenvectors $$\left.\mathbf{J}_{\mathbf{u}_i}\right|_{\mathbf{p}=\mathbf{0}},~\forall i=1,\ldots,m$$ are constant and can be precomputed. However, the total Jacobian $$\left.\mathbf{J}_{\mathbf{a}}\right|_{\mathbf{p}=\mathbf{0}}$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. This makes the algorithm slow.
+  $$\bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) \approx \bar{\mathbf{a}} + \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}$$
+  and the linearized basis $$\sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p})) \approx \sum_{i=1}^{m} (c_i + \Delta c_i) \left(\mathbf{u}_i + \nabla\mathbf{u}_i{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}\Delta\mathbf{p}\right)$$. Then the final solution at each iteration is
+  $$
+  \Delta\mathbf{q} = \mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}\big]
+  $$
+  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\big[\mathbf{U}_a, \mathbf{J}_a\big]$$ with $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i{\left.\mathbf{J}_{\mathbf{u}_i}\right|}_{\mathbf{p}=\mathbf{0}}$$.
+  The Jacobian of the mean appearance vector and the eigenvectors are constant and can be precomputed. However, the total Jacobian $$\mathbf{J}_a$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. The computational complexity is $$\mathcal{O}((n+m)^2M+(n+m)^3)$$.
 
 
-* **Alternating** (`AlternatingInverseCompositional`, `AlternatingForwardCompositional`)  
+* **Alternating**  
+  In the Alternating Inverse-Compositional algorithm [[9](#9), [12](#12), [13](#13), [2](#2)], the cost function has the same form as in the case of Simultaneous Inverse-Compositional, i.e.
+  $$
+  \arg\min_{\Delta\mathbf{p},\Delta\mathbf{c}} \Big\lVert  \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) - \sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p})) \Big\rVert^{2}
+  $$
+  where $$\mathbf{u}_i$$ are the appearance eigenvectors, i.e. $$\mathbf{U}_a = \big[\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\big]$$. The linearization also has the exact same formulation. The only difference is that we optimize with respect to $$\Delta\mathbf{p}$$ and $$\Delta\mathbf{c}$$ in an alternated manner instead of simultaneously. Specifically, assuming that we have the current estimation of $$\Delta\mathbf{p}$$, the appearance parameters incremental is computed as
+  $$
+  \Delta\mathbf{c} = \mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} - \mathbf{J}\Delta\mathbf{p}\big]
+  $$
+  Then, given the current estiamte of $$\Delta\mathbf{c}$$, the shape parameters incerment is comptuted as
+  $$
+  \Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a(\mathbf{c}+\Delta\mathbf{c})\big]
+  $$
+
+
+* **Modified Alternating**  
   blah blah blah
 
 
-* **Modified Alternating** (`ModifiedAlternatingInverseCompositional`, `ModifiedAlternatingForwardCompositional`)  
-  blah blah blah
-
-
-* **Wiberg** (`WibergInverseCompositional`, `WibergForwardCompositional`)  
+* **Wiberg**  
   blah blah blah
 
 Let's now create a Lucas-Kanade Fitter for the patch-based AAM that we trained above using the Wiberg Inverse-Compositional algorithm, as
