@@ -119,7 +119,7 @@ The majority of the software exists within a family of Python packages, each des
 
 ---------------------------------------
 
-## Get Started
+## Getting Started
 
 The Menpo Project is written in **Python** and we provide a simple and easy method of installation using [Conda](http://conda.pydata.org/).
 After setting up a Python ``conda`` environment, all the packages of the Menpo Project can be installed as
@@ -129,6 +129,8 @@ conda install -c menpo menpoproject
 We _strongly_ suggest you head over to the [installation instructions](installation/index.md "Full Installation Instructions") to get started.
 We recommend the use of ``conda`` due to the fact that the Menpo Project also includes compiled ``C/C++`` code
 which may be complicated to compile on various platforms.
+
+Once you have installed the Menpo Project, you can visit our [Examples](examples/index.md) to get started.
 
 ## User Group and Issues
 If you wish to get in contact with the Menpo developers, you can do so via various channels.

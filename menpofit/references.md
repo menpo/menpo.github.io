@@ -32,6 +32,7 @@ This is an indicative list of papers relevant to the methods that are implemente
 27. G. Tzimiropoulos, and M. Pantic. "Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
 28. G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.
 29. G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.
-30. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Robust and efficient parametric face alignment", IEEE International Conference on Computer Vision (ICCV), 2011.
-31. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Subspace Learning from Image Gradient Orientations", IEEE Transactions on Pattern Analysis and Machine Intelligence. vol. 34, no. 12, pp. 2454-2466, 2012.
-32. X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.
+30. G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.
+31. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Robust and efficient parametric face alignment", IEEE International Conference on Computer Vision (ICCV), 2011.
+32. G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Subspace Learning from Image Gradient Orientations", IEEE Transactions on Pattern Analysis and Machine Intelligence. vol. 34, no. 12, pp. 2454-2466, 2012.
+33. X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.

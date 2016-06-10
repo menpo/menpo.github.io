@@ -44,6 +44,7 @@
   * [References](/menpofit/references.md)
   * [API Documentation](http://menpofit.readthedocs.io/)
 * [menpodetect](/menpodetect/index.md)
+  * [API Documentation](http://menpodetect.readthedocs.io/)
 * [menpowidgets](/menpowidgets/index.md)
 * [menpocli](/menpocli/index.md)
 * [menpo3d](/menpo3d/index.md)

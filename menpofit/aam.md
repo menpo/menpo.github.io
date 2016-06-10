@@ -205,7 +205,7 @@ Below we briefly present the Inverse-Compositional of each one of them, however 
   \Delta\mathbf{p} = \mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}\big]
   $$
   where $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ is the Gauss-Newton approximation of the Hessian matrix and
-  $$\mathbf{J} = \hat{\mathbf{U}}_a\nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$ is the projected-out Jacobian. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ in order to reconstruct the appearance. Note that the Jacobian, Hessian and its inverse are constant and can be pre-computed, which makes the Project Out Inverse Compositional fast with computational cost $$\mathcal{O}(nM+n^2)$$.
+  $$\mathbf{J} = \hat{\mathbf{U}}_a\nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$ is the projected-out Jacobian. The appearance parameters can be retrieved at the end of the iterative optimization as $$\mathbf{c}=\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}\big]$$ in order to reconstruct the appearance. Note that the Jacobian, Hessian and its inverse are constant and can be pre-computed, which makes the Project Out Inverse Compositional fast with computational cost $$\mathcal{O}\big(nM\big)$$.
 
 
 * **Simultaneous**  
@@ -220,8 +220,8 @@ Below we briefly present the Inverse-Compositional of each one of them, however 
   $$
   \Delta\mathbf{q} = \mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p}))-\bar{\mathbf{a}}-\mathbf{U}_a\mathbf{c}\big]
   $$
-  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\big[\mathbf{U}_a, \mathbf{J}_a\big]$$ with $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i{\left.\mathbf{J}_{\mathbf{u}_i}\right|}_{\mathbf{p}=\mathbf{0}}$$.
-  The Jacobian of the mean appearance vector and the eigenvectors are constant and can be precomputed. However, the total Jacobian $$\mathbf{J}_a$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. The computational complexity is $$\mathcal{O}((n+m)^2M+(n+m)^3)$$.
+  where the Hessian matrix is $$\mathbf{H}=\mathbf{J}^{\mathsf{T}}\mathbf{J}$$ and the Jacobian is given by $$\mathbf{J}=\big[\mathbf{U}_a, \mathbf{J}_a\big]$$ with $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i \nabla\mathbf{u}_i{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$.
+  The Jacobian of the mean appearance vector and the eigenvectors are constant and can be precomputed. However, the total Jacobian $$\mathbf{J}_a$$ and hence the Hessian matrix depend on the current estimate of the appearance parameters $$\mathbf{c}$$, thus they need to be computed at every iteration. The computational complexity is $$\mathcal{O}\big((n+m)^2M+mM+(n+m)^3\big)$$.
 
 
 * **Alternating**  
@@ -231,20 +231,46 @@ Below we briefly present the Inverse-Compositional of each one of them, however 
   $$
   where $$\mathbf{u}_i$$ are the appearance eigenvectors, i.e. $$\mathbf{U}_a = \big[\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_m\big]$$. The linearization also has the exact same formulation. The only difference is that we optimize with respect to $$\Delta\mathbf{p}$$ and $$\Delta\mathbf{c}$$ in an alternated manner instead of simultaneously. Specifically, assuming that we have the current estimation of $$\Delta\mathbf{p}$$, the appearance parameters incremental is computed as
   $$
-  \Delta\mathbf{c} = \mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} - \mathbf{J}\Delta\mathbf{p}\big]
+  \Delta\mathbf{c} = \mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} - \mathbf{J}_a\Delta\mathbf{p}\big]
   $$
-  Then, given the current estiamte of $$\Delta\mathbf{c}$$, the shape parameters incerment is comptuted as
+  Then, given the current estimate of $$\Delta\mathbf{c}$$, the shape parameters increment is comptuted as
   $$
-  \Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a(\mathbf{c}+\Delta\mathbf{c})\big]
+  \Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a(\mathbf{c}+\Delta\mathbf{c})\big]
   $$
+  Note that the appearance parameters vector is updated in an additive fashion, i.e. $$\mathbf{c}\leftarrow\mathbf{c}+\Delta\mathbf{c}$$.
+  As in the Simultaneous case, the Jacobian is given by $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i \nabla\mathbf{u}_i{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$ and the Hessian matrix is $$\mathbf{H} = \mathbf{J}_a^{\mathsf{T}}\mathbf{J}_a$$. The computational complexity is $$\mathcal{O}\big((n^2+m+n)M+n^3\big)$$.
 
 
 * **Modified Alternating**  
-  blah blah blah
+  The Modified Alternating Inverse-Compositional algorithm is very similar to the Alternating case. The only difference is that we do not introduce an incremental update on the appearance parameters. Instead, the current appearance parameters vector $$\Delta\mathbf{c}$$ is computed by projecting the input image with shape parameters $$\mathbf{p}$$ into the appearance subspace. Specifically, the shape parameters increment given the current estimate of the appearance parameters $$\mathbf{c}$$ is given by
+  $$
+  \Delta\mathbf{p}=\mathbf{H}^{-1}\mathbf{J}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c}\big]
+  $$
+  Then, the appearance parameters for the next iteration are obtained by projecting $$\mathbf{t}(\mathcal{W}(\mathbf{p}))$$ into the appearance model as
+  $$
+  \mathbf{c} = \mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}\big]
+  $$
+  The Jacobian and Hessian are the same as in the Alternating case, i.e. $$\mathbf{H} = \mathbf{J}_a^{\mathsf{T}}\mathbf{J}_a$$ and $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i \nabla\mathbf{u}_i{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$. The computational complexity is $$\mathcal{O}\big((n^2+m)M+n^3\big)$$ which is very similar to the Alternating.
 
 
 * **Wiberg**  
-  blah blah blah
+  The Wiberg Inverse-Compositional algorithm [[9](#9), [13](#13), [11](#11)] is a very efficient version of alternating optimization. It involves solving two different problems in an alternating manner, one for the shape and one for the appearance parameters increments
+  $$
+  \left\lbrace\begin{aligned}
+  \arg\min_{\Delta\mathbf{p}} & \Big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) - \sum_{i=1}^{m} c_i \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p})) \Big\rVert^{2}_{\hat{\mathbf{U}}_a}\\
+  \arg\min_{\Delta\mathbf{c}} & \Big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}(\mathcal{W}(\Delta\mathbf{p})) - \sum_{i=1}^{m} (c_i + \Delta c_i) \mathbf{u}_i(\mathcal{W}(\Delta\mathbf{p})) \Big\rVert^{2}
+  \end{aligned}\right.
+  $$
+  where $$\hat{\mathbf{U}}_a=\mathbf{I}_{eye}-\mathbf{U}_a\mathbf{U}_a^{\mathsf{T}}$$ is the "project-out" operator. Given the current estimate of $$\Delta\mathbf{c}$$, the shape parameters increment estimated by solving the first optimization problem as
+  $$
+  \Delta\mathbf{p} = \hat{\mathbf{H}}^{-1} \hat{\mathbf{J}}_a^{\mathsf{T}} \big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}}\big]
+  $$
+  where $$\hat{\mathbf{J}}_a = \hat{\mathbf{U}}_a \mathbf{J}_a$$ is the projected-out Jacobian with $$\mathbf{J}_a = \nabla{\bar{\mathbf{a}}}{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}} + \sum_{i=1}^{m}c_i \nabla\mathbf{u}_i{\left.\frac{\partial\mathcal{W}}{\partial\mathbf{p}}\right|}_{\mathbf{p}=\mathbf{0}}$$ and $$\hat{\mathbf{H}}=\hat{\mathbf{J}}_a^{\mathsf{T}}\hat{\mathbf{J}}_a$$ being the Gauss-Newton approximation of the Hessian. Given the current estimate of $$\Delta\mathbf{p}$$, the appearance parameters increment is computed by solving the second optimization problem as
+  $$
+  \Delta\mathbf{c} = \mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} - \mathbf{J}_a\Delta\mathbf{p}\big]
+  $$
+  The computational cost of Wiberg optimization is $$\mathcal{O}\big((nm+n^2)M\big)$$, as shown in [[13](#13)]. Note that Wiberg and Simultaneous have been shown to be theoretically equivalent and that the only difference is their computational costs. That is the Simultaneous Inverse-Compositional algorithm requires to invert the Hessian of the concatenated shape and appearance parameters ($$\mathcal{O}\big((n + m)^3\big)$$). However, using the fact that $$\min_{x,y} f(x,y) = \min_{x} \big(\min_{y} f(x,y)\big)$$ and solving first for the appearance parameter increments, it has been shown that the complexity of Simultaneous can be reduced dramatically and that Simultaneous is equivalent to Wiberg algorithm [[13](#13)] (similar results can be shown by using the Schur’s complement of the Hessian of shape and appearance parameters).
+
 
 Let's now create a Lucas-Kanade Fitter for the patch-based AAM that we trained above using the Wiberg Inverse-Compositional algorithm, as
 ```python
@@ -261,6 +287,19 @@ print(fitter)
 
 
 #### <a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization
+The AAM cost function can also be optimized using cascaded regression, which in literature is commonly referred to as Supervised Descent Optimization mainly due to [[15](#15)]. Specifically, the aim is to learn a regression function that regresses from the object’s features based on the appearance model to the parameters of the statistical shape model. Although the history behind using linear regression in order to learn descent directions spans back many years when AAMs where first introduced [[6](#6)], the research community turned towards alternative approaches due to the lack of sufficient data for training accurate regression functions. Nevertheless, over the last few years, regression-based techniques have prevailed in the field [[14](#14), [15](#15)] thanks to the wealth of readily available annotated data and powerful handcrafted features. In the following, we assume that we learn a cascade regressors that consists of $$K$$ levels, i.e.
+$$
+\mathbf{R}^{(k)}\in\mathbb{R}^{n\times M},~k=1,\ldots,K
+$$
+where $$n$$ is the number of shape components of the AAM and $$M$$ is the features dimensionality. The regression is performed based on a features extracted using the appearance model. Let's define this feature extraction function as
+$$
+\phi(\mathbf{t}, \mathbf{p})
+$$
+which given an image $$\mathbf{t}$$ and the shape parameters $$\mathbf{p}$$ returns an $$M\times 1$$ feature vector based on the warped image $$\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big)$$.
+
+**Fitting**  
+During fitting,
+
 
 
 ### <a name="fitting"></a>4. Fitting Example
@@ -420,3 +459,7 @@ Your browser does not support the video tag.
 <a name="12"></a>[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.
 
 <a name="13"></a>[13] G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.
+
+<a name="14"></a>[14] G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.
+
+<a name="15"></a>[15] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.
