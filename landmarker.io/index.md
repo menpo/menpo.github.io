@@ -8,4 +8,8 @@
   </br>
 </center>
 
-**Will be updated soon!**
+`landmarker.io` is a web app for 3D mesh and image annotation in the browser.
+
+The app is live at [https://www.landmarker.io](https://www.landmarker.io).
+
+![Landmarker.io](http://i.imgur.com/zxHyVLV.gif)
