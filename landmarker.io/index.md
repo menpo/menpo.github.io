@@ -1,6 +1,5 @@
 <center>
-  <img src="../../logo/landmarkerio_white_medium.png" alt="landmarkerio" width="30%"><br/>
-  <strong style="font-size: 250%">landmarker.io</strong>
+  <img src="../../logo/landmarkerio_with_logo.png" alt="landmarkerio" width="30%">
   </br>
   </br>
   <a href="http://github.com/menpo/landmarker.io"><img src="http://img.shields.io/github/release/menpo/landmarkerio.svg" alt="Github Release"/></a>

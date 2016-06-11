@@ -1,6 +1,5 @@
 <center>
-  <img src="../../logo/menpofit_white_medium.png" alt="menpofit" width="30%"><br/>
-  <strong style="font-size: 250%">menpofit</strong>
+  <img src="../../logo/menpofit.png" alt="menpofit" width="30%">
   </br>
   </br>
   <a href="http://github.com/menpo/menpofit"><img src="http://img.shields.io/github/release/menpo/menpofit.svg" alt="Github Release"/></a>

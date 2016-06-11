@@ -1,5 +1,5 @@
 <center>
-  <img src="logo/menpoproject_white_medium.png" alt="The Menpo Project" width="30%"></br>
+  <img src="logo/menpoproject.png" alt="The Menpo Project" width="27%"></br>
   <strong style="font-size: 250%">The Menpo Project</strong>
 </center>
 
@@ -27,13 +27,13 @@ The Menpo Project also provides:
 
 ## Packages
 <center>
-  <a href="/menpo/index.md" title="menpo"><img src="logo/menpo_white_medium.png" alt="menpo" width="13%"></a>
-  <a href="/menpofit/index.md" title="menpofit"><img src="logo/menpofit_white_medium.png" alt="menpofit" width="13%"></a>
-  <a href="/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect_white_medium.png" alt="menpodetect" width="13%"></a>
-  <a href="/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets_white_medium.png" alt="menpowidgets" width="13%"></a>
-  <a href="/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d_white_medium.png" alt="menpo3d" width="13%"></a>
-  <a href="/menpocli/index.md" title="menpocli"><img src="logo/menpocli_white_medium.png" alt="menpocli" width="13%"></a>
-  <a href="/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_white_medium.png" alt="landmarker.io" width="13%"></a>
+  <a href="/menpo/index.md" title="menpo"><img src="logo/menpo.png" alt="menpo" width="13.5%"></a>
+  <a href="/menpofit/index.md" title="menpofit"><img src="logo/menpofit.png" alt="menpofit" width="13.5%"></a>
+  <a href="/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect.png" alt="menpodetect" width="13.5%"></a>
+  <a href="/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets.png" alt="menpowidgets" width="13.5%"></a>
+  <a href="/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d.png" alt="menpo3d" width="13.5%"></a>
+  <a href="/menpocli/index.md" title="menpocli"><img src="logo/menpocli.png" alt="menpocli" width="13.5%"></a>
+  <a href="/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_with_logo.png" alt="landmarker.io" width="13.5%"></a>
 </center>
 The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 

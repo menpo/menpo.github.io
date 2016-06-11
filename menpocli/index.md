@@ -1,6 +1,5 @@
 <center>
-  <img src="../../logo/menpocli_white_medium.png" alt="menpocli" width="30%"><br/>
-  <strong style="font-size: 250%">menpocli</strong>
+  <img src="../../logo/menpocli.png" alt="menpocli" width="30%">
   </br>
   </br>
   <a href="http://github.com/menpo/menpocli"><img src="http://img.shields.io/github/release/menpo/menpocli.svg" alt="Github Release"/></a>

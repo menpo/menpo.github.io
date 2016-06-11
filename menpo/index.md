@@ -1,6 +1,5 @@
 <center>
-  <img src="../../logo/menpo_white_medium.png" alt="menpo" width="30%"><br/>
-  <strong style="font-size: 250%">menpo</strong>
+  <img src="../../logo/menpo.png" alt="menpo" width="30%">
   </br>
   </br>
   <a href="http://github.com/menpo/menpo"><img src="http://img.shields.io/github/release/menpo/menpo.svg" alt="Github Release"/></a>
