@@ -9,6 +9,14 @@ Active Template Model
 
 ---------------------------------------
 
+<div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 25%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
+This can be done by running</br>
+<center><code>%matplotlib inline</code></center>
+in a cell. Note that you only have to run it once and not in every rendering cell.
+</div>
+
 ### <a name="definition"></a>1. Definition
 The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
 Active Template Model (ATM) is such method which is inspired by the [Lucas-Kanade Affine Image Alignment](lk.md "Lucas-Kanade Affine Image Alignment") and the [Active Appearance Model](aam.md "Active Appearance Model"). Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature. In this page, we provide a basic mathematical definition of an ATM and all its variations that are implemented within `menpofit`.
@@ -194,7 +202,7 @@ Inverse Compositional Algorithm
 ```
 
 Let's know fit the ATM on the `image` we loaded in the beggining.
-We will use the DLib face detector from `menpodetect`, in order to acquire an initial bounding box, as:
+We will use the DLib face detector from [`menpodetect`](../menpodetect/index.md), in order to acquire an initial bounding box, as:
 ```python
 from menpodetect import load_dlib_frontal_face_detector
 

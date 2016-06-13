@@ -12,6 +12,14 @@ Active Appearance Model
 
 ---------------------------------------
 
+<div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 25%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
+This can be done by running</br>
+<center><code>%matplotlib inline</code></center>
+in a cell. Note that you only have to run it once and not in every rendering cell.
+</div>
+
 ### <a name="definition"></a>1. Definition
 Active Appearance Model (AAM) is a statistical deformable model of the shape and appearance of a deformable object class.
 It is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
@@ -308,13 +316,13 @@ Let's load a test image from LFPW testset and convert it to grayscale
 from pathlib import Path
 import menpo.io as mio
 
-path_to_lfpw = Path('/home/ea1812/Desktop/images/lfpw/testset/')
+path_to_lfpw = Path('/path/to/lfpw/testset/')
 
 image = mio.import_image(path_to_lfpw / 'image_0018.png')
 image = image.as_greyscale()
 ```
 
-Let's also load a pre-trained face detector from `menpodetect` and try to find the face's bounding box in order to initialize the AAM fitting
+Let's also load a pre-trained face detector from [`menpodetect`](../menpodetect/index.md) and try to find the face's bounding box in order to initialize the AAM fitting
 ```python
 from menpodetect import load_dlib_frontal_face_detector
 

@@ -78,11 +78,6 @@ The `verbose` flag allows printing the training progress:
   - Scale 1: Scaling images: [=         ] 14% (119/811) - 00:00:01 remaining
 ```
 
-<center>
-  <img src="media/face_shape_model.gif" alt="AAM on human face" width="55%">
-  <img src="media/face_aam_model.gif" alt="AAM on human face" width="40%">
-</center>
-
 Information about any trained model can be retrieved by:
 
 ```python

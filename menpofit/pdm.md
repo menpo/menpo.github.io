@@ -6,13 +6,13 @@ Point Distribution Model
 3. [Generating new instances](#synthesis)
 4. [Visualization](#visualization)
 5. [Projection and reconstruction](#projection_and_reconstruction)
-6. [Deformable objects](#objects)
+6. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/modelinstance/OrthoPDM.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 
 <div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 20%; padding-bottom: 20%; padding-top: 20%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best `menpowidgets` experience.
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 25%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
 This can be done by running</br>
 <center><code>%matplotlib inline</code></center>
 in a cell. Note that you only have to run it once and not in every rendering cell.
@@ -231,16 +231,3 @@ plt.subplot(122)
 reconstructed_shape.view(render_axes=False, axes_x_limits=0.05, axes_y_limits=0.05)
 plt.gca().set_title('Reconstructed shape');
 ```
-
-
-### <a name="objects"></a>6. Deformable Objects
-Of course the example of this page was based on the human face for demonstration purposes.
-The Menpo Project is _not_ specific to the human face and can be used for any kind of deformable object.
-As an example, here are indicative parametric shape models for various deformable objects, such as
-the human body (skeleton), human hand, cat face and car sideview.
-<center>
-  <img src="media/body_shape_model.gif" alt="body_model" style="width:19%;">
-  <img src="media/hand_shape_model.gif" alt="hand_model" style="width:24%;">
-  <img src="media/cat_shape_model.gif" alt="cat_model" style="width:24%;">
-  <img src="media/car_shape_model.gif" alt="car_model" style="width:26%;">
-</center>

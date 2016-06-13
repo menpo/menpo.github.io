@@ -55,4 +55,19 @@ The models that are implemented in `menpofit` are:
 - [**Supervised Descent Method (SDM)**](sdm.md "Supervised Descent Method")
   - _Model Variants:_ Non Parametric, Parametric Shape, Parametric Appearance, Fully Parametric
 
+
 Finally, please see the [References](references.md "List of implemented papers") for an indicative list of papers that are implemented in `menpofit`.
+
+#### Deformable Objects
+Note that all the examples of this `menpofit` user guide are based on the human face for demonstration purposes.
+The Menpo Project is **not** specific to the human face and can be used for any kind of deformable object, such as
+the human body (skeleton), human hand, cat face and car sideview.
+<center>
+  <img src="media/face_shape_model.gif" alt="face_model" style="width:29%;">
+  <img src="media/cat_shape_model.gif" alt="cat_model" style="width:24%;">
+  </br>
+  <img src="media/body_shape_model.gif" alt="body_model" style="width:19%;">
+  <img src="media/hand_shape_model.gif" alt="hand_model" style="width:25%;">
+  </br>
+  <img src="media/car_shape_model.gif" alt="car_model" style="width:30%;">
+</center>

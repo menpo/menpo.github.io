@@ -9,6 +9,14 @@ Lucas-Kanade Image Alignment
 
 ---------------------------------------
 
+<div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 25%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
+This can be done by running</br>
+<center><code>%matplotlib inline</code></center>
+in a cell. Note that you only have to run it once and not in every rendering cell.
+</div>
+
 ### <a name="definition"></a>1. Definition
 The aim of image alignment is to find the location of a constant template $$\bar{\mathbf{a}}$$ in an input image $$\mathbf{t}$$.
 Note that both $$\bar{\mathbf{a}}$$ and $$\mathbf{t}$$ are vectorized.
