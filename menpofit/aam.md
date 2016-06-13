@@ -295,19 +295,50 @@ print(fitter)
 
 
 #### <a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization
-The AAM cost function can also be optimized using cascaded regression, which in literature is commonly referred to as Supervised Descent Optimization mainly due to [[15](#15)]. Specifically, the aim is to learn a regression function that regresses from the object’s features based on the appearance model to the parameters of the statistical shape model. Although the history behind using linear regression in order to learn descent directions spans back many years when AAMs where first introduced [[6](#6)], the research community turned towards alternative approaches due to the lack of sufficient data for training accurate regression functions. Nevertheless, over the last few years, regression-based techniques have prevailed in the field [[14](#14), [15](#15)] thanks to the wealth of readily available annotated data and powerful handcrafted features. In the following, we assume that we learn a cascade regressors that consists of $$K$$ levels, i.e.
-$$
-\mathbf{R}^{(k)}\in\mathbb{R}^{n\times M},~k=1,\ldots,K
-$$
-where $$n$$ is the number of shape components of the AAM and $$M$$ is the features dimensionality. The regression is performed based on a features extracted using the appearance model. Let's define this feature extraction function as
+The AAM cost function can also be optimized using cascaded regression, which in literature is commonly referred to as Supervised Descent Optimization, a name given by [[15](#15)]. Specifically, the aim is to learn a regression function that regresses from the object’s features based on the appearance model to the parameters of the statistical shape model. Although the history behind using linear regression in order to learn descent directions spans back many years when AAMs were first introduced [[6](#6)], the research community turned towards alternative approaches due to the lack of sufficient data for training accurate regression functions. Nevertheless, over the last few years, regression-based techniques have prevailed in the field [[14](#14), [15](#15)] thanks to the wealth of readily available annotated data and powerful handcrafted features.
+
+**Regression Features**  
+Let's define a feature extraction function given an image $$\mathbf{t}$$ and a shape parameters vector $$\mathbf{p}$$ as
 $$
 \phi(\mathbf{t}, \mathbf{p})
 $$
-which given an image $$\mathbf{t}$$ and the shape parameters $$\mathbf{p}$$ returns an $$M\times 1$$ feature vector based on the warped image $$\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big)$$.
+which returns an $$M\times 1$$ feature vector based on the warped image $$\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big)$$. Note that $$\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big)$$ includes the appearance features extraction (e.g. SIFT), as defined in the [Warp Functions](#warp) paragraph. `menpofit` includes three Supervised Descent Optimization variants based on these regression features. Specifically:
+
+| Variant            | Features $$\phi(\mathbf{t}, \mathbf{p})$$                                                                                                    |
+|:------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+| Appearance Weights | $$\mathbf{U}_a^{\mathsf{T}}\big[\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big) - \bar{\mathbf{a}}\big]$$                                        |
+| Project Out        | $$\big(\mathbf{I}_{eye}-\mathbf{U}_a\mathbf{U}_a^{\mathsf{T}}\big)\big[\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big) - \bar{\mathbf{a}}\big]$$ |
+| Mean Template      | $$\mathbf{t}\big(\mathcal{W}(\mathbf{p})\big) - \bar{\mathbf{a}}$$                                                                           |
+
+
+**Training**  
+Assume that we have a set of $$N$$ training images $$\big\lbrace\mathbf{I}_1,\ldots,\mathbf{I}_N\big\rbrace$$ and their corresponding annotated shapes $$\big\lbrace\mathbf{s}_1,\ldots,\mathbf{s}_N\big\rbrace$$. By projecting each ground-truth shape onto the shape basis $$\mathbf{U}_s$$, we compute the ground-truth shape parameters $$\big\lbrace{\mathbf{p}_1}^{* },\ldots,{\mathbf{p}_N}^{* }\big\rbrace$$. We generate a set of $$P$$ perturbed shape parameters $$\mathbf{p}_{i,j},~j=1,\ldots,P,~i=1,\ldots,N$$, which are sampled from a distribution that models the statistics of the detector employed for initialization. By defining $$\Delta\mathbf{p}_{i,j} = {\mathbf{p}_i}^{* } - \mathbf{p}_{i,j},~j=1,\ldots,P,~i=1,\ldots,N$$ to be a set of shape parameter increments, a Supervised Descent algorithm aims to learn a cascade of $$K$$ optimal linear regressors at each level $$k=1,\ldots,K$$
+$$
+\mathbf{R}^{(k)}\in\mathbb{R}^{n\times M},~k=1,\ldots,K
+$$
+where $$n$$ is the number of shape components of the AAM and $$M$$ is the features dimensionality, by minimizing
+$$
+\sum_{i=1}^N\sum_{j=1}^P\Big\lVert\Delta\mathbf{p}_{i,j}^{(k)} - \mathbf{R}^{(k)} \phi_{i,j,k}\Big\rVert^2
+$$
+with respect to $$\mathbf{R}^{(k)}$$.
+The training procedure includes the following steps:
+
+1. _Shape Parameters Increments:_ Given the set of vectors $$\mathbf{p}^{(k)}_{i,j}$$, we formulate the set of shape parameters increments vectors $$\Delta\mathbf{p}^{(k)}_{i,j} = {\mathbf{p}_i}^{* } - \mathbf{p}^{(k)}_{i,j},~\forall i=1,\ldots,N,~\forall j=1,\ldots,P$$ and concatenate them in an $$n\times NP$$ matrix $$\Delta\mathbf{P}^{(k)} = \big[\Delta\mathbf{p}^{(k)}_{1,1}~\cdots~\Delta\mathbf{p}^{(k)}_{N,P}\big]$$.
+2. _Residuals:_ The next step is to compute the appearance feature vectors from the perturbed shape locations $$\phi(\mathbf{t}_i, \mathbf{p}^{(k)}_{i,j}),~\forall i=1,\ldots,N,~\forall j=1,\ldots,P$$. These vectors are then concatenated in a single $$M\times NP$$ matrix as $$\Phi^{(k)} = \big[\phi(\mathbf{t}_1, \mathbf{p}^{(k)}_{1,1})~\cdots~\phi(\mathbf{t}_N, \mathbf{p}^{(k)}_{N,P})\big]$$.
+3. _Regression Descent Directions:_ By using the previously above defined matrices, the training cost function takes the form $$\arg\min_{\mathbf{R}^{(k)}}\big\lVert\Delta\mathbf{P}^{(k)} - \mathbf{R}^{(k)}\Phi^{(k)}\big\|^2$$. The closed-form solution of the above least-squares problem is $$\mathbf{R}^{(k)} = \Delta\mathbf{P}^{(k)} \big({\Phi^{(k)}}^{\mathsf{T}} \Phi^{(k)} \big)^{-1} {\Phi^{(k)}}^{\mathsf{T}}$$.
+4. _Shape Parameters Update:_ The final step is to generate the new estimates of the shape parameters per training image as $${\mathbf{p}_{i,j}}^{(k+1)} = {\mathbf{p}_{i,j}}^{(k)} + \mathbf{R}^{(k)}\phi(\mathbf{t}_i, {\mathbf{p}_{i,j}}^{(k)})$$, $$\forall i=1,\ldots,N$$ and $$\forall j=1,\ldots,P$$. After obtaining $${\mathbf{p}_{i,j}}^{(k+1)}$$, steps 1-4 are repeated for the next cascade level.
+
 
 **Fitting**  
-During fitting,
-
+During fitting, we obtain the current shape parameters increment using the regression matrix of level $$k$$ as
+$$
+\Delta\mathbf{p}^{(k)} = \mathbf{R}^{(k)} \phi\big(\mathbf{t}, \mathbf{p}^{(k)}\big)
+$$
+and use it in order to update the shape parameters for the next level in an _additive_ way
+$$
+\mathbf{p}^{(k+1)} = \mathbf{p}^{(k)} + \Delta\mathbf{p}^{(k)}
+$$
+The above procedure is repeated for each cascade level, i.e. $$k=1,\ldots,K$$.
 
 
 ### <a name="fitting"></a>4. Fitting Example
@@ -439,6 +470,17 @@ result.view_widget()
   <source src="media/patch_aam_view_result_widget_2.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
+
+Remember that the shape per iteration can be retrieved as
+```python
+result.shapes
+```
+
+Similarly, the shape and appearance parameters per iteration can be obtained as:
+```python
+print(result.shape_parameters.shape)
+print(result.appearance_parameters.shape)
+```
 
 
 ### <a name="references"></a>5. References

@@ -258,6 +258,17 @@ result.view_widget()
 Your browser does not support the video tag.
 </video>
 
+Remember that the shape per iteration can be retrieved as
+```python
+result.shapes
+```
+
+Similarly, the shape and appearance parameters per iteration can be obtained as:
+```python
+print(result.shape_parameters.shape)
+print(result.appearance_parameters.shape)
+```
+
 
 ### <a name="references"></a>4. References
 <a name="1"></a>[1] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.
