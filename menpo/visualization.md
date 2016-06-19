@@ -14,13 +14,13 @@ Remember that our widgets live on their own repository - [`menpowidgets`](../men
 
 ---------------------------------------
 
-<div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 20%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
 We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best `menpowidgets` experience.
 This can be done by running</br>
 <center><code>%matplotlib inline</code></center>
 in a cell. Note that you only have to run it once and not in every rendering cell.
-</div>
+</div></p>
 
 
 ### <a name="image"></a>1. Visualizing 2D Images
