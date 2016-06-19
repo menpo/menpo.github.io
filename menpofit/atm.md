@@ -9,13 +9,13 @@ Active Template Model
 
 ---------------------------------------
 
-<div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 25%; padding-bottom: 20%; padding-top: 20%;"></i></p>
+<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
 We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
 This can be done by running</br>
 <center><code>%matplotlib inline</code></center>
 in a cell. Note that you only have to run it once and not in every rendering cell.
-</div>
+</div></p>
 
 ### <a name="definition"></a>1. Definition
 The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
@@ -103,21 +103,20 @@ as the feature-based warped $$M\times 1$$ vector of an image $$\mathbf{I}$$ give
 Specifically:
 
 **HolisticATM**  
-The `HolisticATM` uses a holistic appearance representation obtained by warping the texture into the `reference_shape`
+The `HolisticATM` uses a holistic appearance representation obtained by warping the texture into the reference frame
 with a non-linear warp function $$\mathcal{W}(\mathbf{p})$$. Two such warp functions are currently supported:
-Piecewise Affine Warp and Thin Plate Spline.
+Piecewise Affine Warp and Thin Plate Spline. The reference frame is the mask of the mean shape's convex hull.
 
 **MaskedATM**  
 The `MaskedATM` uses the same warp logic as the `HolsiticATM`. The only difference between them is that the
-`reference_shape` is masked. The mask that is created by default consists of rectangular mask patches centered around the landmarks.
+reference frame consists of rectangular mask patches centered around the landmarks instead of the convex hull of the mean shape.
 
 **LinearATM**  
-The `LinearATM` utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model. The advantage is that the linear nature of such a warp
-function makes the computation of its Jacobian trivial.
+The `LinearATM` is an experimental variation that utilizes a linear warp function $$\mathcal{W}(\mathbf{p})$$ in the motion model, thus a _dense_ statistical shape model which has one shape point per pixel in the reference frame. The advantage is that the linear nature of such warp function makes the computation of its Jacobian trivial.
 
 **LinearMaskedATM**  
 Similar to the relation between `HolisticATM` and `MaskedATM`, a `LinearMaskedATM` is exactly the same with a
-`LinearATM`, with the difference that the `reference_shape` is masked.
+`LinearATM`, with the difference that the reference frame is masked.
 
 **PatchATM**  
 A `PatchATM` represents the appearance in a patch-based fashion, i.e. rectangular patches are extracted around the landmark points.
