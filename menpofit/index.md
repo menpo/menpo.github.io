@@ -15,7 +15,7 @@
 
 We strongly advise you to first visit the [**Basics**](basics.md "Basic concepts and assumptions in menpofit") section in order to understand the fundamental concepts and assumptions that are made in `menpofit`, before reading about the actual methods.
 
-In practice, `menpofit` is providing solutions to the following problems:
+`menpofit` provides solutions to the following problems:
 
 #### Affine Image Alignment
 > An Affine Image Alignment algorithm aims to find the optimal alignment between an input image and a template image with respect to the parameters of an affine transform.
@@ -27,7 +27,7 @@ The methods that are implemented in `menpofit` are:
 
 
 #### Deformable Image Alignment
-> Deformable Image Alignment aims to get the otpimal alignment between an input image and a template image with respect to the parameters of a statistical parametric shape model.
+> Deformable Image Alignment aims to get the optimal alignment between an input image and a template image with respect to the parameters of a statistical parametric shape model.
 
 The methods that are implemented in `menpofit` are:
 - [**Active Template Model (ATM)**](atm.md "Active Template Model")
