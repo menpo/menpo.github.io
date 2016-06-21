@@ -11,7 +11,7 @@
   </br>
 </center>
 
-`menpowidgets` is the Menpo Project’s Python package for fancy visualization within the Jupyter notebook using interactive widgets. In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental overhead of visualizing objects as low as possible. MenpoWidgets makes tasks like data exploration, model observation and results demonstration as simple as possible.
+`menpowidgets` is the Menpo Project’s Python package for sophisticated visualization within the Jupyter notebook using interactive widgets. In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental overhead of visualizing objects as low as possible. MenpoWidgets makes tasks like data exploration, model observation and results demonstration as simple as possible.
 
 
 #### Widgets Structure

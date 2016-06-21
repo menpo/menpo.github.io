@@ -1,12 +1,12 @@
-OS X Expert Installation
-========================
+macOS Expert Installation
+=========================
 
 **It is important to note that as part of the installation, you will be creating
 an isolated environment to execute Python inside. Make sure that this
 environment is activated in order to be able to use Menpo!**
 
   1. Download and install [Miniconda](http://conda.pydata.org/miniconda.html)
-     either for Python 2 or for Python 3 on OS X.
+     either for Python 2 or for Python 3 on macOS.
   2. Install Conda by executing the installation script you just downloaded:
 
         ```

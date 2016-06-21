@@ -1,7 +1,7 @@
 Installation
 ============
 
-The _Menpo Project_ is compatible with the 3 major operating systems (i.e. Windows, OS X, Linux).
+The _Menpo Project_ supports Windows, macOS, and Linux.
 Given that the Menpo project is designed to provide a suite of tools to
 solve complex problems, it therefore has a complex set of dependencies.
 In order to make things as simple as possible for Python developers (new and experienced),
@@ -14,7 +14,7 @@ We provide detailed guides for installing the Menpo Project.
 Choose an operating system:
 
   - [Windows](windows/index.md)
-  - [OS X](osx/index.md)
+  - [macOS](macos/index.md)
   - [Linux](linux/index.md)
 
 #### Expert Quick Start
@@ -42,7 +42,7 @@ Similarly for `menpofit`, `menpodetect`, `menpowidgets`, `menpo3d` and `menpocli
 If you need to upgrade, you can do this using `conda` **(make
 sure the `menpo` environment is activated)**.
 
-##### OSX/Linux
+##### macOS/Linux
 To upgrade all packages (`menpofit`, `menpodetect`, `menpowidgets`, `menpocli`) do:
 ```
 $ source activate menpo

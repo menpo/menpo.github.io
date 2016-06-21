@@ -30,7 +30,7 @@ continuing.
     Begin by opening a command prompt/terminal and changing to the directory
     where you extracted the notebooks:
 
-    **OSX/Linux**
+    **macOS/Linux**
 
         ::console
         $ cd NOTEBOOKS_PATH

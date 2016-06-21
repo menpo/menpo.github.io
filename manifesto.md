@@ -63,7 +63,7 @@ high-quality research.
 Outside of the raw features needed, the team also needed flexible software that could be relied upon. That meant:
 
 - The ability to work in an interactive environment where new research ideas can be quickly explored
-- Cross platform (Linux, OS X, Windows)
+- Cross platform (Linux, macOS, Windows)
 - One click install and removal. No outside dependencies needed.
 - Extensively tested and documented
 

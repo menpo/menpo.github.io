@@ -1,5 +1,5 @@
-OS X Installation
-=================
+macOS Installation
+==================
 In the following instructions we aim to make it very simple to install
 the Menpo Project. Choose the guide the best suits you:
 * [**Installation for Beginners**](beginner.md)
@@ -11,5 +11,5 @@ the Menpo Project. Choose the guide the best suits you:
 If anything is *at all* unclear, please let us know on the
 [menpo-users](https://groups.google.com/forum/#!forum/menpo-users "menpo-users") mailing list.
 <center>
-  <img src="images/OSX-Icon.png" alt="OSX Installation" width="10%">
+  <img src="images/OSX-Icon.png" alt="macOS Installation" width="10%">
 </center>

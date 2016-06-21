@@ -1,4 +1,4 @@
-OS X Beginner Installation
+macOS Beginner Installation
 ==========================
 
 **It is important to note that as part of the installation, you will be creating
@@ -22,7 +22,7 @@ in the terminal. You can access the terminal by pressing **Command + Space**
 to open spotlight and search for **terminal**.
 
 ********************************************************************************
-![OS X Find Terminal](images/OSX-Terminal.png)
+![macOS Find Terminal](images/OSX-Terminal.png)
 ********************************************************************************
 
 We only support Menpo on the newer Intel Mac machines, all of which are 64-bit.
@@ -34,10 +34,10 @@ an installation package called **Miniconda**.
 
 **[Download Miniconda from here](http://conda.pydata.org/miniconda.html)**
 
-Download either the Python 2 or Python 3 copy of Miniconda for OSX.
+Download either the Python 2 or Python 3 copy of Miniconda for macOS.
 
 ********************************************************************************
-![OS X Miniconda Landing Page](images/OSX-Miniconda-Landing.png)
+![macOS Miniconda Landing Page](images/OSX-Miniconda-Landing.png)
 ********************************************************************************
 
 After downloading Miniconda, you need to change to that directory within a

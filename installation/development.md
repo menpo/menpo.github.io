@@ -74,7 +74,7 @@ There are a few things to note:
   and told `pip` **not to install any dependencies, since we already satisfied them with `conda`**.
   3. We also installed `cython`. `menpo` contains a number of Cythonized files that provide
   access to more efficient C-based code. You will notice that during install, `pip` also uses `cython`
-  to build the code into Python extensions. On Linux, this should work out of the box. On OSX,
+  to build the code into Python extensions. On Linux, this should work out of the box. On macOS,
   you will need to install XCode. On Windows, you will need to have the correct version of
   Visual Studio installed for your chosen version of Python (Visual Studio 2008 for Python 2.7,
   Visual Studio 2010 for Python 3.4 and Visual Studio 2015 for Python 3.5). Note that

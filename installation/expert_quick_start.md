@@ -5,7 +5,7 @@ If you are an advanced user who is comfortable in the terminal, here is a quick 
 
   1. Download and install
      [Miniconda](http://conda.pydata.org/miniconda.html) for your platform and architecture.
-  2. Install Conda by executing the installer you just downloaded. On Linux/OS X it's a bash script:
+  2. Install Conda by executing the installer you just downloaded. On Linux/macOS it's a bash script:
      ```
      $ cd ~/Downloads
      $ chmod +x Miniconda3-latest-Linux-x86_64.sh
@@ -17,7 +17,7 @@ If you are an advanced user who is comfortable in the terminal, here is a quick 
      ```
      $ conda create -n menpo python
      ```
-  5. Activate the environment. Linux/OS X:
+  5. Activate the environment. Linux/macOS:
      ```
      $ source activate menpo
      (menpo)$

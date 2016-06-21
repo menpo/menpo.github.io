@@ -21,7 +21,7 @@ The Menpo Project also provides:
 * a **command line tool** for landmark localisation with state-of-the-art **pre-trained** models
 * generic **object detection** in terms of a bounding box
 * a **benchmarking suite** to fairly evalulate the performance of methods
-* fancy visualization with **interactive widgets**
+* sophisticated visualization with **interactive widgets**
 
 ---------------------------------------
 
@@ -58,7 +58,7 @@ The majority of the software exists within a family of Python packages, each des
     [![Github Release][m3d_shield]][m3d_gh] [![BSD License][bsd_shield]][m3d_lic] ![Python 2.7 Support][python27] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpo3d&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 
   - <strong style="font-size: 125%">``menpowidgets``</strong> - A key goal of the Menpo Project is to accelerate research in 2D and 3D computer vision by
-    providing powerful visualization tools. `menpowidgets` contains a collection of Jupyter Notebook Widgets for fancy visualization and interactive
+    providing powerful visualization tools. `menpowidgets` contains a collection of Jupyter Notebook Widgets for sophisticated visualization and interactive
     inspection of the state of all Menpo objects.  
     [![Github Release][mw_shield]][mw_gh] [![BSD License][bsd_shield]][mw_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpowidgets&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 
