@@ -6,7 +6,7 @@
 <!---
 MAIN DESCRIPTION
 -->
-The Menpo Project is an ecosystem of open-source software based on Python that provides end-to-end solution for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
+The Menpo Project is a set of Python frameworks and associated tooling that provides end-to-end solution for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
 
 * **Active Appearance Model (AAM)**
 * **Supervised Descent Method (SDM)**
@@ -20,8 +20,8 @@ The Menpo Project also provides:
 * a web-based tool for **annotation of bulk data** for model training
 * a **command line tool** for landmark localisation with state-of-the-art **pre-trained** models
 * generic **object detection** in terms of a bounding box
-* a **benchmarking suite** to fairly evalulate the performance of methods
-* sophisticated visualization with **interactive widgets**
+* an **elegant standard library** with simple dependencies, useful for many areas of computer vision
+* sophisticated visualization with **interactive IPython widgets**
 
 ---------------------------------------
 
