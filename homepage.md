@@ -105,19 +105,6 @@ The majority of the software exists within a family of Python packages, each des
   [cmd]: https://coveralls.io/r/menpo/menpodetect
   [cmd_shield]: http://img.shields.io/coveralls/menpo/menpodetect.svg?style=flat
 
-
----------------------------------------
-
-## Why 'Menpo'?
-
-> Menpo were facial armours which covered all or part of the face and provided
-> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)
-> of the kabuto would be tied under the chin of the menpo. There were small
-> hooks called ori-kugi or posts called odome located on various places to
-> help secure the kabuto's chin cord.
->
-> --- [Wikipedia, Menpo](https://en.wikipedia.org/wiki/Mempo)
-
 ---------------------------------------
 
 ## Getting Started
@@ -133,6 +120,8 @@ which may be complicated to compile on various platforms.
 
 Once you have installed the Menpo Project, you can visit our [Examples](examples/index.md) to get started.
 
+---------------------------------------
+
 ## User Group and Issues
 If you wish to get in contact with the Menpo developers, you can do so via various channels.
 If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/ "The Menpo Project on Github").
@@ -140,3 +129,15 @@ If you have found a bug, or if any part of Menpo behaves in a way you do not exp
 If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users "menpo-users").
 
 Follow [@teammenpo](www.twitter.com/teammenpo "The Menpo Project on Twitter") for updates on the Menpo Project, or tweet at us any questions you have.
+
+---------------------------------------
+
+## Why 'Menpo'?
+
+> Menpo were facial armours which covered all or part of the face and provided
+> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)
+> of the kabuto would be tied under the chin of the menpo. There were small
+> hooks called ori-kugi or posts called odome located on various places to
+> help secure the kabuto's chin cord.
+>
+> --- [Wikipedia, Menpo](https://en.wikipedia.org/wiki/Mempo)

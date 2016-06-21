@@ -13,17 +13,32 @@
 </center>
 
 `menpo` is a Python package designed from the ground up to make importing, manipulating and visualizing image and mesh data as simple as possible.
-In particular, sparse locations on either images or meshes, referred to as **landmarks** within `menpo`, are tightly coupled with their reference objects.
-Thus, `menpo` focuses on **annotated** data which is common within the fields of Machine Learning and Computer Vision.
-All core types are `Landmarkable` and visualizing these landmarks is very simple. Since landmarks are first class
-citizens within the Menpo Project, it makes tasks like masking images, cropping images
-inside landmarks and aligning images very simple.
+Beyond it's elegant design, `menpo` has some unique characteristics that make it particlarly well suited to working with **annotated or landmarked** data:
+```python
+import menpo.io as mio
+img = mio.import_image('foo.png')
 
-Note that `menpo` is designed to be a core library for implementing algorithms within the Machine Learning and Computer Vision fields.
-It is a very powerful toolkit and even though it can be used as a stand-alone package,
-its main purpose is to serve as the base library for the rest of the Menpo Project's packages,
-such as [`menpofit`](../menpofit/index.md), [`menpodetect`](../menpodetect/index.md),
-[`menpowidgets`](../menpowidgets/index.md), [`menpo3d`](../menpo3d/index.md) etc.
+if img.n_channels != 1:
+  img = img.as_greyscale()
+
+img.landmarks['face'] = mio.import_landmark_file('face.pts')
+
+# objects return copies rather than mutating self, so we can chain calls
+img = (img.crop_to_landmarks(group='face', boundary=10)
+          .rescale_landmarks_to_diagonal_range(100, group='face'))
+
+# now lets take an image feature...
+from menpo.feature import fast_dsift
+img = fast_dsift(img)
+
+# ...and extract the vector of pixels contained in the
+# convex hull of the face...
+vector = img.as_masked().constrain_mask_to_landmarks(group='face').as_vector()
+
+print(type(vector), vector.shape)
+# output: <class 'numpy.ndarray'> (3801,)
+```
+`menpo` is the standard library of the Menpo Project, but due to it's simple dependencies and generic types and routines, is well suited as a **preprocessing library for many computer vision tasks**.
 
 The following user guide is a general introduction to `menpo`, aiming to provide a bird's eye of `menpo`'s design.
 It is also very helpful for understanding the main philosophy behind all the packages of the Menpo Project.

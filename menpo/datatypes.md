@@ -1,14 +1,12 @@
 Data Types
 ==========
 
-The Menpo Project - and of course `menpo` - is a high level software package. It is not a replacement for `scikit-image`, `scikit-learn`, or `opencv` - it ties all these types of packages together in to a unified framework. As a result, most of our algorithms take as input a higher level representation of data than simple numpy arrays.
-
-1. [Why have data types - what's wrong with numpy arrays?](#why)
+1. [Why have Menpo types - what's wrong with numpy arrays?](#why)
 2. [Key Points](#keypoints)
 
 ---------------------------------------
 
-### <a name="why"></a>1. Why have data types - what's wrong with numpy arrays?
+### <a name="why"></a>1. Why have Menpo types - what's wrong with numpy arrays?
 `menpo`'s data types are thin wrappers around `numpy` arrays. They give semantic meaning to the underlying array through providing clearly named and consistent properties. As an example let's take a look at `PointCloud`, `menpo`'s workhorse for spatial data. Construction requires a `numpy` array:
 
 ```python
@@ -28,11 +26,9 @@ In `menpo`, you never do this - just look at the properties on the `PointCloud`:
 ```python
 print("{} points".format(pc.n_points))
 print("{} dimensions".format(pc.n_dims))
-```
-which prints
-```
-3 points
-2 dimensions
+# Outputs:
+# 3 points
+# 2 dimensions
 ```
 
 If we take a look at the properties we can see they are trivial:
@@ -71,10 +67,38 @@ This time it's immediately apparent what `y`'s shape is. Although this is a some
 
 
 ### <a name="keypoints"></a>2. Key Points
-1. **Containers store the underlying numpy array in an easy to access attribute.** For the `PointCloud` family see the `.points` attribute. On `Image` and subclasses, the actual data array is stored at `.pixels`.
+**Menpo types always store the underlying numpy array in an easy to access attribute.** For the `PointCloud` family it's `.points`. On `Image` and subclasses, it's `.pixels`.
 
-2. **Importing assets though [`menpo.io`](http://docs.menpo.org/en/stable/api/menpo/io/index.html) will result in our data containers, not `numpy` arrays**. This means in a lot of situations you never need to remember the `menpo` conventions for ordering of array data - just ask for an image and you will get an `Image` object.
+**Menpo types store the minimal amount of data possible.** For the vast majority of Menpo types, the only data stored in the class is the single numpy array the type wraps. This makes it easy to reason about Menpo types - if you swap out the `.pixels` array on an `Image` instance for a new numpy array and `print(image.width)` you will get the correct answer for the new array, as all properties are computed from `.pixels`.
 
-3. **All containers copy data by default**. Look for the `copy=False` keyword argument if you want to avoid copying a large `numpy` array for performance.
+**Menpo types print really nicely.** If you are ever unsure what an object is, just `print()` it to get an immediate summary:
+```python
+print(img)
+# 512W x 512H 2D Image with 3 channels
+print(pointcloud)
+# PointCloud: n_points: 68, n_dims: 2
+```
 
-4. **Containers perform sanity checks**. This helps catch obvious bugs like misshaping an array. You can sometimes suppress them for extra performance with the `skip_checks=True` keyword argument.
+**Importing assets though [`menpo.io`](http://docs.menpo.org/en/stable/api/menpo/io/index.html) will result in our data containers, not `numpy` arrays**. This means in a lot of situations you never need to remember the `menpo` conventions for ordering of array data - just ask for an image and you will get an `Image` object.
+
+**Menpo types behave as immutable data containers**. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it's own numpy array. 
+```python
+import menpo.io as mio
+img = mio.import_builtin_asset.lenna_png()
+img_resized = img.resize((200, 200))
+# methods in Menpo return modified copies - so img is unchanged by the resize call.
+print(img)
+print(img_resized)
+# Output:
+# 512W x 512H 2D Image with 3 channels
+# 200W x 200H 2D Image with 3 channels
+
+# If you don't need the intermediate copies, just chain methods back-to-back:
+greyscale_vector = img.as_greyscale().resize((200, 200)).as_vector()
+print(greyscale_vector)
+# Outputs:
+# [ 0.63622375  0.63370722  0.61733637 ...,  0.37906707  0.39924645]
+```
+Good Menpo code feels functional and following this style makes it easy to write elegant bug free code. If you are worried about performance, don't be - Menpo is architected to be smart about avoiding redundent copies wherever possible. It does so by internally making use of `copy=False` keyword arguments that you will see on many methods and constructors when we know that a copy has already been performed so a second would be redundent. You can use this keyword argument yourself in performance-critical sections of code, but we strongly suggest you only do so after profiling shows that it would really be a performance win (the vast majority of times, it won't be).
+
+**Menpo types perform sanity checks to help catch bugs**. As Menpo types are more structured, we can perform sanity checks in lots of cases and report nice clean error messages. Pro-tip: You can suppress these checks for extra performance with the `skip_checks=True` keyword argument. Again, you should rarely need this though - Menpo internally uses these escape hatches when it knows it's safe to do so to keep everything performant.
