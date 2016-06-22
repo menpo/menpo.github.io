@@ -1,8 +1,57 @@
+<style>
+button:focus {
+  outline: none;
+}
+.hero_logo {
+  max-height: 280px;
+}
+@media (max-width: 590px) {
+  .hero_logo {
+    max-height: 180px;
+  }
+}
+.hero_container {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  max-width: 600px;
+}
+.hero_rightcolumn {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: space-between;
+}
+.hero_logo_container {
+  display: flex; 
+  align-items: center;
+  margin: 0px 10px;
+}
+</style>
 <center>
-  <img src="logo/menpoproject.png" alt="The Menpo Project" width="27%"></br>
-  <strong style="font-size: 250%">The Menpo Project</strong>
+  <div class="hero_container">
+    <div class="hero_logo_container">
+      <img class="hero_logo" src="logo/menpoproject.png" alt="The Menpo Project">
+    </div>
+    <div class="hero_rightcolumn">
+      <div>
+        <strong style="font-size: 200%; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: 500;">The Menpo Project</strong>
+        <div style="max-width: 200px;">The Python framework for deformable modelling</div>
+      </div>
+      <div style="display: flex; flex-direction: row; align-items: center;">
+        <div style="width: 30px; height: 30px;"></div>
+        <button style="background: rgb(103, 167, 243); color: white; border: none; margin: 5px 15px; padding: 12px; max-width: 140px;box-shadow:2px 2px 5px #C7C7C7; font-weight: 300;">Download Playground</button>
+        <button style="background: none; color: #A6AAA9; border: 1px solid #A6AAA9; width: 30px; height: 30px; border-radius: 30px; font-weight: 300;">?</button>
+      </div>
+      <div>
+        <div style="font-size: 80%">Comfortable with <a href="https://www.continuum.io/downloads">conda</a>?</div>
+        <code style="padding: 7px;">conda install -c menpo menpoproject</code>
+      </div>
+    </div>
+  </div>
 </center>
-
+<br>
 <!---
 MAIN DESCRIPTION
 -->
@@ -129,15 +178,3 @@ If you have found a bug, or if any part of Menpo behaves in a way you do not exp
 If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users "menpo-users").
 
 Follow [@teammenpo](www.twitter.com/teammenpo "The Menpo Project on Twitter") for updates on the Menpo Project, or tweet at us any questions you have.
-
----------------------------------------
-
-## Why 'Menpo'?
-
-> Menpo were facial armours which covered all or part of the face and provided
-> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)
-> of the kabuto would be tied under the chin of the menpo. There were small
-> hooks called ori-kugi or posts called odome located on various places to
-> help secure the kabuto's chin cord.
->
-> --- [Wikipedia, Menpo](https://en.wikipedia.org/wiki/Mempo)

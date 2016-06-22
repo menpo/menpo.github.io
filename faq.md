@@ -31,6 +31,7 @@ Frequently Asked Questions (FAQ)
   - [How do I cite Menpo?](#citation)
   - [How do I install a development version?](#how-do-i-install-a-development-version)
   - [Can I use the Menpo Project as a black box to detect landmarks on facial images?](#pre_trained_models)
+  - [Why 'Menpo'?](#why_menpo)
 
 ---------------------------------------
 
@@ -84,3 +85,14 @@ Please see the [Setting Up A Development Environment](/installation/development.
 
 ### <a name="pre_trained_models"></a>Can I use the Menpo Project as a black box to detect landmarks on facial images?
 The Menpo Project provides a command line tool for automatic state-of-the-art landmark detection on facial images using pre-trained models. For more information. please refer to the [`menpocli`](/menpocli/index.md) package. However, note that the purpose of the Menpo Project is to provide solutions for modelling any deformable object; _there is nothing specific at all to human face_.
+
+
+### <a name="why_menpo"></a>Why 'Menpo'?
+
+> Menpo were facial armours which covered all or part of the face and provided
+> a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)
+> of the kabuto would be tied under the chin of the menpo. There were small
+> hooks called ori-kugi or posts called odome located on various places to
+> help secure the kabuto's chin cord.
+>
+> --- [Wikipedia, Menpo](https://en.wikipedia.org/wiki/Mempo)

@@ -1,6 +1,18 @@
 Installation
 ============
 
+
+<center>
+  <div>Here is a div</div>
+  <a href="http://github.com/menpo/menpofit"><img src="http://img.shields.io/github/release/menpo/menpofit.svg" alt="Github Release"/></a>
+  <a href="https://github.com/menpo/menpofit/blob/master/LICENSE.txt"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
+  <img src="https://img.shields.io/badge/Python-2.7-green.svg" alt="Python 2.7 Support"/>
+  <img src="https://img.shields.io/badge/Python-3.4-green.svg" alt="Python 3.4 Support"/>
+  <img src="https://img.shields.io/badge/Python-3.5-green.svg" alt="Python 3.5 Support"/>
+  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpofit&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+  </br>
+</center>
+
 The _Menpo Project_ supports Windows, macOS, and Linux.
 Given that the Menpo project is designed to provide a suite of tools to
 solve complex problems, it therefore has a complex set of dependencies.
