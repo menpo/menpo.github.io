@@ -28,6 +28,65 @@ button:focus {
   align-items: center;
   margin: 0px 10px;
 }
+.download_button {
+  background: rgb(103, 167, 243); 
+  color: white; 
+  border: none; 
+  margin: 5px 15px; 
+  padding: 12px; 
+  max-width: 140px;
+  box-shadow: 2px 2px 5px #C7C7C7; 
+  font-weight: 300;
+}
+.playground_help {
+  position: relative;
+  background: none; 
+  color: #A6AAA9; 
+  border: 1px solid #A6AAA9; 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 30px; 
+  font-weight: 300;
+}
+.playground_help_popup {
+  position: absolute;
+  background: #70BF41;
+  color: white;
+  box-shadow: 2px 2px 5px #C7C7C7;
+  min-width: 320px;
+  border-radius: 10px;
+  font-weight: 300;
+  top: 55px;
+  right: -40px;
+  padding: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition:visibility 0s linear 0.3s,opacity 0.3s ease;
+}
+.playground_help_speach {
+  position: absolute;
+  color: white;
+  border-color: transparent;
+  border-bottom-color: #70BF41;
+  border-style: solid;
+  border-width: 12px;
+  border-bottom-width: 20px;
+  font-weight: 300;
+  right: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transition:visibility 0s linear 0.3s,opacity 0.3s ease;
+}
+.playground_help:hover .playground_help_popup {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+.playground_help:hover .playground_help_speach {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
 </style>
 <center>
   <div class="hero_container">
@@ -41,12 +100,21 @@ button:focus {
       </div>
       <div style="display: flex; flex-direction: row; align-items: center;">
         <div style="width: 30px; height: 30px;"></div>
-        <button style="background: rgb(103, 167, 243); color: white; border: none; margin: 5px 15px; padding: 12px; max-width: 140px;box-shadow:2px 2px 5px #C7C7C7; font-weight: 300;">Download Playground</button>
-        <button style="background: none; color: #A6AAA9; border: 1px solid #A6AAA9; width: 30px; height: 30px; border-radius: 30px; font-weight: 300;">?</button>
+        <button class="download_button">Download Playground</button>
+        <button class="playground_help">
+          ?
+          <div class="playground_help_speach"></div>
+          <div class="playground_help_popup">
+            <p>The playground is a standalone installation of menpo that will get you up and running as quickly as possible.</p>
+            <p>If you are new to menpo or Python in general you may want to start with the playground.</p>
+            <p>Head to our <a style="font-weight: bold; color: white;" href="installation">installation page</a> for more options.</p>
+          </div>
+        </button>
       </div>
       <div>
-        <div style="font-size: 80%">Comfortable with <a href="https://www.continuum.io/downloads">conda</a>?</div>
+        <div style="font-size: 80%">comfortable with <a href="https://www.continuum.io/downloads">conda</a>?</div>
         <code style="padding: 7px;">conda install -c menpo menpoproject</code>
+        <div style="font-size: 80%; margin-top: 10px;"><a href="installation">more install options (inc. pip)</a></div>
       </div>
     </div>
   </div>
