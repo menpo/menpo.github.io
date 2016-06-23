@@ -1,4 +1,4 @@
-Conda Installation
+Conda installation
 ==================
 
 [Conda](http://conda.pydata.org/) is a popular open-source framework for distributing Python applications.
