@@ -1,0 +1,1429 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book The Menpo Project -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Point Distribution Model | The Menpo Project</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.2">
+        <meta name="author" content="The Menpo Team">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../menpofit/affine_image_alignment.html" />
+    
+    
+    <link rel="prev" href="../menpofit/experiments.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="3.2"
+        data-chapter-title="Point Distribution Model"
+        data-filepath="menpofit/pdm.md"
+        data-basepath=".."
+        data-revision="Thu Jun 23 2016 19:48:00 GMT+0100 (BST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        The Menpo Project
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="installation/index.html">
+            
+                
+                    <a href="../installation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installation
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="installation/conda.html">
+            
+                
+                    <a href="../installation/conda.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Conda
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="installation/windows/index.html">
+            
+                
+                    <a href="../installation/windows/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        Windows
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="installation/windows/beginner.html">
+            
+                
+                    <a href="../installation/windows/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="installation/windows/expert.html">
+            
+                
+                    <a href="../installation/windows/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="installation/macos/index.html">
+            
+                
+                    <a href="../installation/macos/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        macOS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="installation/macos/beginner.html">
+            
+                
+                    <a href="../installation/macos/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="installation/macos/expert.html">
+            
+                
+                    <a href="../installation/macos/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="installation/linux/index.html">
+            
+                
+                    <a href="../installation/linux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="installation/linux/beginner.html">
+            
+                
+                    <a href="../installation/linux/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="installation/linux/expert.html">
+            
+                
+                    <a href="../installation/linux/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="installation/expert_quick_start.html">
+            
+                
+                    <a href="../installation/expert_quick_start.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        Expert Quick Start
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="installation/development.html">
+            
+                
+                    <a href="../installation/development.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        Development
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="installation/playground.html">
+            
+                
+                    <a href="../installation/playground.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Playground
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation/pip.html">
+            
+                
+                    <a href="../installation/pip.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Pip
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="menpo/index.html">
+            
+                
+                    <a href="../menpo/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        menpo
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="menpo/introduction.html">
+            
+                
+                    <a href="../menpo/introduction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="menpo/datatypes.html">
+            
+                
+                    <a href="../menpo/datatypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data Types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="menpo/consistency.html">
+            
+                
+                    <a href="../menpo/consistency.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Consistency
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="menpo/vectorizing.html">
+            
+                
+                    <a href="../menpo/vectorizing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Vectorizing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="menpo/visualization.html">
+            
+                
+                    <a href="../menpo/visualization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Visualization
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" >
+            
+                
+                    <a target="_blank" href="https:/menpo.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="menpofit/index.html">
+            
+                
+                    <a href="../menpofit/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        menpofit
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="menpofit/basics.html">
+            
+                
+                    <a href="../menpofit/basics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Basics
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="menpofit/importing.html">
+            
+                
+                    <a href="../menpofit/importing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Importing Images
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="menpofit/training.html">
+            
+                
+                    <a href="../menpofit/training.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Training
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="menpofit/fitting.html">
+            
+                
+                    <a href="../menpofit/fitting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Fitting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="menpofit/result.html">
+            
+                
+                    <a href="../menpofit/result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        Fitting Result
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="menpofit/visualization.html">
+            
+                
+                    <a href="../menpofit/visualization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Visualizing Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="menpofit/experiments.html">
+            
+                
+                    <a href="../menpofit/experiments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        Running Experiments
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="menpofit/pdm.html">
+            
+                
+                    <a href="../menpofit/pdm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Point Distribution Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="menpofit/affine_image_alignment.html">
+            
+                
+                    <a href="../menpofit/affine_image_alignment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Affine Image Alignment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="menpofit/lk.html">
+            
+                
+                    <a href="../menpofit/lk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Lucas-Kanade
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="menpofit/deformable_image_alignment.html">
+            
+                
+                    <a href="../menpofit/deformable_image_alignment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Deformable Image Alignment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="menpofit/atm.html">
+            
+                
+                    <a href="../menpofit/atm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Active Template Model
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="menpofit/landmark_localization.html">
+            
+                
+                    <a href="../menpofit/landmark_localization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Landmark Localization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="menpofit/aam.html">
+            
+                
+                    <a href="../menpofit/aam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.1.</b>
+                        
+                        Active Appearance Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.2" data-path="menpofit/aps.html">
+            
+                
+                    <a href="../menpofit/aps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.2.</b>
+                        
+                        Active Pictorial Structures
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.3" data-path="menpofit/clm.html">
+            
+                
+                    <a href="../menpofit/clm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.3.</b>
+                        
+                        Constrained Local Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.4" data-path="menpofit/sdm.html">
+            
+                
+                    <a href="../menpofit/sdm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.4.</b>
+                        
+                        Supervised Descent Method
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.5" data-path="menpofit/ert.html">
+            
+                
+                    <a href="../menpofit/ert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.5.</b>
+                        
+                        Ensemble of Regression Trees
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="menpofit/references.html">
+            
+                
+                    <a href="../menpofit/references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" >
+            
+                
+                    <a target="_blank" href="https:/menpofit.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="menpodetect/index.html">
+            
+                
+                    <a href="../menpodetect/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        menpodetect
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" >
+            
+                
+                    <a target="_blank" href="https:/menpodetect.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="menpowidgets/index.html">
+            
+                
+                    <a href="../menpowidgets/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        menpowidgets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="menpowidgets/main_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Main Widgets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="menpowidgets/main_menpo_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_menpo_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        Menpo Widgets
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="menpowidgets/main_menpofit_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_menpofit_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                        MenpoFit Widgets
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="menpowidgets/components.html">
+            
+                
+                    <a href="../menpowidgets/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Widgets Components
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="menpowidgets/options_widgets.html">
+            
+                
+                    <a href="../menpowidgets/options_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        Options Widgets
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="menpowidgets/tools_widgets.html">
+            
+                
+                    <a href="../menpowidgets/tools_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.2.</b>
+                        
+                        Tools Widgets
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="menpo3d/index.html">
+            
+                
+                    <a href="../menpo3d/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        menpo3d
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="menpocli/index.html">
+            
+                
+                    <a href="../menpocli/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        menpocli
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="landmarker.io/index.html">
+            
+                
+                    <a href="../landmarker.io/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        landmarker.io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="landmarker.io/specifications.html">
+            
+                
+                    <a href="../landmarker.io/specifications.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Specifications
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="landmarker.io/userguide.html">
+            
+                
+                    <a href="../landmarker.io/userguide.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        User Guide
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="landmarker.io/snap_mode.html">
+            
+                
+                    <a href="../landmarker.io/snap_mode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Snap Mode
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="examples/index.html">
+            
+                
+                    <a href="../examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="manifesto.html">
+            
+                
+                    <a href="../manifesto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Manifesto
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="team.html">
+            
+                
+                    <a href="../team.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        The Menpo Team
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="citation.html">
+            
+                
+                    <a href="../citation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Citation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="faq.html">
+            
+                
+                    <a href="../faq.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        FAQ
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >The Menpo Project</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="point-distribution-model">Point Distribution Model</h1>
+<ol>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#active">Active components</a></li>
+<li><a href="#synthesis">Generating new instances</a></li>
+<li><a href="#visualization">Visualization</a></li>
+<li><a href="#projection_and_reconstruction">Projection and reconstruction</a></li>
+<li><a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/modelinstance/OrthoPDM.html" target="_blank">API Documentation <i class="fa fa-external-link fa-lg"></i></a></li>
+</ol>
+<hr>
+<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
+<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
+We highly recommend that you render all matplotlib figures <b>inline</b> the <a href="../GLOSSARY.html#jupyter_notebook" class="glossary-term" title="A Jupyter Notebook is an interactive document produced by Jupyter which contains both computer code (e.g. Python) and rich text elements (paragraph, equations, figures, links, etc...). A new notebook can be initiated by running `jupyter notebook` in a terminal, which will launch the notebook in your web browser. A Notebook document is both human-readable containing the analysis description and the results (figures, tables, etc..) as well as executable which can be run to perform data analysis.">Jupyter notebook</a> for the best <a href="../menpowidgets/index.html"><em>menpowidgets</em></a> experience.
+This can be done by running<br>
+<center><code>%matplotlib inline</code></center>
+in a cell. Note that you only have to run it once and not in every rendering cell.
+</div></p>
+
+
+<h3 id="1-definition"><a name="definition"></a>1. Definition</h3>
+<p>A Point Distribution Model (PDM) is a statistical parametric model of the shape of the deformable obect, which is an essential part for many state-of-the-art <a href="../GLOSSARY.html#deformable_models" class="glossary-term" title="Deformable models are a family of methodologies that aim to model the shape and appearance variations of a deformable object class.">deformable models</a>.</p>
+<p>Let us denote a shape instance of an object with <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span> <a href="../GLOSSARY.html#landmark_points" class="glossary-term" title="A deformable object is represented with a set of semantically meaningful points that correspond to its distinctive parts.
+These points are commonly referred to as landmark points.">landmark points</a> as a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>L</mi><mo>&#xD7;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2L\times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit">L</span><span class="mbin">&#xD7;</span><span class="mord mathrm">1</span></span></span></span> vector
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow><mo>=</mo><mo>[</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><msub><mi>x</mi><mi>L</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>L</mi></msub><msup><mo>]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">
+\mathbf{s}=[x_1, y_1, x_2, y_2, \ldots, x_L, y_L]^T
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8913309999999999em;"></span><span class="strut bottom" style="height:1.1413309999999999em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">s</span></span><span class="mrel">=</span><span class="mopen">[</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="minner">&#x2026;</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">L</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">L</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose"><span class="mclose">]</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>
+which consists of the Cartesian coordinates of the points <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo><mo separator="true">,</mo><mi mathvariant="normal">&#x2200;</mi><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">(x_i, y_i), \forall i=1,\ldots,L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord mathrm">&#x2200;</span><span class="mord mathit">i</span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="minner">&#x2026;</span><span class="mpunct">,</span><span class="mord mathit">L</span></span></span></span>.
+Assume that we have a set of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span> training shapes <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">{</mo><msup><mrow><mi mathvariant="bold">s</mi></mrow><mn>1</mn></msup><mo separator="true">,</mo><msup><mrow><mi mathvariant="bold">s</mi></mrow><mn>2</mn></msup><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><msup><mrow><mi mathvariant="bold">s</mi></mrow><mi>N</mi></msup><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">\left\lbrace \mathbf{s}^1, \mathbf{s}^2, \ldots, \mathbf{s}^N \right\rbrace</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.85em;"></span><span class="strut bottom" style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="base textstyle uncramped"><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">{</span></span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">s</span></span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">s</span></span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="minner">&#x2026;</span><span class="mpunct">,</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">s</span></span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">}</span></span></span></span></span></span>.
+For this demonstration, we will load all the shapes of LFPW trainset:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path
+<span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
+<span class="hljs-keyword">from</span> menpo.visualize <span class="hljs-keyword">import</span> print_progress
+
+path_to_lfpw = Path(<span class="hljs-string">&apos;/path/to/lfpw/trainset/&apos;</span>)
+
+training_shapes = []
+<span class="hljs-keyword">for</span> lg <span class="hljs-keyword">in</span> print_progress(mio.import_landmark_files(path_to_lfpw / <span class="hljs-string">&apos;*.pts&apos;</span>, verbose=<span class="hljs-keyword">True</span>)):
+    training_shapes.append(lg[<span class="hljs-string">&apos;all&apos;</span>])
+</code></pre>
+<p>and visualize them as:</p>
+<pre><code class="lang-python">%matplotlib inline
+<span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> visualize_pointclouds
+
+visualize_pointclouds(training_shapes)
+</code></pre>
+<video width="100%" autoplay loop>
+  <source src="media/visualize_pointclouds_lfpw.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<p>The construction of a PDM commonly involves the following steps:</p>
+<ol>
+<li>Align the set of training shapes using Generalized Procrustes Analysis, which will remove the similarity transform components (scaling, in-plane rotation, translation) from the shapes.</li>
+<li>Apply Principal Component Analysis (PCA) on the aligned shapes. This involves first centering the aligned shapes by subtracting the mean shape <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover></mrow><annotation encoding="application/x-tex">\bar{\mathbf{s}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.58122em;"></span><span class="strut bottom" style="height:0.58122em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> and then computing the basis of eigenvectors <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mn>2</mn><mi>L</mi><mo>&#xD7;</mo><mi>N</mi><mo>&#x2212;</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbf{U}_s\in\mathbb{R}^{2L\times N-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:0.991331em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&#x2208;</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit">L</span><span class="mbin">&#xD7;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mbin">&#x2212;</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span>.</li>
+<li>Further augment the acquired subspace with four eigenvectors that control the global similarity transform of the object, re-orthonormalize [<a href="#1">1</a>] and keep the first <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">n</span></span></span></span> eigenvectors. This results to a linear shape model of the form
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">{</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo separator="true">,</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">
+  \left\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\right\rbrace
+  </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">{</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">}</span></span></span></span></span></span>
+where <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mn>2</mn><mi>L</mi><mo>&#xD7;</mo><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbf{U}_s\in\mathbb{R}^{2L\times n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:0.991331em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&#x2208;</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit">L</span><span class="mbin">&#xD7;</span><span class="mord mathit">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> is an orthonormal basis of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">n</span></span></span></span> eigenvectors and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover></mrow><annotation encoding="application/x-tex">\bar{\mathbf{s}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.58122em;"></span><span class="strut bottom" style="height:0.58122em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> is the mean shape vector.</li>
+</ol>
+<p>The above procedure can be very easily performed using <code>menpofit</code>&apos;s <code>OrthoPDM</code> class as:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> menpofit.modelinstance <span class="hljs-keyword">import</span> OrthoPDM
+
+shape_model = OrthoPDM(training_shapes, max_n_components=<span class="hljs-keyword">None</span>)
+</code></pre>
+<p>Information about the PCA model that exists in the PDM can be retrieved as:</p>
+<pre><code class="lang-python">print(shape_model)
+</code></pre>
+<p>which prints:</p>
+<pre><code>Point Distribution Model with Similarity Transform
+ - total # components:      136
+ - # similarity components: 4
+ - # PCA components:        132
+ - # active components:     4 + 132 = 136
+ - centred:                 True
+ - # features:              136
+ - kept variance:           7.6e+03  100.0%
+ - noise variance:          0.025  0.0%
+ - components shape:        (132, 136)
+</code></pre><h3 id="2-active-components"><a name="active"></a>2. Active Components</h3>
+<p>Note that in the previous printing message all the available components are active.
+This means that when using the model for any kind of operations such as projection or reconstruction,
+then the whole subspace will be used. Normally, you need to use less components in order to remove
+the noise that is captured by the last components. This can be done by setting the
+number of active components either by explicitly defining the desired number as</p>
+<pre><code class="lang-python">shape_model.n_active_components = <span class="hljs-number">20</span>
+</code></pre>
+<p>or by providing the percentage of variance to be kept as</p>
+<pre><code class="lang-python">shape_model.n_active_components = <span class="hljs-number">0.95</span>
+</code></pre>
+<p>Let&apos;s print again the <code>OrthoPDM</code> object</p>
+<pre><code class="lang-python">print(shape_model)
+</code></pre>
+<p>which would now return</p>
+<pre><code>Point Distribution Model with Similarity Transform
+ - total # components:      136
+ - # similarity components: 4
+ - # PCA components:        132
+ - # active components:     4 + 16 = 20
+ - centred:                 True
+ - # features:              136
+ - kept variance:           7.3e+03  95.2%
+ - noise variance:          3.1  0.0%
+ - components shape:        (16, 136)
+</code></pre><h3 id="3-generating-new-instances"><a name="synthesis"></a>3. Generating New Instances</h3>
+<p>A new shape instance can be generated as
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow><mo>=</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>+</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mrow><mi mathvariant="bold">p</mi></mrow></mrow><annotation encoding="application/x-tex">
+\mathbf{s} = \bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68611em;"></span><span class="strut bottom" style="height:0.8805499999999999em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">s</span></span><span class="mrel">=</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">p</span></span></span></span></span></span>
+where <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">p</mi></mrow><mo>=</mo><mo>[</mo><msub><mi>p</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>p</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><msub><mi>p</mi><mi>n</mi></msub><msup><mo>]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">\mathbf{p}=[p_1, p_2, \ldots, p_n]^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathbf">p</span></span><span class="mrel">=</span><span class="mopen">[</span><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="minner">&#x2026;</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose"><span class="mclose">]</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> is the shape parameters vector.</p>
+<p>You can generate a new shape instance using only the similarity model (which will
+naturally apply a similarity transform on the mean shape) as</p>
+<pre><code class="lang-python">instance = shape_model.similarity_model.instance([<span class="hljs-number">100.</span>, -<span class="hljs-number">300.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>])
+instance.view(render_axes=<span class="hljs-keyword">False</span>);
+</code></pre>
+<center>
+  <img src="media/pdm_instance_similarity.png" alt="New instance generated using the similarity transform components." style="width: 40%">
+</center>
+
+<p>Similarly, a new instance using only the PCA components can be generated as</p>
+<pre><code class="lang-python">instance = shape_model.model.instance([<span class="hljs-number">2.</span>, -<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">1.5</span>], normalized_weights=<span class="hljs-keyword">True</span>)
+instance.view(render_axes=<span class="hljs-keyword">False</span>);
+</code></pre>
+<center>
+  <img src="media/pdm_instance_pca.png" alt="New instance generated using the PCA components." style="width: 40%">
+</center>
+
+<p>Note that in this case, the weights that are provided are normalized with respect to the corresponding eigenvalues.</p>
+<p>A combined instance using all the components can be generated by using the <code>from_vector_inplace()</code> method as</p>
+<pre><code class="lang-python">params = [<span class="hljs-number">100.</span>, -<span class="hljs-number">300.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">140.</span>, -<span class="hljs-number">100.</span>, <span class="hljs-number">15.</span>, <span class="hljs-number">5.</span>]
+shape_model.from_vector(params).target.view(render_axes=<span class="hljs-keyword">False</span>);
+</code></pre>
+<p>which returns the following instance</p>
+<center>
+  <img src="media/pdm_instance.png" alt="New instance generated using both the similarity transform and PCA components." style="width: 40%">
+</center>
+
+
+<h3 id="4-visualization"><a name="visualization"></a>4. Visualization</h3>
+<p>The PCA components of the <code>OrthoPDM</code> can be explored using an interactive widget as:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> visualize_shape_model
+visualize_shape_model(shape_model.model)
+</code></pre>
+<video width="100%" autoplay loop>
+  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<h3 id="5-projection-and-reconstruction"><a name="projection_and_reconstruction"></a>5. Projection and Reconstruction</h3>
+<p>A shape instance <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><annotation encoding="application/x-tex">\mathbf{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.44444em;"></span><span class="strut bottom" style="height:0.44444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathbf">s</span></span></span></span></span> can be theoretically projected into a given shape model <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">{</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo separator="true">,</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">\left\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\right\rbrace</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">{</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">}</span></span></span></span></span> as
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">p</mi></mrow><mo>=</mo><msup><mrow><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub></mrow><mi>T</mi></msup><mo>(</mo><mrow><mi mathvariant="bold">s</mi></mrow><mo>&#x2212;</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>)</mo></mrow><annotation encoding="application/x-tex">
+\mathbf{p} = {\mathbf{U}_s}^T (\mathbf{s} - \bar{\mathbf{s}})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8913309999999999em;"></span><span class="strut bottom" style="height:1.1413309999999999em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">p</span></span><span class="mrel">=</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">s</span></span><span class="mbin">&#x2212;</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span></span></span></span></span>
+Similarly, the reconstruction <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{\mathbf{s}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.70788em;"></span><span class="strut bottom" style="height:0.70788em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> of a shape instance is done as:
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>^</mo></mover><mo>&#x2248;</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>+</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><msup><mrow><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub></mrow><mi>T</mi></msup><mo>(</mo><mrow><mi mathvariant="bold">s</mi></mrow><mo>&#x2212;</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>)</mo></mrow><annotation encoding="application/x-tex">
+\hat{\mathbf{s}} \approx \bar{\mathbf{s}} + \mathbf{U}_s{\mathbf{U}_s}^T (\mathbf{s} - \bar{\mathbf{s}})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8913309999999999em;"></span><span class="strut bottom" style="height:1.1413309999999999em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&#x2248;</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">s</span></span><span class="mbin">&#x2212;</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mord displaystyle textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p><code>OrthoPDM</code> makes it very easy to reconstruct a shape isntance by setting its <code>target</code>.
+Let&apos;s load Einstein&apos;s shape, reconstruct it
+using the active components (similarity and PCA) and visualize the result:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-comment"># Import shape and reconstruct</span>
+shape = mio.import_builtin_asset.einstein_pts().lms
+shape_model.set_target(shape)
+
+<span class="hljs-comment"># Visualize</span>
+plt.subplot(<span class="hljs-number">121</span>)
+shape.view(render_axes=<span class="hljs-keyword">False</span>, axes_x_limits=<span class="hljs-number">0.05</span>, axes_y_limits=<span class="hljs-number">0.05</span>)
+plt.gca().set_title(<span class="hljs-string">&apos;Original shape&apos;</span>)
+plt.subplot(<span class="hljs-number">122</span>)
+shape_model.target.view(render_axes=<span class="hljs-keyword">False</span>, axes_x_limits=<span class="hljs-number">0.05</span>, axes_y_limits=<span class="hljs-number">0.05</span>)
+plt.gca().set_title(<span class="hljs-string">&apos;Reconstructed shape&apos;</span>);
+</code></pre>
+<center>
+  <img src="media/pdm_reconstruction.png" alt="reconstruction">
+</center>
+
+<p>The procedure that is applied inside <code>set_target()</code> involves the following steps:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> menpo.transform <span class="hljs-keyword">import</span> AlignmentAffine
+
+<span class="hljs-comment"># Import shape</span>
+shape = mio.import_builtin_asset.einstein_pts().lms
+
+<span class="hljs-comment"># Find the affine transform that normalizes the shape</span>
+<span class="hljs-comment"># with respect to the mean shape</span>
+transform = AlignmentAffine(shape, shape_model.model.mean())
+
+<span class="hljs-comment"># Normalize shape and project it</span>
+normalized_shape = transform.apply(shape)
+weights = shape_model.model.project(normalized_shape)
+print(<span class="hljs-string">&quot;Weights: {}&quot;</span>.format(weights))
+
+<span class="hljs-comment"># Reconstruct the normalized shape</span>
+reconstructed_normalized_shape = shape_model.model.instance(weights)
+
+<span class="hljs-comment"># Apply the pseudoinverse of the affine tansform</span>
+reconstructed_shape = transform.pseudoinverse().apply(reconstructed_normalized_shape)
+
+<span class="hljs-comment"># Visualize</span>
+plt.subplot(<span class="hljs-number">121</span>)
+shape.view(render_axes=<span class="hljs-keyword">False</span>, axes_x_limits=<span class="hljs-number">0.05</span>, axes_y_limits=<span class="hljs-number">0.05</span>)
+plt.gca().set_title(<span class="hljs-string">&apos;Original shape&apos;</span>)
+plt.subplot(<span class="hljs-number">122</span>)
+reconstructed_shape.view(render_axes=<span class="hljs-keyword">False</span>, axes_x_limits=<span class="hljs-number">0.05</span>, axes_y_limits=<span class="hljs-number">0.05</span>)
+plt.gca().set_title(<span class="hljs-string">&apos;Reconstructed shape&apos;</span>);
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../menpofit/experiments.html" class="navigation navigation-prev " aria-label="Previous page: Running Experiments"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../menpofit/affine_image_alignment.html" class="navigation navigation-next " aria-label="Next page: Affine Image Alignment"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book The Menpo Project -->
+</html>

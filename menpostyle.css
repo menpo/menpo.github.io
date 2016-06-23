@@ -1,0 +1,94 @@
+button:focus {
+  outline: none;
+}
+.hero_logo {
+  max-height: 280px;
+}
+@media (max-width: 590px) {
+  .hero_logo {
+    max-height: 180px;
+  }
+}
+.hero_container {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  max-width: 600px;
+}
+.hero_rightcolumn {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: space-between;
+}
+.hero_logo_container {
+  display: flex; 
+  align-items: center;
+  margin: 0px 10px;
+}
+.download_button {
+  background: rgb(103, 167, 243); 
+  color: white; 
+  border: none; 
+  margin: 5px 15px; 
+  padding: 12px; 
+  max-width: 140px;
+  box-shadow: 2px 2px 5px #C7C7C7; 
+  font-weight: 300;
+}
+.playground_help {
+  position: relative;
+  background: none; 
+  color: #A6AAA9; 
+  border: 1px solid #A6AAA9; 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 30px; 
+  font-weight: 300;
+}
+.playground_help_popup {
+  position: absolute;
+  background: #70BF41;
+  color: white;
+  box-shadow: 2px 2px 5px #C7C7C7;
+  min-width: 320px;
+  border-radius: 10px;
+  font-weight: 300;
+  top: 55px;
+  right: -40px;
+  padding: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition:visibility 0s linear 0.3s,opacity 0.3s ease;
+}
+.playground_help_speach {
+  position: absolute;
+  color: white;
+  border-color: transparent;
+  border-bottom-color: #70BF41;
+  border-style: solid;
+  border-width: 12px;
+  border-bottom-width: 20px;
+  font-weight: 300;
+  right: 2px;
+  visibility: hidden;
+  opacity: 0;
+  transition:visibility 0s linear 0.3s,opacity 0.3s ease;
+}
+.playground_help:hover .playground_help_popup {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+.playground_help:hover .playground_help_speach {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+.package_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}

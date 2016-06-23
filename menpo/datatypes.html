@@ -1,0 +1,1301 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book The Menpo Project -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Data Types | The Menpo Project</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.2">
+        <meta name="author" content="The Menpo Team">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../menpo/consistency.html" />
+    
+    
+    <link rel="prev" href="../menpo/introduction.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="2.2"
+        data-chapter-title="Data Types"
+        data-filepath="menpo/datatypes.md"
+        data-basepath=".."
+        data-revision="Thu Jun 23 2016 19:48:00 GMT+0100 (BST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        The Menpo Project
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="installation/index.html">
+            
+                
+                    <a href="../installation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installation
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="installation/conda.html">
+            
+                
+                    <a href="../installation/conda.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Conda
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="installation/windows/index.html">
+            
+                
+                    <a href="../installation/windows/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        Windows
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="installation/windows/beginner.html">
+            
+                
+                    <a href="../installation/windows/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="installation/windows/expert.html">
+            
+                
+                    <a href="../installation/windows/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="installation/macos/index.html">
+            
+                
+                    <a href="../installation/macos/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        macOS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="installation/macos/beginner.html">
+            
+                
+                    <a href="../installation/macos/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="installation/macos/expert.html">
+            
+                
+                    <a href="../installation/macos/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="installation/linux/index.html">
+            
+                
+                    <a href="../installation/linux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="installation/linux/beginner.html">
+            
+                
+                    <a href="../installation/linux/beginner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.1.</b>
+                        
+                        Beginner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="installation/linux/expert.html">
+            
+                
+                    <a href="../installation/linux/expert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.2.</b>
+                        
+                        Expert
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="installation/expert_quick_start.html">
+            
+                
+                    <a href="../installation/expert_quick_start.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        Expert Quick Start
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="installation/development.html">
+            
+                
+                    <a href="../installation/development.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        Development
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="installation/playground.html">
+            
+                
+                    <a href="../installation/playground.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Playground
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="installation/pip.html">
+            
+                
+                    <a href="../installation/pip.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Pip
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="menpo/index.html">
+            
+                
+                    <a href="../menpo/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        menpo
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="menpo/introduction.html">
+            
+                
+                    <a href="../menpo/introduction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="menpo/datatypes.html">
+            
+                
+                    <a href="../menpo/datatypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data Types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="menpo/consistency.html">
+            
+                
+                    <a href="../menpo/consistency.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Consistency
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="menpo/vectorizing.html">
+            
+                
+                    <a href="../menpo/vectorizing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Vectorizing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="menpo/visualization.html">
+            
+                
+                    <a href="../menpo/visualization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Visualization
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" >
+            
+                
+                    <a target="_blank" href="https:/menpo.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="menpofit/index.html">
+            
+                
+                    <a href="../menpofit/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        menpofit
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="menpofit/basics.html">
+            
+                
+                    <a href="../menpofit/basics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Basics
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="menpofit/importing.html">
+            
+                
+                    <a href="../menpofit/importing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Importing Images
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="menpofit/training.html">
+            
+                
+                    <a href="../menpofit/training.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Training
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="menpofit/fitting.html">
+            
+                
+                    <a href="../menpofit/fitting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Fitting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="menpofit/result.html">
+            
+                
+                    <a href="../menpofit/result.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        Fitting Result
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="menpofit/visualization.html">
+            
+                
+                    <a href="../menpofit/visualization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Visualizing Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="menpofit/experiments.html">
+            
+                
+                    <a href="../menpofit/experiments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        Running Experiments
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="menpofit/pdm.html">
+            
+                
+                    <a href="../menpofit/pdm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Point Distribution Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="menpofit/affine_image_alignment.html">
+            
+                
+                    <a href="../menpofit/affine_image_alignment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Affine Image Alignment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="menpofit/lk.html">
+            
+                
+                    <a href="../menpofit/lk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Lucas-Kanade
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="menpofit/deformable_image_alignment.html">
+            
+                
+                    <a href="../menpofit/deformable_image_alignment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Deformable Image Alignment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="menpofit/atm.html">
+            
+                
+                    <a href="../menpofit/atm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Active Template Model
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="menpofit/landmark_localization.html">
+            
+                
+                    <a href="../menpofit/landmark_localization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Landmark Localization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="menpofit/aam.html">
+            
+                
+                    <a href="../menpofit/aam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.1.</b>
+                        
+                        Active Appearance Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.2" data-path="menpofit/aps.html">
+            
+                
+                    <a href="../menpofit/aps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.2.</b>
+                        
+                        Active Pictorial Structures
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.3" data-path="menpofit/clm.html">
+            
+                
+                    <a href="../menpofit/clm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.3.</b>
+                        
+                        Constrained Local Model
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.4" data-path="menpofit/sdm.html">
+            
+                
+                    <a href="../menpofit/sdm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.4.</b>
+                        
+                        Supervised Descent Method
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.5" data-path="menpofit/ert.html">
+            
+                
+                    <a href="../menpofit/ert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.5.</b>
+                        
+                        Ensemble of Regression Trees
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="menpofit/references.html">
+            
+                
+                    <a href="../menpofit/references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" >
+            
+                
+                    <a target="_blank" href="https:/menpofit.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="menpodetect/index.html">
+            
+                
+                    <a href="../menpodetect/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        menpodetect
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" >
+            
+                
+                    <a target="_blank" href="https:/menpodetect.readthedocs.io/">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        API Documentation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="menpowidgets/index.html">
+            
+                
+                    <a href="../menpowidgets/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        menpowidgets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="menpowidgets/main_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Main Widgets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="menpowidgets/main_menpo_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_menpo_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        Menpo Widgets
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="menpowidgets/main_menpofit_widgets.html">
+            
+                
+                    <a href="../menpowidgets/main_menpofit_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                        MenpoFit Widgets
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="menpowidgets/components.html">
+            
+                
+                    <a href="../menpowidgets/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Widgets Components
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="menpowidgets/options_widgets.html">
+            
+                
+                    <a href="../menpowidgets/options_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        Options Widgets
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="menpowidgets/tools_widgets.html">
+            
+                
+                    <a href="../menpowidgets/tools_widgets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.2.</b>
+                        
+                        Tools Widgets
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="menpo3d/index.html">
+            
+                
+                    <a href="../menpo3d/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        menpo3d
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="menpocli/index.html">
+            
+                
+                    <a href="../menpocli/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        menpocli
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="landmarker.io/index.html">
+            
+                
+                    <a href="../landmarker.io/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        landmarker.io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="landmarker.io/specifications.html">
+            
+                
+                    <a href="../landmarker.io/specifications.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Specifications
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="landmarker.io/userguide.html">
+            
+                
+                    <a href="../landmarker.io/userguide.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        User Guide
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="landmarker.io/snap_mode.html">
+            
+                
+                    <a href="../landmarker.io/snap_mode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Snap Mode
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="examples/index.html">
+            
+                
+                    <a href="../examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="manifesto.html">
+            
+                
+                    <a href="../manifesto.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Manifesto
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="team.html">
+            
+                
+                    <a href="../team.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        The Menpo Team
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="citation.html">
+            
+                
+                    <a href="../citation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Citation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="faq.html">
+            
+                
+                    <a href="../faq.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        FAQ
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+    <a href="../GLOSSARY.html" class="btn pull-left" aria-label="Glossary"><i class="fa fa-sort-alpha-asc"></i></a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >The Menpo Project</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="data-types">Data Types</h1>
+<ol>
+<li><a href="#why">Why have Menpo types - what&apos;s wrong with numpy arrays?</a></li>
+<li><a href="#keypoints">Key Points</a></li>
+</ol>
+<hr>
+<h3 id="1-why-have-menpo-types--whats-wrong-with-numpy-arrays"><a name="why"></a>1. Why have Menpo types - what&apos;s wrong with numpy arrays?</h3>
+<p><code>menpo</code>&apos;s data types are thin wrappers around <code>numpy</code> arrays. They give semantic meaning to the underlying array through providing clearly named and consistent properties. As an example let&apos;s take a look at <code>PointCloud</code>, <code>menpo</code>&apos;s workhorse for spatial data. Construction requires a <code>numpy</code> array:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> menpo.shape <span class="hljs-keyword">import</span> PointCloud
+
+x = np.random.rand(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+pc = PointCloud(x)
+</code></pre>
+<p>It&apos;s natural to ask the question:</p>
+<blockquote>
+<p>Is this a collection of three 2D points, or two 3D points?</p>
+</blockquote>
+<p>In <code>menpo</code>, you never do this - just look at the properties on the <code>PointCloud</code>:</p>
+<pre><code class="lang-python">print(<span class="hljs-string">&quot;{} points&quot;</span>.format(pc.n_points))
+print(<span class="hljs-string">&quot;{} dimensions&quot;</span>.format(pc.n_dims))
+<span class="hljs-comment"># Outputs:</span>
+<span class="hljs-comment"># 3 points</span>
+<span class="hljs-comment"># 2 dimensions</span>
+</code></pre>
+<p>If we take a look at the properties we can see they are trivial:</p>
+<pre><code class="lang-python"><span class="hljs-decorator">@property</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">n_points</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">return</span> self.points.shape[<span class="hljs-number">0</span>]
+
+<span class="hljs-decorator">@property</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">n_dims</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">return</span> self.points.shape[<span class="hljs-number">1</span>]
+</code></pre>
+<p>Using these properties makes code much more readable in algorithms accepting <code>menpo</code>&apos;s types.
+Let&apos;s imagine a routine that does some operation on an image and a related point cloud. If it accepted <code>numpy</code> arrays, we might see something like this on the top line:</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo_arrays</span><span class="hljs-params">(x, img)</span>:</span>
+    <span class="hljs-comment"># preallocate the result</span>
+    y = np.zeros(x.shape[<span class="hljs-number">1</span>],
+                 x.shape[<span class="hljs-number">2</span>],
+                 img.shape[-<span class="hljs-number">1</span>])
+    ...
+</code></pre>
+<p>On first glance, it is not at all apparent what <code>y</code>&apos;s shape is semantically. Now let&apos;s take a look at the equivalent code using <code>menpo</code>&apos;s types:</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo_menpo</span><span class="hljs-params">(pc, img)</span>:</span>
+    <span class="hljs-comment"># preallocate the result</span>
+    y = np.zeros(pc.n_dims,
+                 pc.n_points,
+                 img.n_channels)
+    ...
+</code></pre>
+<p>This time it&apos;s immediately apparent what <code>y</code>&apos;s shape is. Although this is a somewhat contrived example, you will find this pattern applied consistently across <code>menpo</code>, and it aids greatly in keeping the code readable.</p>
+<h3 id="2-key-points"><a name="keypoints"></a>2. Key Points</h3>
+<p><strong>Menpo types always store the underlying numpy array in an easy to access attribute.</strong> For the <code>PointCloud</code> family it&apos;s <code>.points</code>. On <code>Image</code> and subclasses, it&apos;s <code>.pixels</code>.</p>
+<p><strong>Menpo types store the minimal amount of data possible.</strong> For the vast majority of Menpo types, the only data stored in the class is the single numpy array the type wraps. This makes it easy to reason about Menpo types - if you swap out the <code>.pixels</code> array on an <code>Image</code> instance for a new numpy array and <code>print(image.width)</code> you will get the correct answer for the new array, as all properties are computed from <code>.pixels</code>.</p>
+<p><strong>Menpo types print really nicely.</strong> If you are ever unsure what an object is, just <code>print()</code> it to get an immediate summary:</p>
+<pre><code class="lang-python">print(img)
+<span class="hljs-comment"># 512W x 512H 2D Image with 3 channels</span>
+print(pointcloud)
+<span class="hljs-comment"># PointCloud: n_points: 68, n_dims: 2</span>
+</code></pre>
+<p><strong>Importing assets though <a href="http://docs.menpo.org/en/stable/api/menpo/io/index.html" target="_blank"><code>menpo.io</code></a> will result in our data containers, not <code>numpy</code> arrays</strong>. This means in a lot of situations you never need to remember the <code>menpo</code> conventions for ordering of array data - just ask for an image and you will get an <code>Image</code> object.</p>
+<p><strong>Menpo types behave as immutable data containers</strong>. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it&apos;s own numpy array. </p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
+img = mio.import_builtin_asset.lenna_png()
+img_resized = img.resize((<span class="hljs-number">200</span>, <span class="hljs-number">200</span>))
+<span class="hljs-comment"># methods in Menpo return modified copies - so img is unchanged by the resize call.</span>
+print(img)
+print(img_resized)
+<span class="hljs-comment"># Output:</span>
+<span class="hljs-comment"># 512W x 512H 2D Image with 3 channels</span>
+<span class="hljs-comment"># 200W x 200H 2D Image with 3 channels</span>
+
+<span class="hljs-comment"># If you don&apos;t need the intermediate copies, just chain methods back-to-back:</span>
+greyscale_vector = img.as_greyscale().resize((<span class="hljs-number">200</span>, <span class="hljs-number">200</span>)).as_vector()
+print(greyscale_vector)
+<span class="hljs-comment"># Outputs:</span>
+<span class="hljs-comment"># [ 0.63622375  0.63370722  0.61733637 ...,  0.37906707  0.39924645]</span>
+</code></pre>
+<p>Good Menpo code feels functional and following this style makes it easy to write elegant bug free code. If you are worried about performance, don&apos;t be - Menpo is architected to be smart about avoiding redundent copies wherever possible. It does so by internally making use of <code>copy=False</code> keyword arguments that you will see on many methods and constructors when we know that a copy has already been performed so a second would be redundent. You can use this keyword argument yourself in performance-critical sections of code, but we strongly suggest you only do so after profiling shows that it would really be a performance win (the vast majority of times, it won&apos;t be).</p>
+<p><strong>Menpo types perform sanity checks to help catch bugs</strong>. As Menpo types are more structured, we can perform sanity checks in lots of cases and report nice clean error messages. Pro-tip: You can suppress these checks for extra performance with the <code>skip_checks=True</code> keyword argument. Again, you should rarely need this though - Menpo internally uses these escape hatches when it knows it&apos;s safe to do so to keep everything performant.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../menpo/introduction.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../menpo/consistency.html" class="navigation navigation-next " aria-label="Next page: Consistency"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book The Menpo Project -->
+</html>
