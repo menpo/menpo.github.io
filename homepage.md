@@ -87,6 +87,12 @@ button:focus {
     visibility: visible;
     transition-delay: 0s;
 }
+.package_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
 </style>
 <center>
   <div class="hero_container">
@@ -143,36 +149,43 @@ The Menpo Project also provides:
 ---------------------------------------
 
 ## Packages
-<center>
-  <a href="/menpo/index.md" title="menpo"><img src="logo/menpo.png" alt="menpo" width="13.5%"></a>
-  <a href="/menpofit/index.md" title="menpofit"><img src="logo/menpofit.png" alt="menpofit" width="13.5%"></a>
-  <a href="/menpodetect/index.md" title="menpodetect"><img src="logo/menpodetect.png" alt="menpodetect" width="13.5%"></a>
-  <a href="/menpowidgets/index.md" title="menpowidgets"><img src="logo/menpowidgets.png" alt="menpowidgets" width="13.5%"></a>
-  <a href="/menpo3d/index.md" title="menpo3d"><img src="logo/menpo3d.png" alt="menpo3d" width="13.5%"></a>
-  <a href="/menpocli/index.md" title="menpocli"><img src="logo/menpocli.png" alt="menpocli" width="13.5%"></a>
-  <a href="/landmarker.io/index.md" title="landmarker.io"><img src="logo/landmarkerio_with_logo.png" alt="landmarker.io" width="13.5%"></a>
-</center>
-The majority of the software exists within a family of Python packages, each designed to solve one problem well:
 
-  - <strong style="font-size: 125%">menpo</strong> - The heart of the Menpo Project. `menpo` contains all core functionality needed for
-    the project in well tested, mature, stable package. `menpo` is the `numpy` of the Menpo ecosystem - the foundation upon which all else is built.  
-    [![Github Release][m_shield]][m_gh] [![BSD License][bsd_shield]][m_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35] [![Coverage Status][cm_shield]][cm] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpo&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+The Menpo project is a family of Python packages, each designed to solve one problem well:
 
+<div class="package_info">
+  <a href="/menpo/index.md" title="menpo"><img style="max-height: 140px; max-width: none;" src="logo/menpo.png" alt="menpo"></a>
+  <div style="padding-left: 10px;">
+      <strong style="font-size: 125%">menpo</strong> The heart of the Menpo Project. <code>menpo</code> contains all core functionality needed for
+      the project in well tested, mature, stable package. <code>menpo</code> is the <code>numpy</code> of the Menpo ecosystem - the foundation upon which all else is built.
+  </div>
+</div>
 
-  - <strong style="font-size: 125%">menpofit</strong> - It includes implementations of state-of-the-art 2D deformable models. Each implementation
-    includes training and fitting code. `menpofit` contains the crown jewels of the Menpo Project - most people are interested in using
-    the Menpo Project for the `menpofit` package.  
-    [![Github Release][mf_shield]][mf_gh] [![BSD License][bsd_shield]][mf_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpofit&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+<div class="package_info">
+  <div style="padding-left: 10px;">
+      <strong style="font-size: 125%">menpofit</strong> Implementations of state-of-the-art 2D deformable models.
+      Each implementation includes training and fitting code. <code>menpofit</code> contains the crown jewels of the Menpo Project - most people are interested in using the Menpo Project for the <code>menpofit</code> package.
+  </div>
+  <a href="/menpofit/index.md" title="menpo"><img style="max-height: 140px; max-width: none;" src="logo/menpofit.png" alt="menpofit"></a>
+</div>
 
-  - <strong style="font-size: 125%">menpodetect</strong> - It wraps a number of existing projects that provide functionalities for training and
-    fitting generic object detection techniques. It is designed in order to have full compatibility with `menpofit`. Not all of the wrapped
+<div class="package_info">
+  <a href="/menpodetect/index.md" title="menpodetect"><img style="max-height: 140px; max-width: none;" src="logo/menpodetect.png" alt="menpodetect"></a>
+  <div style="padding-left: 10px;">
+      <strong style="font-size: 125%">menpodetect</strong> wraps a number of existing projects that provide functionalities for training and
+    fitting generic object detection techniques. It is designed in order to have full compatibility with <code>menpofit</code>. Not all of the wrapped
     projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.  
-    [![Github Release][md_shield]][md_gh] [![BSD License][bsd_shield]][md_lic] ![Python 2.7 Support][python27] ![Python 3.4 Support][python34] ![Python 3.5 Support][python35] [![Coverage Status][cmd_shield]][cmd] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpodetect&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+  </div>
+</div>
 
-  - <strong style="font-size: 125%">menpo3d</strong> - A specialized library for working with 3D data. It is largely separate from the
-    core `menpo` library as it has dependencies on a number of large, 3D specific projects (like `VTK`, `mayavi`, `assimp`) which many people using
+<div class="package_info">
+  <div style="padding-left: 10px;">
+      <strong style="font-size: 125%">menpo3d</strong> A specialized library for working with 3D data. It is largely separate from the
+    core <code>menpo</code> library as it has dependencies on a number of large, 3D specific projects (like `VTK`, `mayavi`, `assimp`) which many people using
     the Menpo Project would have no use for. You'll want to install `menpo3d` if you need to import and export 3D mesh data or perform advanced mesh processing.  
-    [![Github Release][m3d_shield]][m3d_gh] [![BSD License][bsd_shield]][m3d_lic] ![Python 2.7 Support][python27] <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpo3d&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+  </div>
+  <a href="/menpo3d/index.md" title="menpo3d"><img style="max-height: 140px; max-width: none;" src="logo/menpo3d.png" alt="menpo3d"></a>
+</div>
+
 
   - <strong style="font-size: 125%">menpowidgets</strong> - A key goal of the Menpo Project is to accelerate research in 2D and 3D computer vision by
     providing powerful visualization tools. `menpowidgets` contains a collection of Jupyter Notebook Widgets for sophisticated visualization and interactive
