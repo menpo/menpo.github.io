@@ -11,12 +11,14 @@
       </div>
       <div style="display: flex; flex-direction: row; align-items: center;">
         <div style="width: 30px; height: 30px;"></div>
-        <button class="download_button">Download Playground</button>
+        <a style="text-decoration: none; color: grey" href="installation/playground.html">
+          <button class="download_button">Download Playground</button>
+        </a>
         <button class="playground_help">
           ?
           <div class="playground_help_speach"></div>
           <div class="playground_help_popup">
-            <p>The playground is a standalone installation of menpo that will get you up and running as quickly as possible.</p>
+            <p>A playground is a standalone installation of menpo that will get you up and running as quickly as possible.</p>
             <p>If you are new to menpo or Python in general you may want to start with the playground.</p>
             <p>Head to our <a style="font-weight: bold; color: white;" href="installation">installation page</a> for more options.</p>
           </div>
@@ -79,7 +81,7 @@ The Menpo project is a family of Python packages, each designed to solve one pro
   <div style="padding-left: 10px;">
       <strong style="font-size: 125%">menpodetect</strong> Wraps a number of existing projects that provide functionalities for training and
     fitting generic object detection techniques. It is designed in order to have full compatibility with <code>menpofit</code>. Not all of the wrapped
-    projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.  
+    projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.
   </div>
 </div>
 
@@ -88,7 +90,7 @@ The Menpo project is a family of Python packages, each designed to solve one pro
   <div style="padding-left: 10px;">
       <strong style="font-size: 125%">menpo3d</strong> A specialized library for working with 3D data. It is largely separate from the
     core <code>menpo</code> library as it has dependencies on a number of large, 3D specific projects (like <code>VTK</code>, <code>mayavi</code>, <code>assimp</code>) which many people using
-    the Menpo Project would have no use for. You'll want to install <code>menpo3d</code> if you need to import and export 3D mesh data or perform advanced mesh processing.  
+    the Menpo Project would have no use for. You'll want to install <code>menpo3d</code> if you need to import and export 3D mesh data or perform advanced mesh processing.
   </div>
 </div>
 
@@ -97,7 +99,7 @@ The Menpo project is a family of Python packages, each designed to solve one pro
   <div style="padding-left: 10px;">
       <strong style="font-size: 125%">menpowidgets</strong> A key goal of the Menpo Project is to accelerate research in 2D and 3D computer vision by
     providing powerful visualization tools. <code>menpowidgets</code> contains a collection of Jupyter Notebook Widgets for sophisticated visualization and interactive
-    inspection of the state of all Menpo objects.  
+    inspection of the state of all Menpo objects.
   </div>
 </div>
 
@@ -105,7 +107,7 @@ The Menpo project is a family of Python packages, each designed to solve one pro
   <a href="/menpocli/index.md" title="menpocli"><img style="max-height: 140px; max-width: none;" src="logo/menpocli.png" alt="menpocli"></a>
   <div style="padding-left: 10px;">
       <strong style="font-size: 125%">menpocli</strong> Command Line Interface (CLI) for the Menpo Project that allows to readily use pre-trained
-    state-of-the-art <code>menpofit</code> facial models. This is useful for people that only care to quickly acquire facial landmarks on their images.  
+    state-of-the-art <code>menpofit</code> facial models. This is useful for people that only care to quickly acquire facial landmarks on their images.
   </div>
 </div>
 
@@ -114,7 +116,7 @@ The Menpo project is a family of Python packages, each designed to solve one pro
   <div style="padding-left: 10px;">
       <strong style="font-size: 125%">landmarker.io</strong> An interactive web-based tool for manual annotation of
     2D images and 3D meshes. Useful to quickly landmark a single image, or organize a large annotation effort for thousands of files.
-    Features like Snap Mode and Dropbox compatibility make it unique.  
+    Features like Snap Mode and Dropbox compatibility make it unique.
   </div>
 </div>
 
