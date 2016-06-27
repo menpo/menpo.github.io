@@ -45,9 +45,9 @@ A Menpo Playground is an archived directory you can download that contains:
 
 1. A full isolated Python installation containing the Menpo Project with all its dependencies ready to go
 2. A set of notebooks that you can run immediately to see how to use Menpo
-3. Two command line tools, `menpofit`, and `menpodetect`, that can be used to locate bounding boxes and landmarks in challenging in-the-wild facial images
+3. Two command line tools, `menpofit`, and `menpodetect` (provided by [`menpocli`](../menpocli/index.md)), that can be used to locate bounding boxes and landmarks in challenging in-the-wild facial images
 4. Detailed documentation on how to use the provided tools
 
 There is no installation procedure for a playground, just download, extract, and use. When you are done with it, just delete the folder.
 
-A playground is great from newcomers to Menpo, or just for anyone needing a hassle-free standalone build of menpo (say, to deploy on a server).
+A playground is great from newcomers to Menpo, or just for anyone needing a hassle-free standalone build of Menpo (say, to deploy on a server).

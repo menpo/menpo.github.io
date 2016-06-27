@@ -1,15 +1,26 @@
-<center>
-  <img src="../../logo/landmarkerio_with_logo.png" alt="landmarkerio" width="30%">
-  </br>
-  </br>
-  <a href="http://github.com/menpo/landmarker.io"><img src="http://img.shields.io/github/release/menpo/landmarkerio.svg" alt="Github Release"/></a>
-  <a href="https://github.com/menpo/landmarker.io/blob/master/LICENSE"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
-  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=landmarker.io&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-  </br>
-</center>
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
 
-`landmarker.io` is a web app for 3D mesh and image annotation in the browser.
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../../logo/landmarkerio_with_logo.png" alt="landmarkerio" width="30%" style="display: flex;">
+  </br>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/landmarkerio" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/landmarkerio.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin-left: 25px; margin-bottom: 5px" href="https://github.com/menpo/landmarkerio">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a style="text-decoration: none; color: grey; margin-right: 25px; margin-bottom: 5px" href="https://www.landmarker.io">
+      <button class="download_button">View Demo</button>
+    </a>
+    <a href="https://github.com/menpo/landmarkerio/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
-The app is live at [https://www.landmarker.io](https://www.landmarker.io).
+`landmarker.io` is a web app for 3D mesh and image annotation using HTML5 in the browser.
+
+The app is live at [https://www.landmarker.io](https://www.landmarker.io) and we suggest you go there first to try out the demo mode. If you would like to learn more about mass annotations, we suggest you head over to the [Github Page](https://github.com/menpo/landmarkerio).
 
 ![Landmarker.io](http://i.imgur.com/zxHyVLV.gif)

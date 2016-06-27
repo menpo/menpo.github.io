@@ -1,15 +1,20 @@
-<center>
-  <img src="../../logo/menpodetect.png" alt="menpodetect" width="30%">
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
+
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../../logo/menpodetect.png" alt="menpodetect" width="30%" style="display: flex;">
   </br>
-  </br>
-  <a href="http://github.com/menpo/menpodetect"><img src="http://img.shields.io/github/release/menpo/menpodetect.svg" alt="Github Release"/></a>
-  <a href="https://github.com/menpo/menpodetect/blob/master/LICENSE.txt"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
-  <img src="https://img.shields.io/badge/Python-2.7-green.svg" alt="Python 2.7 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.4-green.svg" alt="Python 3.4 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.5-green.svg" alt="Python 3.5 Support"/>
-  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpodetect&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-  </br>
-</center>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpodetect" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpodetect.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpodetect">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpodetect/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
 Simple object detection within the Menpo Project environment. We do not attempt
 to implement novel techniques, but instead wrap existing projects so that they

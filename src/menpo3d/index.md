@@ -1,15 +1,22 @@
-<center>
-  <img src="../../logo/menpo3d.png" alt="menpo3d" width="30%">
-  </br>
-  </br>
-  <a href="http://github.com/menpo/menpo3d"><img src="http://img.shields.io/github/release/menpo/menpo3d.svg" alt="Github Release"/></a>
-  <a href="https://github.com/menpo/menpo3d/blob/master/LICENSE.txt"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
-  <img src="https://img.shields.io/badge/Python-2.7-green.svg" alt="Python 2.7 Support"/>
-  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpo3d&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-  </br>
-</center>
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
 
-A library inside the Menpo Project that makes manipulating 3D mesh data a simple task. In particular, this project provides the ability to import, visualize and rasterize 3D meshes. Although 3D meshes can be created within the main [`menpo`](../menpo/index.md) package, this package adds the real functionality for working with 3D data.
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../../logo/menpo3d.png" alt="menpo3d" width="30%" style="display: flex;">
+  </br>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpo3d" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpo3d.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpo3d">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpo3d/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
+
+`menpo3d` makes manipulating 3D mesh data a simple task. In particular, this package provides the ability to import, visualize and rasterize 3D meshes. Although 3D meshes can be created within the main [`menpo`](../menpo/index.md) package, this package adds the real functionality for working with 3D data.
 
 
 Visualizing 3D objects

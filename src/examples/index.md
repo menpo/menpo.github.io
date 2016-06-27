@@ -1,9 +1,12 @@
 IPython Notebooks
 =================
 
-  - **menpo v0.6.2** - [browse online](http://nbviewer.jupyter.org/github/menpo/menpo-notebooks/tree/v0.6.2/notebooks/) - [download](https://github.com/menpo/menpo-notebooks/archive/v0.6.2.zip)
-  - **menpofit v0.3.1** - [browse online](http://nbviewer.jupyter.org/github/menpo/menpofit-notebooks/tree/v0.3.1/notebooks/) - [download](https://github.com/menpo/menpofit-notebooks/archive/v0.3.1.zip)
-
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
+<div style="display: flex; justify-content: center;">
+    <a style="text-decoration: none; color: grey; margin-bottom: 20px" href="http://nbviewer.jupyter.org/github/menpo/menpo-notebooks/tree/master/">
+      <button class="download_button" style="max-width: 170px">Browse Notebooks Online</button>
+    </a>
+</div>
 As part of the project, we maintain a set of Jupyter notebooks that help
 illustrate how Menpo should be used.
 

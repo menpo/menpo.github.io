@@ -25,7 +25,7 @@
         </button>
       </div>
       <div>
-        <div style="font-size: 80%">comfortable with <a href="https://www.continuum.io/downloads">conda</a>?</div>
+        <div style="font-size: 80%">comfortable with <a href="http://conda.pydata.org">conda</a>?</div>
         <code style="padding: 7px;">conda install -c menpo menpoproject</code>
         <div style="font-size: 80%; margin-top: 10px;"><a href="installation">more install options (inc. pip)</a></div>
       </div>
@@ -36,28 +36,30 @@
 <!---
 MAIN DESCRIPTION
 -->
-The Menpo Project is a set of Python frameworks and associated tooling that provides end-to-end solution for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
+The Menpo Project is a set of BSD 3-Clause licensed Python frameworks and associated tooling that provide end-to-end solutions for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
 
-* **Active Appearance Model (AAM)**
-* **Supervised Descent Method (SDM)**
-* **Ensemble of Regression Trees (ERT)** (powered by [dlib](http://dlib.net/ "dlib C++ Library"))
-* **Constrained Local Model (CLM)**
-* **Active Shape Model (ASM)**
-* **Active Pictorial Structures (APS)**
-* **Lucas-Kanade (LK)** and **Active Template Model (ATM)**
+* Active Appearance Model (AAM)
+* Supervised Descent Method (SDM)
+* Ensemble of Regression Trees (ERT) (powered by [dlib](http://dlib.net/ "dlib C++ Library"))
+* Constrained Local Model (CLM)
+* Active Shape Model (ASM)
+* Active Pictorial Structures (APS)
+* Lucas-Kanade (LK) and Active Template Model (ATM)
 
 The Menpo Project also provides:
 * a web-based tool for **annotation of bulk data** for model training
 * a **command line tool** for landmark localisation with state-of-the-art **pre-trained** models
 * generic **object detection** in terms of a bounding box
 * an **elegant standard library** with simple dependencies, useful for many areas of computer vision
-* sophisticated visualization with **interactive IPython widgets**
+* sophisticated visualization with **interactive IPython/Jupyter widgets**
+
+All of the code is Open Source and can be found over on the [Menpo Github Organisation](https://github.com/menpo/ "The Menpo Project on Github").
 
 ---------------------------------------
 
 ## Packages
 
-The Menpo project is a family of Python packages, each designed to solve one problem well:
+The Menpo project is a consists of a family of packages (primarily Python), each designed to solve one problem well:
 
 <div class="package_info">
   <a href="/menpo/index.md" title="menpo"><img style="max-height: 140px; max-width: none;" src="logo/menpo.png" alt="menpo"></a>
@@ -123,18 +125,11 @@ The Menpo project is a family of Python packages, each designed to solve one pro
 
 ---------------------------------------
 
-## Getting Started
+## Next Steps
 
-The Menpo Project is largely written in **Python** and we provide a simple and easy method of installation using [Conda](http://conda.pydata.org/).
-After setting up a Python `conda` environment, all the packages of the Menpo Project can be installed as
-```
-conda install -c menpo menpoproject
-```
 We _strongly_ suggest you head over to the [installation instructions](installation/index.md "Full Installation Instructions") to get started.
-We recommend the use of `conda` due to the fact that the Menpo Project also includes compiled `C/C++` code
-which may be complicated to compile on various platforms.
 
-Once you have installed the Menpo Project, you can visit our [Examples](examples/index.md) to get started.
+Once you have installed the Menpo Project, you can visit our [Examples](examples/index.md) to get an idea of what you can do with Menpo.
 
 ---------------------------------------
 

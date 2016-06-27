@@ -1,15 +1,20 @@
-<center>
-  <img src="../../logo/menpowidgets.png" alt="menpowidgets" width="30%">
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
+
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../../logo/menpowidgets.png" alt="menpowidgets" width="30%" style="display: flex;">
   </br>
-  </br>
-  <a href="http://github.com/menpo/menpowidgets"><img src="http://img.shields.io/github/release/menpo/menpowidgets.svg" alt="Github Release"/></a>
-  <a href="https://github.com/menpo/menpowidgets/blob/master/LICENSE.txt"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
-  <img src="https://img.shields.io/badge/Python-2.7-green.svg" alt="Python 2.7 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.4-green.svg" alt="Python 3.4 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.5-green.svg" alt="Python 3.5 Support"/>
-  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpowidgets&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-  </br>
-</center>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpowidgets" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpowidgets.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpowidgets">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpowidgets/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
 `menpowidgets` is the Menpo Project’s Python package for sophisticated visualization within the Jupyter notebook using interactive widgets. In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental overhead of visualizing objects as low as possible. MenpoWidgets makes tasks like data exploration, model observation and results demonstration as simple as possible.
 

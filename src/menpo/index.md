@@ -1,16 +1,20 @@
-<center>
-  <img src="../../logo/menpo.png" alt="menpo" width="30%">
+<link rel="stylesheet" type="text/css"  href="../menpostyle.css">
+
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../../logo/menpo.png" alt="menpo" width="30%" style="display: flex;">
   </br>
-  </br>
-  <a href="http://github.com/menpo/menpo"><img src="http://img.shields.io/github/release/menpo/menpo.svg" alt="Github Release"/></a>
-  <a href="https://github.com/menpo/menpo/blob/master/LICENSE.txt"><img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/></a>
-  <a href="https://coveralls.io/r/menpo/menpo"><img src="http://img.shields.io/coveralls/menpo/menpo.svg?style=flat" alt="Coverage Status"/></a>
-  <img src="https://img.shields.io/badge/Python-2.7-green.svg" alt="Python 2.7 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.4-green.svg" alt="Python 3.4 Support"/>
-  <img src="https://img.shields.io/badge/Python-3.5-green.svg" alt="Python 3.5 Support"/>
-  <iframe src="https://ghbtns.com/github-btn.html?user=menpo&repo=menpo&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-  </br>
-</center>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpo" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpo.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpo">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpo/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
 `menpo` is a Python package designed from the ground up to make importing, manipulating and visualizing image and mesh data as simple as possible.
 Beyond it's elegant design, `menpo` has some unique characteristics that make it particlarly well suited to working with **annotated or landmarked** data:
