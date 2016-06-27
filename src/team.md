@@ -85,6 +85,25 @@ Patrick received his MEng in Computer Science from [Imperial College London][imp
 
 ---------------------------------------
 
+### George Trigeorgis
+<p style="float: left;">
+<img alt="George Trigeorgis" src="portraits/george.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
+<a href="http://trigeorgis.com/" target="_blank"><i class="fa fa-home" style="color: black; font-size:120%;"></i></a>
+<a href="mailto:g.trigeorgis@imperial.ac.uk" target="_blank"><i class="fa fa-envelope-square" style="color: black; font-size:120%;"></i></a>
+<a href="http://github.com/trigeorgis" target="_blank"><i class="fa fa-github" style="color: black; font-size:120%;"></i></a>
+<a href="http://ibug.doc.ic.ac.uk/people/gtrigeorgis" target="_blank"><i class="fa fa-bug" style="color: black; font-size:120%;"></i></a>
+<a href="https://scholar.google.com/citations?user=WL_xXbQAAAAJ" target="_blank"><i class="fa fa-graduation-cap" style="color: black; font-size:120%;"></i></a>
+<a href="https://facebook.com/gtrigeorgis" target="_blank"><i class="fa fa-facebook-square" style="color: black; font-size:120%;"></i></a>
+<a href="https://www.linkedin.com/in/trigeorgis" target="_blank"><i class="fa fa-linkedin-square" style="color: black; font-size:120%;"></i></a>
+<a href="https://twitter.com/trigeorgis" target="_blank"><i class="fa fa-twitter-square" style="color: black; font-size:120%;"></i></a>
+</p>
+
+George received his MEng in Computer Science from [Imperial College London][imperial], U.K. in 2013. As of October 2013, he is a Ph.D. candidate under the supervision of [Dr. Stefanos Zafeiriou][stefanos_personal]. His research interests include deep learning, matrix factorisation, computer vision, and emotion recognition.
+
+<div style="clear: both;"></div>
+
+---------------------------------------
+
 ### Dr. Stefanos Zafeiriou
 <p style="float: left;">
 <img alt="Dr. Stefanos Zafeiriou" src="portraits/stefanos.png" style="border:1px solid #021a40; margin-right: 20px;"></br>
