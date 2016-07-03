@@ -59,7 +59,7 @@ All of the code is Open Source and can be found over on the [Menpo Github Organi
 
 ## Packages
 
-The Menpo project is a consists of a family of packages (primarily Python), each designed to solve one problem well:
+The Menpo Project consists of a family of packages (primarily Python), each designed to solve one problem well:
 
 <div>
 <p style="float: left; padding-right: 10px;">
