@@ -8,7 +8,7 @@
         <title>Options Widgets | The Menpo Project</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 2.6.2">
         <meta name="author" content="The Menpo Team">
         
         <meta name="HandheldFriendly" content="true"/>
@@ -61,7 +61,7 @@
         data-chapter-title="Options Widgets"
         data-filepath="menpowidgets/options_widgets.md"
         data-basepath=".."
-        data-revision="Mon Jun 27 2016 15:01:49 GMT-0700 (PDT)"
+        data-revision="Mon Jul 04 2016 14:16:30 GMT+0100 (BST)"
         data-innerlanguage="">
     
 
@@ -1230,14 +1230,14 @@
 <h3 id="3-animation-options"><a name="animation"></a>3. Animation Options</h3>
 <p>The aim of this widget is to allow the user to browse through a set of objects (e.g. images, shapes, etc.). Thus, it provides the ability to select an index by some controllers (e.g. slider or buttons). It also provides the ability to play an animation of the objects. The functionality of the buttons is the following:</p>
 <blockquote>
-<p><i class="fa fa-plus">&lt;/i&gt;  Next object.<br>
+<p><i class="fa fa-plus"></i>  Next object.<br>
   <i class="fa fa-minus"></i>  Previous object.<br>
-  <i class="fa fa-play">&lt;/i&gt;  Start the animation playback.<br>
+  <i class="fa fa-play"></i>  Start the animation playback.<br>
   <i class="fa fa-stop"></i>  Stop the animation playback.<br>
-  <i class="fa fa-fast-forward">&lt;/i&gt;  Increase the animation&apos;s speed.<br>
+  <i class="fa fa-fast-forward"></i>  Increase the animation&apos;s speed.<br>
   <i class="fa fa-fast-backward"></i>  Decrease the animation&apos;s speed.<br>
-  <i class="fa fa-repeat">&lt;/i&gt;  Repeat mode is enabled.<br>
-  <i class="fa fa-long-arrow-right"></i>  Repeat mode is disabled.</i></i></i></i></p>
+  <i class="fa fa-repeat"></i>  Repeat mode is enabled.<br>
+  <i class="fa fa-long-arrow-right"></i>  Repeat mode is disabled.</p>
 </blockquote>
 <p>The initial options are defined as a <code>dict</code>. We also define a <code>render_function()</code> that prints the selected options.</p>
 <pre><code class="lang-python"><span class="hljs-comment"># Initial options</span>
@@ -1510,14 +1510,14 @@ plot_wid
 </ul>
 <p>Also, the widget is able to animate itself, by linearly changing the value of each parameter from zero to minimum to maximum and then back to zero. The functionality of each button is as follows:</p>
 <blockquote>
-<p><i class="fa fa-play">&lt;/i&gt;  Start the animation playback.<br>
+<p><i class="fa fa-play"></i>  Start the animation playback.<br>
   <i class="fa fa-stop"></i>  Stop the animation playback.<br>
-  <i class="fa fa-fast-forward">&lt;/i&gt;  Increase the animation&apos;s speed.<br>
+  <i class="fa fa-fast-forward"></i>  Increase the animation&apos;s speed.<br>
   <i class="fa fa-fast-backward"></i>  Decrease the animation&apos;s speed.<br>
-  <i class="fa fa-repeat">&lt;/i&gt;  Repeat mode is enabled.<br>
+  <i class="fa fa-repeat"></i>  Repeat mode is enabled.<br>
   <i class="fa fa-long-arrow-right"></i>  Repeat mode is disabled.<br>
   <em>Reset</em>  Reset the values of all parameters to <code>0</code>.<br>
-  <em>Variance</em>  Plot the variance of the model.</i></i></i></p>
+  <em>Variance</em>  Plot the variance of the model.</p>
 </blockquote>
 <p>Let&apos;s define a render function that prints the selected parameter values, a toy variance plotting function and create an instance of the widget:</p>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render_function</span><span class="hljs-params">(change)</span>:</span>
@@ -1562,10 +1562,10 @@ res_wid
 <pre><code class="lang-python">res_wid.set_widget_state(has_gt_shape=<span class="hljs-keyword">True</span>, has_initial_shape=<span class="hljs-keyword">False</span>, has_image=<span class="hljs-keyword">False</span>, allow_callback=<span class="hljs-keyword">True</span>)
 </code></pre>
 <h3 id="11-iterative-result-options"><a name="iterative_result"></a>11. Iterative Result Options</h3>
-<p>This widget is a more advanced version of <a href="a name=&quot;result&quot;"><code>ResultOptionsWidget</code></a>. It provides options for both a simple result object (i.e. <code>Result</code> in <code>menpofit.result</code>) as well as an iterative result object (i.e. <code>MultiScaleParametricIterativeResult</code> and <code>MultiScaleNonParametricIterativeResult</code>).</p>
+<p>This widget is a more advanced version of <a href="a%20name=%22result%22"><code>ResultOptionsWidget</code></a>. It provides options for both a simple result object (i.e. <code>Result</code> in <code>menpofit.result</code>) as well as an iterative result object (i.e. <code>MultiScaleParametricIterativeResult</code> and <code>MultiScaleNonParametricIterativeResult</code>).</p>
 <p>It has two tabs:</p>
 <ul>
-<li><code>Final</code>: It has the same functionalities as <a href="a name=&quot;result&quot;"><code>ResultOptionsWidget</code></a>. Its purpose is to visualise the final result of the fitting procedure.</li>
+<li><code>Final</code>: It has the same functionalities as <a href="a%20name=%22result%22"><code>ResultOptionsWidget</code></a>. Its purpose is to visualise the final result of the fitting procedure.</li>
 <li><code>Iterations</code>: This visualises the iterations of the fitting procedure either as an animation or in static figures.</li>
 </ul>
 <p>Moreover, the widget has a <code>tab_update_function</code> argument that expects a function that gets called when the tab selection changes. The purpose is to update a potential rendering options widget, because not the same options apply for visualising the final result and the iterations of a fitting process.</p>
@@ -1649,6 +1649,10 @@ save_wid
     
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1666,7 +1670,7 @@ save_wid
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-52093814-1","configuration":"auto"},"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

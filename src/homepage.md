@@ -36,7 +36,7 @@
 <!---
 MAIN DESCRIPTION
 -->
-The Menpo Project is a set of BSD 3-Clause licensed Python frameworks and associated tooling that provide end-to-end solutions for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
+The Menpo Project is a set of BSD licensed Python frameworks and associated tooling that provide end-to-end solutions for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
 
 * Active Appearance Model (AAM)
 * Supervised Descent Method (SDM)

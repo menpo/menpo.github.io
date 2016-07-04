@@ -8,7 +8,7 @@
         <title>MenpoFit Widgets | The Menpo Project</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 2.6.2">
         <meta name="author" content="The Menpo Team">
         
         <meta name="HandheldFriendly" content="true"/>
@@ -61,7 +61,7 @@
         data-chapter-title="MenpoFit Widgets"
         data-filepath="menpowidgets/main_menpofit_widgets.md"
         data-basepath=".."
-        data-revision="Mon Jun 27 2016 15:01:49 GMT-0700 (PDT)"
+        data-revision="Mon Jul 04 2016 14:16:30 GMT+0100 (BST)"
         data-innerlanguage="">
     
 
@@ -1212,7 +1212,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 <ul>
 <li><strong>style</strong>: It can be either <code>&apos;coloured&apos;</code> or <code>&apos;minimal&apos;</code>. The <code>&apos;coloured&apos;</code> style uses a colouring theme that is different for each widget. The <code>&apos;minimal&apos;</code> style is very simple with black and white colours.</li>
 <li><strong>figure_size</strong>: This argument is a <code>tuple</code> that defines the size of the rendered figure in inches. The figure size can also be controlled from the <em>Renderer</em> options within the widgets.</li>
-<li><strong>browser_style</strong>: It can be either <code>&apos;buttons&apos;</code> or <code>&apos;slider&apos;</code>. This argument exists in widgets that visualize a list of objects (e.g. shape models or fitting results). If <code>&apos;buttons&apos;</code>, then the object selection will be done by the <i class="fa fa-plus">&lt;/i&gt; / <i class="fa fa-minus"></i> buttons. If <code>&apos;slider&apos;</code>, then the object selection is done using a slider widget.</i></li>
+<li><strong>browser_style</strong>: It can be either <code>&apos;buttons&apos;</code> or <code>&apos;slider&apos;</code>. This argument exists in widgets that visualize a list of objects (e.g. shape models or fitting results). If <code>&apos;buttons&apos;</code>, then the object selection will be done by the <i class="fa fa-plus"></i> / <i class="fa fa-minus"></i> buttons. If <code>&apos;slider&apos;</code>, then the object selection is done using a slider widget.</li>
 </ul>
 <p>Note that all widgets can get as input a <code>list</code> of objects with totally different attributes between them. For example, <code>list</code> of results with different number of shapes or <code>list</code> of <code>PCAModel</code> with different number of parameters. Finally, they all have a <em>Renderer</em> tab that has many rendering-related options (such as lines, markers, axes, legend, grid, image) and an <em>Export</em> tab that allows the user to save the figure to file.</p>
 <h3 id="2-train-models"><a name="train"></a>2. Train Models</h3>
@@ -1416,6 +1416,10 @@ final_errors = [r.final_error() <span class="hljs-keyword">for</span> r <span cl
     
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1433,7 +1437,7 @@ final_errors = [r.final_error() <span class="hljs-keyword">for</span> r <span cl
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-52093814-1","configuration":"auto"},"toggle-chapters":{},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
