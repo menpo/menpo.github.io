@@ -4,5 +4,10 @@
   "structure": {
     "readme": "homepage.md"
   },
-  "plugins": ["toggle-chapters", "katex"]
+  "plugins": ["toggle-chapters", "katex", "ga"]
+  "pluginsConfig": {
+      "ga": {
+          "token": "UA-52093814-1"
+      }
+  }
 }
