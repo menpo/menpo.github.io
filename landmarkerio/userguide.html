@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >User Guide</a>
+        <a href="../../src" >User Guide</a>
     </h1>
 </div>
 
@@ -1092,7 +1092,7 @@
 <li><a href="#annotating">Annotating</a>  </li>
 <li><a href="#view_options">View options</a></li>
 <li><a href="#landmark_sidebar">Landmark sidebar</a></li>
-<li><a href="#autsave">Autosave behaviour</a></li>
+<li><a href="#autosave">Autosave behaviour</a></li>
 <li><a href="#shortcuts">Keyboard shortcuts</a></li>
 <li><a href="#data_sources">Data sources</a></li>
 <li><a href="#server">The landmarker server</a></li>
@@ -1100,11 +1100,11 @@
 <li><a href="#security">Note on security</a></li>
 </ol>
 <hr>
-<h3 id="1-annotating-assets"><a name="annotating_assets"></a>1. Annotating assets</h3>
+<h3 id="annotating_assets">1. Annotating assets </h3>
 <p>The landmarker can be used to annotate either 2D assets (images) or 3D assets (meshes).</p>
 <p>However, in its current state, it can currently only work in one 2 modes image or mesh and annotate the corresponding type of assets at any one time. (This is a legacy concern we plan to adress).</p>
 <p>The annotations are saved as landmark groups compliant with a given template.</p>
-<h3 id="2-switching-assets-and-data-source"><a name="switching_assets"></a>2. Switching assets and data source</h3>
+<h3 id="switching_assets">2. Switching assets and data source </h3>
 <p>Regardless of the data source, the assets are identifiable by their name (id) or by their index. They are organized into a collection in which you can navigate with the arrow buttons at the bottom of the screen or the <code>j</code> and <code>k</code> keys.</p>
 <p>You can quickly identify this data in the top left of the screen and click on any of these elements to switch asset:</p>
 <p><img src="http://i.imgur.com/eERY2pm.png" alt=""></p>
@@ -1115,7 +1115,7 @@
 <li>Asset index</li>
 </ul>
 <p>If they appear greyed out, there is no possibility to change them (for example a one item collection will not allow changing the asset)</p>
-<h3 id="3-annotating"><a name="annotating"></a>3. Annotating</h3>
+<h3 id="annotating">3. Annotating </h3>
 <p><em>Video demonstrating everything to come soon</em></p>
 <p>Once logged in and working on an asset, landmarking is pretty straightforward:</p>
 <ul>
@@ -1126,21 +1126,21 @@
 <li>Hold left click to rotate a mesh</li>
 <li>Hold right click to translate the mesh or the image (left click as well for images)</li>
 </ul>
-<h3 id="4-view-options"><a name="view_options"></a>4. View options</h3>
+<h3 id="view_options">4. View options </h3>
 <p><img src="http://i.imgur.com/VVFVYd0.png" alt=""></p>
 <p>Some view options are available in the bottom left corner of the screen to hide/show the texture of the mesh and the links between connected landmarks.</p>
 <p>The <code>snap</code> setting will disable the auto selection of closest landmark as well as the visual feedback. This is useful in cases with densely packed landmarks where click and drag can be more precise.</p>
 <p>The slider controls the size of the landmarks relative to the asset&apos;s dimensions. You can also update this in increments by hitting <code>+</code> or <code>-</code>.</p>
-<h3 id="5-landmark-sidebar"><a name="landmark_sidebar"></a>5. Landmark sidebar</h3>
+<h3 id="landmark_sidebar">5. Landmark sidebar </h3>
 <p>The sidebar in the bottom right of the screen mirrors what is happening on the screen. Landmarks in blue are existing landmarks, they are highlighted in purple once selected (by hovering near them or clicking them with snap disabled). Empty landmarks or in clear grey and the next one to be inserted is highlighted in orange. You can click on any empty landmark to set it to be inserted next, otherwise the default logic is to take the first available one from the top.</p>
 <p>The top bar has undo / redo buttons on the left and the current template name on the right. You can click on the template name to change the template if applicable.</p>
 <p>The save button, gives you the ability to save landmarks <strong>remotely</strong> and displays a red dot if there are any unsaved changes.</p>
 <p>The download button will generate a json file of the current landmarks and initiate a download (on older browsers and Safari this will open a new tab/window with the json content).</p>
 <p>If the current asset is not the first one in the collection, a <code>LOAD PREVIOUS</code> button is available, this will fetch the landmarks from the previous asset to replace the current set with. This is a destructive operation and can be undone, however for added security it will not save afterwards.</p>
-<h3 id="6-autosave-behaviour"><a name="autosave"></a>6. Autosave behaviour</h3>
+<h3 id="autosave">6. Autosave behaviour </h3>
 <p>If the autosave switch is on (it is by default), anytime you leave an asset, the changes will be saved (you should see a notification in the center of the screen). This currently applies to navigating with <code>j/k</code>, the pager at the bottom or changing asset manually by clicking on the index or name.</p>
 <p>If it is off, it will not be possible to leave an asset with unsaved changes, a confirmation modal will be displayed allowing to leave or go back and save. This adds security if you want to ensure that saving changes remotely is a conscious operation.</p>
-<h3 id="7-keyboard-shortcuts"><a name="shortcuts"></a>7. Keyboard shortcuts</h3>
+<h3 id="shortcuts">7. Keyboard shortcuts </h3>
 <p>A list of keyboard shortcuts is available by clicking the help button in the bottom right corner of the screen or hitting <code>?</code>. The main ones to be aware of are:</p>
 <table>
 <thead>
@@ -1184,23 +1184,23 @@
 </tr>
 </tbody>
 </table>
-<h3 id="8-data-sources"><a name="data_sources"></a>8. Data sources</h3>
+<h3 id="data_sources">8. Data sources </h3>
 <p>The landmarker currently supports 2 data sources: Dropbox and the original custom landmarker server. On first visit, you&apos;ll see this landing page:</p>
 <p><img src="http://i.imgur.com/FhRlSOH.png" alt=""></p>
-<h3 id="9-the-landmarker-server"><a name="server"></a>9. The landmarker server</h3>
+<h3 id="server">9. The landmarker server </h3>
 <p>See the <a href="https://github.com/menpo/landmarkerio-server" target="_blank">landmarker-server</a> repo for info about running your own server.</p>
 <p>You can access a server by clicking on the second button and entering a url in the subsequent prompt, or directly using the url query string:</p>
 <p><code>https://www.landmarker.io?server=SERVERURL&amp;t=TEMPLATENAME&amp;c=COLLECTIONNAME&amp;i=ASSETINDEX</code></p>
 <p>Apart the <code>server</code> parameter which needs to be a valid and reachable url, you can specify the template name with <code>t</code>, collection name with <code>c</code> and asset index with <code>i</code> on load. If they are not specified or invalid (as in not present in the server&apos;s data), the landmarker will pick the first available item.</p>
 <p>The mode is fetched automatically from the server.</p>
 <p>The server will load templates by itself by generating empty landmark groups compliant with the selected template if none is present. As such it is not possible to specify custom template when working from the server.</p>
-<h3 id="10-dropbox"><a name="dropbox"></a>10. Dropbox</h3>
+<h3 id="dropbox">10. Dropbox </h3>
 <p>If you selected dropbox from the landing page, you&apos;ll be presented with a filepicker like this one:</p>
 <p><img src="http://i.imgur.com/VAbnSYh.png" alt=""></p>
 <p>Select the type of assets you want to load (images / meshes), as well as the folder - you can can navigate down the true to check the content of the folder. Note that all assets of the selected types will be loaded.</p>
 <p>Once this is done, one of the default templates will have been selected for you, you can change this template and / or import one from dropbox by clicking on the template name in the right sidebar and then on the <code>+</code> button. To avoid collisions, importing a template with the same name as one which already exits will import it with as <code>[name]-1</code> and so on, so you can work with different versions of a template.</p>
 <p>Landmarks will be saved in the same folder under a <code>landmarks</code> folder with the scheme <code>[asset-name]_[template-name].ljson</code></p>
-<h3 id="11-note-on-security"><a name="security"></a>11. Note on security</h3>
+<h3 id="security">11. Note on security </h3>
 <p>The main application runs on a secure connection at <a href="https://www.landmarker.io" target="_blank">https://www.landmarker.io</a>, on this version we disallow using a non secure server in this mode due to the mixed content security concerns (see <a href="https://developer.mozilla.org/en/docs/Security/MixedContent" target="_blank">this article</a> from Mozilla or <a href="http://www.howtogeek.com/181911/htg-explains-what-exactly-is-a-mixed-content-warning/" target="_blank">this one</a> from How To Geek for more information).</p>
 <p>As a result it is not possible to use a local server from this connection, however another version is deployed on a regular http connection at <a href="http://insecure.landmarker.io/" target="_blank">http://insecure.landmarker.io/</a> which will allow it. This version will however not allow you to connect to dropbox which is only possible on the https version. You can use <a href="https://ngrok.com/" target="_blank">ngrok</a> in order to expose a local server behind https.</p>
 
@@ -1246,7 +1246,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"User Guide","level":"1.9.2","depth":2,"next":{"title":"Snap Mode","level":"1.9.3","depth":2,"path":"landmarkerio/snap_mode.md","ref":"landmarkerio/snap_mode.md","articles":[]},"previous":{"title":"Specifications","level":"1.9.1","depth":2,"path":"landmarkerio/specifications.md","ref":"landmarkerio/specifications.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"landmarkerio/userguide.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"User Guide","level":"1.9.2","depth":2,"next":{"title":"Snap Mode","level":"1.9.3","depth":2,"path":"landmarkerio/snap_mode.md","ref":"landmarkerio/snap_mode.md","articles":[]},"previous":{"title":"Specifications","level":"1.9.1","depth":2,"path":"landmarkerio/specifications.md","ref":"landmarkerio/specifications.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"landmarkerio/userguide.md","mtime":"2016-07-18T16:43:02.325Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

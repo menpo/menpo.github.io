@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >MenpoFit Widgets</a>
+        <a href="../../src" >MenpoFit Widgets</a>
     </h1>
 </div>
 
@@ -1105,7 +1105,7 @@ This can be done by running<br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-<h3 id="1-basics"><a name="basics"></a>1. Basics</h3>
+<h3 id="basics">1. Basics </h3>
 <p>Let&apos;s first import all the widgets:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> (visualize_shape_model, visualize_appearance_model, visualize_aam,
                           visualize_atm, visualize_patch_appearance_model, visualize_patch_aam,
@@ -1119,7 +1119,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 <li><strong>browser_style</strong>: It can be either <code>&apos;buttons&apos;</code> or <code>&apos;slider&apos;</code>. This argument exists in widgets that visualize a list of objects (e.g. shape models or fitting results). If <code>&apos;buttons&apos;</code>, then the object selection will be done by the <i class="fa fa-plus">&lt;/i&gt; / <i class="fa fa-minus"></i> buttons. If <code>&apos;slider&apos;</code>, then the object selection is done using a slider widget.</i></li>
 </ul>
 <p>Note that all widgets can get as input a <code>list</code> of objects with totally different attributes between them. For example, <code>list</code> of results with different number of shapes or <code>list</code> of <code>PCAModel</code> with different number of parameters. Finally, they all have a <em>Renderer</em> tab that has many rendering-related options (such as lines, markers, axes, legend, grid, image) and an <em>Export</em> tab that allows the user to save the figure to file.</p>
-<h3 id="2-train-models"><a name="train"></a>2. Train Models</h3>
+<h3 id="train">2. Train Models </h3>
 <p>Before moving on, let&apos;s train some models. First let&apos;s import what is needed.</p>
 <pre><code class="lang-python">%matplotlib inline
 <span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
@@ -1205,7 +1205,7 @@ Found 10 assets, index the returned LazyList to import.
 <pre><code>- Computing reference shape                                                     Computing batch 0
 - Training models
   - Done
-</code></pre><h3 id="3-holistic-aam-and-atm-widgets"><a name="holistic"></a>3. Holistic AAM and ATM Widgets</h3>
+</code></pre><h3 id="holistic">3. Holistic AAM and ATM Widgets </h3>
 <p>The shape models and appearance models of the Holistic AAM can be visualised as:</p>
 <pre><code class="lang-python">aam.view_shape_models_widget()
 </code></pre>
@@ -1226,7 +1226,7 @@ visualize_aam(aam)
 <pre><code class="lang-python">atm.view_atm_widget()
 </code></pre>
 <p><img src="MenpoFit%20Widgets_files/MenpoFit%20Widgets_24_0.png" alt="png"></p>
-<h3 id="4-patch-based-aam-and-atm-widgets"><a name="patch_based"></a>4. Patch-based AAM and ATM Widgets</h3>
+<h3 id="patch_based">4. Patch-based AAM and ATM Widgets </h3>
 <p>Similarly to the holistic case, the patch-based AAM can be visualised as follows:</p>
 <pre><code class="lang-python">patch_aam.view_appearance_models_widget()
 </code></pre>
@@ -1238,7 +1238,7 @@ visualize_aam(aam)
 <pre><code class="lang-python">patch_atm.view_atm_widget()
 </code></pre>
 <p><img src="MenpoFit%20Widgets_files/MenpoFit%20Widgets_29_0.png" alt="png"></p>
-<h3 id="5-clm-widgets"><a name="clm"></a>5. CLM Widgets</h3>
+<h3 id="clm">5. CLM Widgets </h3>
 <p>Let&apos;s also visualize the CLM widgets:</p>
 <pre><code class="lang-python">clm.view_expert_ensemble_widget()
 </code></pre>
@@ -1246,7 +1246,7 @@ visualize_aam(aam)
 <pre><code class="lang-python">clm.view_clm_widget()
 </code></pre>
 <p><img src="MenpoFit%20Widgets_files/MenpoFit%20Widgets_32_0.png" alt="png"></p>
-<h3 id="6-fitting-result"><a name="result"></a>6. Fitting Result</h3>
+<h3 id="result">6. Fitting Result </h3>
 <p>Let&apos;s fit the patch-based AAM on the test images in order to create a list of iterative fitting results.</p>
 <pre><code class="lang-python">fitter = LucasKanadeAAMFitter(patch_aam, n_shape=[<span class="hljs-number">3</span>, <span class="hljs-number">12</span>], n_appearance=<span class="hljs-number">150</span>)
 fitting_results = []
@@ -1285,7 +1285,7 @@ visualize_fitting_result(frs)
 </code></pre>
 <p><img src="MenpoFit%20Widgets_files/MenpoFit%20Widgets_40_0.png" alt="png"></p>
 <p>Note that the widget adapts itself to the properties of each fitting result object.</p>
-<h3 id="7-cumulative-error-distributuon"><a name="ced"></a>7. Cumulative Error Distributuon</h3>
+<h3 id="ced">7. Cumulative Error Distributuon </h3>
 <p>The fitting errors can be nicely visualized with a widget for plotting Cumulative Error Distributions (CED). Let&apos;s first create a <code>list</code> with the initial and final fitting errors.</p>
 <pre><code class="lang-python">initial_errors = [r.initial_error() <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> fitting_results]
 final_errors = [r.final_error() <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> fitting_results]
@@ -1337,7 +1337,7 @@ final_errors = [r.final_error() <span class="hljs-keyword">for</span> r <span cl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"next":{"title":"Widgets Components","level":"1.6.2","depth":2,"path":"menpowidgets/components.md","ref":"menpowidgets/components.md","articles":[{"title":"Options Widgets","level":"1.6.2.1","depth":3,"path":"menpowidgets/options_widgets.md","ref":"menpowidgets/options_widgets.md","articles":[]},{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]}]},"previous":{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"path":"menpowidgets/main_menpo_widgets.md","ref":"menpowidgets/main_menpo_widgets.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpowidgets/main_menpofit_widgets.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"next":{"title":"Widgets Components","level":"1.6.2","depth":2,"path":"menpowidgets/components.md","ref":"menpowidgets/components.md","articles":[{"title":"Options Widgets","level":"1.6.2.1","depth":3,"path":"menpowidgets/options_widgets.md","ref":"menpowidgets/options_widgets.md","articles":[]},{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]}]},"previous":{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"path":"menpowidgets/main_menpo_widgets.md","ref":"menpowidgets/main_menpo_widgets.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpowidgets/main_menpofit_widgets.md","mtime":"2016-07-18T16:24:52.852Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

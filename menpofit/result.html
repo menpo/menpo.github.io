@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Fitting Result</a>
+        <a href="../../src" >Fitting Result</a>
     </h1>
 </div>
 
@@ -1091,14 +1091,14 @@
 <li><a href="#attributes">Attributes</a></li>
 </ol>
 <hr>
-<h3 id="1-result-objects"><a name="objects"></a>1. Result Objects</h3>
+<h3 id="objects">1. Result Objects </h3>
 <p>The fitting methods of the <code>Fitters</code> presented in the <a href="fitting.html">previous section</a> return a result object. <code>menpofit</code> has three basic fitting result objects:</p>
 <ul>
 <li><code>Result</code>: Basic fitting result object that holds the final shape, and optionally, the initial shape, ground truth shape and the image.</li>
 <li><code>MultiScaleNonParametricIterativeResult</code>: The result of a multi-scale iterative fitting procedure. Apart from the final shape, it also stores the shapes acquired at each fitting iteration.</li>
 <li><code>MultiScaleParametricIterativeResult</code>: The same as <code>MultiScaleNonParametricIterativeResult</code> with the difference that the optimization was performed over the parameters of a statistical parametric shape model. Thus, apart from the actual shapes, it also stores the shape parameters acquired per iteration. <em>Note that in this case, the initial shape that was provided by the user gets reconstructed using the shape model, i.e. it first gets projected in order to get the initial estimation of the shape parameters, and then gets reconstructed with those</em>. The resulting shape is then used as initialization for the iterative fitting process.</li>
 </ul>
-<h3 id="2-attributes"><a name="attributes"></a>2. Attributes</h3>
+<h3 id="attributes">2. Attributes </h3>
 <p>The above result objects can provide some very useful information regarding the fitting procedure. For example, the various shapes can be retrieved as:</p>
 <p><strong>result.final_shape</strong><br>The final shape of the fitting procedure.</p>
 <p><strong>result.initial_shape</strong><br>The initial shape of the fitting procedure that was provided by the user.</p>
@@ -1154,7 +1154,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fitting Result","level":"1.4.1.4","depth":3,"next":{"title":"Visualizing Objects","level":"1.4.1.5","depth":3,"path":"menpofit/visualization.md","ref":"menpofit/visualization.md","articles":[]},"previous":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpofit/result.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fitting Result","level":"1.4.1.4","depth":3,"next":{"title":"Visualizing Objects","level":"1.4.1.5","depth":3,"path":"menpofit/visualization.md","ref":"menpofit/visualization.md","articles":[]},"previous":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/result.md","mtime":"2016-07-18T15:57:04.500Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

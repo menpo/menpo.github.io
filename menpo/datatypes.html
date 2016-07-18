@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Data Types</a>
+        <a href="../../src" >Data Types</a>
     </h1>
 </div>
 
@@ -1091,7 +1091,7 @@
 <li><a href="#keypoints">Key Points</a></li>
 </ol>
 <hr>
-<h3 id="1-why-have-menpo-types---whats-wrong-with-numpy-arrays"><a name="why"></a>1. Why have Menpo types - what&apos;s wrong with numpy arrays?</h3>
+<h3 id="why">1. Why have Menpo types - what&apos;s wrong with numpy arrays? </h3>
 <p><code>menpo</code>&apos;s data types are thin wrappers around <code>numpy</code> arrays. They give semantic meaning to the underlying array through providing clearly named and consistent properties. As an example let&apos;s take a look at <code>PointCloud</code>, <code>menpo</code>&apos;s workhorse for spatial data. Construction requires a <code>numpy</code> array:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">from</span> menpo.shape <span class="hljs-keyword">import</span> PointCloud
@@ -1137,7 +1137,7 @@ Let&apos;s imagine a routine that does some operation on an image and a related 
     ...
 </code></pre>
 <p>This time it&apos;s immediately apparent what <code>y</code>&apos;s shape is. Although this is a somewhat contrived example, you will find this pattern applied consistently across <code>menpo</code>, and it aids greatly in keeping the code readable.</p>
-<h3 id="2-key-points"><a name="keypoints"></a>2. Key Points</h3>
+<h3 id="keypoints">2. Key Points </h3>
 <p><strong>Menpo types always store the underlying numpy array in an easy to access attribute.</strong> For the <code>PointCloud</code> family it&apos;s <code>.points</code>. On <code>Image</code> and subclasses, it&apos;s <code>.pixels</code>.</p>
 <p><strong>Menpo types store the minimal amount of data possible.</strong> For the vast majority of Menpo types, the only data stored in the class is the single numpy array the type wraps. This makes it easy to reason about Menpo types - if you swap out the <code>.pixels</code> array on an <code>Image</code> instance for a new numpy array and <code>print(image.width)</code> you will get the correct answer for the new array, as all properties are computed from <code>.pixels</code>.</p>
 <p><strong>Menpo types print really nicely.</strong> If you are ever unsure what an object is, just <code>print()</code> it to get an immediate summary:</p>
@@ -1147,7 +1147,7 @@ print(pointcloud)
 <span class="hljs-comment"># PointCloud: n_points: 68, n_dims: 2</span>
 </code></pre>
 <p><strong>Importing assets though <a href="http://docs.menpo.org/en/stable/api/menpo/io/index.html" target="_blank"><code>menpo.io</code></a> will result in our data containers, not <code>numpy</code> arrays</strong>. This means in a lot of situations you never need to remember the <code>menpo</code> conventions for ordering of array data - just ask for an image and you will get an <code>Image</code> object.</p>
-<p><strong>Menpo types behave as immutable data containers</strong>. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it&apos;s own numpy array. </p>
+<p><strong>Menpo types behave as immutable data containers</strong>. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it&apos;s own numpy array.</p>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
 img = mio.import_builtin_asset.lenna_png()
 img_resized = img.resize((<span class="hljs-number">200</span>, <span class="hljs-number">200</span>))
@@ -1209,7 +1209,7 @@ print(greyscale_vector)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Data Types","level":"1.3.2","depth":2,"next":{"title":"Consistency","level":"1.3.3","depth":2,"path":"menpo/consistency.md","ref":"menpo/consistency.md","articles":[]},"previous":{"title":"Introduction","level":"1.3.1","depth":2,"path":"menpo/introduction.md","ref":"menpo/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpo/datatypes.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Data Types","level":"1.3.2","depth":2,"next":{"title":"Consistency","level":"1.3.3","depth":2,"path":"menpo/consistency.md","ref":"menpo/consistency.md","articles":[]},"previous":{"title":"Introduction","level":"1.3.1","depth":2,"path":"menpo/introduction.md","ref":"menpo/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpo/datatypes.md","mtime":"2016-07-18T15:45:43.892Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

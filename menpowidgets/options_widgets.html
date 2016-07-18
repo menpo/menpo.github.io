@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Options Widgets</a>
+        <a href="../../src" >Options Widgets</a>
     </h1>
 </div>
 
@@ -1104,7 +1104,7 @@
 <li><a href="#save">Save Figure Options</a></li>
 </ol>
 <hr>
-<h3 id="1-basics"><a name="basics"></a>1. Basics</h3>
+<h3 id="basics">1. Basics </h3>
 <p>All the widgets presented here are subclasses of <code>menpo.abstract.MenpoWidget</code>, thus they follow the same rules, which are:</p>
 <ul>
 <li>They expect as input the rendering callback function.</li>
@@ -1116,7 +1116,7 @@
 <ul>
 <li><code>predefined_style()</code> which sets a predefined theme on the widget. Possible themes are <code>&apos;minimal&apos;</code>, <code>&apos;success&apos;</code>, <code>&apos;info&apos;</code>, <code>&apos;warning&apos;</code> and <code>&apos;danger&apos;</code>.</li>
 </ul>
-<h3 id="2-widgets-with-memory"><a name="mnemonic"></a>2. Widgets with Memory</h3>
+<h3 id="mnemonic">2. Widgets with Memory </h3>
 <p>All the widgets of this notebook have memory. Specifically, <em>they have the ability to recognize objects with the same properties and use the same options.</em> This becomes more clear in the <a href="main_widgets.html">Main Widgets section</a>.</p>
 <p>However, in order to make this more clear, assume the following simplistic scenario:</p>
 <blockquote>
@@ -1131,7 +1131,7 @@
 <span class="hljs-keyword">from</span> menpowidgets.menpofit.options <span class="hljs-keyword">import</span> ResultOptionsWidget, IterativeResultOptionsWidget
 <span class="hljs-keyword">from</span> menpo.visualize <span class="hljs-keyword">import</span> print_dynamic
 </code></pre>
-<h3 id="3-animation-options"><a name="animation"></a>3. Animation Options</h3>
+<h3 id="animation">3. Animation Options </h3>
 <p>The aim of this widget is to allow the user to browse through a set of objects (e.g. images, shapes, etc.). Thus, it provides the ability to select an index by some controllers (e.g. slider or buttons). It also provides the ability to play an animation of the objects. The functionality of the buttons is the following:</p>
 <blockquote>
 <p><i class="fa fa-plus">&lt;/i&gt;  Next object.<br>
@@ -1175,7 +1175,7 @@ anim_wid.replace_render_function(new_render_function)
 <pre><code class="lang-python">anim_wid.set_widget_state({<span class="hljs-string">&apos;min&apos;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&apos;max&apos;</span>: <span class="hljs-number">20</span>, <span class="hljs-string">&apos;step&apos;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&apos;index&apos;</span>: <span class="hljs-number">16</span>},
                           allow_callback=<span class="hljs-keyword">False</span>)
 </code></pre>
-<h3 id="4-channels-options"><a name="channels"></a>4. Channels Options</h3>
+<h3 id="channels">4. Channels Options </h3>
 <p>The aim of this widget is to allow the user to select options related to the channels of an <code>Image</code>.</p>
 <p>It is assumed that an <code>Image</code> object is uniquely described by the following properties:</p>
 <ol>
@@ -1209,7 +1209,7 @@ chan_wid
 <p>When an unseen object is passed in, then the widget automatically assigns the following default options:</p>
 <pre><code class="lang-python">chan_wid.get_default_options(n_channels=<span class="hljs-number">100</span>, image_is_masked=<span class="hljs-keyword">False</span>)
 </code></pre>
-<h3 id="5-patches-options"><a name="patches"></a>5. Patches Options</h3>
+<h3 id="patches">5. Patches Options </h3>
 <p>The <code>PatchOptionsWidget</code> allows the selection of patches-related options, e.g. patches slicing, bounding boxes rendering, black/white background colour etc. It assumes that a patch-based image is uniquely defined by the following properties:</p>
 <ul>
 <li><code>n_patches</code>: The number of patches.</li>
@@ -1245,7 +1245,7 @@ print(<span class="hljs-string">&apos;\nObjects in memory (after): {}&apos;</spa
 <p>The default options that get assigned to an unseen object are:</p>
 <pre><code class="lang-python">pat_wid.get_default_options(n_patches=<span class="hljs-number">2</span>, n_offsets=<span class="hljs-number">20</span>)
 </code></pre>
-<h3 id="6-landmarks-options"><a name="landmarks"></a>6. Landmarks Options</h3>
+<h3 id="landmarks">6. Landmarks Options </h3>
 <p>The <code>LandmarkOptionsWidget</code> allows the selection of landmarks-related options, e.g. group, labels etc. It assumes that an object with landmarks (<code>LandmarkManager</code>) is uniquely defined by the following properties:</p>
 <ul>
 <li><code>group_keys</code>: The <code>list</code> of <code>LandmarkGroup</code> names.</li>
@@ -1291,7 +1291,7 @@ land_wid.replace_render_function(render_function)
 <p>The predefined style of the widget can be changed at any time as:</p>
 <pre><code class="lang-python">land_wid.predefined_style(<span class="hljs-string">&apos;warning&apos;</span>)
 </code></pre>
-<h3 id="7-renderer-options"><a name="renderer"></a>7. Renderer Options</h3>
+<h3 id="renderer">7. Renderer Options </h3>
 <p>The <code>RendererOptionsWidget</code> allows the selection of generic rendering options related to lines, markers, axes, legend, etc. It is a very powerful and flexible widget and it makes it very easy to select its parts. Its contructor requires two arguments:</p>
 <ul>
 <li><code>options_tabs</code>: It is a <code>list</code> that defines the nature as well as the ordering of the tabs of the widget. It can get the following values:</li>
@@ -1388,7 +1388,7 @@ rend_wid.replace_render_function(render_function)
 <p>Finally, the state of the widget can be updated with a new object as follows:</p>
 <pre><code class="lang-python">rend_wid.set_widget_state(labels=<span class="hljs-keyword">None</span>, allow_callback=<span class="hljs-keyword">True</span>)
 </code></pre>
-<h3 id="8-plot-options"><a name="plot"></a>8. Plot Options</h3>
+<h3 id="plot">8. Plot Options </h3>
 <p>The aim of this widget is to allow the user to select options related with plotting a graph with various curves. It can accomodate options for different curves that are related to markers and lines. It also has options regarding the legend, axes, grid, zoom and figure properties.</p>
 <p>The concept behind this widget is very similar to <a href="#renderer"><code>RendererOptionsWidget</code></a>. The two main differences are:</p>
 <ol>
@@ -1406,7 +1406,7 @@ plot_wid = PlotOptionsWidget(legend_entries=[<span class="hljs-string">&apos;men
                              style=<span class="hljs-string">&apos;danger&apos;</span>, tabs_style=<span class="hljs-string">&apos;info&apos;</span>)
 plot_wid
 </code></pre>
-<h3 id="9-linear-model-parameters"><a name="parameters"></a>9. Linear Model Parameters</h3>
+<h3 id="parameters">9. Linear Model Parameters </h3>
 <p>The aim of this widget is to tweak the parameters of a linear model to generate new instances. The user can select the number of parameters (<code>n_parameters</code>) and between two possible <code>mode</code> options:</p>
 <ul>
 <li><code>&apos;multiple&apos;</code>: In this case there will be a different slider per parameter.</li>
@@ -1447,7 +1447,7 @@ param_wid
                                         style=<span class="hljs-string">&apos;warning&apos;</span>)
 param_wid
 </code></pre>
-<h3 id="10-result-options"><a name="result"></a>10. Result Options</h3>
+<h3 id="result">10. Result Options </h3>
 <p>The aim of this widget is to provide options for visualising a <code>menpofit.result.Result</code> object. This means that the user can render the final fitting, initial shape as well as ground truth shape with or without the image. These shapes can be viewed either on separate or on the same figure. Note that the widget is &quot;smart&quot; enough to adjust in case there is not an initial shape, ground truth shape or image in the <code>Result</code> object.</p>
 <p>Let&apos;s create a rendering function and a widget instance:</p>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render_function</span><span class="hljs-params">(change)</span>:</span>
@@ -1465,11 +1465,11 @@ res_wid
 <p>Now, let&apos;s update the widget state with a new <code>Result</code> object that does not have the initial shape and the image object:</p>
 <pre><code class="lang-python">res_wid.set_widget_state(has_gt_shape=<span class="hljs-keyword">True</span>, has_initial_shape=<span class="hljs-keyword">False</span>, has_image=<span class="hljs-keyword">False</span>, allow_callback=<span class="hljs-keyword">True</span>)
 </code></pre>
-<h3 id="11-iterative-result-options"><a name="iterative_result"></a>11. Iterative Result Options</h3>
-<p>This widget is a more advanced version of <a href="a%20name=%22result%22"><code>ResultOptionsWidget</code></a>. It provides options for both a simple result object (i.e. <code>Result</code> in <code>menpofit.result</code>) as well as an iterative result object (i.e. <code>MultiScaleParametricIterativeResult</code> and <code>MultiScaleNonParametricIterativeResult</code>).</p>
+<h3 id="iterative_result">11. Iterative Result Options </h3>
+<p>This widget is a more advanced version of <a href="#result"><code>ResultOptionsWidget</code></a>. It provides options for both a simple result object (i.e. <code>Result</code> in <code>menpofit.result</code>) as well as an iterative result object (i.e. <code>MultiScaleParametricIterativeResult</code> and <code>MultiScaleNonParametricIterativeResult</code>).</p>
 <p>It has two tabs:</p>
 <ul>
-<li><code>Final</code>: It has the same functionalities as <a href="a%20name=%22result%22"><code>ResultOptionsWidget</code></a>. Its purpose is to visualise the final result of the fitting procedure.</li>
+<li><code>Final</code>: It has the same functionalities as <a href="#result"><code>ResultOptionsWidget</code></a>. Its purpose is to visualise the final result of the fitting procedure.</li>
 <li><code>Iterations</code>: This visualises the iterations of the fitting procedure either as an animation or in static figures.</li>
 </ul>
 <p>Moreover, the widget has a <code>tab_update_function</code> argument that expects a function that gets called when the tab selection changes. The purpose is to update a potential rendering options widget, because not the same options apply for visualising the final result and the iterations of a fitting process.</p>
@@ -1494,7 +1494,7 @@ res_wid
 <pre><code class="lang-python">res_wid.set_widget_state(has_gt_shape=<span class="hljs-keyword">False</span>, has_initial_shape=<span class="hljs-keyword">False</span>, has_image=<span class="hljs-keyword">True</span>, n_shapes=<span class="hljs-keyword">None</span>,
                          has_costs=<span class="hljs-keyword">False</span>, allow_callback=<span class="hljs-keyword">True</span>)
 </code></pre>
-<h3 id="12-text-print"><a name="text"></a>12. Text Print</h3>
+<h3 id="text">12. Text Print </h3>
 <p>The aim of this widget is to allow the user to print text within the widget area. For example:</p>
 <pre><code class="lang-python">text_per_line = [<span class="hljs-string">&apos;&gt; This is the&apos;</span>, <span class="hljs-string">&apos;&gt; Text Print widget!&apos;</span>, <span class="hljs-string">&apos;&gt; :-)&apos;</span>]
 
@@ -1504,7 +1504,7 @@ txt_wid
 <p>Of course the widget text can be updated as:</p>
 <pre><code class="lang-python">txt_wid.set_widget_state([<span class="hljs-string">&apos;M&apos;</span>, <span class="hljs-string">&apos;E&apos;</span>, <span class="hljs-string">&apos;N&apos;</span>, <span class="hljs-string">&apos;P&apos;</span>, <span class="hljs-string">&apos;O&apos;</span>])
 </code></pre>
-<h3 id="13-feature-options"><a name="features"></a>13. Feature Options</h3>
+<h3 id="features">13. Feature Options </h3>
 <p>This widget is very simple and is designed to be used by the <code>features_selection()</code> widget. It doesn&apos;t get any input options.</p>
 <pre><code class="lang-python">feat_wid = FeatureOptionsWidget(style=<span class="hljs-string">&apos;danger&apos;</span>)
 feat_wid
@@ -1513,7 +1513,7 @@ feat_wid
 <pre><code class="lang-python">print(feat_wid.features_function)
 print(feat_wid.features_options)
 </code></pre>
-<h3 id="14-save-figure-options"><a name="save"></a>14. Save Figure Options</h3>
+<h3 id="save">14. Save Figure Options </h3>
 <p>The aim of this widget is to allow the user to save a figure to file. It expects as input the renderer object that was used to render a figure (class <code>Renderer</code>).</p>
 <p>Let&apos;s first generate such a renderer by visualizing an image</p>
 <pre><code class="lang-python">%matplotlib inline
@@ -1570,7 +1570,7 @@ save_wid
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Options Widgets","level":"1.6.2.1","depth":3,"next":{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]},"previous":{"title":"Widgets Components","level":"1.6.2","depth":2,"path":"menpowidgets/components.md","ref":"menpowidgets/components.md","articles":[{"title":"Options Widgets","level":"1.6.2.1","depth":3,"path":"menpowidgets/options_widgets.md","ref":"menpowidgets/options_widgets.md","articles":[]},{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpowidgets/options_widgets.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Options Widgets","level":"1.6.2.1","depth":3,"next":{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]},"previous":{"title":"Widgets Components","level":"1.6.2","depth":2,"path":"menpowidgets/components.md","ref":"menpowidgets/components.md","articles":[{"title":"Options Widgets","level":"1.6.2.1","depth":3,"path":"menpowidgets/options_widgets.md","ref":"menpowidgets/options_widgets.md","articles":[]},{"title":"Tools Widgets","level":"1.6.2.2","depth":3,"path":"menpowidgets/tools_widgets.md","ref":"menpowidgets/tools_widgets.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpowidgets/options_widgets.md","mtime":"2016-07-18T16:27:27.785Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

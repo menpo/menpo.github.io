@@ -97,9 +97,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1068,7 +1068,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Visualization</a>
+        <a href="../../src" >Visualization</a>
     </h1>
 </div>
 
@@ -1105,7 +1105,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 </div></p>
 
 
-<h3 id="1-visualizing-2d-images"><a name="image"></a>1. Visualizing 2D Images</h3>
+<h3 id="image">1. Visualizing 2D Images </h3>
 <p>Without further ado, a quick example of viewing a 2D image:</p>
 <pre><code class="lang-python">%matplotlib inline
 <span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
@@ -1131,7 +1131,7 @@ image.view()
   <img src="media/view_widget.png" alt="view_widget">
 </center>
 
-<h3 id="2-visualizing-a-list-of-2d-images"><a name="images"></a>2. Visualizing A List Of 2D Images</h3>
+<h3 id="images">2. Visualizing A List Of 2D Images </h3>
 <p>Visualizing a <code>list</code> of images is also incredibly simple if you are using the Jupyter notebook and have the <code>menpowidgets</code> package installed:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> visualize_images
 
@@ -1147,7 +1147,7 @@ Your browser does not support the video tag.
 </video>
 
 
-<h3 id="3-visualizing-a-2d-pointcloud"><a name="pointcloud"></a>3. Visualizing A 2D PointCloud</h3>
+<h3 id="pointcloud">3. Visualizing A 2D PointCloud </h3>
 <p>Visualizing <code>PointCloud</code> objects and subclasses is a very familiar experience:</p>
 <pre><code class="lang-python">pcloud = mio.import_builtin_asset.breakingbad_pts().lms
 pcloud.view()
@@ -1157,7 +1157,7 @@ pcloud.view()
 </center>
 
 
-<h3 id="4-visualizing-in-3d"><a name="3d"></a>4. Visualizing In 3D</h3>
+<h3 id="3d">4. Visualizing In 3D </h3>
 <p><code>menpo</code> natively supports 3D objects, such as triangulated meshes, as our base classes are n-dimensional. However, as viewing in 3D is a much more complicated experience, we have segregated the 3D viewing package into one of our sub-packages: <a href="../menpo3d/"><code>menpo3d</code></a>.</p>
 <p>If you try to view a 3D <code>PointCloud</code> without having <code>menpo3d</code> installed, you will receive an exception asking you to install it.</p>
 <p><code>menpo3d</code> also comes with many other complicated pieces of functionality for 3D meshes such as a rasterizer. We recommend you look at <a href="../menpo3d/"><code>menpo3d</code></a> if you want to use <code>menpo</code> for 3D mesh manipulation.</p>
@@ -1200,7 +1200,7 @@ pcloud.view()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Visualization","level":"1.3.5","depth":2,"next":{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]},"previous":{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpo/visualization.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Visualization","level":"1.3.5","depth":2,"next":{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]},"previous":{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpo/visualization.md","mtime":"2016-07-18T15:47:42.313Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

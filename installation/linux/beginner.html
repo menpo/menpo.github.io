@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../../">
+        <li class="chapter " data-level="1.1" data-path="../../../src/">
             
-                <a href="../../">
+                <a href="../../../src/">
             
                     
                     The Menpo Project
@@ -112,9 +112,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../">
+        <li class="chapter " data-level="1.2" data-path="../../installation/">
             
-                <a href="../">
+                <a href="../../installation/">
             
                     
                     Installation
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Beginner</a>
+        <a href="../../../src" >Beginner</a>
     </h1>
 </div>
 
@@ -1099,7 +1099,7 @@ follow them carefully, in order:</p>
 <li><a href="#installing-the-menpo-project-into-conda">Installing The Menpo Project Into Conda</a></li>
 <li><a href="#begin-using-menpo">Begin Using Menpo</a></li>
 </ol>
-<h3 id="1-prerequisites"><a name="prerequisites"></a>1. Prerequisites</h3>
+<h3 id="prerequisites">1. Prerequisites </h3>
 <p>First, we need to install an isolated Python environment. Python does not come
 with a graphical user interface and so we will need to run a number of commands
 in the terminal. You can access the terminal by pressing the <strong>Super</strong> key
@@ -1113,7 +1113,7 @@ are running, you can find out by running the following command in a terminal:</p
 <pre><code>$ uname -m
 </code></pre><p>This will output a short string that tells you what version of Linux you
 are using.</p>
-<h3 id="2-install-a-python-environment"><a name="install-a-python-environment"></a>2. Install A Python Environment</h3>
+<h3 id="install-a-python-environment">2. Install A Python Environment </h3>
 <p>The Python environment we will use is called <strong>conda</strong>, and it is provided by
 an installation package called <strong>Miniconda</strong>.</p>
 <p><strong><a href="http://conda.pydata.org/miniconda.html" target="_blank">Download Miniconda from here</a></strong></p>
@@ -1138,7 +1138,7 @@ location to your <strong>PATH</strong>:</p>
 <hr>
 <p><img src="images/Linux-Miniconda-Settings.png" alt="Miniconda Advanced Installation Options"></p>
 <hr>
-<h3 id="3-using-conda"><a name="using-conda"></a>3. Using Conda</h3>
+<h3 id="using-conda">3. Using Conda </h3>
 <p>After installing Miniconda, close your current terminal and open another in
 order to activate the installation. You should have access to a new command
 within the terminal, <code>conda</code>. You can test this is working by entering the
@@ -1146,7 +1146,7 @@ command</p>
 <pre><code>$ conda -V
 </code></pre><p>Which will print something like <code>conda 3.17.0</code>, though the version number <em>may</em>
 differ.</p>
-<h3 id="4-setting-up-a-fresh-environment"><a name="setting-up-a-fresh-environment"></a>4. Setting Up A Fresh Environment</h3>
+<h3 id="setting-up-a-fresh-environment">4. Setting Up A Fresh Environment </h3>
 <p>We now need to create an environment to store all of our Python packages inside.
 It doesn&apos;t matter what path you are within the terminal, the
 <code>conda</code> command will not create any files <em>locally</em>. So, we use the command</p>
@@ -1172,7 +1172,7 @@ about activating your new environment called <code>menpo</code>.</p>
 </code></pre><p>This let&apos;s you know that the <code>menpo</code> environment is enabled. It is important
 to ensure that the <code>menpo</code> environment is activated before attempting to
 use Menpo in any way!</p>
-<h3 id="5-installing-the-menpo-project-into-conda"><a name="installing-the-menpo-project-into-conda"></a>5. Installing The Menpo Project Into Conda</h3>
+<h3 id="installing-the-menpo-project-into-conda">5. Installing The Menpo Project Into Conda </h3>
 <p>Installing all the packages of the Menpo Project only requires a single command:</p>
 <pre><code>(menpo)$ conda install -c menpo menpoproject
 </code></pre><p>This will install <code>menpo</code>, <code>menpofit</code>, <code>menpodetect</code>, <code>menpowidgets</code> and <code>menpocli</code>.
@@ -1197,7 +1197,7 @@ when the extracting and linking processes show <strong>COMPLETE</strong>.</p>
 <p><img src="images/Linux-Install-Complete.png" alt="Installation Complete"></p>
 <hr>
 <p><strong>Congratulations! You have now installed the latest version of the Menpo Project!</strong></p>
-<h3 id="6-begin-using-menpo"><a name="begin-using-menpo"></a>6. Begin Using Menpo</h3>
+<h3 id="begin-using-menpo">6. Begin Using Menpo </h3>
 <p>In order to start using Menpo, we suggest you have a look through our collection
 of <a href="../../examples/">Examples</a> using Jupyter notebook. Follow the instructions there to download the notebooks and run them.</p>
 <p>We strongly advise you to read the <em>User Guides</em> for all the packages in order to
@@ -1255,7 +1255,7 @@ understand the basic concepts behind the Menpo Project. They can be found in:</p
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Beginner","level":"1.2.1.3.1","depth":4,"next":{"title":"Expert","level":"1.2.1.3.2","depth":4,"path":"installation/linux/expert.md","ref":"installation/linux/expert.md","articles":[]},"previous":{"title":"Linux","level":"1.2.1.3","depth":3,"path":"installation/linux/index.md","ref":"installation/linux/index.md","articles":[{"title":"Beginner","level":"1.2.1.3.1","depth":4,"path":"installation/linux/beginner.md","ref":"installation/linux/beginner.md","articles":[]},{"title":"Expert","level":"1.2.1.3.2","depth":4,"path":"installation/linux/expert.md","ref":"installation/linux/expert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"installation/linux/beginner.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Beginner","level":"1.2.1.3.1","depth":4,"next":{"title":"Expert","level":"1.2.1.3.2","depth":4,"path":"installation/linux/expert.md","ref":"installation/linux/expert.md","articles":[]},"previous":{"title":"Linux","level":"1.2.1.3","depth":3,"path":"installation/linux/index.md","ref":"installation/linux/index.md","articles":[{"title":"Beginner","level":"1.2.1.3.1","depth":4,"path":"installation/linux/beginner.md","ref":"installation/linux/beginner.md","articles":[]},{"title":"Expert","level":"1.2.1.3.2","depth":4,"path":"installation/linux/expert.md","ref":"installation/linux/expert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"installation/linux/beginner.md","mtime":"2016-07-18T16:33:59.427Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../../src","book":{"language":""}});
         });
     </script>
 </div>

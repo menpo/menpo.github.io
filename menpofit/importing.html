@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Importing Images</a>
+        <a href="../../src" >Importing Images</a>
     </h1>
 </div>
 
@@ -1093,7 +1093,7 @@
 <li><a href="#smart">Smart &quot;lazy&quot; import with pre-processing!</a></li>
 </ol>
 <hr>
-<h3 id="1-data-format"><a name="data"></a>1. Data Format</h3>
+<h3 id="data">1. Data Format </h3>
 <p>In order to train a deformable model, we need to have a set of training images with ground truth annotations of the landmark points.
 The input/output package of <code>menpo</code> is very powerful and makes images and landmarks loading extremely easy.
 It supports the vast majority of image formats, as well as various landmark file formats (e.g. PTS, LJSON, etc.).</p>
@@ -1108,7 +1108,7 @@ Thus, we will be using the human face for the purpose of this tutorial.</p>
 </center>
 for example <code>LFPW</code> database (&quot;in-the-wild&quot;, 811 and 224 training and testing images, respectively).
 Note that you have to enter your details (name, affiliation, email) before download.</p>
-<h3 id="2-simple-lazy-import"><a name="lazy"></a>2. Simple &quot;Lazy&quot; Import</h3>
+<h3 id="lazy">2. Simple &quot;Lazy&quot; Import </h3>
 <p>The downloaded images along with their landmarks can be easily imported as:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
 
@@ -1127,7 +1127,7 @@ returned list will load an image at run time. This can be very useful for visual
 visualize_images(training_images)
 </code></pre>
 <p>where the images get loaded when asked to be rendered.</p>
-<h3 id="3-non-lazy-import-with-pre-processing"><a name="preprocessing"></a>3. &quot;Non-Lazy&quot; Import With Pre-Processing</h3>
+<h3 id="preprocessing">3. &quot;Non-Lazy&quot; Import With Pre-Processing </h3>
 <p>Given that many deformabe models require significant memory for training, it is wise in general to
 reduce memory usage of training data as much as possible. This can be done by applying
 some simple pre-processing steps on the images. Examples of such pre-processing involve:</p>
@@ -1186,7 +1186,7 @@ visualize_images(training_images)
 <p>This importing procedure is much better due to the pre-processing step, but we
 lost all the nice and memory-efficient properties of <code>LazyList</code>. It would be really useful if we could
 pre-process the images and <em>keep</em> the &quot;lazy&quot; property!</p>
-<h3 id="4-smart-lazy-import-with-pre-processing"><a name="smart"></a>4. Smart &quot;Lazy&quot; Import With Pre-Processing!</h3>
+<h3 id="smart">4. Smart &quot;Lazy&quot; Import With Pre-Processing! </h3>
 <p>We take advantage of <code>.map()</code> function of <code>LazyList</code> in order to be able to pre-process the images and <em>keep</em> the &quot;lazy&quot; property.
 Specifically, using the same <code>process()</code> function as before, we can do:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
@@ -1263,7 +1263,7 @@ training_images_non_lazy = list(print_progress(training_images))
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Importing Images","level":"1.4.1.1","depth":3,"next":{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},"previous":{"title":"Basics","level":"1.4.1","depth":2,"path":"menpofit/basics.md","ref":"menpofit/basics.md","articles":[{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},{"title":"Fitting Result","level":"1.4.1.4","depth":3,"path":"menpofit/result.md","ref":"menpofit/result.md","articles":[]},{"title":"Visualizing Objects","level":"1.4.1.5","depth":3,"path":"menpofit/visualization.md","ref":"menpofit/visualization.md","articles":[]},{"title":"Running Experiments","level":"1.4.1.6","depth":3,"path":"menpofit/experiments.md","ref":"menpofit/experiments.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpofit/importing.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Importing Images","level":"1.4.1.1","depth":3,"next":{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},"previous":{"title":"Basics","level":"1.4.1","depth":2,"path":"menpofit/basics.md","ref":"menpofit/basics.md","articles":[{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},{"title":"Fitting Result","level":"1.4.1.4","depth":3,"path":"menpofit/result.md","ref":"menpofit/result.md","articles":[]},{"title":"Visualizing Objects","level":"1.4.1.5","depth":3,"path":"menpofit/visualization.md","ref":"menpofit/visualization.md","articles":[]},{"title":"Running Experiments","level":"1.4.1.6","depth":3,"path":"menpofit/experiments.md","ref":"menpofit/experiments.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/importing.md","mtime":"2016-07-18T15:54:59.439Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

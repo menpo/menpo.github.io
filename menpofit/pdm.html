@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Point Distribution Model</a>
+        <a href="../../src" >Point Distribution Model</a>
     </h1>
 </div>
 
@@ -1104,7 +1104,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 </div></p>
 
 
-<h3 id="1-definition"><a name="definition"></a>1. Definition</h3>
+<h3 id="definition">1. Definition </h3>
 <p>A Point Distribution Model (PDM) is a statistical parametric model of the shape of the deformable obect, which is an essential part for many state-of-the-art deformable models.</p>
 <p>Let us denote a shape instance of an object with <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">L</span></span></span></span> landmark points as a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>L</mi><mo>&#xD7;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2L\times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit">L</span><span class="mbin">&#xD7;</span><span class="mord mathrm">1</span></span></span></span> vector
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow><mo>=</mo><mo>[</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><msub><mi>x</mi><mi>L</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>L</mi></msub><msup><mo>]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">
@@ -1163,7 +1163,7 @@ shape_model = OrthoPDM(training_shapes, max_n_components=<span class="hljs-keywo
  - kept variance:           7.6e+03  100.0%
  - noise variance:          0.025  0.0%
  - components shape:        (132, 136)
-</code></pre><h3 id="2-active-components"><a name="active"></a>2. Active Components</h3>
+</code></pre><h3 id="active">2. Active Components </h3>
 <p>Note that in the previous printing message all the available components are active.
 This means that when using the model for any kind of operations such as projection or reconstruction,
 then the whole subspace will be used. Normally, you need to use less components in order to remove
@@ -1188,7 +1188,7 @@ number of active components either by explicitly defining the desired number as<
  - kept variance:           7.3e+03  95.2%
  - noise variance:          3.1  0.0%
  - components shape:        (16, 136)
-</code></pre><h3 id="3-generating-new-instances"><a name="synthesis"></a>3. Generating New Instances</h3>
+</code></pre><h3 id="synthesis">3. Generating New Instances </h3>
 <p>A new shape instance can be generated as
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow><mo>=</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>+</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mrow><mi mathvariant="bold">p</mi></mrow></mrow><annotation encoding="application/x-tex">
 \mathbf{s} = \bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}
@@ -1222,7 +1222,7 @@ shape_model.from_vector(params).target.view(render_axes=<span class="hljs-keywor
 </center>
 
 
-<h3 id="4-visualization"><a name="visualization"></a>4. Visualization</h3>
+<h3 id="visualization">4. Visualization </h3>
 <p>The PCA components of the <code>OrthoPDM</code> can be explored using an interactive widget as:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> visualize_shape_model
 visualize_shape_model(shape_model.model)
@@ -1233,7 +1233,7 @@ Your browser does not support the video tag.
 </video>
 
 
-<h3 id="5-projection-and-reconstruction"><a name="projection_and_reconstruction"></a>5. Projection and Reconstruction</h3>
+<h3 id="projection_and_reconstruction">5. Projection and Reconstruction </h3>
 <p>A shape instance <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><annotation encoding="application/x-tex">\mathbf{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.44444em;"></span><span class="strut bottom" style="height:0.44444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathbf">s</span></span></span></span></span> can be theoretically projected into a given shape model <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">{</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo separator="true">,</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">\left\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\right\rbrace</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">{</span><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathbf">s</span></span></span></span><span style="top:-0.013440000000000007em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>&#xAF;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class=""><span class="mord textstyle uncramped"><span class="mord mathbf">U</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">s</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">}</span></span></span></span></span> as
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">p</mi></mrow><mo>=</mo><msup><mrow><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>s</mi></msub></mrow><mi>T</mi></msup><mo>(</mo><mrow><mi mathvariant="bold">s</mi></mrow><mo>&#x2212;</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">s</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>)</mo></mrow><annotation encoding="application/x-tex">
 \mathbf{p} = {\mathbf{U}_s}^T (\mathbf{s} - \bar{\mathbf{s}})
@@ -1336,7 +1336,7 @@ plt.gca().set_title(<span class="hljs-string">&apos;Reconstructed shape&apos;</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Point Distribution Model","level":"1.4.2","depth":2,"next":{"title":"Affine Image Alignment","level":"1.4.3","depth":2,"path":"menpofit/affine_image_alignment.md","ref":"menpofit/affine_image_alignment.md","articles":[{"title":"Lucas-Kanade","level":"1.4.3.1","depth":3,"path":"menpofit/lk.md","ref":"menpofit/lk.md","articles":[]}]},"previous":{"title":"Running Experiments","level":"1.4.1.6","depth":3,"path":"menpofit/experiments.md","ref":"menpofit/experiments.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpofit/pdm.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Point Distribution Model","level":"1.4.2","depth":2,"next":{"title":"Affine Image Alignment","level":"1.4.3","depth":2,"path":"menpofit/affine_image_alignment.md","ref":"menpofit/affine_image_alignment.md","articles":[{"title":"Lucas-Kanade","level":"1.4.3.1","depth":3,"path":"menpofit/lk.md","ref":"menpofit/lk.md","articles":[]}]},"previous":{"title":"Running Experiments","level":"1.4.1.6","depth":3,"path":"menpofit/experiments.md","ref":"menpofit/experiments.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/pdm.md","mtime":"2016-07-18T15:56:38.636Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

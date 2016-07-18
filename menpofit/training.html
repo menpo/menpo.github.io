@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Training</a>
+        <a href="../../src" >Training</a>
     </h1>
 </div>
 
@@ -1093,7 +1093,7 @@
 <li><a href="#example">Training Example</a></li>
 </ol>
 <hr>
-<h3 id="1-multi-scale-models"><a name="multiscale"></a>1. Multi-Scale Models</h3>
+<h3 id="multiscale">1. Multi-Scale Models </h3>
 <p>All the methods implemented in <code>menpofit</code> are built in a <strong>multi-scale</strong> manner, i.e. in multiple resolutions.
 In all our core classes, this is controlled using the following three parameters:</p>
 <p><strong>reference_shape</strong> (<code>PointCloud</code>)<br>First, the size of the training images is normalized by rescaling them so that the scale of their ground truth shapes matches the scale of this reference shape. In case no reference shape is provided by the user, then the mean of the ground shapes is used. This step is essential in order to ensure consistency among the extracted features of the images.</p>
@@ -1110,7 +1110,7 @@ PARAMETERS: reference_shape, diagonal, scales
 6. FOR scale IN scales:
 7.     scaled_images, scaled_shapes = rescale(images, shapes, scale)
 8.     scale_model = train_model(scaled_images, scaled_shapes)
-</code></pre><h3 id="2-holistic-vs-patch-features"><a name="features"></a>2. Holistic vs. Patch Features</h3>
+</code></pre><h3 id="features">2. Holistic vs. Patch Features </h3>
 <p>The methods implemented in <code>menpofit</code> can be roughly separated in two categories, based on the appearance representation approach:</p>
 <ul>
 <li><strong>Holistic Models:</strong> These are models that use a holistic appearance,
@@ -1126,12 +1126,12 @@ holistic features in order to extract patches and can have two behaviours depend
 <li>Those that extract patches from the <strong>holistic_features</strong> representation of the training images, given a <strong>patch_shape</strong>, and
 additionally compute some <strong>patch_features</strong>.</li>
 </ol>
-<h3 id="3-incremental-training"><a name="incremental"></a>3. Incremental Training</h3>
+<h3 id="incremental">3. Incremental Training </h3>
 <p>Most deformable models that exist in <code>menpofit</code> can be trained in an <strong>incremental</strong> fashion. This can be very useful
 in case you want to train a very powerful model on a large amount of training images, which would be impossible to
 do at once due to memory constraints. The incremental training can be performed by using the <strong>batch_size</strong>
 parameter, which will split the provided set of training images into batches of the specified size.</p>
-<h3 id="4-training-example"><a name="example"></a>4. Training Example</h3>
+<h3 id="example">4. Training Example </h3>
 <p>Given the above basic assumptions and using the <code>training_images</code> loaded in the <a href="importing.html">Importing Images</a> section,
 an example of a typical call for training a deformable model using <code>HolisticAAM</code> is:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpofit.aam <span class="hljs-keyword">import</span> HolisticAAM
@@ -1218,7 +1218,7 @@ aam = HolisticAAM(training_images, reference_shape=<span class="hljs-keyword">No
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Training","level":"1.4.1.2","depth":3,"next":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"previous":{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpofit/training.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Training","level":"1.4.1.2","depth":3,"next":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"previous":{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/training.md","mtime":"2016-07-18T15:57:38.352Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

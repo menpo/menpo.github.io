@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Introduction</a>
+        <a href="../../src" >Introduction</a>
     </h1>
 </div>
 
@@ -1091,8 +1091,8 @@
 <li><a href="#interfaces">Core Interfaces</a></li>
 </ol>
 <hr>
-<h3 id="1-core-types"><a name="containers"></a>1. Core Types</h3>
-<p><code>menpo</code> is a relatiely high-level software package. It is not a replacement for <code>pillow</code>, <code>scikit-image</code>, or <code>opencv</code> - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of Menpo types that wrap numpy arrays and provide an elegant API. You will find the vast majority of functions and methods in Menpo take and return these core types, so it&apos;s well worth getting used to them - there are only a handful.</p>
+<h3 id="containers">1. Core Types </h3>
+<p><code>menpo</code> is a relatively high-level software package. It is not a replacement for <a href="http://python-pillow.org/" target="_blank"><code>pillow</code></a>, <a href="http://scikit-image.org/" target="_blank"><code>scikit-image</code></a>, or <a href="http://opencv.org/" target="_blank"><code>opencv</code></a> - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of core types that wrap <code>numpy</code> arrays and provide an elegant API. You will find that the vast majority of functions and methods in Menpo take and return these core types, so it&apos;s well worth getting used to them - there are only a handful.</p>
 <p><strong>Images</strong></p>
 <ul>
 <li><a href="http://docs.menpo.org/en/stable/api/menpo/image/Image.html" target="_blank"><code>Image</code></a> - n-dimensional image with k-channels of <code>dtype</code> data</li>
@@ -1107,14 +1107,14 @@
 <li><a href="http://docs.menpo.org/en/stable/api/menpo/shape/PointTree.html" target="_blank"><code>PointTree</code></a> - <code>PointCloud</code> with directed connectivity and without loops</li>
 <li><a href="http://docs.menpo.org/en/stable/api/menpo/shape/TriMesh.html" target="_blank"><code>TriMesh</code></a> -  <code>PointCloud</code> with a triangulation</li>
 </ul>
-<h3 id="2-core-interfaces"><a name="interfaces"></a>2. Core Interfaces</h3>
-<p><code>menpo</code> is an object oriented framework built around a set of three core interfaces, each one governing a particular facet of Menpo&apos;s design:</p>
+<h3 id="interfaces">2. Core Interfaces </h3>
+<p><code>menpo</code> is an object oriented framework built around a set of three core interfaces, each one governing a particular facet of <code>menpo</code>&apos;s design:</p>
 <ul>
-<li><a href="http://docs.menpo.org/en/stable/api/menpo/base/Vectorizable.html" target="_blank"><code>Vectorizable</code></a> - efficient bi-directional conversion of Menpo types to a numpy vector. Most Menpo types are <code>Vectorizable</code>.</li>
-<li><a href="http://docs.menpo.org/en/stable/api/menpo/landmark/Landmarkable.html" target="_blank"><code>Landmarkable</code></a> - objects that can be annotated with spatial labelled landmarks. In Menpo all images and shapes are <code>Landmarkable</code>.</li>
+<li><a href="http://docs.menpo.org/en/stable/api/menpo/base/Vectorizable.html" target="_blank"><code>Vectorizable</code></a> - efficient bi-directional conversion of <code>menpo</code> types to a numpy vector. Most <code>menpo</code> types are <code>Vectorizable</code>.</li>
+<li><a href="http://docs.menpo.org/en/stable/api/menpo/landmark/Landmarkable.html" target="_blank"><code>Landmarkable</code></a> - objects that can be annotated with spatial labelled landmarks. In <code>menpo</code> all images and shapes are <code>Landmarkable</code>.</li>
 <li><a href="http://docs.menpo.org/en/stable/api/menpo/transform/Transform.html" target="_blank"><code>Transform</code></a> - spatial transformations that can be applied to any shape and used to drive image warps</li>
 </ul>
-<p>We will see how these interfaces lead to common patterns throughout Menpo later in this guide.</p>
+<p>We will see how these interfaces lead to common patterns throughout <code>menpo</code> later in this guide.</p>
 
                                 
                                 </section>
@@ -1158,7 +1158,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.3.1","depth":2,"next":{"title":"Data Types","level":"1.3.2","depth":2,"path":"menpo/datatypes.md","ref":"menpo/datatypes.md","articles":[]},"previous":{"title":"menpo","level":"1.3","depth":1,"path":"menpo/index.md","ref":"menpo/index.md","articles":[{"title":"Introduction","level":"1.3.1","depth":2,"path":"menpo/introduction.md","ref":"menpo/introduction.md","articles":[]},{"title":"Data Types","level":"1.3.2","depth":2,"path":"menpo/datatypes.md","ref":"menpo/datatypes.md","articles":[]},{"title":"Consistency","level":"1.3.3","depth":2,"path":"menpo/consistency.md","ref":"menpo/consistency.md","articles":[]},{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},{"title":"Visualization","level":"1.3.5","depth":2,"path":"menpo/visualization.md","ref":"menpo/visualization.md","articles":[]},{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpo/introduction.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.3.1","depth":2,"next":{"title":"Data Types","level":"1.3.2","depth":2,"path":"menpo/datatypes.md","ref":"menpo/datatypes.md","articles":[]},"previous":{"title":"menpo","level":"1.3","depth":1,"path":"menpo/index.md","ref":"menpo/index.md","articles":[{"title":"Introduction","level":"1.3.1","depth":2,"path":"menpo/introduction.md","ref":"menpo/introduction.md","articles":[]},{"title":"Data Types","level":"1.3.2","depth":2,"path":"menpo/datatypes.md","ref":"menpo/datatypes.md","articles":[]},{"title":"Consistency","level":"1.3.3","depth":2,"path":"menpo/consistency.md","ref":"menpo/consistency.md","articles":[]},{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},{"title":"Visualization","level":"1.3.5","depth":2,"path":"menpo/visualization.md","ref":"menpo/visualization.md","articles":[]},{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpo/introduction.md","mtime":"2016-07-18T15:44:44.912Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Menpo Widgets</a>
+        <a href="../../src" >Menpo Widgets</a>
     </h1>
 </div>
 
@@ -1108,7 +1108,7 @@ This can be done by running<br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-<h3 id="1-basics"><a name="basics"></a>1. Basics</h3>
+<h3 id="basics">1. Basics </h3>
 <p>Let&apos;s first import all the widgets:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> (visualize_pointclouds, visualize_landmarkgroups,
                           visualize_landmarks, visualize_images, visualize_patches,
@@ -1154,7 +1154,7 @@ im5 = im5.as_greyscale()
 
 im6 = mio.import_builtin_asset.menpo_thumbnail_jpg()
 </code></pre>
-<h3 id="2-pointcloudspointgraphs-widget"><a name="pointclouds"></a>2. PointClouds/PointGraphs Widget</h3>
+<h3 id="pointclouds">2. PointClouds/PointGraphs Widget </h3>
 <p>First, we need to add the objects in a list</p>
 <pre><code class="lang-python">pointclouds = [im1.landmarks[<span class="hljs-string">&apos;PTS&apos;</span>].lms,
                im2.landmarks[<span class="hljs-string">&apos;face_ibug_49&apos;</span>].lms,
@@ -1174,7 +1174,7 @@ Your browser does not support the video tag.
 <p>The 1st tab prints some information regarding each PointCloud.</p>
 <p>The 2nd tab has rendering options regarding the markers, lines, numbering, axes and zoom. There are also two radiobuttons that define the axes mode.</p>
 <p>The 3rd tab allows the user to save a figure to file.</p>
-<h3 id="3-landmarkgroups-widget"><a name="landmarkgroups"></a>3. LandmarkGroups Widget</h3>
+<h3 id="landmarkgroups">3. LandmarkGroups Widget </h3>
 <p>Let&apos;s group all <code>LandmarkGroups</code> in a <code>list</code></p>
 <pre><code class="lang-python">landmark_groups = [im1.landmarks[<span class="hljs-string">&apos;PTS&apos;</span>],
                    im2.landmarks[<span class="hljs-string">&apos;face_ibug_49&apos;</span>],
@@ -1191,7 +1191,7 @@ Your browser does not support the video tag.
 <p>The 2nd tab has options related to the landmarks. Specifically, the user can select to render specific labels.</p>
 <p>The 3nd tab has rendering options regarding the lines, markers, numbering of points, legend, zoom and axes. Once again, there are also two radiobuttons that define the axes mode.</p>
 <p>Finally, the last tab allows the user to save a figure to file.</p>
-<h3 id="4-landmarks-widget"><a name="landmarks"></a>4. Landmarks Widget</h3>
+<h3 id="landmarks">4. Landmarks Widget </h3>
 <p>First we need to create a <code>list</code> of <code>LandmarkManager</code> objects and then visualize them using a <code>&apos;minimal&apos;</code> style</p>
 <pre><code class="lang-python">landmarks = [im1.landmarks,
              im2.landmarks,
@@ -1203,13 +1203,13 @@ Your browser does not support the video tag.
 visualize_landmarks(landmarks, style=<span class="hljs-string">&apos;minimal&apos;</span>)
 </code></pre>
 <p>This widget has the exact same structure and functionality as the previous one for LandmarkGroups. The only difference is that in the <code>Landmarks</code> tab, the <em>group</em> can also be specified in case a <code>LandmarkManager</code> has more than one groups.</p>
-<h3 id="5-images-widget"><a name="images"></a>5. Images Widget</h3>
+<h3 id="images">5. Images Widget </h3>
 <p>Let&apos;s now create a list with the actual <code>Image</code> objects and visualize them</p>
 <pre><code class="lang-python">images = [im1, im2, im3, im4, im5, im6]
 visualize_images(images)
 </code></pre>
 <p>Compared to the <code>visualize_landmarks()</code> widget, this one has an additional tab for <em>Channels</em> options. In this tab, the user has several options, such as to visualize the image&apos;s channels individually or in subplots, to render the image as a <code>glyph</code> and to render the sum of the image&apos;s channels.</p>
-<h3 id="6-patches-widget"><a name="patches"></a>6. Patches Widget</h3>
+<h3 id="patches">6. Patches Widget </h3>
 <p>Let&apos;s now extract some patches from the images and create two lists: one with the patches and one with the patche centers.</p>
 <pre><code class="lang-python">patches1 = im1.extract_patches_around_landmarks(group=<span class="hljs-string">&apos;PTS&apos;</span>)
 pc1 = im1.landmarks[<span class="hljs-string">&apos;PTS&apos;</span>].lms
@@ -1228,14 +1228,14 @@ patch_centers = [pc1, pc2, pc3, pc4, pc5]
 visualize_patches(patches, patch_centers)
 </code></pre>
 <p>The <code>visualize_patches</code> is exactly the same with <code>visualize_images</code>, with the difference that it has a patch-related options tab.</p>
-<h3 id="7-features-widget"><a name="features"></a>7. Features Widget</h3>
+<h3 id="features">7. Features Widget </h3>
 <p><code>menpowidgets</code> also has a widget for selecting a specific feature with some options. In order to facilitate the options selection, the widget has a <em>Preview</em> tab that applies the feature on the <code>Lenna</code> image. The widget returns a <code>function</code> as a single element of a <code>list</code>. This can be done as</p>
 <pre><code class="lang-python">feat = features_selection()
 </code></pre>
 <p>Note that by pressing the <em>Select</em> button, the widget automatically closes. Then the function can be applied to a new image as:</p>
 <pre><code class="lang-python">feat[<span class="hljs-number">0</span>](im1).view(channels=[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]);
 </code></pre>
-<h3 id="8-plot-graph-widget"><a name="plot_graph"></a>8. Plot Graph Widget</h3>
+<h3 id="plot_graph">8. Plot Graph Widget </h3>
 <p>There is a widget that facilitates the graph plotting. It supports plotting of multiple curves. It expects a <code>list</code> of values for <code>x_axis</code> and a <code>list</code> of <code>lists</code> of values for <code>y_axis</code>, each one corresponding to a different curve. Let&apos;s generate the values of sin and cos</p>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
@@ -1251,13 +1251,13 @@ y_axis = [y_sin, y_cos]
 <p>In the 1st tab, the user can set the <em>X/Y labels</em>, the <em>Title</em> and the <em>Legend entries</em>.</p>
 <p>In the 2nd tab, there are <em>Renderer</em> options that can be defined for each curve separately.</p>
 <p>Finally, as always, the last tab allows the user to save the plot to file.</p>
-<h3 id="9-save-figure-widget"><a name="save_figure"></a>9. Save Figure Widget</h3>
+<h3 id="save_figure">9. Save Figure Widget </h3>
 <p>The widget to save a figure to file can be called independently. Specifically, assume that we have figure from which we kept the rendering object:</p>
 <pre><code class="lang-python">renderer = im1.view_landmarks(group=<span class="hljs-string">&apos;PTS&apos;</span>)
 save_matplotlib_figure(renderer)
 </code></pre>
 <p>Note that if the <em>Overwrite if file exists</em> checkbox is not ticked, then a warning will appear when trying to save to a file that already exists.</p>
-<h3 id="10-view-widget-methods"><a name="methods"></a>10. View Widget Methods</h3>
+<h3 id="methods">10. View Widget Methods </h3>
 <p>Finally, all <code>menpo</code> objects have a <code>.view_widget()</code> method. Below are some examples:</p>
 <pre><code class="lang-python">images[<span class="hljs-number">0</span>].view_widget(figure_size=(<span class="hljs-number">6</span>, <span class="hljs-number">4</span>))
 </code></pre>
@@ -1312,7 +1312,7 @@ save_matplotlib_figure(renderer)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"next":{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"path":"menpowidgets/main_menpofit_widgets.md","ref":"menpowidgets/main_menpofit_widgets.md","articles":[]},"previous":{"title":"Main Widgets","level":"1.6.1","depth":2,"path":"menpowidgets/main_widgets.md","ref":"menpowidgets/main_widgets.md","articles":[{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"path":"menpowidgets/main_menpo_widgets.md","ref":"menpowidgets/main_menpo_widgets.md","articles":[]},{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"path":"menpowidgets/main_menpofit_widgets.md","ref":"menpowidgets/main_menpofit_widgets.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpowidgets/main_menpo_widgets.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"next":{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"path":"menpowidgets/main_menpofit_widgets.md","ref":"menpowidgets/main_menpofit_widgets.md","articles":[]},"previous":{"title":"Main Widgets","level":"1.6.1","depth":2,"path":"menpowidgets/main_widgets.md","ref":"menpowidgets/main_widgets.md","articles":[{"title":"Menpo Widgets","level":"1.6.1.1","depth":3,"path":"menpowidgets/main_menpo_widgets.md","ref":"menpowidgets/main_menpo_widgets.md","articles":[]},{"title":"MenpoFit Widgets","level":"1.6.1.2","depth":3,"path":"menpowidgets/main_menpofit_widgets.md","ref":"menpowidgets/main_menpofit_widgets.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpowidgets/main_menpo_widgets.md","mtime":"2016-07-18T16:23:40.512Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

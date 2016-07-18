@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Active Appearance Model</a>
+        <a href="../../src" >Active Appearance Model</a>
     </h1>
 </div>
 
@@ -1103,7 +1103,7 @@ This can be done by running<br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-<h3 id="1-definition"><a name="definition"></a>1. Definition</h3>
+<h3 id="definition">1. Definition </h3>
 <p>Active Appearance Model (AAM) is a statistical deformable model of the shape and appearance of a deformable object class.
 It is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
 In this page, we provide a basic mathematical definition of an AAM and all its variations that are implemented within <code>menpofit</code>.
@@ -1170,7 +1170,7 @@ Your browser does not support the video tag.
 </video>
 
 
-<h3 id="2-warp-functions"><a name="warp"></a>2. Warp Functions</h3>
+<h3 id="warp">2. Warp Functions </h3>
 <p>With an abuse of notation, let us define
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">t</mi></mrow><mo>(</mo><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo><mo>)</mo><mo>&#x2261;</mo><mrow><mi mathvariant="script">F</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">I</mi></mrow><mo>)</mo><mo>(</mo><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">
 \mathbf{t}(\mathcal{W}(\mathbf{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
@@ -1244,7 +1244,7 @@ Your browser does not support the video tag.
 
 
 
-<h3 id="3-cost-function-and-optimization"><a name="cost"></a>3. Cost Function and Optimization</h3>
+<h3 id="cost">3. Cost Function and Optimization </h3>
 <p>Fitting an AAM on a test image involves the optimization of the following cost function
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>arg</mi><msub><mi>min</mi><mrow><mrow><mi mathvariant="bold">p</mi></mrow><mo separator="true">,</mo><mrow><mi mathvariant="bold">c</mi></mrow></mrow></msub><mo fence="false">&#x2225;</mo><mrow><mi mathvariant="bold">t</mi></mrow><mo>(</mo><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo><mo>)</mo><mo>&#x2212;</mo><mover accent="true"><mrow><mrow><mi mathvariant="bold">a</mi></mrow></mrow><mo>&#xAF;</mo></mover><mo>&#x2212;</mo><msub><mrow><mi mathvariant="bold">U</mi></mrow><mi>a</mi></msub><mrow><mi mathvariant="bold">c</mi></mrow><msup><mo fence="false">&#x2225;</mo><mrow><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">
 \arg\min_{\mathbf{p}, \mathbf{c}} \big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \big\rVert^{2}
@@ -1255,7 +1255,7 @@ with respect to the shape and appearance parameters. Note that this cost functio
 <li><a href="#lucas-kanade-fitting">Lucas-Kanade Optimization</a>  </li>
 <li><a href="#supervised-descent-fitting">Supervised Descent Optimization</a></li>
 </ol>
-<h4 id="31-lucas-kanade-optimization"><a name="lucas-kanade-fitting"></a>3.1. Lucas-Kanade Optimization</h4>
+<h4 id="lucas-kanade-fitting">3.1. Lucas-Kanade Optimization </h4>
 <p>The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) <em>forward</em> or <em>inverse</em> depending on the direction of the motion parameters estimation and (2) <em>additive</em> or <em>compositional</em> depending on the way the motion parameters are updated. <code>menpofit</code> currently provides the <strong>Forward-Compositional</strong> and <strong>Inverse-Compositional</strong> version of five different algorithms. All these algorithms are iterative and the shape parameters are updated at each iteration in a compositional manner as
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo><mo>&#x2190;</mo><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo><mo>&#x2218;</mo><mrow><mi mathvariant="script">W</mi></mrow><mo>(</mo><mi mathvariant="normal">&#x394;</mi><mrow><mi mathvariant="bold">p</mi></mrow><msup><mo>)</mo><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">
 \mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}
@@ -1343,7 +1343,7 @@ fitter = LucasKanadeAAMFitter(patch_aam, lk_algorithm_cls=WibergInverseCompositi
 <p>Remember that you can always retrieve information about any trained model by:</p>
 <pre><code class="lang-python">print(fitter)
 </code></pre>
-<h4 id="32-supervised-descent-optimization"><a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization</h4>
+<h4 id="supervised-descent-fitting">3.2. Supervised Descent Optimization </h4>
 <p>The AAM cost function can also be optimized using cascaded regression, which in literature is commonly referred to as Supervised Descent Optimization, a name given by [<a href="#15">15</a>]. Specifically, the aim is to learn a regression function that regresses from the object&#x2019;s features based on the appearance model to the parameters of the statistical shape model. Although the history behind using linear regression in order to learn descent directions spans back many years when AAMs were first introduced [<a href="#6">6</a>], the research community turned towards alternative approaches due to the lack of sufficient data for training accurate regression functions. Nevertheless, over the last few years, regression-based techniques have prevailed in the field [<a href="#14">14</a>, <a href="#15">15</a>] thanks to the wealth of readily available annotated data and powerful handcrafted features.</p>
 <p><strong>Regression Features</strong><br>Let&apos;s define a feature extraction function given an image <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">t</mi></mrow></mrow><annotation encoding="application/x-tex">\mathbf{t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.63492em;"></span><span class="strut bottom" style="height:0.63492em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathbf">t</span></span></span></span></span> and a shape parameters vector <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="bold">p</mi></mrow></mrow><annotation encoding="application/x-tex">\mathbf{p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.44444em;"></span><span class="strut bottom" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathbf">p</span></span></span></span></span> as
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>&#x3D5;</mi><mo>(</mo><mrow><mi mathvariant="bold">t</mi></mrow><mo separator="true">,</mo><mrow><mi mathvariant="bold">p</mi></mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">
@@ -1397,7 +1397,7 @@ and use it in order to update the shape parameters for the next level in an <em>
 \mathbf{p}^{(k+1)} = \mathbf{p}^{(k)} + \Delta\mathbf{p}^{(k)}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.938em;"></span><span class="strut bottom" style="height:1.13244em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">p</span></span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">p</span></span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathrm">&#x394;</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathbf">p</span></span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>
 The above procedure is repeated for each cascade level, i.e. <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mo>&#x2026;</mo><mo separator="true">,</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">k=1,\ldots,K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mpunct">,</span><span class="minner">&#x2026;</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span></span>.</p>
-<h3 id="4-fitting-example"><a name="fitting"></a>4. Fitting Example</h3>
+<h3 id="fitting">4. Fitting Example </h3>
 <p>Let&apos;s load a test image from LFPW testset and convert it to grayscale</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path
 <span class="hljs-keyword">import</span> menpo.io <span class="hljs-keyword">as</span> mio
@@ -1522,22 +1522,36 @@ Your browser does not support the video tag.
 <pre><code class="lang-python">print(result.shape_parameters.shape)
 print(result.appearance_parameters.shape)
 </code></pre>
-<h3 id="5-references"><a name="references"></a>5. References</h3>
-<p><a name="1"></a>[1] J. Alabort-i-Medina, and S. Zafeiriou. &quot;A Unified Framework for Compositional Fitting of Active Appearance Models&quot;, arXiv:1601.00199.</p>
-<p><a name="2"></a>[2] J. Alabort-i-Medina, and S. Zafeiriou. &quot;Bayesian Active Appearance Models&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
-<p><a name="3"></a>[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. &quot;Feature-based Lucas-Kanade and Active Appearance Models&quot;, IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>
-<p><a name="4"></a>[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. &quot;HOG Active Appearance Models&quot;, IEEE International Conference on Image Processing (ICIP), 2014.</p>
-<p><a name="5"></a>[5] S. Baker, and I. Matthews. &quot;Lucas-Kanade 20 years on: A unifying framework&quot;, International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
-<p><a name="6"></a>[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. &quot;Active Appearance Models&quot;, IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681&#x2013;685, 2001.</p>
-<p><a name="7"></a>[7] R. Gross, I. Matthews, and S. Baker. &quot;Generic vs. person specific Active Appearance Models&quot;, Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.</p>
-<p><a name="8"></a>[8] I. Matthews, and S. Baker. &quot;Active Appearance Models Revisited&quot;, International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
-<p><a name="9"></a>[9] G. Papandreou, and P. Maragos. &quot;Adaptive and constrained algorithms for  inverse compositional active appearance model fitting&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.</p>
-<p><a name="10"></a>[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. &quot;Active Orientation Models for Face Alignment in-the-wild&quot;, IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.</p>
-<p><a name="11"></a>[11] G. Tzimiropoulos, and M. Pantic. &quot;Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
-<p><a name="12"></a>[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. &quot;Generic Active Appearance Models Revisited&quot;, Asian Conference on Computer Vision, Springer, 2012.</p>
-<p><a name="13"></a>[13] G. Tzimiropoulos, M. Pantic. &quot;Optimization problems for fast AAM fitting in-the-wild&quot;, IEEE International Conference on Computer Vision (ICCV), 2013.</p>
-<p><a name="14"></a>[14] G. Tzimiropoulos. &quot;Project-Out Cascaded Regression with an application to Face Alignment&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
-<p><a name="15"></a>[15] X. Xiong, and F. De la Torre. &quot;Supervised descent method and its applications to face alignment&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.</p>
+<h3 id="references">5. References </h3>
+<p id="1">[1] J. Alabort-i-Medina, and S. Zafeiriou. &quot;A Unified Framework for Compositional Fitting of Active Appearance Models&quot;, arXiv:1601.00199.</p>
+
+<p id="2">[2] J. Alabort-i-Medina, and S. Zafeiriou. &quot;Bayesian Active Appearance Models&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
+
+<p id="3">[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. &quot;Feature-based Lucas-Kanade and Active Appearance Models&quot;, IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>
+
+<p id="4">[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. &quot;HOG Active Appearance Models&quot;, IEEE International Conference on Image Processing (ICIP), 2014.</p>
+
+<p id="5">[5] S. Baker, and I. Matthews. &quot;Lucas-Kanade 20 years on: A unifying framework&quot;, International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
+
+<p id="6">[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. &quot;Active Appearance Models&quot;, IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681&#x2013;685, 2001.</p>
+
+<p id="7">[7] R. Gross, I. Matthews, and S. Baker. &quot;Generic vs. person specific Active Appearance Models&quot;, Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.</p>
+
+<p id="8">[8] I. Matthews, and S. Baker. &quot;Active Appearance Models Revisited&quot;, International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
+
+<p id="9">[9] G. Papandreou, and P. Maragos. &quot;Adaptive and constrained algorithms for  inverse compositional active appearance model fitting&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.</p>
+
+<p id="10">[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. &quot;Active Orientation Models for Face Alignment in-the-wild&quot;, IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.</p>
+
+<p id="11">[11] G. Tzimiropoulos, and M. Pantic. &quot;Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
+
+<p id="12">[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. &quot;Generic Active Appearance Models Revisited&quot;, Asian Conference on Computer Vision, Springer, 2012.</p>
+
+<p id="13">[13] G. Tzimiropoulos, M. Pantic. &quot;Optimization problems for fast AAM fitting in-the-wild&quot;, IEEE International Conference on Computer Vision (ICCV), 2013.</p>
+
+<p id="14">[14] G. Tzimiropoulos. &quot;Project-Out Cascaded Regression with an application to Face Alignment&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
+
+<p id="15">[15] X. Xiong, and F. De la Torre. &quot;Supervised descent method and its applications to face alignment&quot;, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.</p>
 
                                 
                                 </section>
@@ -1581,7 +1595,7 @@ print(result.appearance_parameters.shape)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"next":{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},"previous":{"title":"Landmark Localization","level":"1.4.5","depth":2,"path":"menpofit/landmark_localization.md","ref":"menpofit/landmark_localization.md","articles":[{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"path":"menpofit/aam.md","ref":"menpofit/aam.md","articles":[]},{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},{"title":"Constrained Local Model","level":"1.4.5.3","depth":3,"path":"menpofit/clm.md","ref":"menpofit/clm.md","articles":[]},{"title":"Supervised Descent Method","level":"1.4.5.4","depth":3,"path":"menpofit/sdm.md","ref":"menpofit/sdm.md","articles":[]},{"title":"Ensemble of Regression Trees","level":"1.4.5.5","depth":3,"path":"menpofit/ert.md","ref":"menpofit/ert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"*"},"file":{"path":"menpofit/aam.md","mtime":"2016-07-04T12:55:47.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-05T09:12:15.957Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"next":{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},"previous":{"title":"Landmark Localization","level":"1.4.5","depth":2,"path":"menpofit/landmark_localization.md","ref":"menpofit/landmark_localization.md","articles":[{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"path":"menpofit/aam.md","ref":"menpofit/aam.md","articles":[]},{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},{"title":"Constrained Local Model","level":"1.4.5.3","depth":3,"path":"menpofit/clm.md","ref":"menpofit/clm.md","articles":[]},{"title":"Supervised Descent Method","level":"1.4.5.4","depth":3,"path":"menpofit/sdm.md","ref":"menpofit/sdm.md","articles":[]},{"title":"Ensemble of Regression Trees","level":"1.4.5.5","depth":3,"path":"menpofit/ert.md","ref":"menpofit/ert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/aam.md","mtime":"2016-07-18T16:15:55.617Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>
