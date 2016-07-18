@@ -1098,7 +1098,7 @@ Remember that our widgets live on their own repository - <a href="../menpowidget
 <hr>
 <p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
 <p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best `menpowidgets` experience.
+We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/"><em>menpowidgets</em></a> experience.
 This can be done by running<br>
 <center><code>%matplotlib inline</code></center>
 in a cell. Note that you only have to run it once and not in every rendering cell.
@@ -1135,9 +1135,6 @@ image.view()
 <p>Visualizing a <code>list</code> of images is also incredibly simple if you are using the Jupyter notebook and have the <code>menpowidgets</code> package installed:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpowidgets <span class="hljs-keyword">import</span> visualize_images
 
-<span class="hljs-comment"># import_images is a generator, so we must exhaust the generator before</span>
-<span class="hljs-comment"># we can visualize the list. This is because the widget allows you to</span>
-<span class="hljs-comment"># jump arbitrarily around the list, which cannot be done with generators.</span>
 images = list(mio.import_images(<span class="hljs-string">&apos;/path/to/images/&apos;</span>))
 visualize_images(images)
 </code></pre>
@@ -1200,7 +1197,7 @@ pcloud.view()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Visualization","level":"1.3.5","depth":2,"next":{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]},"previous":{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpo/visualization.md","mtime":"2016-07-18T15:47:42.313Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T16:47:07.977Z"},"basePath":"../../src","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Visualization","level":"1.3.5","depth":2,"next":{"title":"API Documentation","level":"1.3.6","depth":2,"url":"https://menpo.readthedocs.io/","ref":"https://menpo.readthedocs.io/","articles":[]},"previous":{"title":"Vectorizing","level":"1.3.4","depth":2,"path":"menpo/vectorizing.md","ref":"menpo/vectorizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpo/visualization.md","mtime":"2016-07-18T17:14:02.571Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T17:15:56.882Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>
