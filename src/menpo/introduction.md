@@ -8,7 +8,7 @@ Introduction
 
 ### 1. Core Types {#containers}
 
-`menpo` is a relatively high-level software package. It is not a replacement for [`pillow`](http://python-pillow.org/), [`scikit-image`](http://scikit-image.org/), or [`opencv`](http://opencv.org/) - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of core types that wrap `numpy` arrays and provide an elegant API. You will find that the vast majority of functions and methods in Menpo take and return these core types, so it's well worth getting used to them - there are only a handful.
+`menpo` is a relatively high-level software package. It is not a replacement for <a href="http://python-pillow.org/">`pillow`<i class="fa fa-external-link"></i></a>, <a href="http://scikit-image.org/">`scikit-image`<i class="fa fa-external-link"></i></a>, or <a href="http://opencv.org/">`opencv`<i class="fa fa-external-link"></i></a> - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of core types that wrap `numpy` arrays and provide an elegant API. You will find that the vast majority of functions and methods in Menpo take and return these core types, so it's well worth getting used to them - there are only a handful.
 
 **Images**
 -   [`Image`](http://docs.menpo.org/en/stable/api/menpo/image/Image.html) - n-dimensional image with k-channels of `dtype` data

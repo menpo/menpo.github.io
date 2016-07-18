@@ -52,3 +52,4 @@ The contents of this user guide are:
 3. [Consistency](consistency.md)
 4. [Vectorizing](vectorizing.md)
 5. [Visualization](visualization.md)
+6. <a href="https://menpo.readthedocs.io/">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
