@@ -19,7 +19,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="definition"></a>1. Definition
+### 1. Definition {#definition}
 Active Pictorial Structures (APS) is a statistical deformable model of the shape and appearance of a deformable object class.
 It is a generative model that takes advantage of the strengths, and overcomes the disadvantages, of both Pictorial Structures (PS) [[3](#3)] and Active Appearance Models (AAMs) [[2](#2)].
 APS is motivated by the tree-based structure of PS and further expands on it, as it can for­mulate the relations between parts using any graph struc­ture; not only trees. From AAMs, it borrows the use of the Gauss-Newton algorihtm in combination with a statis­tical shape model. The weighted inverse compositional al­gorithm with fixed Jacobian and Hessian that is used for optimization is very fast. In this page, we provide a basic mathematical definition of APS. For a more in-depth explanation, please refer to the relevant literature in [References](#references) and especially [[1](#1)].
@@ -27,7 +27,7 @@ APS is motivated by the tree-based structure of PS and further expands on it, as
 A shape instance of a deformable object is represented as $$\mathbf{s}=\big[{\mathbf{\ell}_1}^{\mathsf{T}},{\mathbf{\ell}_2}^{\mathsf{T}},\ldots,{\mathbf{\ell}_L}^{\mathsf{T}}\big]^{\mathsf{T}}=\big[x_1,y_1,\ldots,x_L,y_L\big]^{\mathsf{T}}$$, a $$2L\times 1$$ vector consisting of $$L$$ landmark points coordinates $$\mathbf{\ell}_i=[x_i,y_i],\forall i=1,\ldots,L$$. Moreover, let us denote by $$\mathcal{A}(\mathbf{I}, \mathbf{s})$$ a patch-based feature extraction function that returns an $$M\times 1$$ feature vector given an input image $$\mathbf{I}$$ and a shape instance $$\mathbf{s}$$. The features (e.g. SIFT) are computed on patches that are centered around the landmark points.
 
 
-### <a name="gmrf"></a>2. Gaussian Markov Random Field
+### 2. Gaussian Markov Random Field {#gmrf}
 Let us define an undirected graph between the $$L$$ land­mark points of an object as $$G=(V, E)$$, where $$V=\big\lbrace v_1, v_2, \ldots, v_L\big\rbrace$$ is the set of $$L$$ vertexes and there is an edge $$(v_i, v_j)\in E$$ for each pair of connected landmark points. Moreover, let us assume that we have a set of random vari­ables
 $$X=\{X_i\},~\forall i:v_i\in V$$ which represent an abstract feature vector of length $$k$$ extracted from each vertex $$v_i$$, i.e. $$\mathbf{x}_i,~\forall i:v_i\in V$$. We model the likelihood probability of two ran­dom variables that correspond to connected vertexes with a normal distribution
 $$
@@ -65,7 +65,7 @@ $$
 where $$\mathbf{m}_{ij}=E(X_i-X_j)$$ and $$\mathbf{m}=\big[{\mathbf{m}_1}^{\mathsf{T}},\ldots,{\mathbf{m}_L}^{\mathsf{T}}\big]^{\mathsf{T}}=\big[E(X_1)^{\mathsf{T}},\ldots,E(X_L)^{\mathsf{T}}\big]^{\mathsf{T}}$$. In this case, if $$G$$ is a tree, then we have a Bayesian network. Please refer to the supplementary material of [[1](#1)] for detailed proofs of the above.
 
 
-### <a name="model"></a>3. Model
+### 3. Model {#model}
 An APS [[1](#1)] is trained using a set of $$N$$ images $$\big\lbrace\mathbf{I}_1,\mathbf{I}_2,\ldots,\mathbf{I}_N\big\rbrace$$ that are annotated with a set of $$L$$ landmarks. It consists of the following parts:
 
 * **Shape Model**  
@@ -99,7 +99,7 @@ An APS [[1](#1)] is trained using a set of $$N$$ images $$\big\lbrace\mathbf{I}_
   where we use the properties $$\mathcal{S}(\bar{\mathbf{s}},\mathbf{0})=\bar{\mathbf{s}}+\mathbf{U}\mathbf{0}=\bar{\mathbf{s}}$$ and $$\mathcal{S}(\bar{\mathbf{s}},\mathbf{p})-\bar{\mathbf{s}}=\bar{\mathbf{s}}+\mathbf{U}\mathbf{p}-\bar{\mathbf{s}}=\mathcal{S}(\mathbf{0},\mathbf{p})$$.
 
 
-### <a name="cost"></a>4. Cost Function and Optimization
+### 4. Cost Function and Optimization {#cost}
 Given a test image $$\mathbf{I}$$, the optimization cost function of APS is
 $$
 \arg\min_{\mathbf{p}} \big\lVert\mathcal{A}\big(\mathbf{I},\mathcal{S}(\bar{\mathbf{s}},\mathbf{p})\big)-\bar{\mathbf{a}}\big\rVert^2_{\mathbf{Q}^a} + \lambda\big\lVert\mathcal{S}(\bar{\mathbf{s}},\mathbf{p})-\bar{\mathbf{s}}\big\rVert^2_{\mathbf{Q}^d}
@@ -158,11 +158,15 @@ The minimization of this function with respect to the shape parameters $$\mathbf
   $$
   is the combined $$n\times n$$ Hessian matrix with getting into account that $${\mathbf{J}_{\mathcal{S}}}^T \mathbf{Q}^s \mathcal{S}(\mathbf{0},\mathbf{p}) = \mathbf{U}^T\mathbf{Q}^s\mathbf{U}\mathbf{p} = \mathbf{H}_{\mathcal{S}}\mathbf{p}$$. $$\mathbf{H}_{\mathcal{S}}$$ can be precomputed but $$\mathbf{J}_{\mathcal{A}}$$ and $$\mathbf{H}^{-1}$$ need to be computed at each iteration. Consequently, the total computational cost is $$\mathcal{O}(nM^2 + nM + n^3)$$ which is much slower than the cost of the weighted inverse compositional algorithm with fixed Jacobian and Hessian.
 
-### <a name="references"></a>5. References
-<a name="1"></a>[1] E. Antonakos, J. Alabort-i-Medina, and S. Zafeiriou. "Active Pictorial Structures", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.
 
-<a name="2"></a>[2] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.
+### 5. Fitting Example {#fitting}
 
-<a name="3"></a>[3] P. F. Felzenszwalb and D. P. Huttenlocher. "Pictorial Struc­tures for Object Recognition", International Journal of Com­puter Vision (IJCV), 61(1):55-79, 2005.
 
-<a name="4"></a>[4] H. Rue and L. Held. "Gaussian Markov Random Fields: Theory and Applications", CRC Press, 2005.
+### 6. References {#references}
+<p id="1">[1] E. Antonakos, J. Alabort-i-Medina, and S. Zafeiriou. "Active Pictorial Structures", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
+
+<p id="2">[2] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
+
+<p id="3">[3] P. F. Felzenszwalb and D. P. Huttenlocher. "Pictorial Struc­tures for Object Recognition", International Journal of Com­puter Vision (IJCV), 61(1):55-79, 2005.</p>
+
+<p id="4">[4] H. Rue and L. Held. "Gaussian Markov Random Fields: Theory and Applications", CRC Press, 2005.</p>

@@ -9,7 +9,7 @@ Consistency
 
 ---------------------------------------
 
-### <a name="images_and_pointclouds"></a>1. Working with Images and PointClouds
+### 1. Working with Images and PointClouds {#images_and_pointclouds}
 Let's start with a quiz - which of the following is correct?
 <center>
   <img src="media/indexing.jpg" alt="Indexing quiz" style="width: 60%">
@@ -50,13 +50,13 @@ The *worst* part about this is that once we go to voxel data (which `Image` larg
 Now, as was mentioned, we want to drop all the swapping business. Therefore, forgiving that the **first axis indexes the channel data**, the following axes always match the spatial data. For example, The zeroth axis of the spatial data once more corresponds with the first axis (the first axis is *after the zeroth axis representing the channel data*) of the image data. Trying to keep track of these rules muddies an otherwise very simple concept.
 
 
-### <a name="approach"></a>2. Our Approach
+### 2. Our Approach {#approach}
 `menpo`'s solution to this problem is simple - **drop the insistence of calling axes `x`, `y`, and `z`**. Skipping the channel data, which represents the zeroth axis, the first axis of the pixel data is simply that - the first axis. It corresponds exactly with the zeroth axis on the point cloud. If you have an image with annotations provided the zeroth axis of the `PointCloud` representing the annotations will correspond with the first axis of the image. This rule makes working with images and spatial data simple -short you should never have to think about flipping axes in `menpo`.
 
 It's natural to be concerned at this point that establishing such rules must make it really difficult ingest data which follows different conventions. This is incorrect - one of the biggest strengths of the [menpo.io](http://docs.menpo.org/en/stable/api/menpo/io/index.html) module is that each asset importer normalizes the format of the data to format `menpo`'s rules.
 
 
-### <a name="keypoints"></a>3. Key Points
+### 3. Key Points {#keypoints}
 -   **Menpo is n-dimensional**. We try and avoid speaking of `x` and `y`, because there are many different conventions in use.
 -   **The IO module ensures that different data formats are normalized** upon loading into `menpo`. For example, `Image` types are imported as 64-bit floating point numbers normalised between \[0, 1\], by default.
 -   **axis 0 of landmarks corresponds to axis 0 of the container it is an annotation of**.

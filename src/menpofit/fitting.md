@@ -6,7 +6,7 @@ Fitting
 
 ---------------------------------------
 
-### <a name="fitter"></a>1. Fitter Objects
+### 1. Fitter Objects {#fitter}
 `menpofit` has specialised classes for performing a fitting process that are called `Fitters`.
 All `Fitter` objects are subclasses of one of the following:
   * `MultiScaleNonParametricFitter`: multi-scale non-parametric fitting method, i.e. a method that does not optimise over a parametric shape model
@@ -50,7 +50,7 @@ print(fitter)
 ```
 
 
-### <a name="fit"></a>2. Fitting Methods
+### 2. Fitting Methods {#fit}
 All the deformable models that are currently implemented in `mnepofit`,
 which are the state-of-the-art approaches in current literature,
 aim to find a *local optimum* of the cost function that they try to optimise, given an initialization.

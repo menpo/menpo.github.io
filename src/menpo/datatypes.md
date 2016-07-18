@@ -6,7 +6,7 @@ Data Types
 
 ---------------------------------------
 
-### <a name="why"></a>1. Why have Menpo types - what's wrong with numpy arrays?
+### 1. Why have Menpo types - what's wrong with numpy arrays? {#why}
 `menpo`'s data types are thin wrappers around `numpy` arrays. They give semantic meaning to the underlying array through providing clearly named and consistent properties. As an example let's take a look at `PointCloud`, `menpo`'s workhorse for spatial data. Construction requires a `numpy` array:
 
 ```python
@@ -66,7 +66,7 @@ def foo_menpo(pc, img):
 This time it's immediately apparent what `y`'s shape is. Although this is a somewhat contrived example, you will find this pattern applied consistently across `menpo`, and it aids greatly in keeping the code readable.
 
 
-### <a name="keypoints"></a>2. Key Points
+### 2. Key Points {#keypoints}
 **Menpo types always store the underlying numpy array in an easy to access attribute.** For the `PointCloud` family it's `.points`. On `Image` and subclasses, it's `.pixels`.
 
 **Menpo types store the minimal amount of data possible.** For the vast majority of Menpo types, the only data stored in the class is the single numpy array the type wraps. This makes it easy to reason about Menpo types - if you swap out the `.pixels` array on an `Image` instance for a new numpy array and `print(image.width)` you will get the correct answer for the new array, as all properties are computed from `.pixels`.
@@ -81,7 +81,7 @@ print(pointcloud)
 
 **Importing assets though [`menpo.io`](http://docs.menpo.org/en/stable/api/menpo/io/index.html) will result in our data containers, not `numpy` arrays**. This means in a lot of situations you never need to remember the `menpo` conventions for ordering of array data - just ask for an image and you will get an `Image` object.
 
-**Menpo types behave as immutable data containers**. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it's own numpy array. 
+**Menpo types behave as immutable data containers**. Methods on Menpo types return modified copies rather than mutating self (and mutating the underlying numpy array). This encourages chaining together method calls on types, each method call returning a fresh instance with it's own numpy array.
 ```python
 import menpo.io as mio
 img = mio.import_builtin_asset.lenna_png()

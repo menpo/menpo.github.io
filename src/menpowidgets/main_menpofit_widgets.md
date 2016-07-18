@@ -20,7 +20,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="basics"></a>1. Basics
+### 1. Basics {#basics}
 Let's first import all the widgets:
 
 ```python
@@ -39,7 +39,7 @@ They are all functions which have some common arguments:
 Note that all widgets can get as input a `list` of objects with totally different attributes between them. For example, `list` of results with different number of shapes or `list` of `PCAModel` with different number of parameters. Finally, they all have a _Renderer_ tab that has many rendering-related options (such as lines, markers, axes, legend, grid, image) and an _Export_ tab that allows the user to save the figure to file.
 
 
-### <a name="train"></a>2. Train Models
+### 2. Train Models {#train}
 Before moving on, let's train some models. First let's import what is needed.
 
 ```python
@@ -168,7 +168,7 @@ clm = CLM(training_images, diagonal=150, scales=[1.], holistic_features=igo, pat
       - Done
 
 
-### <a name="holistic"></a>3. Holistic AAM and ATM Widgets
+### 3. Holistic AAM and ATM Widgets {#holistic}
 The shape models and appearance models of the Holistic AAM can be visualised as:
 
 
@@ -218,7 +218,7 @@ atm.view_atm_widget()
 ![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_24_0.png)
 
 
-### <a name="patch_based"></a>4. Patch-based AAM and ATM Widgets
+### 4. Patch-based AAM and ATM Widgets {#patch_based}
 Similarly to the holistic case, the patch-based AAM can be visualised as follows:
 
 
@@ -250,7 +250,7 @@ patch_atm.view_atm_widget()
 ![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_29_0.png)
 
 
-### <a name="clm"></a>5. CLM Widgets
+### 5. CLM Widgets {#clm}
 
 Let's also visualize the CLM widgets:
 
@@ -272,7 +272,7 @@ clm.view_clm_widget()
 ![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_32_0.png)
 
 
-### <a name="result"></a>6. Fitting Result
+### 6. Fitting Result {#result}
 
 Let's fit the patch-based AAM on the test images in order to create a list of iterative fitting results.
 
@@ -339,7 +339,7 @@ visualize_fitting_result(frs)
 
 Note that the widget adapts itself to the properties of each fitting result object.
 
-### <a name="ced"></a>7. Cumulative Error Distributuon
+### 7. Cumulative Error Distributuon {#ced}
 
 The fitting errors can be nicely visualized with a widget for plotting Cumulative Error Distributions (CED). Let's first create a `list` with the initial and final fitting errors.
 

@@ -8,7 +8,7 @@ Importing Images
 
 ---------------------------------------
 
-### <a name="data"></a>1. Data Format
+### 1. Data Format {#data}
 In order to train a deformable model, we need to have a set of training images with ground truth annotations of the landmark points.
 The input/output package of `menpo` is very powerful and makes images and landmarks loading extremely easy.
 It supports the vast majority of image formats, as well as various landmark file formats (e.g. PTS, LJSON, etc.).
@@ -27,7 +27,7 @@ for example `LFPW` database ("in-the-wild", 811 and 224 training and testing ima
 Note that you have to enter your details (name, affiliation, email) before download.
 
 
-### <a name="lazy"></a>2. Simple "Lazy" Import
+### 2. Simple "Lazy" Import {#lazy}
 The downloaded images along with their landmarks can be easily imported as:
 
 ```python
@@ -55,7 +55,7 @@ visualize_images(training_images)
 where the images get loaded when asked to be rendered.
 
 
-### <a name="preprocessing"></a>3. "Non-Lazy" Import With Pre-Processing
+### 3. "Non-Lazy" Import With Pre-Processing {#preprocessing}
 Given that many deformabe models require significant memory for training, it is wise in general to
 reduce memory usage of training data as much as possible. This can be done by applying
 some simple pre-processing steps on the images. Examples of such pre-processing involve:
@@ -127,7 +127,7 @@ This importing procedure is much better due to the pre-processing step, but we
 lost all the nice and memory-efficient properties of `LazyList`. It would be really useful if we could
 pre-process the images and _keep_ the "lazy" property!
 
-### <a name="smart"></a>4. Smart "Lazy" Import With Pre-Processing!
+### 4. Smart "Lazy" Import With Pre-Processing! {#smart}
 We take advantage of `.map()` function of `LazyList` in order to be able to pre-process the images and _keep_ the "lazy" property.
 Specifically, using the same `process()` function as before, we can do:
 

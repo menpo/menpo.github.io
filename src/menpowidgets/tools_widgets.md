@@ -21,7 +21,7 @@ Below we present the functionalities of each one of them separately. Specificall
 
 ---------------------------------------
 
-### <a name="basics"></a>1. Basics
+### 1. Basics {#basics}
 All the widgets presented here are subclasses of `menpo.abstract.MenpoWidget`, thus they follow the same rules, which are:
 
 * They expect as input the initial options, as well as the rendering callback function.
@@ -64,7 +64,7 @@ def render_function(change):
     print(change['new'])
 ```
 
-### <a name="logo"></a>2. Menpo Logo
+### 2. Menpo Logo {#logo}
 This is a simple widget that can be used for embedding an image into an `ipywidgets` widget are using the `ipywidgets.Image` class.
 
 ```python
@@ -72,7 +72,7 @@ wid = LogoWidget(scale=0.6, style='info')
 wid
 ```
 
-### <a name="list"></a>3. List Definition and Slicing
+### 3. List Definition and Slicing {#list}
 _MenpoWidgets_ has a widget for defining a `list` of numbers. The widget is smart enough to accept any valid python command, such as
 ```python
 'range(10)', '[1, 2, 3]', '10'
@@ -149,7 +149,7 @@ wid.set_widget_state({'command': ':40', 'length': 40}, allow_callback=True)
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
 
 
-### <a name="colour"></a>4. Colour Selection
+### 4. Colour Selection {#colour}
 `menpowidgets` is using the standard Java colour picker defined in `ipywidgets.ColorPicker`. However, `ColourSelectionWidget` has the additional functionality to select colours for a set of objects. Thus the widget constructor gets a `list` of colours (either the colour name `str` or the RGB values), as well as the `labels` `list` that has the names of the objects.
 
 ```python
@@ -189,7 +189,7 @@ wid.set_widget_state(['red'], None)
     ['red']
 
 
-### <a name="index"></a>5. Index Selection
+### 5. Index Selection {#index}
 The following two widgets give the ability to select a single integer number from a specified range. Thus, they can be seen as index selectors. The user must pass in a `dict` that defines the minimum, maximum and step of the allowed range, as well as the initially selected index. Then the `selected_values` _trait_ always keeps track of the selected index, thus it has `int` type.
 
 An index selection widget, where the selector is an `ipywidgets.IntSlider` can be created as
@@ -260,7 +260,7 @@ wid.set_widget_state({'min': 20, 'max': 500, 'step': 2, 'index': 50}, loop_enabl
     50
 
 
-### <a name="zoom"></a>6. Zoom
+### 6. Zoom {#zoom}
 There are two widgets for zooming into a figure. Both are using `ipywidgets.FloatSLider` and get as input a `dict` with the minimum and maximum values, the step of the slider(s) and the initial zoom value.
 
 The first one defines a single zoom `float`, as
@@ -332,7 +332,7 @@ wid.set_widget_state(zoom_options, allow_callback=True)
     [2.0, 3.0]
 
 
-### <a name="image"></a>7. Image Options
+### 7. Image Options {#image}
 This is a widget for selecting options related to rendering an image. It defines the colourmap, the alpha value for transparency as well as the interpolation. Specifically:
 
 ```python
@@ -364,7 +364,7 @@ wid.set_widget_state({'alpha': 0.8, 'interpolation': 'none', 'cmap_name': 'gray'
     {'interpolation': 'none', 'alpha': 0.8, 'cmap_name': None}
 
 
-### <a name="line"></a>8. Line Options
+### 8. Line Options {#line}
 The following widget allows the selection of options for rendering line objects. The initial options are passed in as a `dict` and control the width, style and colour of the lines. Note that a different colour can be defined for different objects using the `labels` argument.
 
 ```python
@@ -400,7 +400,7 @@ wid.set_widget_state({'render_lines': False, 'line_width': 5, 'line_colour': ['p
     {'render_lines': False, 'line_style': '--', 'line_colour': ['purple'], 'line_width': 5.0}
 
 
-### <a name="marker"></a>9. Marker Options
+### 9. Marker Options {#marker}
 Similar to the `LineOptionsWidget`, this widget allows to selecting options for rendering markers. The options define the edge width, face colour, edge colour, style and size of the markers.
 
 ```python
@@ -438,7 +438,7 @@ wid.set_widget_state({'render_markers': True, 'marker_size': 20, 'marker_face_co
     {'marker_edge_colour': ['black'], 'marker_size': 20, 'render_markers': True, 'marker_style': 'o', 'marker_face_colour': ['red'], 'marker_edge_width': 1.0}
 
 
-### <a name="numbering"></a>10. Numbering Options
+### 10. Numbering Options {#numbering}
 The `NumberingOptionsWidget` is used in case you want to render some numbers next to the plotted points.
 
 ```python
@@ -479,7 +479,7 @@ wid.set_widget_state({'render_numbering': True, 'numbers_font_name': 'serif', 'n
     {'numbers_font_size': 10, 'render_numbering': True, 'numbers_font_weight': 'normal', 'numbers_horizontal_align': 'center', 'numbers_font_colour': 'green', 'numbers_vertical_align': 'bottom', 'numbers_font_name': 'serif', 'numbers_font_style': 'normal'}
 
 
-### <a name="axes"></a>11. Axes Options
+### 11. Axes Options {#axes}
 Before presenting the `AxesOptionsWidget`, let's first see two widgets that are ued as its basic components for selecting the axes limits as well as the axes ticks.
 
 `AxesLimitsWidget` has 3 basic functions per axis:
@@ -584,7 +584,7 @@ wid.set_widget_state(axes_options, allow_callback=True)
     {'axes_font_name': 'serif', 'axes_font_size': 10, 'axes_font_weight': 'normal', 'axes_y_limits': 0.1, 'axes_x_limits': [0.0, 0.05], 'render_axes': True, 'axes_font_style': 'normal', 'axes_y_ticks': None, 'axes_x_ticks': [0, 100]}
 
 
-### <a name="legend"></a>12. Legend Options
+### 12. Legend Options {#legend}
 `LegendOptionsWidget` allows to control the (many) options of renderinf the legend of a figure.
 
 ```python
@@ -630,7 +630,7 @@ wid.set_widget_state(legend_options, allow_callback=True)
     {'legend_font_size': 60, 'legend_font_weight': 'normal', 'legend_font_style': 'normal', 'legend_vertical_spacing': 7.0, 'legend_font_name': 'sans-serif', 'legend_marker_scale': 2.0, 'legend_shadow': True, 'legend_border': False, 'legend_border_axes_pad': 1.0, 'legend_title': 'asd', 'render_legend': True, 'legend_bbox_to_anchor': (1.05, 1.0), 'legend_horizontal_spacing': 3.0, 'legend_location': 7, 'legend_n_columns': 2, 'legend_rounded_corners': True, 'legend_border_padding': 0.5}
 
 
-### <a name="grid"></a>13. Grid Options
+### 13. Grid Options {#grid}
 The following simple widget controls the rendering of the grid lines of a plot, their style and width.
 
 ```python
@@ -660,7 +660,7 @@ wid.set_widget_state({'render_grid': True, 'grid_line_width': 10, 'grid_line_sty
     {'grid_line_width': 10.0, 'render_grid': True, 'grid_line_style': ':'}
 
 
-### <a name="features"></a>14. HOG, DSIFT, Daisy, LBP, IGO Options
+### 14. HOG, DSIFT, Daisy, LBP, IGO Options {#features}
 The following widgets allow to select options regarding HOG, DSIFT, Daisy, LBP and IGO features.
 
 ```python

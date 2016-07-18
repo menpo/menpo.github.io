@@ -8,7 +8,7 @@ Training
 
 ---------------------------------------
 
-### <a name="multiscale"></a>1. Multi-Scale Models
+### 1. Multi-Scale Models {#multiscale}
 All the methods implemented in `menpofit` are built in a **multi-scale** manner, i.e. in multiple resolutions.
 In all our core classes, this is controlled using the following three parameters:
 
@@ -35,7 +35,7 @@ PARAMETERS: reference_shape, diagonal, scales
 8.     scale_model = train_model(scaled_images, scaled_shapes)
 ```
 
-### <a name="features"></a>2. Holistic vs. Patch Features
+### 2. Holistic vs. Patch Features {#features}
 The methods implemented in `menpofit` can be roughly separated in two categories, based on the appearance representation approach:
 * **Holistic Models:** These are models that use a holistic appearance,
   which means that the whole texture that lies within the deformable object is taken into account.
@@ -50,14 +50,14 @@ holistic features in order to extract patches and can have two behaviours depend
    additionally compute some **patch_features**.
 
 
-### <a name="incremental"></a>3. Incremental Training
+### 3. Incremental Training {#incremental}
 Most deformable models that exist in `menpofit` can be trained in an **incremental** fashion. This can be very useful
 in case you want to train a very powerful model on a large amount of training images, which would be impossible to
 do at once due to memory constraints. The incremental training can be performed by using the **batch_size**
 parameter, which will split the provided set of training images into batches of the specified size.
 
 
-### <a name="example"></a>4. Training Example
+### 4. Training Example {#example}
 Given the above basic assumptions and using the `training_images` loaded in the [Importing Images](importing.md) section,
 an example of a typical call for training a deformable model using `HolisticAAM` is:
 

@@ -17,7 +17,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="definition"></a>1. Definition
+### 1. Definition {#definition}
 The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
 Active Template Model (ATM) is such method which is inspired by the [Lucas-Kanade Affine Image Alignment](lk.md "Lucas-Kanade Affine Image Alignment") and the [Active Appearance Model](aam.md "Active Appearance Model"). Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature. In this page, we provide a basic mathematical definition of an ATM and all its variations that are implemented within `menpofit`.
 
@@ -92,7 +92,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="warp"></a>2. Warp Functions
+### 2. Warp Functions {#warp}
 With an abuse of notation, let us define
 $$
 \mathbf{t}(\mathcal{W}(\mathbf{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
@@ -149,7 +149,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="cost"></a>3. Cost Function and Optimization
+### 3. Cost Function and Optimization {#cost}
 Fitting an ATM on a test image involves the optimization of the following cost function
 $$
 \arg\min_{\mathbf{p}} \big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} \big\rVert^{2}
@@ -269,5 +269,5 @@ print(result.appearance_parameters.shape)
 ```
 
 
-### <a name="references"></a>4. References
-<a name="1"></a>[1] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.
+### 4. References {#references}
+<p id="1">[1] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>

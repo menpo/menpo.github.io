@@ -6,9 +6,9 @@ Introduction
 
 ---------------------------------------
 
-### <a name="containers"></a>1. Core Types
+### 1. Core Types {#containers}
 
-`menpo` is a relatiely high-level software package. It is not a replacement for `pillow`, `scikit-image`, or `opencv` - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of Menpo types that wrap numpy arrays and provide an elegant API. You will find the vast majority of functions and methods in Menpo take and return these core types, so it's well worth getting used to them - there are only a handful.
+`menpo` is a relatively high-level software package. It is not a replacement for [`pillow`](http://python-pillow.org/), [`scikit-image`](http://scikit-image.org/), or [`opencv`](http://opencv.org/) - it ties all these lower-level packages together in to a unified higher-level framework. As a result, we have a family of core types that wrap `numpy` arrays and provide an elegant API. You will find that the vast majority of functions and methods in Menpo take and return these core types, so it's well worth getting used to them - there are only a handful.
 
 **Images**
 -   [`Image`](http://docs.menpo.org/en/stable/api/menpo/image/Image.html) - n-dimensional image with k-channels of `dtype` data
@@ -23,12 +23,12 @@ Introduction
 -   [`TriMesh`](http://docs.menpo.org/en/stable/api/menpo/shape/TriMesh.html) -  `PointCloud` with a triangulation
 
 
-### <a name="interfaces"></a>2. Core Interfaces
+### 2. Core Interfaces {#interfaces}
 
-`menpo` is an object oriented framework built around a set of three core interfaces, each one governing a particular facet of Menpo's design:
+`menpo` is an object oriented framework built around a set of three core interfaces, each one governing a particular facet of `menpo`'s design:
 
--   [`Vectorizable`](http://docs.menpo.org/en/stable/api/menpo/base/Vectorizable.html) - efficient bi-directional conversion of Menpo types to a numpy vector. Most Menpo types are `Vectorizable`.
--   [`Landmarkable`](http://docs.menpo.org/en/stable/api/menpo/landmark/Landmarkable.html) - objects that can be annotated with spatial labelled landmarks. In Menpo all images and shapes are `Landmarkable`.
+-   [`Vectorizable`](http://docs.menpo.org/en/stable/api/menpo/base/Vectorizable.html) - efficient bi-directional conversion of `menpo` types to a numpy vector. Most `menpo` types are `Vectorizable`.
+-   [`Landmarkable`](http://docs.menpo.org/en/stable/api/menpo/landmark/Landmarkable.html) - objects that can be annotated with spatial labelled landmarks. In `menpo` all images and shapes are `Landmarkable`.
 -   [`Transform`](http://docs.menpo.org/en/stable/api/menpo/transform/Transform.html) - spatial transformations that can be applied to any shape and used to drive image warps
 
-We will see how these interfaces lead to common patterns throughout Menpo later in this guide.
+We will see how these interfaces lead to common patterns throughout `menpo` later in this guide.

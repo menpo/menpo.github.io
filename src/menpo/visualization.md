@@ -23,7 +23,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 </div></p>
 
 
-### <a name="image"></a>1. Visualizing 2D Images
+### 1. Visualizing 2D Images {#image}
 Without further ado, a quick example of viewing a 2D image:
 ```python
 %matplotlib inline
@@ -52,7 +52,7 @@ image.view_widget()
   <img src="media/view_widget.png" alt="view_widget">
 </center>
 
-### <a name="images"></a>2. Visualizing A List Of 2D Images
+### 2. Visualizing A List Of 2D Images {#images}
 Visualizing a `list` of images is also incredibly simple if you are using the Jupyter notebook and have the `menpowidgets` package installed:
 ```python
 from menpowidgets import visualize_images
@@ -69,7 +69,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="pointcloud"></a>3. Visualizing A 2D PointCloud
+### 3. Visualizing A 2D PointCloud {#pointcloud}
 Visualizing `PointCloud` objects and subclasses is a very familiar experience:
 ```python
 pcloud = mio.import_builtin_asset.breakingbad_pts().lms
@@ -80,7 +80,7 @@ pcloud.view()
 </center>
 
 
-### <a name="3d"></a>4. Visualizing In 3D
+### 4. Visualizing In 3D {#3d}
 `menpo` natively supports 3D objects, such as triangulated meshes, as our base classes are n-dimensional. However, as viewing in 3D is a much more complicated experience, we have segregated the 3D viewing package into one of our sub-packages: [`menpo3d`](../menpo3d/index.md).
 
 If you try to view a 3D `PointCloud` without having `menpo3d` installed, you will receive an exception asking you to install it.

@@ -20,7 +20,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="definition"></a>1. Definition
+### 1. Definition {#definition}
 Active Appearance Model (AAM) is a statistical deformable model of the shape and appearance of a deformable object class.
 It is a generative model which during fitting aims to recover a parametric description of a certain object through optimization.
 In this page, we provide a basic mathematical definition of an AAM and all its variations that are implemented within `menpofit`.
@@ -91,7 +91,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="warp"></a>2. Warp Functions
+### 2. Warp Functions {#warp}
 With an abuse of notation, let us define
 $$
 \mathbf{t}(\mathcal{W}(\mathbf{p}))\equiv \mathcal{F}(\mathbf{I})(\mathcal{W}(\mathbf{p}))
@@ -182,7 +182,7 @@ Your browser does not support the video tag.
 
 
 
-### <a name="cost"></a>3. Cost Function and Optimization
+### 3. Cost Function and Optimization {#cost}
 Fitting an AAM on a test image involves the optimization of the following cost function
 $$
 \arg\min_{\mathbf{p}, \mathbf{c}} \big\lVert \mathbf{t}(\mathcal{W}(\mathbf{p})) - \bar{\mathbf{a}} - \mathbf{U}_a\mathbf{c} \big\rVert^{2}
@@ -193,7 +193,7 @@ This optimization can be solved by two approaches:
 1. [Lucas-Kanade Optimization](#lucas-kanade-fitting)  
 2. [Supervised Descent Optimization](#supervised-descent-fitting)
 
-#### <a name="lucas-kanade-fitting"></a>3.1. Lucas-Kanade Optimization
+#### 3.1. Lucas-Kanade Optimization {#lucas-kanade-fitting}
 The Lucas-Kanade optimization belongs to the family of gradient-descent algorithms. In general, the existing gradient descent optimization techniques are categorized as: (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and (2) _additive_ or _compositional_ depending on the way the motion parameters are updated. `menpofit` currently provides the **Forward-Compositional** and **Inverse-Compositional** version of five different algorithms. All these algorithms are iterative and the shape parameters are updated at each iteration in a compositional manner as
 $$
 \mathcal{W}(\mathbf{p})\leftarrow\mathcal{W}(\mathbf{p})\circ\mathcal{W}(\Delta\mathbf{p})^{-1}
@@ -293,7 +293,7 @@ print(fitter)
 ```
 
 
-#### <a name="supervised-descent-fitting"></a>3.2. Supervised Descent Optimization
+#### 3.2. Supervised Descent Optimization {#supervised-descent-fitting}
 The AAM cost function can also be optimized using cascaded regression, which in literature is commonly referred to as Supervised Descent Optimization, a name given by [[15](#15)]. Specifically, the aim is to learn a regression function that regresses from the object’s features based on the appearance model to the parameters of the statistical shape model. Although the history behind using linear regression in order to learn descent directions spans back many years when AAMs were first introduced [[6](#6)], the research community turned towards alternative approaches due to the lack of sufficient data for training accurate regression functions. Nevertheless, over the last few years, regression-based techniques have prevailed in the field [[14](#14), [15](#15)] thanks to the wealth of readily available annotated data and powerful handcrafted features.
 
 **Regression Features**  
@@ -340,7 +340,7 @@ $$
 The above procedure is repeated for each cascade level, i.e. $$k=1,\ldots,K$$.
 
 
-### <a name="fitting"></a>4. Fitting Example
+### 4. Fitting Example {#fitting}
 Let's load a test image from LFPW testset and convert it to grayscale
 ```python
 from pathlib import Path
@@ -482,33 +482,33 @@ print(result.appearance_parameters.shape)
 ```
 
 
-### <a name="references"></a>5. References
-<a name="1"></a>[1] J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.
+### 5. References {#references}
+<p id="1">[1] J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.</p>
 
-<a name="2"></a>[2] J. Alabort-i-Medina, and S. Zafeiriou. "Bayesian Active Appearance Models", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
+<p id="2">[2] J. Alabort-i-Medina, and S. Zafeiriou. "Bayesian Active Appearance Models", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
 
-<a name="3"></a>[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.
+<p id="3">[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>
 
-<a name="4"></a>[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "HOG Active Appearance Models", IEEE International Conference on Image Processing (ICIP), 2014.
+<p id="4">[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "HOG Active Appearance Models", IEEE International Conference on Image Processing (ICIP), 2014.</p>
 
-<a name="5"></a>[5] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.
+<p id="5">[5] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
 
-<a name="6"></a>[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. "Active Appearance Models", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681–685, 2001.
+<p id="6">[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. "Active Appearance Models", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681–685, 2001.</p>
 
-<a name="7"></a>[7] R. Gross, I. Matthews, and S. Baker. "Generic vs. person specific Active Appearance Models", Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.
+<p id="7">[7] R. Gross, I. Matthews, and S. Baker. "Generic vs. person specific Active Appearance Models", Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.</p>
 
-<a name="8"></a>[8] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.
+<p id="8">[8] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
 
-<a name="9"></a>[9] G. Papandreou, and P. Maragos. "Adaptive and constrained algorithms for  inverse compositional active appearance model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.
+<p id="9">[9] G. Papandreou, and P. Maragos. "Adaptive and constrained algorithms for  inverse compositional active appearance model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.</p>
 
-<a name="10"></a>[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Active Orientation Models for Face Alignment in-the-wild", IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.
+<p id="10">[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Active Orientation Models for Face Alignment in-the-wild", IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.</p>
 
-<a name="11"></a>[11] G. Tzimiropoulos, and M. Pantic. "Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
+<p id="11">[11] G. Tzimiropoulos, and M. Pantic. "Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
 
-<a name="12"></a>[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.
+<p id="12">[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.</p>
 
-<a name="13"></a>[13] G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.
+<p id="13">[13] G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.</p>
 
-<a name="14"></a>[14] G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.
+<p id="14">[14] G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
 
-<a name="15"></a>[15] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.
+<p id="15">[15] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.</p>

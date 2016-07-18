@@ -10,13 +10,13 @@ fit it on a set of images and visualize the result.
 
 ---------------------------------------
 
-### <a name="import"></a>1. Import training and fitting images
+### 1. Import training and fitting images {#import}
 
 
-### <a name="training"></a>1. Train Model
+### 2. Train Model {#training}
 
 
-### <a name="fitting"></a>1. Fit Model
+### 3. Fit Model {#fitting}
 
 
-### <a name="results"></a>1. Results
+### 4. Results {#results}

@@ -19,7 +19,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 </div></p>
 
 
-### <a name="definition"></a>1. Definition
+### 1. Definition {#definition}
 A Point Distribution Model (PDM) is a statistical parametric model of the shape of the deformable obect, which is an essential part for many state-of-the-art deformable models.
 
 Let us denote a shape instance of an object with $$L$$ landmark points as a $$2L\times 1$$ vector
@@ -85,7 +85,7 @@ Point Distribution Model with Similarity Transform
  - components shape:        (132, 136)
 ```
 
-### <a name="active"></a>2. Active Components
+### 2. Active Components {#active}
 Note that in the previous printing message all the available components are active.
 This means that when using the model for any kind of operations such as projection or reconstruction,
 then the whole subspace will be used. Normally, you need to use less components in order to remove
@@ -116,7 +116,7 @@ Point Distribution Model with Similarity Transform
  - components shape:        (16, 136)
 ```
 
-### <a name="synthesis"></a>3. Generating New Instances
+### 3. Generating New Instances {#synthesis}
 A new shape instance can be generated as
 $$
 \mathbf{s} = \bar{\mathbf{s}} + \mathbf{U}_s\mathbf{p}
@@ -156,7 +156,7 @@ which returns the following instance
 </center>
 
 
-### <a name="visualization"></a>4. Visualization
+### 4. Visualization {#visualization}
 The PCA components of the `OrthoPDM` can be explored using an interactive widget as:
 ```python
 from menpowidgets import visualize_shape_model
@@ -168,7 +168,7 @@ Your browser does not support the video tag.
 </video>
 
 
-### <a name="projection_and_reconstruction"></a>5. Projection and Reconstruction
+### 5. Projection and Reconstruction {#projection_and_reconstruction}
 A shape instance $$\mathbf{s}$$ can be theoretically projected into a given shape model $$\left\lbrace\bar{\mathbf{s}}, \mathbf{U}_s\right\rbrace$$ as
 $$
 \mathbf{p} = {\mathbf{U}_s}^T (\mathbf{s} - \bar{\mathbf{s}})

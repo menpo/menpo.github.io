@@ -6,14 +6,14 @@ Fitting Result
 
 ---------------------------------------
 
-### <a name="objects"></a>1. Result Objects
+### 1. Result Objects {#objects}
 The fitting methods of the `Fitters` presented in the [previous section](fitting.md) return a result object. `menpofit` has three basic fitting result objects:
   - `Result`: Basic fitting result object that holds the final shape, and optionally, the initial shape, ground truth shape and the image.
   - `MultiScaleNonParametricIterativeResult`: The result of a multi-scale iterative fitting procedure. Apart from the final shape, it also stores the shapes acquired at each fitting iteration.
   - `MultiScaleParametricIterativeResult`: The same as `MultiScaleNonParametricIterativeResult` with the difference that the optimization was performed over the parameters of a statistical parametric shape model. Thus, apart from the actual shapes, it also stores the shape parameters acquired per iteration. *Note that in this case, the initial shape that was provided by the user gets reconstructed using the shape model, i.e. it first gets projected in order to get the initial estimation of the shape parameters, and then gets reconstructed with those*. The resulting shape is then used as initialization for the iterative fitting process.
 
 
-### <a name="attributes"></a>2. Attributes
+### 2. Attributes {#attributes}
 The above result objects can provide some very useful information regarding the fitting procedure. For example, the various shapes can be retrieved as:
 
 **result.final\_shape**  

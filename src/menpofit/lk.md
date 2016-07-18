@@ -17,7 +17,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="definition"></a>1. Definition
+### 1. Definition {#definition}
 The aim of image alignment is to find the location of a constant template $$\bar{\mathbf{a}}$$ in an input image $$\mathbf{t}$$.
 Note that both $$\bar{\mathbf{a}}$$ and $$\mathbf{t}$$ are vectorized.
 This alignment is done by estimating the optimal parameters values of a parametric motion model. The motion model consists of a Warp function
@@ -56,7 +56,7 @@ plt.gca().set_title('Template');
 </center>
 
 
-### <a name="optimization"></a>2. Optimization and Residuals
+### 2. Optimization and Residuals {#optimization}
 The existing gradient descent optimization techniques [[1](#1)] are categorized as:
 (1) _forward_ or _inverse_ depending on the direction of the motion parameters estimation and
 (2) _additive_ or _compositional_ depending on the way the motion parameters are updated.
@@ -142,7 +142,7 @@ Lucas-Kanade Inverse Compositional Algorithm
 ```
 
 
-### <a name="visualization"></a>3. Alignment and Visualization
+### 3. Alignment and Visualization {#visualization}
 Fitting a `LucasKanadeFitter` to an image is as simple as calling its `fit_from_bb` method.
 We will attempt to fit the cropped template we created earlier onto a perturbed version of the original image, by adding
 noise to its ground truth bounding box. Note that `noise_percentage` is too large in order to create a very challenging initialization.
@@ -190,17 +190,17 @@ we can visualize the warped image per iteration as:
 Your browser does not support the video tag.
 </video>
 
-### <a name="references"></a>4. References
-<a name="1"></a>[1] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.
+### 4. References {#references}
+<p id="1">[1] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
 
-<a name="2"></a>[2] B.D. Lucas, and T. Kanade, "An iterative image registration technique with an application to stereo vision", International Joint Conference on Artificial Intelligence, 1981.
+<p id="2">[2] B.D. Lucas, and T. Kanade, "An iterative image registration technique with an application to stereo vision", International Joint Conference on Artificial Intelligence, 1981.</p>
 
-<a name="3"></a>[3] S. Baker, and I. Matthews. "Equivalence and efficiency of image alignment algorithms", IEEE Conference on Computer Vision and Pattern Recognition, 2001.
+<p id="3">[3] S. Baker, and I. Matthews. "Equivalence and efficiency of image alignment algorithms", IEEE Conference on Computer Vision and Pattern Recognition, 2001.</p>
 
-<a name="4"></a>[4] A.B. Ashraf, S. Lucey, and T. Chen. "Fast Image Alignment in the Fourier Domain", IEEE Conference on Computer Vision and Pattern Recognition, 2010.
+<p id="4">[4] A.B. Ashraf, S. Lucey, and T. Chen. "Fast Image Alignment in the Fourier Domain", IEEE Conference on Computer Vision and Pattern Recognition, 2010.</p>
 
-<a name="5"></a>[5] G.D. Evangelidis, and E.Z. Psarakis. "Parametric Image Alignment Using Enhanced Correlation Coefficient Maximization", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 30, no. 10, pp. 1858-1865, 2008.
+<p id="5">[5] G.D. Evangelidis, and E.Z. Psarakis. "Parametric Image Alignment Using Enhanced Correlation Coefficient Maximization", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 30, no. 10, pp. 1858-1865, 2008.</p>
 
-<a name="6"></a>[6] G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Robust and Efficient Parametric Face Alignment", IEEE International Conference on Computer Vision, 2011.
+<p id="6">[6] G. Tzimiropoulos, S. Zafeiriou, and M. Pantic. "Robust and Efficient Parametric Face Alignment", IEEE International Conference on Computer Vision, 2011.</p>
 
-<a name="7"></a>[7] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.
+<p id="7">[7] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>

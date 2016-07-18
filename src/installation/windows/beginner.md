@@ -14,7 +14,7 @@ follow them carefully, in order:
   4. [Installing The Menpo Project Into Conda](#installing-the-menpo-project-into-conda)
   5. [Begin Using Menpo](#begin-using-menpo)
 
-### <a name="install-a-python-environment"></a>1. Install A Python Environment
+### 1. Install A Python Environment {#install-a-python-environment}
 First, we need to install a Python environment. The Python environment we will
 use is called **conda**, and it is provided by an installation package
 called **Miniconda**.
@@ -38,7 +38,7 @@ ticked on the **Advanced Installation Options** page as shown below:
 ![Miniconda Advanced Installation Options](images/Windows-Miniconda-Settings.png)
 ********************************************************************************
 
-### <a name="using-conda"></a>2. Using Conda
+### 2. Using Conda {#using-conda}
 After installing Miniconda, we should have access to two new commands within
 the command prompt. Python, unlike Matlab, does not come with an integrated
 development environment and so commands have to be run using the command prompt.
@@ -57,7 +57,7 @@ C:\>conda -V
 Which will print something like ``conda 3.17.0``, though the version number *may*
 differ.
 
-### <a name="setting-up-a-fresh-environment"></a>3. Setting Up A Fresh Environment
+### 3. Setting Up A Fresh Environment {#setting-up-a-fresh-environment}
 We now need to create an environment to store all of our Python packages inside.
 It doesn't matter what path you are inside within the command prompt, the
 `conda` command will not create any files *locally*. So, we use the command
@@ -98,7 +98,7 @@ This let's you know that the `menpo` environment is enabled. It is important
 to ensure that the `menpo` environment is activated before attempting to
 use Menpo in any way!
 
-### <a name="installing-the-menpo-project-into-conda"></a>4. Installing The Menpo Project Into Conda
+### 4. Installing The Menpo Project Into Conda {#installing-the-menpo-project-into-conda}
 Installing all the packages of the Menpo Project only requires a single command:
 ```
 [menpo] C:\>conda install -c menpo menpoproject
@@ -132,7 +132,7 @@ when the extracting and linking processes show **COMPLETE**.
 
 **Congratulations! You have now installed the latest version of the Menpo Project!**
 
-### <a name="begin-using-menpo"></a>5. Begin Using Menpo
+### 5. Begin Using Menpo {#begin-using-menpo}
 In order to start using Menpo, we suggest you have a look through our collection
 of [Examples](../../examples/index.md) using Jupyter notebook. Follow the instructions there to download the notebooks and run them.
 

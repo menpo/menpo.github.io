@@ -9,7 +9,7 @@ A template is a specification for future landmarks. It specifies how many landma
 
 ---------------------------------------
 
-### <a name="ljson"></a>1. LJSON landmark file specification
+### 1. LJSON landmark file specification {#ljson}
 Landmarks are loaded and saved as `.ljson` files, as understood by the [`menpo`](../menpo/index.md) package. The current version of the format is `v2`.
 
 You can see an example in the demo data for the landmarker ([https://github.com/menpo/landmarker.io/blob/master/api/v2/landmarks/james/ibug68.json](https://github.com/menpo/landmarker.io/blob/master/api/v2/landmarks/james/ibug68.json)).
@@ -89,7 +89,7 @@ Here's a minimal [json schema](http://json-schema.org/) you can use to validate 
 ```
 
 
-### <a name="template"></a>2. Template specification
+### 2. Template specification {#template}
 Templates are YAML files which formalise a landmark set by specifying it's size, connectivity and labels.
 
 The file must contain a `groups` array containing dictionaries. Each dictionary describe a group of landmarks with the fields:

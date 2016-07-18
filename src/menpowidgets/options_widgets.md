@@ -19,7 +19,7 @@ Herein, we present the widgets that can be used as components in order to assemb
 
 ---------------------------------------
 
-### <a name="basics"></a>1. Basics
+### 1. Basics {#basics}
 All the widgets presented here are subclasses of `menpo.abstract.MenpoWidget`, thus they follow the same rules, which are:
 
 * They expect as input the rendering callback function.
@@ -31,7 +31,7 @@ The only difference from the widgets in `menpowidgets.tools` (explained in  [Too
 * `predefined_style()` which sets a predefined theme on the widget. Possible themes are `'minimal'`, `'success'`, `'info'`, `'warning'` and `'danger'`.
 
 
-### <a name="mnemonic"></a>2. Widgets with Memory
+### 2. Widgets with Memory {#mnemonic}
 All the widgets of this notebook have memory. Specifically, _they have the ability to recognize objects with the same properties and use the same options._ This becomes more clear in the [Main Widgets section](main_widgets.md).
 
 However, in order to make this more clear, assume the following simplistic scenario:
@@ -51,7 +51,7 @@ from menpo.visualize import print_dynamic
 ```
 
 
-### <a name="animation"></a>3. Animation Options
+### 3. Animation Options {#animation}
 The aim of this widget is to allow the user to browse through a set of objects (e.g. images, shapes, etc.). Thus, it provides the ability to select an index by some controllers (e.g. slider or buttons). It also provides the ability to play an animation of the objects. The functionality of the buttons is the following:
 > <i class="fa fa-plus"></i>  Next object.<br>
   <i class="fa fa-minus"></i>  Previous object.<br>
@@ -103,7 +103,7 @@ anim_wid.set_widget_state({'min': 0, 'max': 20, 'step': 2, 'index': 16},
 ```
 
 
-### <a name="channels"></a>4. Channels Options
+### 4. Channels Options {#channels}
 The aim of this widget is to allow the user to select options related to the channels of an `Image`.
 
 It is assumed that an `Image` object is uniquely described by the following properties:
@@ -148,7 +148,7 @@ chan_wid.get_default_options(n_channels=100, image_is_masked=False)
 ```
 
 
-### <a name="patches"></a>5. Patches Options
+### 5. Patches Options {#patches}
 The `PatchOptionsWidget` allows the selection of patches-related options, e.g. patches slicing, bounding boxes rendering, black/white background colour etc. It assumes that a patch-based image is uniquely defined by the following properties:
 * `n_patches`: The number of patches.
 * `n_offsets`: The number of offsets per patch.
@@ -195,7 +195,7 @@ pat_wid.get_default_options(n_patches=2, n_offsets=20)
 ```
 
 
-### <a name="landmarks"></a>6. Landmarks Options
+### 6. Landmarks Options {#landmarks}
 The `LandmarkOptionsWidget` allows the selection of landmarks-related options, e.g. group, labels etc. It assumes that an object with landmarks (`LandmarkManager`) is uniquely defined by the following properties:
 * `group_keys`: The `list` of `LandmarkGroup` names.
 * `labels_keys`: A `list` with the `list` of labels per `LandmarkGroup`.
@@ -255,7 +255,7 @@ land_wid.predefined_style('warning')
 ```
 
 
-### <a name="renderer"></a>7. Renderer Options
+### 7. Renderer Options {#renderer}
 The `RendererOptionsWidget` allows the selection of generic rendering options related to lines, markers, axes, legend, etc. It is a very powerful and flexible widget and it makes it very easy to select its parts. Its contructor requires two arguments:
 
 * `options_tabs`: It is a `list` that defines the nature as well as the ordering of the tabs of the widget. It can get the following values:
@@ -320,7 +320,7 @@ rend_wid.set_widget_state(labels=None, allow_callback=True)
 ```
 
 
-### <a name="plot"></a>8. Plot Options
+### 8. Plot Options {#plot}
 The aim of this widget is to allow the user to select options related with plotting a graph with various curves. It can accomodate options for different curves that are related to markers and lines. It also has options regarding the legend, axes, grid, zoom and figure properties.
 
 The concept behind this widget is very similar to [`RendererOptionsWidget`](#renderer). The two main differences are:
@@ -341,7 +341,7 @@ plot_wid
 ```
 
 
-### <a name="parameters"></a>9. Linear Model Parameters
+### 9. Linear Model Parameters {#parameters}
 The aim of this widget is to tweak the parameters of a linear model to generate new instances. The user can select the number of parameters (`n_parameters`) and between two possible `mode` options:
 * `'multiple'`: In this case there will be a different slider per parameter.
 * `'single'`: In this case there will be a single slider and a dropdown menu to select the parameter we wish to change.
@@ -387,7 +387,7 @@ param_wid = LinearModelParametersWidget(n_parameters=15, render_function=render_
 param_wid
 ```
 
-### <a name="result"></a>10. Result Options
+### 10. Result Options {#result}
 The aim of this widget is to provide options for visualising a `menpofit.result.Result` object. This means that the user can render the final fitting, initial shape as well as ground truth shape with or without the image. These shapes can be viewed either on separate or on the same figure. Note that the widget is "smart" enough to adjust in case there is not an initial shape, ground truth shape or image in the `Result` object.
 
 Let's create a rendering function and a widget instance:
@@ -411,11 +411,11 @@ res_wid.set_widget_state(has_gt_shape=True, has_initial_shape=False, has_image=F
 ```
 
 
-### <a name="iterative_result"></a>11. Iterative Result Options
-This widget is a more advanced version of [`ResultOptionsWidget`](<a name="result">). It provides options for both a simple result object (i.e. `Result` in `menpofit.result`) as well as an iterative result object (i.e. `MultiScaleParametricIterativeResult` and `MultiScaleNonParametricIterativeResult`).
+### 11. Iterative Result Options {#iterative_result}
+This widget is a more advanced version of [`ResultOptionsWidget`](#result). It provides options for both a simple result object (i.e. `Result` in `menpofit.result`) as well as an iterative result object (i.e. `MultiScaleParametricIterativeResult` and `MultiScaleNonParametricIterativeResult`).
 
 It has two tabs:
-* `Final`: It has the same functionalities as [`ResultOptionsWidget`](<a name="result">). Its purpose is to visualise the final result of the fitting procedure.
+* `Final`: It has the same functionalities as [`ResultOptionsWidget`](#result). Its purpose is to visualise the final result of the fitting procedure.
 * `Iterations`: This visualises the iterations of the fitting procedure either as an animation or in static figures.
 
 Moreover, the widget has a `tab_update_function` argument that expects a function that gets called when the tab selection changes. The purpose is to update a potential rendering options widget, because not the same options apply for visualising the final result and the iterations of a fitting process.
@@ -446,7 +446,7 @@ res_wid.set_widget_state(has_gt_shape=False, has_initial_shape=False, has_image=
 ```
 
 
-### <a name="text"></a>12. Text Print
+### 12. Text Print {#text}
 The aim of this widget is to allow the user to print text within the widget area. For example:
 ```python
 text_per_line = ['> This is the', '> Text Print widget!', '> :-)']
@@ -461,7 +461,7 @@ txt_wid.set_widget_state(['M', 'E', 'N', 'P', 'O'])
 ```
 
 
-### <a name="features"></a>13. Feature Options
+### 13. Feature Options {#features}
 This widget is very simple and is designed to be used by the `features_selection()` widget. It doesn't get any input options.
 ```python
 feat_wid = FeatureOptionsWidget(style='danger')
@@ -475,7 +475,7 @@ print(feat_wid.features_options)
 ```
 
 
-### <a name="save"></a>14. Save Figure Options
+### 14. Save Figure Options {#save}
 The aim of this widget is to allow the user to save a figure to file. It expects as input the renderer object that was used to render a figure (class `Renderer`).
 
 Let's first generate such a renderer by visualizing an image

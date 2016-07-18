@@ -15,7 +15,7 @@ follow them carefully, in order:
   5. [Installing The Menpo Project Into Conda](#installing-the-menpo-project-into-conda)
   6. [Begin Using Menpo](#begin-using-menpo)
 
-### <a name="prerequisites"></a>1. Prerequisites
+### 1. Prerequisites {#prerequisites}
 First, we need to install an isolated Python environment. Python does not come
 with a graphical user interface and so we will need to run a number of commands
 in the terminal. You can access the terminal by pressing the **Super** key
@@ -35,7 +35,7 @@ $ uname -m
 This will output a short string that tells you what version of Linux you
 are using.
 
-### <a name="install-a-python-environment"></a>2. Install A Python Environment
+### 2. Install A Python Environment {#install-a-python-environment}
 The Python environment we will use is called **conda**, and it is provided by
 an installation package called **Miniconda**.
 
@@ -68,7 +68,7 @@ location to your **PATH**:
 ![Miniconda Advanced Installation Options](images/Linux-Miniconda-Settings.png)
 ********************************************************************************
 
-### <a name="using-conda"></a>3. Using Conda
+### 3. Using Conda {#using-conda}
 After installing Miniconda, close your current terminal and open another in
 order to activate the installation. You should have access to a new command
 within the terminal, `conda`. You can test this is working by entering the
@@ -79,7 +79,7 @@ $ conda -V
 Which will print something like ``conda 3.17.0``, though the version number *may*
 differ.
 
-### <a name="setting-up-a-fresh-environment"></a>4. Setting Up A Fresh Environment
+### 4. Setting Up A Fresh Environment {#setting-up-a-fresh-environment}
 We now need to create an environment to store all of our Python packages inside.
 It doesn't matter what path you are within the terminal, the
 `conda` command will not create any files *locally*. So, we use the command
@@ -116,7 +116,7 @@ This let's you know that the `menpo` environment is enabled. It is important
 to ensure that the `menpo` environment is activated before attempting to
 use Menpo in any way!
 
-### <a name="installing-the-menpo-project-into-conda"></a>5. Installing The Menpo Project Into Conda
+### 5. Installing The Menpo Project Into Conda {#installing-the-menpo-project-into-conda}
 Installing all the packages of the Menpo Project only requires a single command:
 ```
 (menpo)$ conda install -c menpo menpoproject
@@ -150,7 +150,7 @@ when the extracting and linking processes show **COMPLETE**.
 
 **Congratulations! You have now installed the latest version of the Menpo Project!**
 
-### <a name="begin-using-menpo"></a>6. Begin Using Menpo
+### 6. Begin Using Menpo {#begin-using-menpo}
 In order to start using Menpo, we suggest you have a look through our collection
 of [Examples](../../examples/index.md) using Jupyter notebook. Follow the instructions there to download the notebooks and run them.
 

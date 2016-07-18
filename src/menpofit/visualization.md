@@ -20,7 +20,7 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 </div></p>
 
 
-### <a name="models"></a>1. Visualizing Models
+### 1. Visualizing Models {#models}
 All `menpofit` models provide functionalities for visualizing themselves. For example,
 the AAM that we trained in the [Training](training.md) section can be visualized with an interactive widget as:
 
@@ -59,7 +59,7 @@ Your browser does not support the video tag.
 The same visualization widgets can be found in other models, such as ATM, CLM etc.
 
 
-### <a name="result"></a>2. Visualizing Fitting Result
+### 2. Visualizing Fitting Result {#result}
 The fitting result objects shown returned by the fitting methods in the [Fitting](fitting.md) section can be easily visualized.
 Specifically, the initial and final shapes can be rendered as:
 

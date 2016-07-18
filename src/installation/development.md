@@ -12,7 +12,7 @@ for all the packages of the Menpo Project (`menpofit`,
 
 ---------------------------------------
 
-### <a name="clone"></a>1. Clone The Source Code From Github
+### 1. Clone The Source Code From Github {#clone}
 Go to [Github](https://github.com/menpo/menpo) and fork the `menpo` repository,
 so that you can make pull requests back to the Menpo project.
 This should provide you with a newly created repository on your Github
@@ -31,7 +31,7 @@ If you are using Windows you may want to use [Github Desktop](https://desktop.gi
 You should now have a folder that contains all of the `menpo` source code.
 
 
-### <a name="dependencies"></a>2. Install The Dependencies
+### 2. Install The Dependencies {#dependencies}
 We advise that you create a new `conda` environment for your Menpo development,
 which we will call ``menpo_dev``:
 ```
@@ -53,7 +53,7 @@ this because we believe it is easier to use `conda` than `pip` to satisfy the de
 particularly for packages such as ``vlfeat`` that have complex building processes.
 
 
-### <a name="install"></a>3. Install And Build The Source Code
+### 3. Install And Build The Source Code {#install}
 To install a development copy of `menpo` (one that you can edit and then see those
 changes reflected in your environment) - we will use `pip`. Now, it is important
 to note that this is contrary to the previous instructions whereby we are always using `conda`

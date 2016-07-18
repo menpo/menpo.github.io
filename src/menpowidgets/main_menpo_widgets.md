@@ -23,7 +23,7 @@ This can be done by running</br>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
 
-### <a name="basics"></a>1. Basics
+### 1. Basics {#basics}
 Let's first import all the widgets:
 ```python
 from menpowidgets import (visualize_pointclouds, visualize_landmarkgroups,
@@ -81,7 +81,7 @@ im5 = im5.as_greyscale()
 im6 = mio.import_builtin_asset.menpo_thumbnail_jpg()
 ```
 
-### <a name="pointclouds"></a>2. PointClouds/PointGraphs Widget
+### 2. PointClouds/PointGraphs Widget {#pointclouds}
 First, we need to add the objects in a list
 ```python
 pointclouds = [im1.landmarks['PTS'].lms,
@@ -108,7 +108,7 @@ The 2nd tab has rendering options regarding the markers, lines, numbering, axes 
 The 3rd tab allows the user to save a figure to file.
 
 
-### <a name="landmarkgroups"></a>3. LandmarkGroups Widget
+### 3. LandmarkGroups Widget {#landmarkgroups}
 Let's group all `LandmarkGroups` in a `list`
 ```python
 landmark_groups = [im1.landmarks['PTS'],
@@ -133,7 +133,7 @@ The 3nd tab has rendering options regarding the lines, markers, numbering of poi
 Finally, the last tab allows the user to save a figure to file.
 
 
-### <a name="landmarks"></a>4. Landmarks Widget
+### 4. Landmarks Widget {#landmarks}
 First we need to create a `list` of `LandmarkManager` objects and then visualize them using a ``'minimal'`` style
 ```python
 landmarks = [im1.landmarks,
@@ -148,7 +148,7 @@ visualize_landmarks(landmarks, style='minimal')
 This widget has the exact same structure and functionality as the previous one for LandmarkGroups. The only difference is that in the `Landmarks` tab, the _group_ can also be specified in case a `LandmarkManager` has more than one groups.
 
 
-### <a name="images"></a>5. Images Widget
+### 5. Images Widget {#images}
 Let's now create a list with the actual `Image` objects and visualize them
 ```python
 images = [im1, im2, im3, im4, im5, im6]
@@ -157,7 +157,7 @@ visualize_images(images)
 Compared to the `visualize_landmarks()` widget, this one has an additional tab for _Channels_ options. In this tab, the user has several options, such as to visualize the image's channels individually or in subplots, to render the image as a `glyph` and to render the sum of the image's channels.
 
 
-### <a name="patches"></a>6. Patches Widget
+### 6. Patches Widget {#patches}
 Let's now extract some patches from the images and create two lists: one with the patches and one with the patche centers.
 ```python
 patches1 = im1.extract_patches_around_landmarks(group='PTS')
@@ -179,7 +179,7 @@ visualize_patches(patches, patch_centers)
 The `visualize_patches` is exactly the same with `visualize_images`, with the difference that it has a patch-related options tab.
 
 
-### <a name="features"></a>7. Features Widget
+### 7. Features Widget {#features}
 `menpowidgets` also has a widget for selecting a specific feature with some options. In order to facilitate the options selection, the widget has a _Preview_ tab that applies the feature on the `Lenna` image. The widget returns a `function` as a single element of a `list`. This can be done as
 ```python
 feat = features_selection()
@@ -190,7 +190,7 @@ feat[0](im1).view(channels=[0, 1]);
 ```
 
 
-### <a name="plot_graph"></a>8. Plot Graph Widget
+### 8. Plot Graph Widget {#plot_graph}
 There is a widget that facilitates the graph plotting. It supports plotting of multiple curves. It expects a `list` of values for `x_axis` and a `list` of `lists` of values for `y_axis`, each one corresponding to a different curve. Let's generate the values of sin and cos
 ```python
 import numpy as np
@@ -213,7 +213,7 @@ In the 2nd tab, there are _Renderer_ options that can be defined for each curve 
 Finally, as always, the last tab allows the user to save the plot to file.
 
 
-### <a name="save_figure"></a>9. Save Figure Widget
+### 9. Save Figure Widget {#save_figure}
 The widget to save a figure to file can be called independently. Specifically, assume that we have figure from which we kept the rendering object:
 ```python
 renderer = im1.view_landmarks(group='PTS')
@@ -222,7 +222,7 @@ save_matplotlib_figure(renderer)
 Note that if the _Overwrite if file exists_ checkbox is not ticked, then a warning will appear when trying to save to a file that already exists.
 
 
-### <a name="methods"></a>10. View Widget Methods
+### 10. View Widget Methods {#methods}
 Finally, all `menpo` objects have a `.view_widget()` method. Below are some examples:
 ```python
 images[0].view_widget(figure_size=(6, 4))

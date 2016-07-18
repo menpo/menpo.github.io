@@ -35,7 +35,7 @@ Frequently Asked Questions (FAQ)
 
 ---------------------------------------
 
-### <a name="what-license-is-menpo-under"></a>What license is the Menpo Project under?
+### What license is the Menpo Project under? {#what-license-is-menpo-under}
 The Menpo Project is under the 3-clause BSD license which can be found
 [here](https://github.com/menpo/menpo/blob/master/LICENSE.txt). This means
 that you are free to use Menpo Project's packages (`menpo`, `menpofit`, `menpowidgets`, `menpo3d`) in commercial products as long as you retain
@@ -44,7 +44,7 @@ The license of `menpodetect` is subject to the licenses of the packages that are
 Please see the [Menpo Team](team.md) for a list of contributors.
 
 
-### <a name="citation"></a>How do I cite the Menpo Project?
+### How do I cite the Menpo Project? {#citation}
 A description of the Menpo Project was presented in the [ACM Multimedia 2014](http://acmmm.org/2014/) conference.
 Therefore, this publication is the reference paper to cite if you use any package of the Menpo Project within **any academic paper**.
 
@@ -79,15 +79,15 @@ address = {New York, NY, USA}
 We request that if you do use the Menpo Project for an academic publication within any displicine that you cite the above paper!
 
 
-### <a name="how-do-i-install-a-development-version"></a>How do I install a development version?
+### How do I install a development version? {#how-do-i-install-a-development-version}
 Please see the [Setting Up A Development Environment](/installation/development.md) guide.
 
 
-### <a name="pre_trained_models"></a>Can I use the Menpo Project as a black box to detect landmarks on facial images?
+### Can I use the Menpo Project as a black box to detect landmarks on facial images? {#pre_trained_models}
 The Menpo Project provides a command line tool for automatic state-of-the-art landmark detection on facial images using pre-trained models. For more information, please refer to the [`menpocli`](/menpocli/index.md) package. However, note that the purpose of the Menpo Project is to provide solutions for modelling any deformable object; _there is nothing specific at all to human face_.
 
 
-### <a name="why_menpo"></a>Why 'Menpo'?
+### Why 'Menpo'? {#why_menpo}
 
 > Menpo were facial armours which covered all or part of the face and provided
 > a way to secure the top-heavy kabuto (helmet). The Shinobi-no-o (chin cord)

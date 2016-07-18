@@ -12,7 +12,7 @@ then keep reading!
 
 ---------------------------------------
 
-### <a name="problems"></a>What kinds of problems does the Menpo Team work on?
+### What kinds of problems does the Menpo Team work on? {#problems}
 Although each member of the Menpo Team is perusing an individual research direction, there are many areas where their research overlaps. All members are working in Computer Vision, and most in some form of 2D or 3D deformable modeling.
 This means that all researchers in the team need to solve similar problems, and as a result, we wanted to build tools that made the following kinds of tasks easy:
 
@@ -42,7 +42,7 @@ The above requirements are the building blocks of the kind of deformable modelin
 
 
 
-### <a name="menpo_is_better"></a>What makes the Menpo Project better?
+### What makes the Menpo Project better? {#menpo_is_better}
 The [`menpo`](/menpo/index.md) package is a solid codebase that implements all of the above features well and makes it easy to
 express a wide variety of computer vision and deformable modeling problems.
 The vast majority of **existing deformable modeling software** suffers from one or more of the following
@@ -59,7 +59,7 @@ high-quality research.
 
 
 
-### <a name="engineering"></a>Engineering goals
+### Engineering goals {#engineering}
 Outside of the raw features needed, the team also needed flexible software that could be relied upon. That meant:
 
 - The ability to work in an interactive environment where new research ideas can be quickly explored
@@ -71,7 +71,7 @@ It's from these requirements, and a desire by the team to make high quality open
 
 
 
-### <a name="website"></a>This website
+### This website {#website}
 This website focuses on explaining the core abstractions and datatypes which are heavily reused throughout all of the Menpo Project. If you are new to the project, this website is the best way to quickly get up to speed with how to use the Menpo Project.
 
 As is hopefully now clear, the core concepts and datatypes defined in [`menpo`](/menpo/index.md) are reused across all of the Menpo Project. We've worked hard to keep this core API as compact as possible, as we know from experience it's never pleasant trying to get to grips with another projects sprawling API and design patterns if you just want to get a job done.
