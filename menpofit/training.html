@@ -1138,7 +1138,7 @@ an example of a typical call for training a deformable model using <code>Holisti
 <span class="hljs-keyword">from</span> menpo.feature <span class="hljs-keyword">import</span> igo
 
 aam = HolisticAAM(training_images, reference_shape=<span class="hljs-keyword">None</span>,
-                  diagonal=<span class="hljs-number">180</span>, scales=(<span class="hljs-number">0.25</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>),
+                  diagonal=<span class="hljs-number">150</span>, scales=(<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>),
                   holistic_features=igo, verbose=<span class="hljs-keyword">True</span>)
 </code></pre>
 <p>The <code>verbose</code> flag allows printing the training progress:</p>
@@ -1151,16 +1151,9 @@ aam = HolisticAAM(training_images, reference_shape=<span class="hljs-keyword">No
 </code></pre>
 <p>which returns:</p>
 <pre><code>Holistic Active Appearance Model
- - Images scaled to diagonal: 200.00
+ - Images scaled to diagonal: 150.00
  - Images warped with DifferentiablePiecewiseAffine transform
- - Scales: [0.25, 0.5, 1.0]
-   - Scale 0.25
-     - Holistic feature: igo
-     - Appearance model class: PCAModel
-       - 810 appearance components
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
+ - Scales: [0.5, 1.0]
    - Scale 0.5
      - Holistic feature: igo
      - Appearance model class: PCAModel
@@ -1218,7 +1211,7 @@ aam = HolisticAAM(training_images, reference_shape=<span class="hljs-keyword">No
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Training","level":"1.4.1.2","depth":3,"next":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"previous":{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/training.md","mtime":"2016-07-18T15:57:38.352Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T17:15:56.882Z"},"basePath":"../../src","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Training","level":"1.4.1.2","depth":3,"next":{"title":"Fitting","level":"1.4.1.3","depth":3,"path":"menpofit/fitting.md","ref":"menpofit/fitting.md","articles":[]},"previous":{"title":"Importing Images","level":"1.4.1.1","depth":3,"path":"menpofit/importing.md","ref":"menpofit/importing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/training.md","mtime":"2016-07-19T12:45:05.015Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-20T14:36:08.713Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>

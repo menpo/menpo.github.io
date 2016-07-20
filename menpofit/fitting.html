@@ -1104,10 +1104,9 @@ but directly optimizes the coordinates of the landmarks</li>
 For example, a Lucas-Kanade AAM fitter (<code>LucasKanadeAAMFitter</code>) assumes that you have trained an AAM model
 (assume the <code>aam</code> we trained in the <a href="training.html">Training</a> section) and can be created as:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpofit.aam <span class="hljs-keyword">import</span> LucasKanadeAAMFitter, WibergInverseCompositional
-
 fitter = LucasKanadeAAMFitter(aam,
                               lk_algorithm_cls=WibergInverseCompositional,
-                              n_shape=[<span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>], n_appearance=<span class="hljs-number">150</span>)
+                              n_shape=[<span class="hljs-number">3</span>, <span class="hljs-number">20</span>], n_appearance=[<span class="hljs-number">30</span>, <span class="hljs-number">150</span>])
 </code></pre>
 <p>The constructor of the <code>Fitter</code> will set the active shape and appearance components based on <code>n_shape</code> and <code>n_appearance</code> respectively,
 and will also perform all the necessary pre-computations based on the selected algorithm.</p>
@@ -1116,7 +1115,6 @@ which is responsible for training the model. <code>SupervisedDescentFitter</code
 The reason for that is that the fitting process is utilised during the building procedure,
 thus the functionality of a <code>Fitter</code> is required. Such models can be trained as:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> menpofit.sdm <span class="hljs-keyword">import</span> SupervisedDescentFitter, NonParametricNewton
-
 fitter = SupervisedDescentFitter(training_images,
                                  sd_algorithm_cls=NonParametricNewton,
                                  verbose=<span class="hljs-keyword">True</span>)
@@ -1199,7 +1197,7 @@ Finally, this argument does not apply to all deformable models.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fitting","level":"1.4.1.3","depth":3,"next":{"title":"Fitting Result","level":"1.4.1.4","depth":3,"path":"menpofit/result.md","ref":"menpofit/result.md","articles":[]},"previous":{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/fitting.md","mtime":"2016-07-18T15:54:22.707Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-18T17:15:56.882Z"},"basePath":"../../src","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fitting","level":"1.4.1.3","depth":3,"next":{"title":"Fitting Result","level":"1.4.1.4","depth":3,"path":"menpofit/result.md","ref":"menpofit/result.md","articles":[]},"previous":{"title":"Training","level":"1.4.1.2","depth":3,"path":"menpofit/training.md","ref":"menpofit/training.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/fitting.md","mtime":"2016-07-19T13:43:50.572Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-20T14:36:08.713Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>
