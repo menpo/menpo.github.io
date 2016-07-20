@@ -193,10 +193,10 @@ Holistic Active Template Model
 Inverse Compositional Algorithm
  - Scales: [0.25, 1.0]
    - Scale 0.25
-     - 5 active shape components
+     - 3 active shape components
      - 4 similarity transform components
    - Scale 1.0
-     - 15 active shape components
+     - 20 active shape components
      - 4 similarity transform components
 ```
 

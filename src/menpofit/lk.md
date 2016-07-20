@@ -32,7 +32,6 @@ $$
 with respect to the motion model parameters $$\mathbf{p}$$. Let's load an image $$\mathbf{t}$$ and create a template $$\bar{\mathbf{a}}$$ from it
 ```python
 import menpo.io as mio
-
 takeo = mio.import_builtin_asset.takeo_ppm()
 # Use a bounding box of ground truth landmarks to create template
 takeo.landmarks['bounding_box'] = takeo.landmarks['PTS'].lms.bounding_box()
@@ -43,7 +42,6 @@ The image and template can be visualized as:
 ```python
 %matplotlib inline
 import matplotlib.pyplot as plt
-
 plt.subplot(121)
 takeo.view_landmarks(group='bounding_box', line_colour='r', line_width=2,
                      render_markers=False)
@@ -115,7 +113,7 @@ refere to [[7](#7)].
 ##### Example
 In `menpofit`, an LK `Fitter` object with Inverse-Compositional optimization can be obtained as:
 ```python
-from menpofit.lk import LucasKanadeFitter, InverseCompositional
+from menpofit.lk import LucasKanadeFitter, InverseCompositional, SSD
 from menpo.feature import no_op
 
 fitter = LucasKanadeFitter(template, group='bounding_box',
@@ -152,7 +150,7 @@ from menpofit.fitter import noisy_shape_from_bounding_box
 gt_bb = takeo.landmarks['bounding_box'].lms
 # generate perturbed bounding box
 init_bb = noisy_shape_from_bounding_box(fitter.reference_shape, gt_bb,
-                                        noise_percentage=0.12,
+                                        noise_percentage=0.1,
                                         allow_alignment_rotation=True)
 # fit image
 result = fitter.fit_from_bb(takeo, init_bb, gt_shape=gt_bb, max_iters=80)
@@ -162,11 +160,17 @@ The initial and final bounding boxes can be viewed as:
 ```
 result.view(render_initial_shape=True)
 ```
+<center>
+  <img src="media/lk_result_view.png" alt="Initialization and final result of affine alignment.">
+</center>
 
 and the alignment error per iteration as:
 ```python
 result.plot_errors()
 ```
+<center>
+  <img src="media/lk_plot_errors.png" alt="Alignement error per fitting iteration.">
+</center>
 
 Of course, the fitting result can also be viewed using a widget:
 ```python
@@ -180,8 +184,7 @@ Your browser does not support the video tag.
 Finally, by using the following code
 ```python
 from menpowidgets import visualize_images
-
-visualize_images(fitter.warped_images(fr.image, fr.shapes))
+visualize_images(fitter.warped_images(result.image, result.shapes))
 ```
 
 we can visualize the warped image per iteration as:

@@ -66,7 +66,7 @@ from menpofit.aam import HolisticAAM
 from menpo.feature import igo
 
 aam = HolisticAAM(training_images, reference_shape=None,
-                  diagonal=180, scales=(0.25, 0.5, 1.0),
+                  diagonal=150, scales=(0.5, 1.0),
                   holistic_features=igo, verbose=True)
 ```
 
@@ -88,16 +88,9 @@ which returns:
 
 ```
 Holistic Active Appearance Model
- - Images scaled to diagonal: 200.00
+ - Images scaled to diagonal: 150.00
  - Images warped with DifferentiablePiecewiseAffine transform
- - Scales: [0.25, 0.5, 1.0]
-   - Scale 0.25
-     - Holistic feature: igo
-     - Appearance model class: PCAModel
-       - 810 appearance components
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
+ - Scales: [0.5, 1.0]
    - Scale 0.5
      - Holistic feature: igo
      - Appearance model class: PCAModel

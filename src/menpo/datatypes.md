@@ -12,7 +12,6 @@ Data Types
 ```python
 import numpy as np
 from menpo.shape import PointCloud
-
 x = np.random.rand(3, 2)
 pc = PointCloud(x)
 ```

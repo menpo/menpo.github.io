@@ -32,7 +32,6 @@ The downloaded images along with their landmarks can be easily imported as:
 
 ```python
 import menpo.io as mio
-
 path_to_images = '/path/to/lfpw/trainset/'
 training_images = mio.import_images(path_to_images, verbose=True)
 ```
@@ -41,7 +40,7 @@ The default behaviour of `import_images()` imports and attaches the landmark fil
 The group name of the attached landmarks is based on the extension of the landmark file. This means
 that it is much more convenient to locate the landmark files in the same directory as the image files.
 However, this behavior can be customised using the `landmark_resolver` argument of `import_images()`
-(see the [API documentation](http://menpo.readthedocs.io/en/stable/api/menpo/io/import_images.html)).
+(see the <a href="http://menpo.readthedocs.io/en/stable/api/menpo/io/import_images.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>).
 
 Note that `import_images()` returns a **`LazyList`**. Therefore, the above call will return immediately and indexing into the
 returned list will load an image at run time. This can be very useful for visualizing the images with:
@@ -167,6 +166,5 @@ In case you wish to get rid of the `LazyList` and load the images in memory, it 
 
 ```python
 from menpo.visualize import print_progress
-
 training_images_non_lazy = list(print_progress(training_images))
 ```

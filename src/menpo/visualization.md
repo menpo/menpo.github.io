@@ -28,7 +28,6 @@ Without further ado, a quick example of viewing a 2D image:
 ```python
 %matplotlib inline
 import menpo.io as mio
-
 image = mio.import_builtin_asset.lenna_png()
 image.view()
 ```
@@ -48,15 +47,15 @@ Viewing the image with a native IPython widget:
 ```python
 image.view_widget()
 ```
-<center>
-  <img src="media/view_widget.png" alt="view_widget">
-</center>
+<video width="100%" autoplay loop>
+  <source src="media/view_widget.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
 ### 2. Visualizing A List Of 2D Images {#images}
 Visualizing a `list` of images is also incredibly simple if you are using the Jupyter notebook and have the `menpowidgets` package installed:
 ```python
 from menpowidgets import visualize_images
-
 images = list(mio.import_images('/path/to/images/'))
 visualize_images(images)
 ```

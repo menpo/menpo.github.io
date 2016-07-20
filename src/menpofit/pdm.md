@@ -44,7 +44,6 @@ and visualize them as:
 ```python
 %matplotlib inline
 from menpowidgets import visualize_pointclouds
-
 visualize_pointclouds(training_shapes)
 ```
 <video width="100%" autoplay loop>
@@ -64,7 +63,6 @@ The construction of a PDM commonly involves the following steps:
 The above procedure can be very easily performed using `menpofit`'s `OrthoPDM` class as:
 ```python
 from menpofit.modelinstance import OrthoPDM
-
 shape_model = OrthoPDM(training_shapes, max_n_components=None)
 ```
 Information about the PCA model that exists in the PDM can be retrieved as:

@@ -21,10 +21,9 @@ For example, a Lucas-Kanade AAM fitter (`LucasKanadeAAMFitter`) assumes that you
 
 ```python
 from menpofit.aam import LucasKanadeAAMFitter, WibergInverseCompositional
-
 fitter = LucasKanadeAAMFitter(aam,
                               lk_algorithm_cls=WibergInverseCompositional,
-                              n_shape=[5, 10, 15], n_appearance=150)
+                              n_shape=[3, 20], n_appearance=[30, 150])
 ```
 
 The constructor of the `Fitter` will set the active shape and appearance components based on `n_shape` and `n_appearance` respectively,
@@ -37,7 +36,6 @@ thus the functionality of a `Fitter` is required. Such models can be trained as:
 
 ```python
 from menpofit.sdm import SupervisedDescentFitter, NonParametricNewton
-
 fitter = SupervisedDescentFitter(training_images,
                                  sd_algorithm_cls=NonParametricNewton,
                                  verbose=True)
