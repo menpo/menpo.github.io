@@ -99,9 +99,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../src/">
             
-                <a href="../">
+                <a href="../../src/">
             
                     
                     The Menpo Project
@@ -1070,7 +1070,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Active Appearance Model</a>
+        <a href="../../src" >Active Appearance Model</a>
     </h1>
 </div>
 
@@ -1224,7 +1224,7 @@ Let&apos;s create a <code>PatchAAM</code> using Dense SIFT features:</p>
 
 patch_aam = PatchAAM(training_images, group=<span class="hljs-string">&apos;PTS&apos;</span>, patch_shape=[(<span class="hljs-number">15</span>, <span class="hljs-number">15</span>), (<span class="hljs-number">23</span>, <span class="hljs-number">23</span>)],
                      diagonal=<span class="hljs-number">150</span>, scales=(<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>), holistic_features=fast_dsift,
-                     max_shape_components=<span class="hljs-number">20</span>, max_appearance_components=<span class="hljs-number">200</span>,
+                     max_shape_components=<span class="hljs-number">20</span>, max_appearance_components=<span class="hljs-number">150</span>,
                      verbose=<span class="hljs-keyword">True</span>)
 </code></pre>
 <p>and visualize it:</p>
@@ -1438,11 +1438,10 @@ result = fitter.fit_from_bb(image, initial_bbox, max_iters=[<span class="hljs-nu
 print(result)
 </code></pre>
 <p>which prints</p>
-<pre><code class="lang-python">Fitting result of <span class="hljs-number">68</span> landmark points.
-Initial error: <span class="hljs-number">0.1689</span>
-Final error: <span class="hljs-number">0.0213</span>
-</code></pre>
-<p>The fitting result can be visualized as</p>
+<pre><code>Fitting result of 68 landmark points.
+Initial error: 0.1689
+Final error: 0.0212
+</code></pre><p>The fitting result can be visualized as</p>
 <pre><code class="lang-python">result.view(render_initial_shape=<span class="hljs-keyword">True</span>)
 </code></pre>
 <center>
@@ -1475,11 +1474,15 @@ Your browser does not support the video tag.
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 
 <span class="hljs-comment"># Load and convert to grayscale</span>
-image = mio.import_image(path_to_lfpw / <span class="hljs-string">&apos;image_0117.png&apos;</span>)
+image = mio.import_image(path_to_lfpw / <span class="hljs-string">&apos;image_0152.png&apos;</span>)
 image = image.as_greyscale()
 
 <span class="hljs-comment"># Detect face</span>
 bboxes = detect(image)
+
+<span class="hljs-comment"># Crop the image for better visualization of the result</span>
+image = image.crop_to_landmarks_proportion(<span class="hljs-number">0.3</span>, group=<span class="hljs-string">&apos;dlib_0&apos;</span>)
+bboxes[<span class="hljs-number">0</span>] = image.landmarks[<span class="hljs-string">&apos;dlib_0&apos;</span>].lms
 
 <span class="hljs-keyword">if</span> len(bboxes) &gt; <span class="hljs-number">0</span>:
     <span class="hljs-comment"># Fit AAM</span>
@@ -1595,7 +1598,7 @@ print(result.appearance_parameters.shape)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"next":{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},"previous":{"title":"Landmark Localization","level":"1.4.5","depth":2,"path":"menpofit/landmark_localization.md","ref":"menpofit/landmark_localization.md","articles":[{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"path":"menpofit/aam.md","ref":"menpofit/aam.md","articles":[]},{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},{"title":"Constrained Local Model","level":"1.4.5.3","depth":3,"path":"menpofit/clm.md","ref":"menpofit/clm.md","articles":[]},{"title":"Supervised Descent Method","level":"1.4.5.4","depth":3,"path":"menpofit/sdm.md","ref":"menpofit/sdm.md","articles":[]},{"title":"Ensemble of Regression Trees","level":"1.4.5.5","depth":3,"path":"menpofit/ert.md","ref":"menpofit/ert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/aam.md","mtime":"2016-07-20T17:52:22.782Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-20T18:00:52.019Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"next":{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},"previous":{"title":"Landmark Localization","level":"1.4.5","depth":2,"path":"menpofit/landmark_localization.md","ref":"menpofit/landmark_localization.md","articles":[{"title":"Active Appearance Model","level":"1.4.5.1","depth":3,"path":"menpofit/aam.md","ref":"menpofit/aam.md","articles":[]},{"title":"Active Pictorial Structures","level":"1.4.5.2","depth":3,"path":"menpofit/aps.md","ref":"menpofit/aps.md","articles":[]},{"title":"Constrained Local Model","level":"1.4.5.3","depth":3,"path":"menpofit/clm.md","ref":"menpofit/clm.md","articles":[]},{"title":"Supervised Descent Method","level":"1.4.5.4","depth":3,"path":"menpofit/sdm.md","ref":"menpofit/sdm.md","articles":[]},{"title":"Ensemble of Regression Trees","level":"1.4.5.5","depth":3,"path":"menpofit/ert.md","ref":"menpofit/ert.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","ga"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-52093814-1"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"The Menpo Team","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"homepage.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"The Menpo Project","gitbook":"3.1.1"},"file":{"path":"menpofit/aam.md","mtime":"2016-07-21T19:40:36.780Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-07-21T23:17:44.048Z"},"basePath":"../../src","book":{"language":""}});
         });
     </script>
 </div>
