@@ -160,7 +160,7 @@ from menpo.feature import fast_dsift
 
 patch_aam = PatchAAM(training_images, group='PTS', patch_shape=[(15, 15), (23, 23)],
                      diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
-                     max_shape_components=20, max_appearance_components=200,
+                     max_shape_components=20, max_appearance_components=150,
                      verbose=True)
 ```
 and visualize it:
@@ -385,10 +385,10 @@ result = fitter.fit_from_bb(image, initial_bbox, max_iters=[15, 5],
 print(result)
 ```
 which prints
-```python
+```
 Fitting result of 68 landmark points.
 Initial error: 0.1689
-Final error: 0.0213
+Final error: 0.0212
 ```
 
 The fitting result can be visualized as
@@ -429,11 +429,15 @@ Let's try an image with a more challenging head pose
 import matplotlib.pyplot as plt
 
 # Load and convert to grayscale
-image = mio.import_image(path_to_lfpw / 'image_0117.png')
+image = mio.import_image(path_to_lfpw / 'image_0152.png')
 image = image.as_greyscale()
 
 # Detect face
 bboxes = detect(image)
+
+# Crop the image for better visualization of the result
+image = image.crop_to_landmarks_proportion(0.3, group='dlib_0')
+bboxes[0] = image.landmarks['dlib_0'].lms
 
 if len(bboxes) > 0:
     # Fit AAM
