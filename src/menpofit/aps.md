@@ -7,7 +7,7 @@ Active Pictorial Structures
 4. [Cost Function and Optimization](#cost)  
 5. [Fitting Example](#fitting)
 6. [References](#references)
-7. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/atm/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
+7. <a href="http://menpofit.readthedocs.io/en/stable/api/menpofit/aps/index.html">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ---------------------------------------
 

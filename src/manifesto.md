@@ -80,4 +80,4 @@ The rest of this website is devoted to getting you to grips with the core [`menp
 
 There will be examples throughout which you could try out and tweak as you go.
 
-As a final note, if you are only interested in using the Menpo Project as a black box for some of the [`menpofit`](/menpofit/index.md) functionality, you are invited to checkout [`menpocli`](/menpocli/index.md), our Command Line Interface. This is a cross platform set of executables for performing landmark detection on **facial** images, and requires no knowledge of Python or the rest of this website.
+As a final note, if you are only interested in using the Menpo Project as a black box for some of the [`menpofit`](/menpofit/index.md) functionality, you are invited to checkout [`menpocli`](/menpocli/index.md), our Command Line Interface. This is a cross platform set of executables for performing landmark detection on **facial** images, and requires no knowledge of Python for the rest of this website.
