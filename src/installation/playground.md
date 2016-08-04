@@ -9,7 +9,7 @@
   border: none;
   box-shadow: 2px 2px 5px #C7C7C7;
   height: 50px;
-  width: 140px;
+  width: 150px;
   font-weight: 300;
   font-size: large;
   transition: all .2s ease-in-out;
@@ -34,7 +34,7 @@
         <a style="text-decoration: none; color: grey" href="http://static.menpo.org/playground/linux64/menpo_playground.tar.xz" download>
           <div class="download_button">Linux 64 bit</div>
         </a>
-        <a style="text-decoration: none; color: grey" href="http://static.menpo.org/playground/win64/menpo_playground.tar.xz" download>
+        <a style="text-decoration: none; color: grey" href="http://static.menpo.org/playground/win64/menpo_playground.zip" download>
           <div class="download_button">Windows 64 bit</div>
         </a>
     </div>
