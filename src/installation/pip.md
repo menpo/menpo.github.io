@@ -13,4 +13,4 @@ We've these installed, you can pip install:
 ```
 pip install menpo
 ``` 
-To be clear, we are currently only able to offer the core `menpo` library through `pip`. If you want to use `menpofit` or `menpodetect`, for now you'll need to switch to [conda](conda.md), or try a standalone [Menpo Playground](playground.md) (which is simply a folder you can download with the whole project ready to go inside it).
+To be clear, we are currently only able to offer the core `menpo` library through `pip`. If you want to use `menpofit` or `menpodetect`, for now you'll need to switch to [conda](conda.md).

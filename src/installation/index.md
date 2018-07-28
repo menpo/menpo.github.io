@@ -6,27 +6,6 @@
     <div class="header_columns">
       <div class="column">
         <div class="question">
-          <b>new to Python?</b>
-            <br>or<br>
-          <b>want to quickly try menpo?</b>
-        </div>
-        <a style="text-decoration: none; color: grey" href="playground.html">
-          <div class="install_card">
-            <div class="install_header">playground</div>
-            <div class="install_body">
-              <ul>
-                <li>Standalone build of menpo - everything you need in one folder</li>
-                <li>No install - just download and use</li>
-                <li>Includes pre-trained models, command line tools for face detection and landmark localization, and example notebooks</li>
-                <li>Easy to migrate to a full conda installation when you are ready</li>
-              </ul>
-            </div>
-          </div>
-        </a>
-        <div class="takeaway">isolated & hassle free</div>
-      </div>
-      <div class="column">
-        <div class="question">
           <b>already use conda?</b>
             <br>or<br>
           <b>want to contribute?</b>

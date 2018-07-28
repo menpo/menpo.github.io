@@ -11,18 +11,9 @@
       </div>
       <div style="display: flex; flex-direction: row; align-items: center;">
         <div style="width: 30px; height: 30px;"></div>
-        <a style="text-decoration: none; color: grey" href="installation/playground.html">
-          <button class="download_button">Download Playground</button>
+        <a style="text-decoration: none; color: grey" href="installation/index.html">
+          <button class="download_button">Download Menpo</button>
         </a>
-        <button class="playground_help">
-          ?
-          <div class="playground_help_speach"></div>
-          <div class="playground_help_popup">
-            <p>A playground is a standalone installation of menpo that will get you up and running as quickly as possible.</p>
-            <p>If you are new to menpo or Python in general you may want to start with the playground.</p>
-            <p>Head to our <a style="font-weight: bold; color: white;" href="installation">installation page</a> for more options.</p>
-          </div>
-        </button>
       </div>
       <div>
         <div style="font-size: 80%">comfortable with <a href="http://conda.pydata.org">conda</a>?</div>

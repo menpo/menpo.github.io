@@ -14,7 +14,6 @@
       * [Expert](/installation/linux/expert.md)
     * [Expert Quick Start](/installation/expert_quick_start.md)
     * [Development](/installation/development.md)
-  * [Playground](/installation/playground.md)
   * [Pip](/installation/pip.md)
 * [menpo](/menpo/index.md)
   * [Introduction](/menpo/introduction.md)
