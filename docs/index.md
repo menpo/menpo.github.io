@@ -15,9 +15,9 @@
         </a>
       </div>
       <div>
-        <div style="font-size: 80%">comfortable with <a href="http://conda.pydata.org">conda</a>?</div>
-        <code style="padding: 7px;">conda install -c conda-forge menpo</code>
-        <div style="font-size: 80%; margin-top: 10px;"><a href="installation">more install options (inc. pip)</a></div>
+        <div style="font-size: 80%">Python {{ menpo_requires_python }}</div>
+        <code style="padding: 7px;">pip install menpo menpofit</code>
+        <div style="font-size: 80%; margin-top: 10px;"><a href="installation/index.html">more install options (inc. conda)</a></div>
       </div>
     </div>
   </div>
@@ -37,8 +37,6 @@ The Menpo Project is a set of BSD licensed Python frameworks and associated tool
 * Lucas-Kanade (LK) and Active Template Model (ATM)
 
 The Menpo Project also provides:
-* a web-based tool for **annotation of bulk data** for model training
-* a **command line tool** for landmark localisation with state-of-the-art **pre-trained** models
 * generic **object detection** in terms of a bounding box
 * an **elegant standard library** with simple dependencies, useful for many areas of computer vision
 * sophisticated visualization with **interactive IPython/Jupyter widgets**
@@ -53,12 +51,12 @@ The Menpo Project consists of a family of packages (primarily Python), each desi
 
 <div>
 <p style="float: left; padding-right: 10px;">
-  <a href="/menpo/index.md" title="menpo"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo.png" alt="menpo"></a>
+  <a href="menpo/index.html" title="menpo"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo.png" alt="menpo"></a>
 </p>
-<p><a href="/menpo/index.md" title="menpo"><strong style="font-size: 125%">menpo</strong></a>
+<p><a href="menpo/index.html" title="menpo"><strong style="font-size: 125%">menpo</strong></a>
 The heart of the Menpo Project. <code>menpo</code> contains all core functionality needed for the project in well tested, mature, stable package.
 <code>menpo</code> is the <code>numpy</code> of the Menpo ecosystem - the foundation upon which all else is built. Even if you aren't interested
-in deformable modelling, <code>menpo</code>'s minimal dependencies and general algorthims and data structures makes it an ideal standalone library
+in deformable modelling, <code>menpo</code>'s minimal dependencies and general algorithms and data structures makes it an ideal standalone library
 for use in a wide variety of Computer Vision situations.</p>
 </div>
 
@@ -66,9 +64,9 @@ for use in a wide variety of Computer Vision situations.</p>
 
 <div>
 <p style="float: left; padding-right: 10px;">
-  <a href="/menpofit/index.md" title="menpofit"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpofit.png" alt="menpofit"></a>
+  <a href="menpofit/index.html" title="menpofit"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpofit.png" alt="menpofit"></a>
 </p>
-<p><a href="/menpofit/index.md" title="menpofit"><strong style="font-size: 125%">menpofit</strong></a>
+<p><a href="menpofit/index.html" title="menpofit"><strong style="font-size: 125%">menpofit</strong></a>
 Implementations of state-of-the-art 2D deformable models. Each implementation includes training and fitting code.
 <code>menpofit</code> contains the crown jewels of the Menpo Project - most people are interested in using the Menpo Project for the
 <code>menpofit</code> package.</p>
@@ -78,9 +76,9 @@ Implementations of state-of-the-art 2D deformable models. Each implementation in
 
 <div>
 <p style="float: left; padding-right: 10px;">
-  <a href="/menpodetect/index.md" title="menpodetect"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpodetect.png" alt="menpodetect"></a>
+  <a href="menpodetect/index.html" title="menpodetect"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpodetect.png" alt="menpodetect"></a>
 </p>
-<p><a href="/menpodetect/index.md" title="menpodetect"><strong style="font-size: 125%">menpodetect</strong></a>
+<p><a href="menpodetect/index.html" title="menpodetect"><strong style="font-size: 125%">menpodetect</strong></a>
 Wraps a number of existing projects that provide functionalities for training and fitting generic object detection techniques.
 It is designed in order to have full compatibility with <code>menpofit</code>. Not all of the wrapped
 projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.</p>
@@ -90,35 +88,12 @@ projects fall under the same BSD license and so care must be taken when using th
 
 <div>
 <p style="float: left; padding-right: 10px;">
-  <a href="/menpo3d/index.md" title="menpo3d"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo3d.png" alt="menpo3d"></a>
+  <a href="menpo3d/index.html" title="menpo3d"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo3d.png" alt="menpo3d"></a>
 </p>
-<p><a href="/menpo3d/index.md" title="menpo3d"><strong style="font-size: 125%">menpo3d</strong></a>
+<p><a href="menpo3d/index.html" title="menpo3d"><strong style="font-size: 125%">menpo3d</strong></a>
 A specialized library for working with 3D data. It is largely separate from the core <code>menpo</code> library as it has
-dependencies on a number of large, 3D specific projects (like <code>VTK</code>, <code>mayavi</code>, <code>assimp</code>) which many people using
+dependencies on 3D specific projects (like <code>moderngl</code> for its interactive viewer) which many people using
 the Menpo Project would have no use for. You'll want to install <code>menpo3d</code> if you need to import and export 3D mesh data or perform advanced mesh processing.</p>
-</div>
-
-<div style="clear: both;"></div>
-
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="/menpocli/index.md" title="menpocli"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpocli.png" alt="menpocli"></a>
-</p>
-<p><a href="/menpocli/index.md" title="menpocli"><strong style="font-size: 125%">menpocli</strong></a>
-Command Line Interface (CLI) for the Menpo Project that allows to readily use pre-trained
-state-of-the-art <code>menpofit</code> facial models. This is useful for people that only care to quickly acquire facial landmarks on their images.</p>
-</div>
-
-<div style="clear: both;"></div>
-
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="/landmarkerio/index.md" title="landmarker.io"><img style="max-height: 140px; max-width: none;" src="_static/logo/landmarkerio_with_logo_2.png" alt="landmarker.io"></a>
-</p>
-<p><a href="/landmarkerio/index.md" title="landmarker.io"><strong style="font-size: 125%">landmarker.io</strong></a>
-An interactive web-based tool for manual annotation of
-2D images and 3D meshes. Useful to quickly landmark a single image, or organize a large annotation effort for thousands of files.
-Features like Snap Mode and Dropbox compatibility make it unique.</p>
 </div>
 
 <div style="clear: both;"></div>
@@ -137,9 +112,7 @@ Once you have installed the Menpo Project, you can visit our [Examples](examples
 If you wish to get in contact with the Menpo developers, you can do so via various channels.
 If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/ "The Menpo Project on Github").
 
-If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/forum/#!forum/menpo-users "menpo-users").
-
-Follow [@teammenpo](www.twitter.com/teammenpo "The Menpo Project on Twitter") for updates on the Menpo Project, or tweet at us any questions you have.
+If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/g/menpo-users "menpo-users").
 
 ```{toctree}
 :hidden:
@@ -152,9 +125,8 @@ menpofit </menpofit/index>
 menpodetect </menpodetect/index>
 menpowidgets </menpowidgets/index>
 menpo3d </menpo3d/index>
-menpocli </menpocli/index>
-landmarker.io </landmarkerio/index>
 Examples </examples/index>
+Retired projects </retired>
 Notebooks </notebooks>
 Glossary </GLOSSARY>
 Manifesto </manifesto>

@@ -92,7 +92,7 @@ Please see the [Setting Up A Development Environment](/installation/development.
 <a id="pre_trained_models"></a>
 
 ### Can I use the Menpo Project as a black box to detect landmarks on facial images?
-The Menpo Project provides a command line tool for automatic state-of-the-art landmark detection on facial images using pre-trained models. For more information, please refer to the [`menpocli`](/menpocli/index.md) package. However, note that the purpose of the Menpo Project is to provide solutions for modelling any deformable object; _there is nothing specific at all to human face_.
+Not as a ready-made tool: the command line tool `menpocli` that did this is [retired](retired.md). With `menpofit` you can train a model on your own annotated images (see the [per-model examples](menpofit/models.md)) and use `menpodetect` to find the face to start from. Note that the purpose of the Menpo Project is to provide solutions for modelling any deformable object; _there is nothing specific at all to human face_.
 
 
 <a id="why_menpo"></a>
