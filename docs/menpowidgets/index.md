@@ -1,3 +1,13 @@
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 
 <div style="display: flex; align-items: center; flex-direction: column;">
   <img src="../_static/logo/menpowidgets.png" alt="menpowidgets" width="30%" style="display: flex;">
@@ -17,55 +27,56 @@
 
 # menpowidgets
 
-`menpowidgets` is the Menpo Project’s Python package for sophisticated visualization within the Jupyter notebook using interactive widgets. In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental overhead of visualizing objects as low as possible. MenpoWidgets makes tasks like data exploration, model observation and results demonstration as simple as possible.
+`menpowidgets` is the Menpo Project's Python package for sophisticated visualization within the Jupyter notebook using interactive widgets.
+In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental
+overhead of visualizing objects as low as possible: data exploration, model observation and results demonstration should be a single function call.
+This page describes menpowidgets {{ menpowidgets_version }}.
 
+Install it with `pip install menpowidgets` (add the `menpofit` and `menpo3d` extras for the widgets of those packages, see [Installation](../installation/index.md)),
+and use it in JupyterLab or the classic notebook.
 
-## Widgets Structure
-`menpowidgets` can be separated into a 2-level hierarchy:
+## Widgets structure
+`menpowidgets` has two levels:
 
-1. [**Main Widgets**](main_widgets.md)    
-   These are the end user widget functions and the only ones that are exposed at the highest level of `menpowidgets`. They are further split into:  
-   1.1. [**Main Menpo Widgets**](main_menpo_widgets.md): These include widgets functions for visualizing the [`menpo`](../menpo/index.md) package objects.  
-   1.2. [**Main MenpoFit Widgets**](main_menpofit_widgets.md): These include widgets functions for visualizing the [`menpofit`](../menpofit/index.md) package objects.
-
-2. [**Widgets Components**](components.md)  
-   These are the main ingredients for synthesizing the main widgets. They consist of a 2-level hierarchy:  
-   2.1. [**Options Widgets**](options_widgets.md): These are classes that implement widgets for selecting various options, such as rendering options, landmark options, channels options etc. They can be seen as the main components of all top level widgets.  
-   2.2. [**Tools Widgets**](tools_widgets.md): These are classes that implement lower level widget functionalities, such as colour selection, zoom options, axes options, etc. They are the main ingredients of the options widgets.
-
+1. [**Main widgets**](main_menpo_widgets.md) are the end-user functions, exposed at the top level of the package:
+   * [for the objects of `menpo`](main_menpo_widgets.md) (images, shapes, landmarks, patches, graphs), and
+   * [for the objects of `menpofit`](main_menpofit_widgets.md) (models and fitting results).
+2. [**Widget components**](components.md) are the building blocks the main widgets are made of, for example the options for colours, zoom, landmarks or rendering.
 
 ## Trait and render callback
-All our widgets are subclasses of **`menpowidgets.abstract.MenpoWidget`** which is an `ipywidgets.FlexBox`. Thus all our widgets have the following functionalities:
+All the widgets are subclasses of `menpowidgets.abstract.MenpoWidget`, which is an `ipywidgets` box. They have:
 
-* An additional `trait` named **`selected_values`** is added, which is monitoring any change that takes place in the widget and which should trigger a rendering function. The type of the trait can vary among widgets (e.g. `Int`, `Dict`, etc.) and its role is to store the selected values of the various widget components.
-* The rendering function is passed in as the **`render_function`** argument.
-* There are 4 basic methods on each widget:
- - **`add_render_function()`**: It attaches a new rendering function as callback to the `selected_values` `trait`.
- - **`remove_render_function()`**: It removes the current rendering function callback.
- - **`replace_render_function()`**: It replaces the current rendering function callback with a new one.
- - **`call_render_function()`**: It triggers the attached rendering function.
- > Note that `render_function()` must have the following signature:
-   ```python
-   input_dict = {'type': 'change', 'name': type_value, 'owner': '',
-                  'old': old_value, 'new': new_value}
-   render_function(input_dict)
-   ```
+* a `selected_values` trait that changes whenever the user changes something that should trigger a redraw. Its type depends on the widget;
+* a `render_function`, passed in on construction, that is called on every change;
+* four methods that manage the callback: `add_render_function`, `remove_render_function`, `replace_render_function` and `call_render_function`.
 
-### Styling and set state
-Additionally, all widgets have the following functions:
-* **`set_widget_state()`**: It updates the widget state with a new set of options (i.e., `selected_values`). It has an `allow_callback` argument that defines whether the render function is allowed to be triggered if required.
-* **`style()`**: It takes a set of options that change the style of the widget, such as font-related options, border-related options, etc.
-* **`predefined_style()`**: It sets some predefined styles (themes) on the widget. Possible options are `'minimal'`, `'success'`, `'info'`, `'warning'` and `'danger'`.
+```{code-cell} ipython3
+from menpowidgets.abstract import MenpoWidget
+
+[name for name in ("add_render_function", "remove_render_function", "replace_render_function",
+                   "call_render_function") if hasattr(MenpoWidget, name)]
+```
+
+A render function receives the change dictionary of `traitlets`:
+
+```python
+def render_function(change):
+    change['name']   # the trait that changed ('selected_values')
+    change['old']    # the previous value
+    change['new']    # the new value
+```
+
+## Styling
+The widgets of `menpowidgets.options` and `menpowidgets.tools` can be restyled with `style(...)` (fonts, borders, colours) and `predefined_style(...)`, which
+applies one of the themes `'minimal'`, `'success'`, `'info'`, `'warning'` and `'danger'`. `set_widget_state(...)` changes the options of a widget, with the
+`allow_callback` argument deciding whether the render function is called.
 
 ```{toctree}
 :titlesonly:
 :hidden:
 :maxdepth: 2
 
-Components </menpowidgets/components>
 Main Menpo widgets </menpowidgets/main_menpo_widgets>
 Main MenpoFit widgets </menpowidgets/main_menpofit_widgets>
-Main widgets </menpowidgets/main_widgets>
-Options widgets </menpowidgets/options_widgets>
-Tools widgets </menpowidgets/tools_widgets>
+Components </menpowidgets/components>
 ```

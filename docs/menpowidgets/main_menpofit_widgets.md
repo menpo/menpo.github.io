@@ -1,371 +1,95 @@
-Main MenpoFit Widgets
-=====================
-These are top-level functions for visualizig the various [`menpofit`](../menpofit/index.md) objects with high-level interactive widgets.
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
 
-1. <a href="#basics">Basics</a>
-2. <a href="#train">Train Models</a>
-3. <a href="#holistic">Holistic AAM and ATM Widgets</a>
-4. <a href="#patch_based">Patch-based AAM and ATM Widgets</a>
-5. <a href="#clm">CLM Widgets</a>
-6. <a href="#result">Fitting Result</a>
-7. <a href="#ced">Cumulative Error Distributuon</a>
 
----------------------------------------
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../_static/logo/menpowidgets.png" alt="menpowidgets" width="30%" style="display: flex;">
+  </br>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpowidgets" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpowidgets.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpowidgets">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpowidgets/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
-<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <em>menpowidgets</em> experience.
-This can be done by running</br>
-<center><code>%matplotlib inline</code></center>
-in a cell. Note that you only have to run it once and not in every rendering cell.
-</div></p>
+# Main MenpoFit widgets
 
-<a id="basics"></a>
+These are the widgets for visualizing the objects of [`menpofit`](../menpofit/index.md). Install them with `pip install "menpowidgets[menpofit]"`.
 
-# 1. Basics
-Let's first import all the widgets:
+| Function | Shows |
+|---|---|
+| `visualize_aam`, `visualize_patch_aam` | an AAM: its shape and appearance parameters and the instance they generate |
+| `visualize_atm`, `visualize_patch_atm` | an ATM |
+| `visualize_clm` | a CLM: the shape model and the response of the experts |
+| `visualize_expert_ensemble` | the experts of a CLM |
+| `visualize_appearance_model`, `visualize_patch_appearance_model` | the appearance model of an AAM |
+| `visualize_shape_model_2d` | the shape models of any multi-scale model |
+| `visualize_fitting_results` | a list of fitting results, with the iterations, the errors and the ground truth |
 
-```python
-from menpowidgets import (visualize_shape_model, visualize_appearance_model, visualize_aam,
-                          visualize_atm, visualize_patch_appearance_model, visualize_patch_aam,
-                          visualize_patch_atm, visualize_expert_ensemble, visualize_clm,
-                          visualize_fitting_result, plot_ced, visualize_images)
+```{note}
+The widgets on this page were created when the website was built, so what you see is the initial state of each one, drawn by the real code.
+The controls do not respond here, because the plots are drawn by Python: run the code in a Jupyter notebook for the interactive version.
 ```
 
-They are all functions which have some common arguments:
+```{code-cell} ipython3
+:tags: [remove-input]
 
-* __style__: It can be either ``'coloured'`` or ``'minimal'``. The ``'coloured'`` style uses a colouring theme that is different for each widget. The ``'minimal'`` style is very simple with black and white colours.
-* __figure_size__: This argument is a `tuple` that defines the size of the rendered figure in inches. The figure size can also be controlled from the _Renderer_ options within the widgets.
-* __browser_style__: It can be either ``'buttons'`` or ``'slider'``. This argument exists in widgets that visualize a list of objects (e.g. shape models or fitting results). If ``'buttons'``, then the object selection will be done by the <i class="fa fa-plus"></i> / <i class="fa fa-minus"></i> buttons. If ``'slider'``, then the object selection is done using a slider widget.
+# a small AAM and some fitting results, as in the AAM guide
+from menpo.feature import fast_dsift
+from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter
+from menpo_docs_data import faces
 
-Note that all widgets can get as input a `list` of objects with totally different attributes between them. For example, `list` of results with different number of shapes or `list` of `PCAModel` with different number of parameters. Finally, they all have a _Renderer_ tab that has many rendering-related options (such as lines, markers, axes, legend, grid, image) and an _Export_ tab that allows the user to save the figure to file.
+training_images, test_images = faces(n_train=40, n_test=4)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift)
+fitter = LucasKanadeAAMFitter(aam, n_shape=[3, 12], n_appearance=[20, 30])
 
-
-<a id="train"></a>
-
-## 2. Train Models
-Before moving on, let's train some models. First let's import what is needed.
-
-```python
-%matplotlib inline
-import menpo.io as mio
-from menpo.feature import igo
-from menpo.visualize import print_dynamic
-
-from menpofit.aam import HolisticAAM, PatchAAM, LucasKanadeAAMFitter
-from menpofit.atm import HolisticATM, PatchATM
-from menpofit.clm import CLM, CorrelationFilterExpertEnsemble
-from menpofit.fitter import noisy_shape_from_shape
+import numpy as np
+results = []
+for i, image in enumerate(test_images):
+    gt_shape = image.landmarks['PTS']
+    offset = np.random.RandomState(i).randn(2) * 0.04 * np.ptp(gt_shape.points, axis=0).max()
+    initial_shape = gt_shape.from_vector(gt_shape.as_vector() + np.tile(offset, gt_shape.n_points))
+    results.append(fitter.fit_from_shape(image, initial_shape, max_iters=[15, 15], gt_shape=gt_shape))
 ```
 
-Now let's load a few some training and fitting images from the [LFPW](http://ibug.doc.ic.ac.uk/resources/facial-point-annotations/) database. Since the aim of this widget is to demonstrate the functionalities of widgets, we don't need to train the most performant models, thus only 60 training images are enough for fast training.
+## Models
+`visualize_aam` has a slider for each shape and appearance parameter (`mode='multiple'`, or one slider and a menu with `mode='single'`),
+and a tab per scale:
 
-```python
-def load_images(path, crop_proportion=None, max_images=None, verbose=True):
-    images = []
-    for im in mio.import_images(path, max_images=max_images, verbose=verbose):
-        # Crop image
-        im = im.crop_to_landmarks_proportion(crop_proportion)
-        # Congert to greyscale
-        if im.n_channels == 3:
-            im = im.as_greyscale()
-        # Append image object
-        images.append(im)
-    return images
+```{code-cell} ipython3
+from menpowidgets import visualize_aam
 
-
-training_images = load_images('/home/nontas/Dropbox/lfpw/trainset/',
-                              crop_proportion=0.2, max_images=60)
-test_images = load_images('/home/nontas/Dropbox/lfpw/testset/',
-                          crop_proportion=0.3, max_images=10)
-training_shapes = [im.landmarks['PTS'].lms for im in training_images]
-```
-
-    Found 60 assets, index the returned LazyList to import.
-    Found 10 assets, index the returned LazyList to import.
-
-
-Let's visualize the training images:
-
-
-```python
-visualize_images(training_images)
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_9_0.png)
-
-
-Let's train a simple holistic and patch-based AAM:
-
-
-```python
-aam = HolisticAAM(training_images, holistic_features=igo, scales=(0.5, 1.0), diagonal=150,
-                  max_shape_components=20, max_appearance_components=150, verbose=True)
-```
-
-    - Computing reference shape                                                     Computing batch 0
-    - Building models
-      - Scale 0: Done
-      - Scale 1: Done
-
-
-    /home/nontas/Documents/Research/menpofit/menpofit/builder.py:341: MenpoFitModelBuilderWarning: The reference shape passed is not a TriMesh or subclass and therefore the reference frame (mask) will be calculated via a Delaunay triangulation. This may cause small triangles and thus suboptimal warps.
-      MenpoFitModelBuilderWarning)
-
-
-
-```python
-patch_aam = PatchAAM(training_images, holistic_features=igo, scales=(0.5, 1.), diagonal=170,
-                     patch_shape=[(15, 15), (21, 21)], max_shape_components=20,
-                     max_appearance_components=150, verbose=True)
-```
-
-    - Computing reference shape                                                     Computing batch 0
-    - Building models
-      - Scale 0: Done
-      - Scale 1: Done
-
-
-Let's also train a holistic and patch-based ATM using the second image as template:
-
-
-```python
-atm = HolisticATM(training_images[1], training_shapes, holistic_features=igo, scales=(0.5, 1.),
-                  diagonal=150, max_shape_components=20, verbose=True)
-```
-
-    - Computing reference shape                                                     Computing batch 0
-    - Building models
-      - Scale 0: Done
-      - Scale 1: Done
-
-
-    /home/nontas/Documents/Research/menpofit/menpofit/builder.py:341: MenpoFitModelBuilderWarning: The reference shape passed is not a TriMesh or subclass and therefore the reference frame (mask) will be calculated via a Delaunay triangulation. This may cause small triangles and thus suboptimal warps.
-      MenpoFitModelBuilderWarning)
-
-
-
-```python
-patch_atm = PatchATM(training_images[1], training_shapes, holistic_features=igo, scales=(0.5, 1.),
-                     diagonal=170, patch_shape=[(15, 15), (21, 21)], max_shape_components=20,
-                     verbose=True)
-```
-
-    - Computing reference shape                                                     Computing batch 0
-    - Building models
-      - Scale 0: Done
-      - Scale 1: Done
-
-
-Finally, let's train a simple CLM model:
-
-
-```python
-clm = CLM(training_images, diagonal=150, scales=[1.], holistic_features=igo, patch_shape=(19, 19),
-          context_shape=(34, 34), expert_ensemble_cls=CorrelationFilterExpertEnsemble,
-          max_shape_components=20, verbose=True)
-```
-
-    - Computing reference shape                                                     Computing batch 0
-    - Training models
-      - Done
-
-
-<a id="holistic"></a>
-
-### 3. Holistic AAM and ATM Widgets
-The shape models and appearance models of the Holistic AAM can be visualised as:
-
-
-```python
-aam.view_shape_models_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_19_0.png)
-
-
-
-```python
-aam.view_appearance_models_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_20_0.png)
-
-
-Hit the <i class="fa fa-play"></i> button to view an animation of the variance of each component. The AAM can be viewed as:
-
-
-```python
-aam.view_aam_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_22_0.png)
-
-
-Note that the above class functions are equivalen to:
-```python
-visualize_shape_model(aam.shape_models)
-visualize_appearance_model(aam.appearance_models)
 visualize_aam(aam)
 ```
 
-Now let's also visualize the trained holistic ATM.
+The shape models alone, as a list with one model per scale:
 
+```{code-cell} ipython3
+from menpowidgets import visualize_shape_model_2d
 
-```python
-atm.view_atm_widget()
+visualize_shape_model_2d([shape_model.model for shape_model in aam.shape_models])
 ```
 
+## Fitting results
+`visualize_fitting_results` browses the results of the fitter, with the shapes of every iteration, the error per iteration and the ground truth.
 
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_24_0.png)
+```{code-cell} ipython3
+from menpowidgets import visualize_fitting_results
 
-
-<a id="patch_based"></a>
-
-### 4. Patch-based AAM and ATM Widgets
-Similarly to the holistic case, the patch-based AAM can be visualised as follows:
-
-
-```python
-patch_aam.view_appearance_models_widget()
+visualize_fitting_results(results)
 ```
 
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_26_0.png)
-
-
-
-```python
-patch_aam.view_aam_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_27_0.png)
-
-
-and the patch-based ATM:
-
-
-```python
-patch_atm.view_atm_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_29_0.png)
-
-
-<a id="clm"></a>
-
-### 5. CLM Widgets
-Let's also visualize the CLM widgets:
-
-
-```python
-clm.view_expert_ensemble_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_31_0.png)
-
-
-
-```python
-clm.view_clm_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_32_0.png)
-
-
-<a id="result"></a>
-
-### 6. Fitting Result
-Let's fit the patch-based AAM on the test images in order to create a list of iterative fitting results.
-
-
-```python
-fitter = LucasKanadeAAMFitter(patch_aam, n_shape=[3, 12], n_appearance=150)
-fitting_results = []
-for j, im in enumerate(test_images):
-    print_dynamic('{}/{}'.format(j + 1, len(test_images)))
-    groundtruth_shape = im.landmarks['PTS'].lms
-    initial_shape = noisy_shape_from_shape(fitter.reference_shape, groundtruth_shape,
-                                           noise_type='uniform', noise_percentage=0.02,
-                                           allow_alignment_rotation=False)
-    fr = fitter.fit_from_shape(im, initial_shape, gt_shape=groundtruth_shape,
-                               max_iters=[10, 15])
-    fitting_results.append(fr)
-```
-
-    10/10                                                                           
-
-The fitting results can be visualized as:
-
-
-```python
-visualize_fitting_result(fitting_results)
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_36_0.png)
-
-
-Of course, a result has a built-in `view_widget()` function
-
-
-```python
-fitting_results[0].view_widget()
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_38_0.png)
-
-
-Let's now create a list of `Result` objects with different properties and visualize them:
-
-
-```python
-frs = [fitting_results[0]]
-frs.append(fitting_results[1].to_result(pass_image=False, pass_initial_shape=False, pass_gt_shape=False))
-frs.append(fitting_results[2].to_result(pass_image=True, pass_initial_shape=False, pass_gt_shape=False))
-frs.append(fitting_results[3].to_result(pass_image=False, pass_initial_shape=True, pass_gt_shape=False))
-frs.append(fitting_results[4].to_result(pass_image=False, pass_initial_shape=False, pass_gt_shape=True))
-frs.append(fitting_results[5].to_result(pass_image=True, pass_initial_shape=True, pass_gt_shape=False))
-frs.append(fitting_results[6].to_result(pass_image=True, pass_initial_shape=False, pass_gt_shape=True))
-frs.append(fitting_results[7].to_result(pass_image=False, pass_initial_shape=True, pass_gt_shape=True))
-frs.append(fitting_results[8].to_result(pass_image=True, pass_initial_shape=True, pass_gt_shape=True))
-frs.append(fitting_results[9])
-
-visualize_fitting_result(frs)
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_40_0.png)
-
-
-Note that the widget adapts itself to the properties of each fitting result object.
-
-<a id="ced"></a>
-
-### 7. Cumulative Error Distributuon
-The fitting errors can be nicely visualized with a widget for plotting Cumulative Error Distributions (CED). Let's first create a `list` with the initial and final fitting errors.
-
-
-```python
-initial_errors = [r.initial_error() for r in fitting_results]
-final_errors = [r.final_error() for r in fitting_results]
-```
-
-and plot the curves:
-
-
-```python
-plot_ced([initial_errors, final_errors], legend_entries=['Initial', 'Final'])
-```
-
-
-![png](MenpoFit%20Widgets_files/MenpoFit%20Widgets_45_0.png)
+A single result has the same widget as a method, `result.view_widget()`.

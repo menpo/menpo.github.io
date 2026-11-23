@@ -44,6 +44,7 @@ nb_execution_raise_on_error = True
 nb_execution_timeout = 600
 nb_execution_excludepatterns = []
 nb_merge_streams = True
+nb_render_markdown_format = "myst"
 nb_output_stderr = "remove"
 nb_number_source_lines = False
 

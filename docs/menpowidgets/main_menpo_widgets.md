@@ -1,265 +1,103 @@
-Main Menpo Widgets
-==================
-These are top-level functions for visualizig the various [`menpo`](../menpo/index.md) objects with high-level interactive widgets.
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
 
-1. <a href="#basics">Basics</a>
-2. <a href="#pointclouds">PointClouds/PointGraphs Widget</a>
-3. <a href="#landmarkgroups">LandmarkGroups Widget</a>  
-4. <a href="#landmarks">Landmarks Widget</a>  
-5. <a href="#images">Images Widget</a>  
-6. <a href="#patches">Patches Widget</a>  
-7. <a href="#features">Features Widget</a>
-8. <a href="#plot_graph">Plot Graph Widget</a>
-9. <a href="#save_figure">Save Figure Widget</a>
-10. <a href="#methods">View Widget Methods</a>
 
----------------------------------------
+<div style="display: flex; align-items: center; flex-direction: column;">
+  <img src="../_static/logo/menpowidgets.png" alt="menpowidgets" width="30%" style="display: flex;">
+  </br>
+  <div style="display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-bottom: 20px">
+    <a href="https://github.com/menpo/menpowidgets" style="display: flex;">
+      <img src="http://img.shields.io/github/release/menpo/menpowidgets.svg?style=flat-square" alt="Github Release"/>
+    </a>
+    <a style="text-decoration: none; color: grey; margin: 5px 25px;" href="https://github.com/menpo/menpowidgets">
+      <button class="download_button">View on Github</button>
+    </a>
+    <a href="https://github.com/menpo/menpowidgets/blob/master/LICENSE.txt" style="display: flex;">
+      <img src="http://img.shields.io/badge/License-BSD-green.svg" alt="BSD License"/>
+    </a>
+  </div>
+</div>
 
-<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <em>menpowidgets</em> experience.
-This can be done by running</br>
-<center><code>%matplotlib inline</code></center>
-in a cell. Note that you only have to run it once and not in every rendering cell.
-</div></p>
+# Main Menpo widgets
 
-<a id="basics"></a>
+These are the widgets for visualizing the objects of [`menpo`](../menpo/index.md). They are functions of `menpowidgets`:
 
-# 1. Basics
-Let's first import all the widgets:
-```python
-from menpowidgets import (visualize_pointclouds, visualize_landmarkgroups,
-                          visualize_landmarks, visualize_images, visualize_patches,
-                          plot_graph, save_matplotlib_figure, features_selection)
+| Function | Shows |
+|---|---|
+| `visualize_images` | a list of images, with their landmarks and options for channels, rendering and saving |
+| `visualize_shapes_2d`, `visualize_shapes_3d` | a list of point clouds, graphs or meshes |
+| `visualize_landmarks_2d`, `visualize_landmarks_3d` | the landmark groups of an object |
+| `visualize_patches`, `visualize_patch_appearance_model` | patches extracted around landmarks |
+| `visualize_shape_model_2d`, `visualize_shape_model_3d` | a multi-scale linear shape model, with a slider per component |
+| `visualize_appearance_model` | a multi-scale linear appearance model |
+| `visualize_meshes_3d`, `visualize_morphable_model` | 3D meshes and morphable models (with the `menpo3d` extra) |
+| `plot_graph` | curves, with options for lines, markers, legend and axes |
+| `view_widget` | any of the above, chosen from the type of the object |
+
+```{note}
+The widgets on this page were created when the website was built, so what you see is the initial state of each one, drawn by the real code.
+The controls do not respond here, because the plots are drawn by Python: run the code in a Jupyter notebook for the interactive version.
 ```
 
-They are all functions which have some common arguments:
+## Images
+`visualize_images` browses a list of images. Use `browser_style='slider'` for a slider instead of plus/minus buttons.
 
-* __style__  
-  It can be either ``'coloured'`` or ``'minimal'``. The ``'coloured'`` style uses a colouring theme that is different for each widget. The ``'minimal'`` style is very simple with black and white colours.
-* __figure_size__  
-  This argument is a `tuple` that defines the size of the rendered figure in inches. The figure size can also be controlled from the _Renderer_ options within the widgets.
-* __browser_style__  
-  It can be either ``'buttons'`` or ``'slider'``. This argument exists in widgets that visualize a list of objects (e.g. images or pointclouds). If ``'buttons'``, then the object selection will be done by the <i class="fa fa-plus"> / <i class="fa fa-minus"> buttons. If ``'slider'``, then the object selection is done using a slider widget.
-
-Note that all widgets can get as input a `list` of objects with totally different attributes between them. For example, `list` of images with different number of channels or `list` of `LandmarkGroups` with different number of points. Finally, they all have a _Renderer_ tab that has many rendering-related options (such as lines, markers, axes, legend, grid, image) and an _Export_ tab that allows the user to save the figure to file.
-
-Before moving on, let's create some lists of objects to visualize with different properties. First let's import what is needed.
-
-```python
-%matplotlib inline
+```{code-cell} ipython3
 import menpo.io as mio
-from menpo.landmark import (labeller, face_ibug_68_to_face_ibug_49,
-                            face_ibug_68_to_face_ibug_66,
-                            face_ibug_68_to_face_ibug_68_trimesh,
-                            face_ibug_68_to_face_ibug_68)
-from menpo.feature import igo, hog, lbp
-```
+from menpowidgets import visualize_images
 
-Now let's load the builtin assets and differentiate them:
-
-```python
-im1 = mio.import_builtin_asset.breakingbad_jpg()
-im1 = im1.crop_to_landmarks_proportion(0.2)
-labeller(im1, 'PTS', face_ibug_68_to_face_ibug_68)
-
-im2 = mio.import_builtin_asset.einstein_jpg()
-im2 = im2.crop_to_landmarks_proportion(0.2)
-im2 = igo(im2, double_angles=True)
-labeller(im2, 'PTS', face_ibug_68_to_face_ibug_49)
-
-im3 = mio.import_builtin_asset.lenna_png()
-im3 = im3.crop_to_landmarks_proportion(0.2)
-im3 = hog(im3)
-
-im4 = mio.import_builtin_asset.takeo_ppm()
-im4 = im4.crop_to_landmarks_proportion(0.2)
-labeller(im4, 'PTS', face_ibug_68_to_face_ibug_68_trimesh)
-
-im5 = mio.import_builtin_asset.tongue_jpg()
-im5 = im5.crop_to_landmarks_proportion(0.2)
-im5 = im5.as_greyscale()
-
-im6 = mio.import_builtin_asset.menpo_thumbnail_jpg()
-```
-
-<a id="pointclouds"></a>
-
-## 2. PointClouds/PointGraphs Widget
-First, we need to add the objects in a list
-```python
-pointclouds = [im1.landmarks['PTS'].lms,
-               im2.landmarks['face_ibug_49'].lms,
-               im3.landmarks['LJSON'].lms,
-               im4.landmarks['PTS'].lms,
-               im5.landmarks['PTS'].lms]
-```
-and then get the widget
-```python
-visualize_pointclouds(pointclouds)
-```
-<video width="100%" autoplay loop>
-  <source src="media/visualize_pointclouds.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
-By pressing the <i class="fa fa-play"> button, the widget automatically goes through all and visualizes the objects. The animation speed can be controlled by <i class="fa fa-fast-backward"> / <i class="fa fa-fast-forward">. The repeat mode can be controlled by <i class="fa fa-repeat"> / <i class="fa fa-long-arrow-right">.
-
-The 1st tab prints some information regarding each PointCloud.
-
-The 2nd tab has rendering options regarding the markers, lines, numbering, axes and zoom. There are also two radiobuttons that define the axes mode.
-
-The 3rd tab allows the user to save a figure to file.
-
-
-<a id="landmarkgroups"></a>
-
-### 3. LandmarkGroups Widget
-Let's group all `LandmarkGroups` in a `list`
-```python
-landmark_groups = [im1.landmarks['PTS'],
-                   im2.landmarks['face_ibug_49'],
-                   im3.landmarks['LJSON'],
-                   im4.landmarks['PTS'],
-                   im5.landmarks['PTS'],
-                   im3.landmarks['LJSON']]
-```
-and visualize them using the `visualize_landmarkgroups()` widget with a `slider` browser style
-```python
-visualize_landmarkgroups(landmark_groups, browser_style='slider')
-```
-The animation works as before, with the difference that the buttons are replaced by a slider.
-
-The 1st tab prints some information regarding each LandmarkGroup.
-
-The 2nd tab has options related to the landmarks. Specifically, the user can select to render specific labels.
-
-The 3nd tab has rendering options regarding the lines, markers, numbering of points, legend, zoom and axes. Once again, there are also two radiobuttons that define the axes mode.
-
-Finally, the last tab allows the user to save a figure to file.
-
-
-<a id="landmarks"></a>
-
-### 4. Landmarks Widget
-First we need to create a `list` of `LandmarkManager` objects and then visualize them using a ``'minimal'`` style
-```python
-landmarks = [im1.landmarks,
-             im2.landmarks,
-             im3.landmarks,
-             im4.landmarks,
-             im5.landmarks,
-             im6.landmarks]
-
-visualize_landmarks(landmarks, style='minimal')
-```
-This widget has the exact same structure and functionality as the previous one for LandmarkGroups. The only difference is that in the `Landmarks` tab, the _group_ can also be specified in case a `LandmarkManager` has more than one groups.
-
-
-<a id="images"></a>
-
-### 5. Images Widget
-Let's now create a list with the actual `Image` objects and visualize them
-```python
-images = [im1, im2, im3, im4, im5, im6]
+images = [mio.import_builtin_asset.lenna_png(), mio.import_builtin_asset.takeo_ppm()]
 visualize_images(images)
 ```
-Compared to the `visualize_landmarks()` widget, this one has an additional tab for _Channels_ options. In this tab, the user has several options, such as to visualize the image's channels individually or in subplots, to render the image as a `glyph` and to render the sum of the image's channels.
 
+## Shapes and landmarks
 
-<a id="patches"></a>
+```{code-cell} ipython3
+from menpowidgets import visualize_shapes_2d
 
-### 6. Patches Widget
-Let's now extract some patches from the images and create two lists: one with the patches and one with the patche centers.
-```python
-patches1 = im1.extract_patches_around_landmarks(group='PTS')
-pc1 = im1.landmarks['PTS'].lms
-patches2 = im2.extract_patches_around_landmarks(group='face_ibug_49')
-pc2 = im2.landmarks['face_ibug_49'].lms
-patches3 = im3.extract_patches_around_landmarks(group='LJSON')
-pc3 = im3.landmarks['LJSON'].lms
-patches4 = im4.extract_patches_around_landmarks(group='face_ibug_68_trimesh')
-pc4 = im4.landmarks['face_ibug_68_trimesh'].lms
-patches5 = im5.extract_patches_around_landmarks(group='PTS')
-pc5 = im5.landmarks['PTS'].lms
-
-patches = [patches1, patches2, patches3, patches4, patches5]
-patch_centers = [pc1, pc2, pc3, pc4, pc5]
-
-visualize_patches(patches, patch_centers)
-```
-The `visualize_patches` is exactly the same with `visualize_images`, with the difference that it has a patch-related options tab.
-
-
-<a id="features"></a>
-
-### 7. Features Widget
-`menpowidgets` also has a widget for selecting a specific feature with some options. In order to facilitate the options selection, the widget has a _Preview_ tab that applies the feature on the `Lenna` image. The widget returns a `function` as a single element of a `list`. This can be done as
-```python
-feat = features_selection()
-```
-Note that by pressing the _Select_ button, the widget automatically closes. Then the function can be applied to a new image as:
-```python
-feat[0](im1).view(channels=[0, 1]);
+shapes = [mio.import_builtin_asset.einstein_pts()['PTS'],
+          mio.import_builtin_asset.takeo_pts()['PTS']]
+visualize_shapes_2d(shapes)
 ```
 
+```{code-cell} ipython3
+from menpowidgets import visualize_landmarks_2d
 
-<a id="plot_graph"></a>
-
-### 8. Plot Graph Widget
-There is a widget that facilitates the graph plotting. It supports plotting of multiple curves. It expects a `list` of values for `x_axis` and a `list` of `lists` of values for `y_axis`, each one corresponding to a different curve. Let's generate the values of sin and cos
-```python
-import numpy as np
-
-x_axis = [x * np.pi / 10.0 for x in range(21)]
-
-y_sin = list(np.sin(x_axis))
-y_cos = list(np.cos(x_axis))
-y_axis = [y_sin, y_cos]
-```
-The widget has a `legend_enrties` argument.
-```python
-plot_graph(x_axis, y_axis, legend_entries=['sin', 'cos'])
+visualize_landmarks_2d([image.landmarks for image in images])
 ```
 
-In the 1st tab, the user can set the _X/Y labels_, the _Title_ and the _Legend entries_.
+## Patches
+`visualize_patches` takes the patches in either of the two formats that `Image.extract_patches` and `Image.extract_patches_around_landmarks` return, and the centres they were taken around.
 
-In the 2nd tab, there are _Renderer_ options that can be defined for each curve separately.
+```{code-cell} ipython3
+from menpowidgets import visualize_patches
 
-Finally, as always, the last tab allows the user to save the plot to file.
-
-
-<a id="save_figure"></a>
-
-### 9. Save Figure Widget
-The widget to save a figure to file can be called independently. Specifically, assume that we have figure from which we kept the rendering object:
-```python
-renderer = im1.view_landmarks(group='PTS')
-save_matplotlib_figure(renderer)
-```
-Note that if the _Overwrite if file exists_ checkbox is not ticked, then a warning will appear when trying to save to a file that already exists.
-
-
-<a id="methods"></a>
-
-### 10. View Widget Methods
-Finally, all `menpo` objects have a `.view_widget()` method. Below are some examples:
-```python
-images[0].view_widget(figure_size=(6, 4))
+image = images[0]
+centres = image.landmarks['LJSON']
+patches = image.extract_patches(centres, patch_shape=(16, 16))
+visualize_patches([patches], [centres])
 ```
 
-```python
-images[-1].view_widget(figure_size=(6, 4))
+## Graphs
+
+```{code-cell} ipython3
+from menpowidgets import plot_graph
+
+x = list(range(20))
+plot_graph(x, [[v ** 2 for v in x], [v ** 1.5 for v in x]], legend_entries=['x squared', 'x to the 1.5'])
 ```
 
-```python
-pointclouds[0].view_widget(figure_size=(6, 4))
-```
+## The `view_widget` methods
+The images, shapes and landmarks of `menpo` have a `view_widget()` method, which is the same as calling the function above with a list of one object:
 
 ```python
-landmark_groups[0].view_widget(figure_size=(6, 4))
-```
-
-```python
-landmarks[0].view_widget(figure_size=(6, 4))
+image.view_widget()
+pointcloud.view_widget()
 ```
