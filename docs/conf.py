@@ -42,13 +42,16 @@ nb_merge_streams = True
 nb_output_stderr = "remove"
 nb_number_source_lines = False
 
+# Unresolvable references to the API docs fail the build, so renamed or removed names are caught.
+nitpicky = True
+
 # --- Cross references to the API documentation ----------------------------
 intersphinx_mapping = {
-    "menpo": ("https://menpo.readthedocs.io/en/stable/", None),
-    "menpofit": ("https://menpofit.readthedocs.io/en/stable/", None),
-    "menpo3d": ("https://menpo3d.readthedocs.io/en/stable/", None),
-    "menpowidgets": ("https://menpowidgets.readthedocs.io/en/stable/", None),
-    "menpodetect": ("https://menpodetect.readthedocs.io/en/stable/", None),
+    "menpo": ("https://menpo.readthedocs.io/en/latest/", None),
+    "menpofit": ("https://menpofit.readthedocs.io/en/latest/", None),
+    "menpo3d": ("https://menpo3d.readthedocs.io/en/latest/", None),
+    "menpowidgets": ("https://menpowidgets.readthedocs.io/en/latest/", None),
+    "menpodetect": ("https://menpodetect.readthedocs.io/en/latest/", None),
     "python": ("https://docs.python.org/3", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
 }

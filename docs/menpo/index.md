@@ -1,3 +1,13 @@
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 
 <div style="display: flex; align-items: center; flex-direction: column;">
   <img src="../_static/logo/menpo.png" alt="menpo" width="30%" style="display: flex;">

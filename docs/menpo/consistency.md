@@ -1,3 +1,13 @@
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 Consistency
 ===========
 
@@ -57,7 +67,7 @@ Now, as was mentioned, we want to drop all the swapping business. Therefore, for
 ## 2. Our Approach
 `menpo`'s solution to this problem is simple - **drop the insistence of calling axes `x`, `y`, and `z`**. Skipping the channel data, which represents the zeroth axis, the first axis of the pixel data is simply that - the first axis. It corresponds exactly with the zeroth axis on the point cloud. If you have an image with annotations provided the zeroth axis of the `PointCloud` representing the annotations will correspond with the first axis of the image. This rule makes working with images and spatial data simple -short you should never have to think about flipping axes in `menpo`.
 
-It's natural to be concerned at this point that establishing such rules must make it really difficult ingest data which follows different conventions. This is incorrect - one of the biggest strengths of the [menpo.io](http://docs.menpo.org/en/stable/api/menpo/io/index.html) module is that each asset importer normalizes the format of the data to format `menpo`'s rules.
+It's natural to be concerned at this point that establishing such rules must make it really difficult ingest data which follows different conventions. This is incorrect - one of the biggest strengths of the [`menpo.io`](https://menpo.readthedocs.io/en/latest/api/io/index.html) module is that each asset importer normalizes the format of the data to format `menpo`'s rules.
 
 
 <a id="keypoints"></a>

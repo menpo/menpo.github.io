@@ -10,11 +10,11 @@ kernelspec:
 
 # Point Distribution Model
 
-1. [Definition](#definition)
-2. [Trimming components](#trimming)
-3. [Generating new instances](#synthesis)
-4. [Visualization](#visualization)
-5. [Projection and reconstruction](#projection_and_reconstruction)
+1. <a href="#definition">Definition</a>
+2. <a href="#trimming">Trimming components</a>
+3. <a href="#synthesis">Generating new instances</a>
+4. <a href="#visualization">Visualization</a>
+5. <a href="#projection_and_reconstruction">Projection and reconstruction</a>
 6. [API documentation](https://menpofit.readthedocs.io/en/stable/api/menpofit/modelinstance/OrthoPDM.html)
 
 ---------------------------------------

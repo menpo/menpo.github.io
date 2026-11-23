@@ -1,3 +1,13 @@
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 Visualizing Objects
 ===================
 In the Menpo Project, we take an opinionated stance that visualization is a key part of working with visual data.
@@ -27,23 +37,17 @@ in a cell. Note that you only have to run it once and not in every rendering cel
 
 # 1. Visualizing 2D Images
 Without further ado, a quick example of viewing a 2D image:
-```python
-%matplotlib inline
+```{code-cell} ipython3
 import menpo.io as mio
 image = mio.import_builtin_asset.lenna_png()
 image.view()
 ```
-<center>
-  <img src="media/view_image.png" alt="view_image">
-</center>
 
-Viewing the image landmarks:
-```python
-image.view_landmarks()
+Viewing the image landmarks (this image has two landmark groups, so say which one):
+```{code-cell} ipython3
+print(image.landmarks.group_labels)
+image.view_landmarks(group="LJSON")
 ```
-<center>
-  <img src="media/view_landmarks.png" alt="view_landmarks">
-</center>
 
 Viewing the image with a native IPython widget:
 ```python
@@ -73,13 +77,10 @@ Your browser does not support the video tag.
 
 ### 3. Visualizing A 2D PointCloud
 Visualizing `PointCloud` objects and subclasses is a very familiar experience:
-```python
-pcloud = mio.import_builtin_asset.breakingbad_pts().lms
+```{code-cell} ipython3
+pcloud = mio.import_builtin_asset.breakingbad_pts()["PTS"]
 pcloud.view()
 ```
-<center>
-  <img src="media/view_pointcloud.png" alt="view_pointcloud">
-</center>
 
 
 <a id="3d"></a>
