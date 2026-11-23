@@ -54,3 +54,29 @@ html_title = "The Menpo Project"
 html_static_path = ["_static"]
 html_css_files = ["menpostyle.css", "menpoinstall.css"]
 html_js_files = [("force-light.js", {"priority": 100})]
+
+
+# --- Media referenced from raw HTML ------------------------------------------
+# Pages use raw <img>/<video> tags (sizing, side-by-side figures). Sphinx only
+# copies images it sees through Markdown/reST syntax, so copy the rest verbatim,
+# keeping each file next to the page that refers to it.
+_MEDIA = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".mp4", ".webm", ".pdf"}
+
+
+def _copy_media(app, exception):
+    if exception or app.builder.format != "html":
+        return
+    import shutil
+
+    src, out = Path(app.srcdir), Path(app.outdir)
+    for f in src.rglob("*"):
+        rel = f.relative_to(src)
+        if f.suffix.lower() in _MEDIA and rel.parts[0] not in ("_build", "_static"):
+            dest = out / rel
+            if not dest.exists():
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(f, dest)
+
+
+def setup(app):
+    app.connect("build-finished", _copy_media)
