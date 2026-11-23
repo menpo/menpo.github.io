@@ -14,9 +14,9 @@ kernelspec:
 # Active Appearance Models - Advanced
 The aim of this notebook is to showcase some of the more advanced features that are available for building and fitting AAMs using ``menpo`` and ``menpofit``. 
 
-Note that this notebook assumes that the user has previously gone through the AAMs Basic notebook and he/she is already familiar with the basic AAMs and `Menpo` concepts explained in there. The AAMs Basic notebook shows us how through the use of the `AAMBuilder` and the `LucasKanadeAAMFitter` classes one can easily build and fit basic AAMs using `Menpo`. In reality, `Menpo`'s framework for AAMs is a lot more powerful and we will proceed to show how a large variety of different AAMs and different fitting algorithms can be used by simply specifying the right keyword arguments on the two previous classes.
+Note that this notebook assumes that the user has previously gone through the AAMs Basic notebook and he/she is already familiar with the basic AAMs and `Menpo` concepts explained in there. The AAMs Basic notebook shows us how through the use of the `HolisticAAM` and the `LucasKanadeAAMFitter` classes one can easily build and fit basic AAMs using `Menpo`. In reality, `Menpo`'s framework for AAMs is a lot more powerful and we will proceed to show how a large variety of different AAMs and different fitting algorithms can be used by simply specifying the right keyword arguments on the two classes.
 
-The complete list of the available keyword arguments for the `AAMBuilder` and their corresponding detailed explanations can be found in Menpo's documentation. Remember that their documentation can be checked at any time from the IPython Notebook by simply running:
+The complete list of the available keyword arguments for `HolisticAAM` and their corresponding detailed explanations can be found in Menpo's documentation. Remember that their documentation can be checked at any time from the IPython Notebook by simply running:
 
 ```{code-cell}
 from menpofit.aam import HolisticAAM
@@ -103,7 +103,7 @@ visualize_images(test_images)
 
 +++
 
-One of the most powerful and general characteristics of the `AAMBuilder` class is that it allows the user to build AAMs with arbitrarily user-defined appearance features. Instead of restricting the user to a set of predefined appearance features, `Menpo` allows him/her to define new features (perhaps simple combinations of existing image features supported by Menpo or perhaps completely new (even discriminative!) features designed by the user) and pass them to the `AAMbuilder`.
+One of the most powerful and general characteristics of the `HolisticAAM` class is that it allows the user to build AAMs with arbitrarily user-defined appearance features. Instead of restricting the user to a set of predefined appearance features, `Menpo` allows him/her to define new features (perhaps simple combinations of existing image features supported by Menpo or perhaps completely new (even discriminative!) features designed by the user) and pass them to the `HolisticAAM`.
 
 All that is required is that the user decorates his/her desired feature computation using one of the feature decorators defined in Menpo, i.e. `@ndfeature`, `@imgfeature` or `@winitfeature`. The two first decorators allow the user to define feature computations in terms of simple `numpy` arrays and `Menpo` images. The third decorator supports the definition of features that rely on a cell/block structure (like **HOG** or **SIFT**). Note that, the only computation that needs to be defined by the user defined feature funtion is the pure feature computation over the image pixels; landmarks and mask attached to the image are handled by the previous decorators.
 
@@ -163,7 +163,7 @@ fitting_results = []
 
 for i in test_images:
     # obtain original landmarks
-    gt_s = i.landmarks['PTS'].lms
+    gt_s = i.landmarks['PTS']
     
     # generate perturbed landmarks
     s = noisy_shape_from_bounding_box(gt_s, gt_s.bounding_box())
@@ -229,7 +229,7 @@ fitting_results = []
 
 for i in test_images:
     # obtain original landmarks
-    gt_s = i.landmarks['PTS'].lms
+    gt_s = i.landmarks['PTS']
     
     # generate perturbed landmarks
     s = noisy_shape_from_bounding_box(gt_s, gt_s.bounding_box())

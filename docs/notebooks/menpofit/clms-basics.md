@@ -116,7 +116,7 @@ from menpofit.fitter import noisy_shape_from_bounding_box
 fitting_results = []
 
 for i in test_images:
-    gt_s = i.landmarks['PTS'].lms
+    gt_s = i.landmarks['PTS']
     # generate perturbed landmarks
     s = noisy_shape_from_bounding_box(gt_s, gt_s.bounding_box())
     # fit image

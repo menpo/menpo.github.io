@@ -70,7 +70,7 @@ Outside of the raw features needed, the team also needed flexible software that 
 
 - The ability to work in an interactive environment where new research ideas can be quickly explored
 - Cross platform (Linux, macOS, Windows)
-- One click install and removal. No outside dependencies needed.
+- Easy to install and to remove: pure Python packages with few, widely available dependencies (`pip install menpo`)
 - Extensively tested and documented
 
 It's from these requirements, and a desire by the team to make high quality open source research software, that the Menpo Project was born.

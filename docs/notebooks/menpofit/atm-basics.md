@@ -119,7 +119,7 @@ visualize_images([test_image])
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 # obtain groubnd truth (original) landmarks
-gt_s = test_image.landmarks['PTS'].lms
+gt_s = test_image.landmarks['PTS']
 
 # generate initialization landmarks
 initial_s = noisy_shape_from_bounding_box(gt_s, gt_s.bounding_box())

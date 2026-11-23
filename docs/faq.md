@@ -40,7 +40,7 @@ Frequently Asked Questions (FAQ)
 # What license is the Menpo Project under?
 The Menpo Project is under the 3-clause BSD license which can be found
 [here](https://github.com/menpo/menpo/blob/master/LICENSE.txt). This means
-that you are free to use Menpo Project's packages (`menpo`, `menpofit`, menpo3d`) in commercial products as long as you retain
+that you are free to use Menpo Project's packages (`menpo`, `menpofit`, `menpo3d` and `menpowidgets`) in commercial products as long as you retain
 our copyright notice and do not use the *Imperial College London* name to promote your product.
 The license of `menpodetect` is subject to the licenses of the packages that are wrapped.
 Please see the [Menpo Team](team.md) for a list of contributors.
@@ -49,7 +49,7 @@ Please see the [Menpo Team](team.md) for a list of contributors.
 <a id="citation"></a>
 
 ## How do I cite the Menpo Project?
-A description of the Menpo Project was presented in the [ACM Multimedia 2014](http://acmmm.org/2014/) conference.
+A description of the Menpo Project was presented in the [ACM Multimedia 2014](https://doi.org/10.1145/2647868.2654890) conference.
 Therefore, this publication is the reference paper to cite if you use any package of the Menpo Project within **any academic paper**.
 
 > J. Alabort-i-Medina<sup font-size: 75%;	line-height: 0;	position: relative; vertical-align: baseline; top: -0.5em;>\*</sup>,

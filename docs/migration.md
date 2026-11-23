@@ -89,4 +89,5 @@ New 3D widgets: `visualize_shapes_3d`, `visualize_landmarks_3d`, `visualize_mesh
 ## Landmark files import as a dictionary of groups
 
 `menpo.io.import_landmark_file(path)` returns a dictionary `{group: PointCloud}`. Pass `group='PTS'` to get the shape itself, as in the [Point Distribution Model](menpofit/pdm.md) guide.
-The old guides used `landmark_group['all']` and `.lms`, which no longer exist.
+The old guides used `landmark_group['all']`, which raises a `KeyError` now: the key is the name of the group in the file (`'PTS'` for `.pts` files). They also used `.lms` to get the points of a landmark group;
+landmark groups are plain point clouds now, so `.lms` is not needed (it is kept as an alias).

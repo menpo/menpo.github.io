@@ -205,7 +205,7 @@ fitting_results = []
 # fit images
 for i in test_images:
     # obtain ground truth (original) landmarks
-    gt_s = i.landmarks['PTS'].lms
+    gt_s = i.landmarks['PTS']
     
     # generate initialization shape
     initial_s = noisy_shape_from_bounding_box(gt_s, gt_s.bounding_box())

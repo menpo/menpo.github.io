@@ -30,7 +30,7 @@ takeo = mio.import_builtin_asset.takeo_ppm()
 takeo = takeo.as_greyscale(mode='luminosity')
 
 # Use a bounding box rather than the facial shape
-takeo.landmarks['bounding_box'] = takeo.landmarks['PTS'].lms.bounding_box()
+takeo.landmarks['bounding_box'] = takeo.landmarks['PTS'].bounding_box()
 ```
 
 ```{code-cell}
@@ -71,7 +71,7 @@ Fitting a `LucasKanadeFitter` to an image is as simple as calling its `fit_from_
 ```{code-cell}
 from menpofit.fitter import noisy_shape_from_bounding_box
 
-gt_bb = takeo.landmarks['bounding_box'].lms
+gt_bb = takeo.landmarks['bounding_box']
 # generate perturbed bounding box
 init_bb = noisy_shape_from_bounding_box(fitter.reference_shape, gt_bb)
 # fit image
