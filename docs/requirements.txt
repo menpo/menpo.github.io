@@ -6,8 +6,10 @@ sphinx-design
 ipykernel
 # The packages being documented: the install page, versions and extras are read from
 # their metadata, so the build always describes exactly what is installed here.
-menpo @ git+https://github.com/menpo/menpo@master
-menpofit @ git+https://github.com/menpo/menpofit@master
+# Until 0.13 is released the site documents the unreleased PCA API (menpo #901, menpofit #135,
+# menpo3d #98); release day swaps these for `menpo>=0.13` and friends (see the plan).
+menpo @ git+https://github.com/menpo/menpo@pca-truncated
+menpofit @ git+https://github.com/menpo/menpofit@menpo-inplace-names
 menpowidgets @ git+https://github.com/menpo/menpowidgets@master
 menpodetect @ git+https://github.com/menpo/menpodetect@master
-menpo3d @ git+https://github.com/menpo/menpo3d@master
+menpo3d @ git+https://github.com/menpo/menpo3d@menpo-inplace-names
