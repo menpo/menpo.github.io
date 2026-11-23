@@ -20,6 +20,7 @@ The methods that are currently implemented in `menpofit` are:
   - _Model Variants:_ Non Parametric, Parametric Shape, Parametric Appearance, Fully Parametric
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

@@ -15,13 +15,15 @@
   </div>
 </div>
 
+# menpofit
+
 `menpofit` is Menpo Project's Python package for building, fitting and manipulating state-of-the-art 2D deformable models.
 
 We strongly advise you to first visit the [**Basics**](basics.md "Basic concepts and assumptions in menpofit") section in order to understand the fundamental concepts and assumptions that are made in `menpofit`, before reading about the actual methods.
 
 `menpofit` provides solutions to the following problems:
 
-# Affine Image Alignment
+## Affine Image Alignment
 > An Affine Image Alignment algorithm aims to find the optimal alignment between an input image and a template image with respect to the parameters of an affine transform.
 
 The methods that are implemented in `menpofit` are:
@@ -77,6 +79,7 @@ the human body (skeleton), human hand, cat face and car sideview.
 </center>
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

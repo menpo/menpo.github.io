@@ -61,6 +61,7 @@ the same environment and `import menpowidgets` there.
 See [Setting up a development environment](development.md) to work on the code.
 
 ```{toctree}
+:titlesonly:
 :hidden:
 
 development

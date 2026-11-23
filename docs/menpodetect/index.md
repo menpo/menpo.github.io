@@ -15,6 +15,8 @@
   </div>
 </div>
 
+# menpodetect
+
 Simple object detection within the Menpo Project environment. We do not attempt
 to implement novel techniques, but instead wrap existing projects so that they
 integrate nicely with the rest of Menpo Project. At the moment the libraries that are wrapped include:
@@ -30,6 +32,7 @@ integrate nicely with the rest of Menpo Project. At the moment the libraries tha
     Training code is also wrapped, but requires explicit negative samples.
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

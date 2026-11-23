@@ -9,6 +9,7 @@ The method that is implemented in `menpofit` is:
   - _Optimization Algorithm:_ Lucas-Kanade Gradient Descent (Forward/Inverse Compositional)
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

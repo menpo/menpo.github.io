@@ -15,10 +15,12 @@
   </div>
 </div>
 
+# menpowidgets
+
 `menpowidgets` is the Menpo Project’s Python package for sophisticated visualization within the Jupyter notebook using interactive widgets. In the Menpo Project we take an opinionated stance that visualization is a key part of generating research. Therefore, we have tried to make the mental overhead of visualizing objects as low as possible. MenpoWidgets makes tasks like data exploration, model observation and results demonstration as simple as possible.
 
 
-# Widgets Structure
+## Widgets Structure
 `menpowidgets` can be separated into a 2-level hierarchy:
 
 1. [**Main Widgets**](main_widgets.md)    
@@ -56,6 +58,7 @@ Additionally, all widgets have the following functions:
 * **`predefined_style()`**: It sets some predefined styles (themes) on the widget. Possible options are `'minimal'`, `'success'`, `'info'`, `'warning'` and `'danger'`.
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

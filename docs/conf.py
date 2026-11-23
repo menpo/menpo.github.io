@@ -62,12 +62,32 @@ intersphinx_mapping = {
 }
 
 # --- HTML ------------------------------------------------------------------
-html_theme = "furo"
+html_theme = "pydata_sphinx_theme"
 html_title = "The Menpo Project"
 html_static_path = ["_static"]
-html_css_files = ["menpostyle.css"]
-html_js_files = [("force-light.js", {"priority": 100})]
-
+html_css_files = ["menpo.css"]
+html_favicon = "_static/logo/menpo.png"
+html_context = {"default_mode": "light"}
+html_sidebars = {"index": [], "**": ["sidebar-nav-bs"]}
+html_theme_options = {
+    "logo": {"image_light": "_static/logo/menpo.png", "image_dark": "_static/logo/menpo.png", "text": "The Menpo Project"},
+    "navbar_start": ["navbar-logo"],
+    "navbar_center": ["navbar-nav"],
+    "navbar_end": ["theme-switcher", "navbar-icon-links"],
+    "navbar_persistent": ["search-button"],
+    "header_links_before_dropdown": 7,
+    "icon_links": [
+        {"name": "GitHub", "url": "https://github.com/menpo", "icon": "fa-brands fa-github"},
+    ],
+    "show_nav_level": 1,
+    "navigation_depth": 3,
+    "collapse_navigation": True,
+    "show_toc_level": 2,
+    "secondary_sidebar_items": ["page-toc"],
+    "footer_start": ["copyright"],
+    "footer_end": [],
+    "navigation_with_keys": True,
+}
 
 # --- Media referenced from raw HTML ------------------------------------------
 # Pages use raw <img>/<video> tags (sizing, side-by-side figures). Sphinx only

@@ -1,136 +1,133 @@
-<center>
-  <div class="hero_container">
-    <div class="hero_logo_container">
-      <img class="hero_logo" src="_static/logo/menpoproject.png" alt="The Menpo Project">
-    </div>
-    <div class="hero_rightcolumn">
-      <div>
-        <strong style="font-size: 200%; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: 500;">The Menpo Project</strong>
-        <div style="max-width: 200px;">The Python framework for deformable modelling</div>
-      </div>
-      <div style="display: flex; flex-direction: row; align-items: center;">
-        <div style="width: 30px; height: 30px;"></div>
-        <a style="text-decoration: none; color: grey" href="installation/index.html">
-          <button class="download_button">Download Menpo</button>
-        </a>
-      </div>
-      <div>
-        <div style="font-size: 80%">Python {{ menpo_requires_python }}</div>
-        <code style="padding: 7px;">pip install menpo menpofit</code>
-        <div style="font-size: 80%; margin-top: 10px;"><a href="installation/index.html">more install options (inc. conda)</a></div>
-      </div>
-    </div>
-  </div>
-</center>
-<br>
-<!---
-MAIN DESCRIPTION
--->
-The Menpo Project is a set of BSD licensed Python frameworks and associated tooling that provide end-to-end solutions for 2D and 3D deformable modeling. The project includes training and fitting code for various state-of-the-art methods such as:
+---
+html_theme.sidebar_secondary.remove: true
+---
 
+# The Menpo Project
+
+<div class="hero">
+  <img class="hero_logo" src="_static/logo/menpoproject.png" alt="The Menpo Project">
+  <div class="hero_text">
+    <h1>The Menpo Project</h1>
+    <p class="tagline">The Python framework for deformable modelling</p>
+    <div class="hero_buttons">
+      <a href="installation/index.html"><button class="download_button">Get started</button></a>
+      <a href="https://github.com/menpo"><button class="download_button secondary_button">GitHub</button></a>
+    </div>
+    <pre><code>pip install menpo menpofit</code></pre>
+  </div>
+</div>
+
+:::{div} hero_note
+Python {{ menpo_requires_python }} on Linux, macOS and Windows
+:::
+
+The Menpo Project is a set of BSD licensed Python frameworks and associated tooling that provide end-to-end solutions for 2D and 3D deformable modelling.
+The project includes training and fitting code for state-of-the-art methods such as:
+
+::::{grid} 1 2 2 2
+:gutter: 0
+
+:::{grid-item}
 * Active Appearance Model (AAM)
 * Supervised Descent Method (SDM)
-* Ensemble of Regression Trees (ERT) (powered by [dlib](http://dlib.net/ "dlib C++ Library"))
+* Ensemble of Regression Trees (ERT), powered by [dlib](http://dlib.net/)
 * Constrained Local Model (CLM)
+:::
+:::{grid-item}
 * Active Shape Model (ASM)
 * Active Pictorial Structures (APS)
 * Lucas-Kanade (LK) and Active Template Model (ATM)
+:::
+::::
 
-The Menpo Project also provides:
-* generic **object detection** in terms of a bounding box
-* an **elegant standard library** with simple dependencies, useful for many areas of computer vision
-* sophisticated visualization with **interactive IPython/Jupyter widgets**
+It also provides generic **object detection** in terms of a bounding box, an **elegant standard library** with simple dependencies that is useful for
+many areas of computer vision, and sophisticated visualization with **interactive Jupyter widgets**.
+All of the code is Open Source and can be found in the [Menpo GitHub organisation](https://github.com/menpo/).
 
-All of the code is Open Source and can be found over on the [Menpo Github Organisation](https://github.com/menpo/ "The Menpo Project on Github").
+## Packages
 
----------------------------------------
+The Menpo Project is a family of packages, each designed to solve one problem well.
 
-# Packages
+::::{grid} 1 2 3 3
+:gutter: 3
 
-The Menpo Project consists of a family of packages (primarily Python), each designed to solve one problem well:
+:::{grid-item-card} menpo
+:link: menpo/index
+:link-type: doc
+:img-top: _static/logo/menpo.png
+:class-card: package-card
 
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="menpo/index.html" title="menpo"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo.png" alt="menpo"></a>
-</p>
-<p><a href="menpo/index.html" title="menpo"><strong style="font-size: 125%">menpo</strong></a>
-The heart of the Menpo Project. <code>menpo</code> contains all core functionality needed for the project in well tested, mature, stable package.
-<code>menpo</code> is the <code>numpy</code> of the Menpo ecosystem - the foundation upon which all else is built. Even if you aren't interested
-in deformable modelling, <code>menpo</code>'s minimal dependencies and general algorithms and data structures makes it an ideal standalone library
-for use in a wide variety of Computer Vision situations.</p>
-</div>
+The heart of the project: the data containers, I/O, transforms, features and visualization that everything else is built on.
+It has minimal dependencies and is useful for computer vision well beyond deformable modelling.
+:::
 
-<div style="clear: both;"></div>
+:::{grid-item-card} menpofit
+:link: menpofit/index
+:link-type: doc
+:img-top: _static/logo/menpofit.png
+:class-card: package-card
 
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="menpofit/index.html" title="menpofit"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpofit.png" alt="menpofit"></a>
-</p>
-<p><a href="menpofit/index.html" title="menpofit"><strong style="font-size: 125%">menpofit</strong></a>
-Implementations of state-of-the-art 2D deformable models. Each implementation includes training and fitting code.
-<code>menpofit</code> contains the crown jewels of the Menpo Project - most people are interested in using the Menpo Project for the
-<code>menpofit</code> package.</p>
-</div>
+State-of-the-art 2D deformable models, each with training and fitting code: AAM, ATM, APS, CLM, SDM, ERT and Lucas-Kanade.
+:::
 
-<div style="clear: both;"></div>
+:::{grid-item-card} menpowidgets
+:link: menpowidgets/index
+:link-type: doc
+:img-top: _static/logo/menpowidgets.png
+:class-card: package-card
 
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="menpodetect/index.html" title="menpodetect"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpodetect.png" alt="menpodetect"></a>
-</p>
-<p><a href="menpodetect/index.html" title="menpodetect"><strong style="font-size: 125%">menpodetect</strong></a>
-Wraps a number of existing projects that provide functionalities for training and fitting generic object detection techniques.
-It is designed in order to have full compatibility with <code>menpofit</code>. Not all of the wrapped
-projects fall under the same BSD license and so care must be taken when using this project to adhere to the sub-project licenses.</p>
-</div>
+Interactive Jupyter widgets to explore images, shapes, models and fitting results.
+:::
 
-<div style="clear: both;"></div>
+:::{grid-item-card} menpodetect
+:link: menpodetect/index
+:link-type: doc
+:img-top: _static/logo/menpodetect.png
+:class-card: package-card
 
-<div>
-<p style="float: left; padding-right: 10px;">
-  <a href="menpo3d/index.html" title="menpo3d"><img style="max-height: 140px; max-width: none;" src="_static/logo/menpo3d.png" alt="menpo3d"></a>
-</p>
-<p><a href="menpo3d/index.html" title="menpo3d"><strong style="font-size: 125%">menpo3d</strong></a>
-A specialized library for working with 3D data. It is largely separate from the core <code>menpo</code> library as it has
-dependencies on 3D specific projects (like <code>moderngl</code> for its interactive viewer) which many people using
-the Menpo Project would have no use for. You'll want to install <code>menpo3d</code> if you need to import and export 3D mesh data or perform advanced mesh processing.</p>
-</div>
+Object detectors (dlib, OpenCV) that return the bounding boxes `menpofit` starts from. Check each detector's own licence.
+:::
 
-<div style="clear: both;"></div>
+:::{grid-item-card} menpo3d
+:link: menpo3d/index
+:link-type: doc
+:img-top: _static/logo/menpo3d.png
+:class-card: package-card
 
----------------------------------------
+Importing, visualizing, rasterizing and registering 3D meshes, with an interactive moderngl viewer.
+:::
 
-## Next Steps
+:::{grid-item-card} Examples
+:link: examples/index
+:link-type: doc
+:img-top: _static/logo/menpoproject.png
+:class-card: package-card
 
-We _strongly_ suggest you head over to the [installation instructions](installation/index.md "Full Installation Instructions") to get started.
+Jupyter notebooks that show how the packages are used together, from importing data to fitting a model.
+:::
+::::
 
-Once you have installed the Menpo Project, you can visit our [Examples](examples/index.md) to get an idea of what you can do with Menpo.
+## Next steps
 
----------------------------------------
+Head to the [installation instructions](installation/index.md) to get started, then read the [menpo guide](menpo/index.md) for the core concepts,
+and the [menpofit guide](menpofit/index.md) to train and fit your first model.
 
-## User Group and Issues
-If you wish to get in contact with the Menpo developers, you can do so via various channels.
-If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on [Github](https://github.com/menpo/ "The Menpo Project on Github").
+## User group and issues
 
-If you want to ask a theoretical question, or are having problems setting up or using the Menpo Project, please visit the [user group](https://groups.google.com/g/menpo-users "menpo-users").
+If you have found a bug, or if any part of Menpo behaves in a way you do not expect, please raise an issue on the corresponding package on
+[GitHub](https://github.com/menpo/). For theoretical questions, or if you are having problems setting up or using the Menpo Project,
+visit the [user group](https://groups.google.com/g/menpo-users).
 
 ```{toctree}
 :hidden:
-:maxdepth: 2
-:caption: Contents
+:titlesonly:
 
 Installation </installation/index>
 menpo </menpo/index>
 menpofit </menpofit/index>
-menpodetect </menpodetect/index>
 menpowidgets </menpowidgets/index>
 menpo3d </menpo3d/index>
+menpodetect </menpodetect/index>
 Examples </examples/index>
-Retired projects </retired>
-Notebooks </notebooks>
-Glossary </GLOSSARY>
-Manifesto </manifesto>
-The Menpo Team </team>
-Citation </citation>
-FAQ </faq>
+About </about>
 ```

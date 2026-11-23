@@ -1,6 +1,6 @@
 sphinx>=8
 myst-nb
-furo
+pydata-sphinx-theme
 sphinx-copybutton
 sphinx-design
 ipykernel

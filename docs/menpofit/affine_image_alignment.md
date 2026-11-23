@@ -9,6 +9,7 @@ The method that is implemented in `menpofit` is:
   - _Residuals:_ SSD, Fourier SSD, ECC, Gradient Correlation, Gradient Images
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

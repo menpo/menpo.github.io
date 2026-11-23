@@ -25,6 +25,8 @@ kernelspec:
   </div>
 </div>
 
+# menpo
+
 `menpo` is a Python package designed from the ground up to make importing, manipulating and visualizing image and mesh data as simple as possible.
 Beyond it's elegant design, `menpo` has some unique characteristics that make it particlarly well suited to working with **annotated or landmarked** data:
 ```python
@@ -64,6 +66,7 @@ The contents of this user guide are:
 6. <a href="https://menpo.readthedocs.io/">API Documentation <i class="fa fa-external-link fa-lg"></i></a>
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 

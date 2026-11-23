@@ -14,6 +14,7 @@ In the following sections, we present the main concepts behind all methods imple
   6. [Running Experiments](experiments.md)
 
 ```{toctree}
+:titlesonly:
 :hidden:
 :maxdepth: 2
 
