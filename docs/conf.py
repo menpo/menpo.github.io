@@ -1,9 +1,14 @@
 """Sphinx configuration for the Menpo Project website."""
 
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "_ext"))
+# the notebook kernels import the helpers in _ext too
+os.environ["PYTHONPATH"] = os.pathsep.join(
+    [str(Path(__file__).parent / "_ext"), os.environ.get("PYTHONPATH", "")]
+)
 
 project = "The Menpo Project"
 author = "The Menpo Team"

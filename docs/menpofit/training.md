@@ -1,5 +1,14 @@
-Training
-========
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Training
 
 1. <a href="#multiscale">Multi-Scale Models</a>
 2. <a href="#features">Holistic vs. Patch Features</a>
@@ -10,7 +19,7 @@ Training
 
 <a id="multiscale"></a>
 
-# 1. Multi-Scale Models
+## 1. Multi-Scale Models
 All the methods implemented in `menpofit` are built in a **multi-scale** manner, i.e. in multiple resolutions.
 In all our core classes, this is controlled using the following three parameters:
 
@@ -56,7 +65,7 @@ holistic features in order to extract patches and can have two behaviours depend
 
 <a id="incremental"></a>
 
-### 3. Incremental Training
+## 3. Incremental Training
 Most deformable models that exist in `menpofit` can be trained in an **incremental** fashion. This can be very useful
 in case you want to train a very powerful model on a large amount of training images, which would be impossible to
 do at once due to memory constraints. The incremental training can be performed by using the **batch_size**
@@ -65,11 +74,20 @@ parameter, which will split the provided set of training images into batches of 
 
 <a id="example"></a>
 
-### 4. Training Example
+## 4. Training Example
 Given the above basic assumptions and using the `training_images` loaded in the [Importing Images](importing.md) section,
 an example of a typical call for training a deformable model using `HolisticAAM` is:
 
-```python
+```{code-cell} ipython3
+:tags: [remove-input]
+
+# `training_images` as in the Importing Images section: small annotated faces, pre-processed
+from menpo_docs_data import faces
+
+training_images, _ = faces(n_train=40, n_test=4)
+```
+
+```{code-cell} ipython3
 from menpofit.aam import HolisticAAM
 from menpo.feature import igo
 
@@ -78,39 +96,12 @@ aam = HolisticAAM(training_images, reference_shape=None,
                   holistic_features=igo, verbose=True)
 ```
 
-The `verbose` flag allows printing the training progress:
-```
-- Computing reference shape                                                     Computing batch 0
-- Building models
-  - Scale 0: Done
-  - Scale 1: Scaling images: [=         ] 14% (119/811) - 00:00:01 remaining
-```
+The `verbose` flag prints the training progress. Information about any trained model can be retrieved by:
 
-Information about any trained model can be retrieved by:
-
-```python
+```{code-cell} ipython3
 print(aam)
 ```
 
-which returns:
-
-```
-Holistic Active Appearance Model
- - Images scaled to diagonal: 150.00
- - Images warped with DifferentiablePiecewiseAffine transform
- - Scales: [0.5, 1.0]
-   - Scale 0.5
-     - Holistic feature: igo
-     - Appearance model class: PCAModel
-       - 810 appearance components
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
-   - Scale 1.0
-     - Holistic feature: igo
-     - Appearance model class: PCAModel
-       - 810 appearance components
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
-```
+The number of components is capped by the number of training images, so a model trained on many images has many more.
+`max_shape_components` and `max_appearance_components` set an upper limit when training; to use fewer components
+afterwards, trim the models, see the [Point Distribution Model](pdm.md) page.

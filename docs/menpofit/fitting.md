@@ -1,5 +1,14 @@
-Fitting
-=======
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Fitting
 
 1. <a href="#fitter">Fitter objects</a>
 2. <a href="#fit">Fitting Methods</a>
@@ -8,47 +17,65 @@ Fitting
 
 <a id="fitter"></a>
 
-# 1. Fitter Objects
+## 1. Fitter Objects
 `menpofit` has specialised classes for performing a fitting process that are called `Fitters`.
-All `Fitter` objects are subclasses of one of the following:
+All `Fitter` objects are subclasses of one of the following (in `menpofit.fitter`):
   * `MultiScaleNonParametricFitter`: multi-scale non-parametric fitting method, i.e. a method that does not optimise over a parametric shape model
     but directly optimizes the coordinates of the landmarks
   * `MultiScaleParametricFitter`: multi-scale parametric fitting method, i.e. a method that optimises over the parameters of a statistical shape model
 
-from `menpofit.fitter`.
-
 The behaviour of `Fitter` classes can differ depending on the deformable model.
 For example, a Lucas-Kanade AAM fitter (`LucasKanadeAAMFitter`) assumes that you have trained an AAM model
-(assume the `aam` we trained in the [Training](training.md) section) and can be created as:
+(the `aam` we trained in the [Training](training.md) section) and can be created as:
 
-```python
+```{code-cell} ipython3
+:tags: [remove-input]
+
+# the `aam` of the Training section, and an image to fit
+from menpo.feature import igo
+from menpofit.aam import HolisticAAM
+from menpo_docs_data import faces
+
+training_images, test_images = faces(n_train=40, n_test=4)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
+```
+
+```{code-cell} ipython3
 from menpofit.aam import LucasKanadeAAMFitter, WibergInverseCompositional
+
 fitter = LucasKanadeAAMFitter(aam,
                               lk_algorithm_cls=WibergInverseCompositional,
                               n_shape=[3, 20], n_appearance=[30, 150])
 ```
 
-The constructor of the `Fitter` will set the active shape and appearance components based on `n_shape` and `n_appearance` respectively,
-and will also perform all the necessary pre-computations based on the selected algorithm.
+The constructor of the `Fitter` takes the number of shape and appearance components to use at each scale from `n_shape` and
+`n_appearance`, and also performs all the necessary pre-computations of the selected algorithm. It works on a *trimmed copy* of the
+models: the `aam` you pass in is not modified, so one trained model can serve any number of fitters with different numbers of
+components (see [Point Distribution Model](pdm.md) for trimming).
+
+```{code-cell} ipython3
+aam.shape_models[0].model.n_components, fitter.aam.shape_models[0].model.n_components
+```
 
 However, there are deformable models that are directly defined through a `Fitter` object,
 which is responsible for training the model. `SupervisedDescentFitter` is a good example.
 The reason for that is that the fitting process is utilised during the building procedure,
 thus the functionality of a `Fitter` is required. Such models can be trained as:
 
-```python
+```{code-cell} ipython3
 from menpofit.sdm import SupervisedDescentFitter, NonParametricNewton
-fitter = SupervisedDescentFitter(training_images,
-                                 sd_algorithm_cls=NonParametricNewton,
-                                 verbose=True)
+
+sd_fitter = SupervisedDescentFitter(training_images[:20],
+                                    sd_algorithm_cls=NonParametricNewton,
+                                    n_iterations=2, n_perturbations=3,
+                                    verbose=True)
 ```
 
 Information about any `Fitter` object can be retrieved as:
 
-```python
-print(fitter)
+```{code-cell} ipython3
+print(sd_fitter)
 ```
-
 
 <a id="fit"></a>
 
@@ -98,3 +125,17 @@ Finally, this argument does not apply to all deformable models.
 
 **kwargs** (`dict`)  
 Additional keyword arguments that can be passed to specific models.
+
+Putting it together, fitting the test image from a perturbed ground truth:
+
+```{code-cell} ipython3
+import numpy as np
+
+image = test_images[0]
+gt_shape = image.landmarks["PTS"]
+rng = np.random.RandomState(0)
+initial_shape = gt_shape.from_vector(gt_shape.as_vector() + rng.randn(gt_shape.n_points * 2) * 1.5)
+
+result = fitter.fit_from_shape(image, initial_shape, max_iters=10, gt_shape=gt_shape)
+print("initial error: {:.4f}   final error: {:.4f}".format(result.initial_error(), result.final_error()))
+```

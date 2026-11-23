@@ -1,5 +1,14 @@
-Fitting Result
-==============
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Fitting Result
 
 1. <a href="#objects">Result objects</a>
 2. <a href="#attributes">Attributes</a>
@@ -8,7 +17,7 @@ Fitting Result
 
 <a id="objects"></a>
 
-# 1. Result Objects
+## 1. Result Objects
 The fitting methods of the `Fitters` presented in the [previous section](fitting.md) return a result object. `menpofit` has three basic fitting result objects:
   - `Result`: Basic fitting result object that holds the final shape, and optionally, the initial shape, ground truth shape and the image.
   - `MultiScaleNonParametricIterativeResult`: The result of a multi-scale iterative fitting procedure. Apart from the final shape, it also stores the shapes acquired at each fitting iteration.
@@ -51,3 +60,30 @@ The initial fitting error.
 
 **result.errors()**  
 The `list` of errors acquired at each fitting iteration. It only applies on `MultiScaleNonParametricIterativeResult` and `MultiScaleParametricIterativeResult`.
+
+For example, with the `result` of the [Fitting](fitting.md) section:
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+from menpo.feature import igo
+from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter, WibergInverseCompositional
+from menpo_docs_data import faces
+import numpy as np
+
+training_images, test_images = faces(n_train=40, n_test=4)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
+fitter = LucasKanadeAAMFitter(aam, lk_algorithm_cls=WibergInverseCompositional, n_shape=[3, 20], n_appearance=[30, 150])
+image = test_images[0]
+gt_shape = image.landmarks["PTS"]
+rng = np.random.RandomState(0)
+initial_shape = gt_shape.from_vector(gt_shape.as_vector() + rng.randn(gt_shape.n_points * 2) * 1.5)
+result = fitter.fit_from_shape(image, initial_shape, max_iters=10, gt_shape=gt_shape)
+```
+
+```{code-cell} ipython3
+print(type(result).__name__)
+print("shapes per iteration:", len(result.shapes))
+print("errors per iteration:", np.round(result.errors(), 4))
+result.view();
+```

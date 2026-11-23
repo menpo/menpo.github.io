@@ -1,0 +1,5 @@
+# The annotated faces the examples train on (see _ext/menpo_docs_data.py).
+# Fill in once a redistributable subset is chosen; until then set MENPO_DOCS_FACES.
+[faces]
+url = ""
+sha256 = ""
