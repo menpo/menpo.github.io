@@ -31,6 +31,9 @@ jobs:
       # a failing sample fails the build. Warnings are errors (-W).
       - name: Build
         run: sphinx-build -b html -W --keep-going -D nb_execution_mode=force docs docs/_build/html
+      - name: Check external links
+        if: github.event_name == 'workflow_dispatch'
+        run: sphinx-build -b linkcheck -D nb_execution_mode=off docs docs/_build/linkcheck
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/_build/html

@@ -51,6 +51,10 @@ nb_number_source_lines = False
 # Unresolvable references to the API docs fail the build, so renamed or removed names are caught.
 nitpicky = True
 
+# Publishers that answer a bot with 403 although the link is fine
+linkcheck_ignore = [r"https://doi\.org/10\.1145/.*", r"https://dl\.acm\.org/.*"]
+linkcheck_timeout = 20
+
 # --- Cross references to the API documentation ----------------------------
 intersphinx_mapping = {
     "menpo": ("https://menpo.readthedocs.io/en/latest/", None),

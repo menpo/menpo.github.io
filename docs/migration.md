@@ -13,7 +13,7 @@ kernelspec:
 menpo 0.13 changes how PCA models are trimmed, and the packages that use them (menpofit, menpo3d, menpowidgets) follow. This page lists what
 breaks and what to write instead. The full list of changes is in each package's changelog:
 [menpo](https://menpo.readthedocs.io/en/latest/changelog.html),
-[menpofit](https://menpofit.readthedocs.io/en/latest/changelog.html),
+[menpofit](https://github.com/menpo/menpofit/releases) (its releases; it has no changelog file),
 [menpo3d](https://menpo3d.readthedocs.io/en/latest/changelog.html) and
 [menpowidgets](https://menpowidgets.readthedocs.io/en/latest/changelog.html).
 
