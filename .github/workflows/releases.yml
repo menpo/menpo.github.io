@@ -1,0 +1,47 @@
+name: releases
+
+# Keep the pinned package versions (docs/versions.txt) at the latest release of each Menpo
+# package. A new release opens a pull request; its build runs every code sample on the page
+# against it, so the pull request is red exactly when a release breaks the documentation.
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install packaging
+      - id: bump
+        run: |
+          python docs/_tools/bump_versions.py | tee changes.txt
+          {
+            echo 'changes<<EOF'
+            cat changes.txt
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: bot/package-releases
+          delete-branch: true
+          commit-message: "Pin the latest package releases"
+          title: "Pin the latest package releases"
+          body: |
+            New releases on PyPI:
+
+            ```
+            ${{ steps.bump.outputs.changes }}
+            ```
+
+            The build of this pull request runs every code sample on the site against them.
+            If it is red, a release changed an API that a page uses: fix the page, then merge.

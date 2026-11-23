@@ -12,3 +12,17 @@ sphinx-build -b html -D nb_execution_mode=force docs docs/_build/html   # run ev
 ```
 
 Maths is written with `$...$` and `$$...$$` (MathJax).
+
+## Package versions and releases
+
+`docs/requirements.txt` installs the packages the site documents. Until menpo 0.13 is released these are development branches (the unreleased PCA API).
+On release day:
+
+1. Replace the five `git+https://...` lines of `docs/requirements.txt` with `-r versions.txt`.
+2. Create `docs/versions.txt` with one exact pin per package (`menpo==0.13.0`, `menpofit==...`).
+
+After that the `releases` workflow checks PyPI every day and opens a pull request when a package has a new release (`docs/_tools/bump_versions.py`).
+The build of that pull request runs every code sample against the new release, so it fails exactly when a release breaks a page.
+
+Face data for the examples that train models is read from `$MENPO_DOCS_FACES` (a directory of images with `.pts` files) or from the archive named in `docs/data.toml`;
+see `docs/_ext/menpo_docs_data.py`.
