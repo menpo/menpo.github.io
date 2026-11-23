@@ -44,7 +44,8 @@ import sys
 
 result = subprocess.run([sys.executable, "-m", "landmarkerio.scripts.lmio", "--help"],
                         capture_output=True, text=True, check=True)
-print(result.stdout)
+# run as a module here; the installed command is called lmio
+print(result.stdout.replace("lmio.py", "lmio"))
 ```
 
 ## What it keeps
