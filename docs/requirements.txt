@@ -1,0 +1,6 @@
+sphinx>=8
+myst-nb
+furo
+sphinx-copybutton
+sphinx-design
+ipykernel

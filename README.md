@@ -1,12 +1,14 @@
-Menpo Book
-==========
+# The Menpo Project website
 
-This repo contains the The Menpo Projects website in the form of a gitbook. 
+Source for the Menpo Project site, built with [Sphinx](https://www.sphinx-doc.org) and
+[MyST-NB](https://myst-nb.readthedocs.io). It is published to GitHub Pages by
+`.github/workflows/docs.yml`; no built output is committed.
 
-To build The Menpo Book locally, you will need `npm` installed.
 ```
-npm install gitbook-cli -g
-gitbook install
-gitbook serve
+python -m venv .venv && . .venv/bin/activate
+pip install -r docs/requirements.txt
+sphinx-build -b html docs docs/_build/html          # fast build, no code execution
+sphinx-build -b html -D nb_execution_mode=force docs docs/_build/html   # run every code sample
 ```
-Visit [localhost:4000](http://localhost:4000) to see the Book. The page will automatically update as changes are made to the Markdown files.
+
+Maths is written with `$...$` and `$$...$$` (MathJax).
