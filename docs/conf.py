@@ -1,13 +1,16 @@
 """Sphinx configuration for the Menpo Project website."""
 
-import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent / "_ext"))
 
 project = "The Menpo Project"
 author = "The Menpo Team"
 copyright = "The Menpo Team"
 
 extensions = [
+    "menpo_meta",
     "myst_nb",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
@@ -20,8 +23,9 @@ source_suffix = {".md": "myst-nb", ".ipynb": "myst-nb"}
 root_doc = "index"
 
 # --- Markdown / maths ----------------------------------------------------
-myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence", "attrs_inline", "html_image"]
+myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence", "attrs_inline", "substitution", "html_image"]
 myst_heading_anchors = 3
+myst_substitutions = {}
 myst_dmath_double_inline = True
 mathjax3_config = {
     "tex": {"packages": {"[+]": ["ams"]}},
@@ -52,7 +56,7 @@ intersphinx_mapping = {
 html_theme = "furo"
 html_title = "The Menpo Project"
 html_static_path = ["_static"]
-html_css_files = ["menpostyle.css", "menpoinstall.css"]
+html_css_files = ["menpostyle.css"]
 html_js_files = [("force-light.js", {"priority": 100})]
 
 

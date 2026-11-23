@@ -1,0 +1,25 @@
+# One line per optional extra of each package. The build fails if this drifts from the
+# packages' own metadata (see _ext/menpo_meta.py).
+[menpo]
+imageio = "Video and GIF import and export (also needs an `ffmpeg` executable)"
+opencv = "OpenCV-backed image functionality"
+cyvlfeat = "Dense SIFT features (`menpo.feature.dsift`)"
+
+[menpofit]
+dlib = "`menpofit.dlib`: DlibERT and the dlib wrapper"
+fft = "Faster FFTs (pyFFTW) in `menpofit.math`"
+
+[menpodetect]
+opencv = "The OpenCV Haar cascade face and eye detectors"
+dlib = "The dlib frontal face detector and detector training"
+
+[menpowidgets]
+menpofit = "The MenpoFit widgets (AAM, SDM, CLM... visualizations)"
+menpo3d = "The 3D widgets, drawn with menpo3d's viewer"
+
+[menpo3d]
+viz-notebook = "Interactive viewer streamed to a notebook widget or a browser window"
+viz-h264 = "H.264 video for the streamed viewer (smaller and smoother than JPEG frames)"
+viz-native-window = "Interactive viewer in a native window (moderngl-window on GLFW)"
+viz = "Everything the interactive viewers can use"
+opencv = "`menpo3d.correspond.solve_pnp`"

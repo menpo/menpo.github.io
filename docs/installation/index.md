@@ -1,56 +1,67 @@
-<center>
-  <div class="header_container">
-    <strong style="font-size: 200%; font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: 500;">Installation</strong>
-    <div class="menpochoose">choose an option to find out more.</div>
-    <div class="header_columns">
-      <div class="column">
-        <div class="question">
-          <b>already use conda?</b>
-            <br>or<br>
-          <b>want to contribute?</b>
-        </div>
-        <a style="text-decoration: none; color: grey" href="conda.html">
-          <div class="install_card">
-            <div class="install_header">conda</div>
-            <div class="install_body">
-              <ul>
-                <li>The Python distribution of choice for many researchers</li>
-                <li>Quickly and easily install all of the Menpo Project</li>
-                <li>Easily install more Python packages with conda and pip</li>
-                <li>Define multiple isolated environments and switch between them easily</li>
-                <li>Install development versions and contribute to menpo</li>
-              </ul>
-            </div>
-          </div>
-        </a>
-        <div class="takeaway">flexible & powerful</div>
-      </div>
-      <div class="column">
-        <div class="question">
-        <b>have an existing non-conda install you want to use menpo with?</b>
-        </div>
-        <a style="text-decoration: none; color: grey" href="pip.html">
-          <div class="install_card">
-            <div class="install_header">pip</div>
-            <div class="install_body">
-              <ul>
-                <li>Use the powerful menpo core library with your existing Python setup</li>
-                <li>Great for deep learning researchers - benefit from menpo as a preprocessing library</li>
-                <li>Currently limited to the menpo core library due to tricky dependencies for other parts of the project. Wish this weren’t the case? Let us know!</li>
-              </ul>
-            </div>
-          </div>
-        </a>
-        <div class="takeaway">integrate with what you have</div>
-      </div>
-    </div>
-  </div>
-</center>
+# Installation
+
+The Menpo Project is pure Python (Python {{ menpo_requires_python }}) and runs on Linux, macOS (Intel and Apple Silicon)
+and Windows. Install it with `pip` or from conda-forge; there are no compilers or system libraries to set up.
+
+## pip
+
+Create an environment and install the packages you need:
+
+```bash
+python -m venv menpo-env
+source menpo-env/bin/activate        # Windows: menpo-env\Scripts\activate
+pip install menpo menpofit menpowidgets menpodetect menpo3d
+```
+
+Each package is independent, so install only what you use. `menpo` is the core library;
+the others depend on it.
+
+## conda
+
+All five packages are on [conda-forge](https://conda-forge.org):
+
+```bash
+conda create -n menpo -c conda-forge python menpo menpofit menpowidgets menpodetect menpo3d
+conda activate menpo
+```
+
+The old `menpo` channel on anaconda.org is retired and no longer updated. Use conda-forge.
+
+## Optional dependencies
+
+Some features need a third-party library. They are installed through extras, for example
+`pip install "menpo[imageio,opencv]"`. Current releases: menpo {{ menpo_version }}, menpofit {{ menpofit_version }}, menpo3d {{ menpo3d_version }}, menpowidgets {{ menpowidgets_version }}, menpodetect {{ menpodetect_version }}.
+
+```{package-extras} menpo
+```
+
+```{package-extras} menpofit
+```
+
+```{package-extras} menpodetect
+```
+
+```{package-extras} menpowidgets
+```
+
+```{package-extras} menpo3d
+```
+
+## Check the install
+
+```bash
+python -c "import menpo; print(menpo.__version__)"
+```
+
+To use the interactive widgets, install [JupyterLab](https://jupyter.org) (or the classic notebook) in
+the same environment and `import menpowidgets` there.
+
+## Development version
+
+See [Setting up a development environment](development.md) to work on the code.
 
 ```{toctree}
 :hidden:
-:maxdepth: 2
 
-Conda </installation/conda>
-Pip </installation/pip>
+development
 ```
