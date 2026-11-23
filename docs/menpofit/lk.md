@@ -1,5 +1,14 @@
-Lucas-Kanade Image Alignment
-============================
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Lucas-Kanade Image Alignment
 
 1. <a href="#definition">Definition</a>
 2. <a href="#optimization">Optimization and Residuals</a>
@@ -9,13 +18,11 @@ Lucas-Kanade Image Alignment
 
 ---------------------------------------
 
-<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
-This can be done by running</br>
-<center><code>%matplotlib inline</code></center>
-in a cell. Note that you only have to run it once and not in every rendering cell.
-</div></p>
+```{note}
+Every code cell on this page is run when the website is built, against menpofit {{ menpofit_version }}, so the
+samples are always current. In a Jupyter notebook, the [menpowidgets](../menpowidgets/index.md) visualizations
+render best with the inline backend (`%matplotlib inline`, the default in JupyterLab).
+```
 
 <a id="definition"></a>
 
@@ -32,17 +39,16 @@ $$
 \arg\min_{\mathbf{p}} \big\lVert \bar{\mathbf{a}} - \mathbf{t}(\mathcal{W}(\mathbf{p})) \big\rVert^{2}
 $$
 with respect to the motion model parameters $\mathbf{p}$. Let's load an image $\mathbf{t}$ and create a template $\bar{\mathbf{a}}$ from it
-```python
+```{code-cell} ipython3
 import menpo.io as mio
 takeo = mio.import_builtin_asset.takeo_ppm()
 # Use a bounding box of ground truth landmarks to create template
-takeo.landmarks['bounding_box'] = takeo.landmarks['PTS'].lms.bounding_box()
+takeo.landmarks['bounding_box'] = takeo.landmarks['PTS'].bounding_box()
 template = takeo.crop_to_landmarks(group='bounding_box')
 ```
 
 The image and template can be visualized as:
-```python
-%matplotlib inline
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 plt.subplot(121)
 takeo.view_landmarks(group='bounding_box', line_colour='r', line_width=2,
@@ -51,10 +57,6 @@ plt.subplot(122)
 template.view()
 plt.gca().set_title('Template');
 ```
-<center>
-  <img src="media/lk_template.png" alt="Template image">
-</center>
-
 
 <a id="optimization"></a>
 
@@ -116,7 +118,7 @@ refere to [<a href="#7">7</a>].
 
 ##### Example
 In `menpofit`, an LK `Fitter` object with Inverse-Compositional optimization can be obtained as:
-```python
+```{code-cell} ipython3
 from menpofit.lk import LucasKanadeFitter, InverseCompositional, SSD
 from menpo.feature import no_op
 
@@ -125,7 +127,7 @@ fitter = LucasKanadeFitter(template, group='bounding_box',
                            scales=(0.5, 1.0), holistic_features=no_op)
 ```
 where we can define different types of features and scales. Remember that most objects can print information about themselves:
-```python
+```{code-cell} ipython3
 print(fitter)
 ```
 which returns
@@ -150,10 +152,10 @@ Lucas-Kanade Inverse Compositional Algorithm
 Fitting a `LucasKanadeFitter` to an image is as simple as calling its `fit_from_bb` method.
 We will attempt to fit the cropped template we created earlier onto a perturbed version of the original image, by adding
 noise to its ground truth bounding box. Note that `noise_percentage` is too large in order to create a very challenging initialization.
-```python
+```{code-cell} ipython3
 from menpofit.fitter import noisy_shape_from_bounding_box
 
-gt_bb = takeo.landmarks['bounding_box'].lms
+gt_bb = takeo.landmarks['bounding_box']
 # generate perturbed bounding box
 init_bb = noisy_shape_from_bounding_box(fitter.reference_shape, gt_bb,
                                         noise_percentage=0.1,
@@ -166,27 +168,15 @@ The initial and final bounding boxes can be viewed as:
 ```
 result.view(render_initial_shape=True)
 ```
-<center>
-  <img src="media/lk_result_view.png" alt="Initialization and final result of affine alignment.">
-</center>
-
 and the alignment error per iteration as:
-```python
-result.plot_errors()
+```{code-cell} ipython3
+result.plot_errors();
 ```
-<center>
-  <img src="media/lk_plot_errors.png" alt="Alignement error per fitting iteration.">
-</center>
-
 Of course, the fitting result can also be viewed using a widget:
 ```python
-result.view_widget()
+from menpowidgets import visualize_fitting_results
+visualize_fitting_results(result)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/lk_result_view_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 Finally, by using the following code
 ```python
 from menpowidgets import visualize_images
@@ -194,11 +184,6 @@ visualize_images(fitter.warped_images(result.image, result.shapes))
 ```
 
 we can visualize the warped image per iteration as:
-<video width="100%" autoplay loop>
-  <source src="media/lk_warped_images.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 <a id="references"></a>
 
 ### 4. References

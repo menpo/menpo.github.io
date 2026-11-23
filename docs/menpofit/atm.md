@@ -1,5 +1,14 @@
-Active Template Model
-=====================
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Active Template Model
 
 1. <a href="#definition">Definition</a>
 2. <a href="#warp">Warp Functions</a>
@@ -9,13 +18,11 @@ Active Template Model
 
 ---------------------------------------
 
-<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
-This can be done by running</br>
-<center><code>%matplotlib inline</code></center>
-in a cell. Note that you only have to run it once and not in every rendering cell.
-</div></p>
+```{note}
+Every code cell on this page is run when the website is built, against menpofit {{ menpofit_version }}, so the
+samples are always current. In a Jupyter notebook, the [menpowidgets](../menpowidgets/index.md) visualizations
+render best with the inline backend (`%matplotlib inline`, the default in JupyterLab).
+```
 
 <a id="definition"></a>
 
@@ -43,22 +50,28 @@ $$
 
 Let's first load a test image and a template image $\bar{\mathbf{a}}$. We'll load two images of the same person (Amanda Peet, actress)
 from LFPW trainset (see [Importing Images](importing.md "Basics on how to import images") for download instructions).
-```python
+```{code-cell} ipython3
+:tags: [remove-input]
+
+from menpo_docs_data import faces_directory
+
+path_to_images = faces_directory()
+```
+
+```{code-cell} ipython3
 from pathlib import Path
 import menpo.io as mio
 
-path_to_lfpw = Path('/path/to/lfpw/trainset/')
-
-image = mio.import_image(path_to_lfpw / 'image_0004.png')
+# the same preprocessing as in the Importing Images section
+image = mio.import_image(sorted(Path(path_to_images).glob('*.png'))[0])
 image = image.crop_to_landmarks_proportion(0.5)
 
-template = mio.import_image(path_to_lfpw / 'image_0005.png')
+template = mio.import_image(sorted(Path(path_to_images).glob('*.png'))[1])
 template = template.crop_to_landmarks_proportion(0.5)
 ```
 
 The image and template can be visualized as:
-```python
-%matplotlib inline
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 
 plt.subplot(121)
@@ -70,29 +83,20 @@ template.view_landmarks(marker_face_colour='white', marker_edge_colour='black',
                         marker_size=4)
 plt.gca().set_title('Template');
 ```
-<center>
-  <img src="media/atm_template.png" alt="Template image">
-</center>
-
 Let's also load the shapes of LFPW trainset that will be used in order to train the PDM:
-```python
+```{code-cell} ipython3
 from menpo.visualize import print_progress
 
 training_shapes = []
-for lg in print_progress(mio.import_landmark_files(path_to_lfpw / '*.pts', verbose=True)):
-    training_shapes.append(lg['all'])
+for path in print_progress(sorted(Path(path_to_images).glob('*.pts'))):
+    training_shapes.append(mio.import_landmark_file(path, group='PTS'))
 ```
 
 The shapes can be visualized using a widget as:
 ```python
-from menpowidgets import visualize_pointclouds
-visualize_pointclouds(training_shapes)
+from menpowidgets import visualize_shapes_2d
+visualize_shapes_2d(training_shapes)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/visualize_pointclouds_lfpw.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 
 <a id="warp"></a>
 
@@ -127,7 +131,7 @@ A `PatchATM` represents the appearance in a patch-based fashion, i.e. rectangula
 Thus, the warp function $\mathbf{t}(\mathcal{W}(\mathbf{p}))$ simply _samples_ the patches centered around the landmarks of the shape instance generated with parameters $\mathbf{p}$.
 
 Let's now create a `HolisticATM` using IGO features:
-```python
+```{code-cell} ipython3
 from menpofit.atm import HolisticATM
 from menpo.feature import igo
 
@@ -137,21 +141,13 @@ atm = HolisticATM(template, training_shapes, group='PTS',
 ```
 and visualize it:
 ```python
-atm.view_shape_models_widget()
+from menpowidgets import visualize_shape_model_2d
+visualize_shape_model_2d([sm.model for sm in atm.shape_models])
 ```
-<video width="100%" autoplay loop>
-  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 ```python
-atm.view_atm_widget()
+from menpowidgets import visualize_atm
+visualize_atm(atm)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/atm_view_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 
 <a id="cost"></a>
 
@@ -167,7 +163,7 @@ This is the same as in the case of affine image transform, so you can refer to t
 for more information. We currently support Inverse-Compositional and Forward-Compositional optimization.
 
 Let's now create a `Fitter` using the ATM we created, as:
-```python
+```{code-cell} ipython3
 from menpofit.atm import LucasKanadeATMFitter, InverseCompositional
 
 fitter = LucasKanadeATMFitter(atm,
@@ -175,7 +171,7 @@ fitter = LucasKanadeATMFitter(atm,
 ```
 
 Information about the fitter can be retrieved as:
-```python
+```{code-cell} ipython3
 print(fitter)
 ```
 which returns
@@ -208,11 +204,11 @@ Inverse Compositional Algorithm
 
 Let's know fit the ATM on the `image` we loaded in the beggining.
 We will use the DLib face detector from [`menpodetect`](../menpodetect/index.md), in order to acquire an initial bounding box, as:
-```python
-from menpodetect import load_dlib_frontal_face_detector
+```{code-cell} ipython3
+from menpodetect import load_opencv_frontal_face_detector
 
 # Load detector
-detect = load_dlib_frontal_face_detector()
+detect = load_opencv_frontal_face_detector()
 
 # Detect
 bboxes = detect(image)
@@ -220,21 +216,17 @@ print("{} detected faces.".format(len(bboxes)))
 
 # View
 if len(bboxes) > 0:
-    image.view_landmarks(group='dlib_0', line_colour='white',
+    image.view_landmarks(group='opencv_0', line_colour='white',
                          render_markers=False, line_width=3);
 ```
-<center>
-  <img src="media/atm_view_bbox.png" alt="Visualize detected bounding box">
-</center>
-
 and fit the ATM as:
-```python
+```{code-cell} ipython3
 # initial bbox
 initial_bbox = bboxes[0]
 
 # fit image
 result = fitter.fit_from_bb(image, initial_bbox, max_iters=20,
-                            gt_shape=image.landmarks['PTS'].lms)
+                            gt_shape=image.landmarks['PTS'])
 
 # print result
 print(result)
@@ -247,31 +239,22 @@ Final error: 0.0196
 ```
 
 The result can be visualized as:
-```python
-result.view(render_initial_shape=True)
+```{code-cell} ipython3
+result.view(render_initial_shape=True);
 ```
-<center>
-  <img src="media/atm_view_result.png" alt="Visualize_fitting_result">
-</center>
-
 or using a widget as:
 ```python
-result.view_widget()
+from menpowidgets import visualize_fitting_results
+visualize_fitting_results(result)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/atm_result_view_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 Remember that the shape per iteration can be retrieved as
-```python
-result.shapes
+```{code-cell} ipython3
+len(result.shapes)
 ```
 
-Similarly, the shape and appearance parameters per iteration can be obtained as:
-```python
-print(result.shape_parameters.shape)
-print(result.appearance_parameters.shape)
+Similarly, the shape parameters per iteration can be obtained as (an ATM has a fixed template, so there are no appearance parameters):
+```{code-cell} ipython3
+print(len(result.shape_parameters), result.shape_parameters[0].shape)
 ```
 
 

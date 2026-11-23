@@ -12,4 +12,7 @@ menpo @ git+https://github.com/menpo/menpo@pca-truncated
 menpofit @ git+https://github.com/menpo/menpofit@menpo-inplace-names
 menpowidgets @ git+https://github.com/menpo/menpowidgets@master
 menpodetect @ git+https://github.com/menpo/menpodetect@master
+# optional dependencies the examples use: dense SIFT (menpo[cyvlfeat]) and the OpenCV detectors (menpodetect[opencv])
+cyvlfeat>=0.8
+opencv-contrib-python-headless>=4.5
 menpo3d @ git+https://github.com/menpo/menpo3d@menpo-inplace-names

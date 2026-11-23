@@ -1,5 +1,14 @@
-Active Appearance Model
-=======================
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Active Appearance Model
 
 1. <a href="#definition">Definition</a>
 2. <a href="#warp">Warp Functions</a>
@@ -56,13 +65,21 @@ $$
 
   A new appearance instance can be generated as $\mathbf{a}_{\mathbf{c}}=\bar{\mathbf{a}} + \mathbf{U}_a\mathbf{c}$, where $\mathbf{c}=\big[c_1,c_2,\ldots,c_m\big]^{\mathsf{T}}$ is the vector of appearance parameters.
 
-Before continuing, let's load the trainset of LFPW (see [Importing Images](importing.md "Basics on how to import images") for download instructions) as
-```python
+Before continuing, let's load the training images (see [Importing Images](importing.md "Basics on how to import images") for how to get a dataset) and pre-process them as
+```{code-cell} ipython3
+:tags: [remove-input]
+
+# The page is built on a small set of annotated faces (see the Importing Images section).
+from menpo_docs_data import faces_directory
+
+path_to_images = faces_directory()
+```
+
+```{code-cell} ipython3
 import menpo.io as mio
 from menpo.visualize import print_progress
 from menpo.landmark import labeller, face_ibug_68_to_face_ibug_68_trimesh
 
-path_to_images = '/path/to/lfpw/trainset/'
 training_images = []
 for img in print_progress(mio.import_images(path_to_images, verbose=True)):
     # convert to greyscale
@@ -78,20 +95,17 @@ for img in print_progress(mio.import_images(path_to_images, verbose=True)):
     labeller(img, 'PTS', face_ibug_68_to_face_ibug_68_trimesh)
     # append to list
     training_images.append(img)
+
+training_images, test_images = training_images[:40], training_images[40:]
+len(training_images), training_images[0].landmarks.group_labels
 ```
 Note that we labeled the images using `face_ibug_68_to_face_ibug_68_trimesh`, in order to
 get a manually defined `TriMesh` for the Piecewise Affine Warp. However, this is not necessary and it only applies
 for `HolisticAAM`. We can visualize the images using an interactive widget as:
 ```python
-%matplotlib inline
 from menpowidgets import visualize_images
 visualize_images(training_images)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/visualize_images_lfpw_trimesh.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 
 <a id="warp"></a>
 
@@ -110,7 +124,7 @@ The `HolisticAAM` uses a holistic appearance representation obtained by warping 
 with a non-linear warp function $\mathcal{W}(\mathbf{p})$. Two such warp functions are currently supported:
 Piecewise Affine Warp and Thin Plate Spline. The reference frame is the mask of the mean shape's convex hull.
 Let's create a `HolisticAAM` using Dense SIFT features:
-```python
+```{code-cell} ipython3
 from menpofit.aam import HolisticAAM
 from menpo.feature import fast_dsift
 
@@ -118,31 +132,19 @@ aam = HolisticAAM(training_images, group='face_ibug_68_trimesh', diagonal=150,
                   scales=(0.5, 1.0), holistic_features=fast_dsift, verbose=True,
                   max_shape_components=20, max_appearance_components=150)
 ```
-and visualize it:
+and visualize it in a notebook with the widgets of `menpowidgets`:
 ```python
-aam.view_shape_models_widget()
+from menpowidgets import visualize_shape_model_2d
+visualize_shape_model_2d([sm.model for sm in aam.shape_models])
 ```
-<video width="100%" autoplay loop>
-  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 ```python
-aam.view_appearance_models_widget()
+from menpowidgets import visualize_appearance_model
+visualize_appearance_model(aam.appearance_models)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/holistic_aam_view_appearance_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 ```python
-aam.view_aam_widget()
+from menpowidgets import visualize_aam
+visualize_aam(aam)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/holistic_aam_view_aam_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 **MaskedAAM**  
 The `MaskedAAM` uses the same warp logic as the `HolsiticAAM`. The only difference between them is that the
 reference frame consists of rectangular mask patches centered around the landmarks instead of the convex hull of the mean shape.
@@ -158,7 +160,7 @@ Similar to the relation between `HolisticAAM` and `MaskedAAM`, a `LinearMaskedAA
 A `PatchAAM` represents the appearance in a patch-based fashion, i.e. rectangular patches are extracted around the landmark points.
 Thus, the warp function $\mathbf{t}(\mathcal{W}(\mathbf{p}))$ simply _samples_ the patches centered around the landmarks of the shape instance generated with parameters $\mathbf{p}$.
 Let's create a `PatchAAM` using Dense SIFT features:
-```python
+```{code-cell} ipython3
 from menpofit.aam import PatchAAM
 from menpo.feature import fast_dsift
 
@@ -169,21 +171,13 @@ patch_aam = PatchAAM(training_images, group='PTS', patch_shape=[(15, 15), (23, 2
 ```
 and visualize it:
 ```python
-patch_aam.view_appearance_models_widget()
+from menpowidgets import visualize_patch_appearance_model
+visualize_patch_appearance_model(patch_aam.appearance_models, centers=patch_aam.shape_models)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/patch_aam_view_appearance_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 ```python
-patch_aam.view_aam_widget()
+from menpowidgets import visualize_patch_aam
+visualize_patch_aam(patch_aam)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/patch_aam_view_aam_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 
 
 <a id="cost"></a>
@@ -288,7 +282,7 @@ $$
 
 
 Let's now create a Lucas-Kanade Fitter for the patch-based AAM that we trained above using the Wiberg Inverse-Compositional algorithm, as
-```python
+```{code-cell} ipython3
 from menpofit.aam import LucasKanadeAAMFitter, WibergInverseCompositional
 
 fitter = LucasKanadeAAMFitter(patch_aam, lk_algorithm_cls=WibergInverseCompositional,
@@ -296,7 +290,7 @@ fitter = LucasKanadeAAMFitter(patch_aam, lk_algorithm_cls=WibergInverseCompositi
 ```
 
 Remember that you can always retrieve information about any trained model by:
-```python
+```{code-cell} ipython3
 print(fitter)
 ```
 
@@ -353,23 +347,19 @@ The above procedure is repeated for each cascade level, i.e. $k=1,\ldots,K$.
 <a id="fitting"></a>
 
 ### 4. Fitting Example
-Let's load a test image from LFPW testset and convert it to grayscale
-```python
-from pathlib import Path
-import menpo.io as mio
-
-path_to_lfpw = Path('/path/to/lfpw/testset/')
-
-image = mio.import_image(path_to_lfpw / 'image_0018.png')
-image = image.as_greyscale()
+Let's take a test image (here one that we kept out of the training set; with your own data, import it with `mio.import_image(path)` and convert it to greyscale with `as_greyscale()`):
+```{code-cell} ipython3
+# a test image that was not used for training
+image = test_images[0]
+image
 ```
 
 Let's also load a pre-trained face detector from [`menpodetect`](../menpodetect/index.md) and try to find the face's bounding box in order to initialize the AAM fitting
-```python
-from menpodetect import load_dlib_frontal_face_detector
+```{code-cell} ipython3
+from menpodetect import load_opencv_frontal_face_detector
 
 # Load detector
-detect = load_dlib_frontal_face_detector()
+detect = load_opencv_frontal_face_detector()
 
 # Detect
 bboxes = detect(image)
@@ -377,88 +367,61 @@ print("{} detected faces.".format(len(bboxes)))
 
 # View
 if len(bboxes) > 0:
-    image.view_landmarks(group='dlib_0', line_colour='red',
+    image.view_landmarks(group='opencv_0', line_colour='red',
                          render_markers=False, line_width=4);
 ```
-<center>
-  <img src="media/aam_view_bbox.png" alt="Visualize bounding box initialization">
-</center>
-
 The fitting can be executed as
-```python
+```{code-cell} ipython3
 # initial bbox
 initial_bbox = bboxes[0]
 
 # fit image
 result = fitter.fit_from_bb(image, initial_bbox, max_iters=[15, 5],
-                            gt_shape=image.landmarks['PTS'].lms)
+                            gt_shape=image.landmarks['PTS'])
 
 # print result
 print(result)
 ```
-which prints
-```
-Fitting result of 68 landmark points.
-Initial error: 0.1689
-Final error: 0.0212
+
+```{note}
+This model was trained on only 40 images, so the fit is rough and the improvement over the detector's box is modest. A model trained on a few
+hundred images, with more components and more iterations, reaches a final error several times smaller.
 ```
 
 The fitting result can be visualized as
-```python
-result.view(render_initial_shape=True)
+```{code-cell} ipython3
+result.view(render_initial_shape=True);
 ```
-<center>
-  <img src="media/aam_view_result.png" alt="Visualize fitting result">
-</center>
-
 and the fitting iterations as
-```python
-result.view_iterations()
+```{code-cell} ipython3
+result.view_iterations();
 ```
-<center>
-  <img src="media/aam_view_iterations.png" alt="Visualize fitting iterations">
-</center>
-
 Also, you can plot the fitting error per iteration as
-```python
-result.plot_errors()
+```{code-cell} ipython3
+result.plot_errors();
 ```
-<center>
-  <img src="media/aam_plot_errors.png" alt="Plot fitting error per iteration">
-</center>
-
-and of course the fitting result widget can be called as
+and of course the fitting result widget can be called in a notebook as
 ```python
-result.view_widget()
+from menpowidgets import visualize_fitting_results
+visualize_fitting_results(result)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/patch_aam_view_result_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 Let's try an image with a more challenging head pose
-```python
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 
-# Load and convert to grayscale
-image = mio.import_image(path_to_lfpw / 'image_0152.png')
-image = image.as_greyscale()
-
-# Detect face
+# Another test image: detect the face, then crop for a better view of the result
+image = test_images[1]
 bboxes = detect(image)
-
-# Crop the image for better visualization of the result
-image = image.crop_to_landmarks_proportion(0.3, group='dlib_0')
-bboxes[0] = image.landmarks['dlib_0'].lms
 
 if len(bboxes) > 0:
     # Fit AAM
     result = fitter.fit_from_bb(image, bboxes[0], max_iters=[15, 5],
-                                gt_shape=image.landmarks['PTS'].lms)
+                                gt_shape=image.landmarks['PTS'])
     print(result)
 
     # Visualize
-    plt.subplot(131);
+    plt.figure(figsize=(15, 5))
+    plt.subplot(131)
     image.view()
     bboxes[0].view(line_width=3, render_markers=False)
     plt.gca().set_title('Bounding box')
@@ -470,63 +433,20 @@ if len(bboxes) > 0:
 
     plt.subplot(133)
     image.view()
-    result.final_shape.view(marker_size=4, figure_size=(15, 13))
+    result.final_shape.view(marker_size=4)
     plt.gca().set_title('Final shape')
 ```
-<center>
-  <img src="media/aam_view_result_2.png" alt="Visualize fitting result">
-</center>
-
 and trigger the widget
 ```python
-result.view_widget()
+visualize_fitting_results(result)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/patch_aam_view_result_widget_2.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-
 Remember that the shape per iteration can be retrieved as
-```python
-result.shapes
+```{code-cell} ipython3
+len(result.shapes)
 ```
 
 Similarly, the shape and appearance parameters per iteration can be obtained as:
-```python
-print(result.shape_parameters.shape)
-print(result.appearance_parameters.shape)
+```{code-cell} ipython3
+print(len(result.shape_parameters), result.shape_parameters[0].shape)
+print(len(result.appearance_parameters), result.appearance_parameters[0].shape)
 ```
-
-
-<a id="references"></a>
-
-### 5. References
-<p id="1">[1] J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.</p>
-
-<p id="2">[2] J. Alabort-i-Medina, and S. Zafeiriou. "Bayesian Active Appearance Models", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
-
-<p id="3">[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>
-
-<p id="4">[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "HOG Active Appearance Models", IEEE International Conference on Image Processing (ICIP), 2014.</p>
-
-<p id="5">[5] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
-
-<p id="6">[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. "Active Appearance Models", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681–685, 2001.</p>
-
-<p id="7">[7] R. Gross, I. Matthews, and S. Baker. "Generic vs. person specific Active Appearance Models", Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.</p>
-
-<p id="8">[8] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
-
-<p id="9">[9] G. Papandreou, and P. Maragos. "Adaptive and constrained algorithms for  inverse compositional active appearance model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.</p>
-
-<p id="10">[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Active Orientation Models for Face Alignment in-the-wild", IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.</p>
-
-<p id="11">[11] G. Tzimiropoulos, and M. Pantic. "Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
-
-<p id="12">[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.</p>
-
-<p id="13">[13] G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.</p>
-
-<p id="14">[14] G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
-
-<p id="15">[15] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.</p>
