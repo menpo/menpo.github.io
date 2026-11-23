@@ -84,6 +84,7 @@ the human body (skeleton), human hand, cat face and car sideview.
 :maxdepth: 2
 
 Basics </menpofit/basics>
+Every Model, Built and Fitted </menpofit/models>
 Point Distribution Model </menpofit/pdm>
 Affine Image Alignment </menpofit/affine_image_alignment>
 Deformable Image Alignment </menpofit/deformable_image_alignment>

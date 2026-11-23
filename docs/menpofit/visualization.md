@@ -1,5 +1,14 @@
-Visualizing Objects
-===================
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Visualizing Objects
 In the Menpo Project, we take an opinionated stance that visualization is a key part of generating research.
 Therefore, we tried to make the mental overhead of visualizing objects as low as possible.
 
@@ -11,55 +20,58 @@ Remember that our widgets live on their own repository, called [**menpowidgets**
 
 ---------------------------------------
 
-<p><div style="background-color: #F2DEDE; width: 100%; border: 1px solid #A52A2A; padding: 1%;">
-<p style="float: left;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:4em; padding-right: 15%; padding-bottom: 10%; padding-top: 10%;"></i></p>
-We highly recommend that you render all matplotlib figures <b>inline</b> the Jupyter notebook for the best <a href="../menpowidgets/index.md"><em>menpowidgets</em></a> experience.
-This can be done by running</br>
-<center><code>%matplotlib inline</code></center>
-in a cell. Note that you only have to run it once and not in every rendering cell.
-</div></p>
+```{note}
+Every code cell on this page is run when the website is built, against menpofit {{ menpofit_version }}, so the
+samples are always current. In a Jupyter notebook, the [menpowidgets](../menpowidgets/index.md) visualizations
+render best with the inline backend (`%matplotlib inline`, the default in JupyterLab).
+```
 
 
 <a id="models"></a>
 
-# 1. Visualizing Models
+## 1. Visualizing Models
 All `menpofit` models provide functionalities for visualizing themselves. For example,
 the AAM that we trained in the [Training](training.md) section can be visualized with an interactive widget as:
 
 ```python
-%matplotlib inline
-aam.view_aam_widget()
+from menpowidgets import visualize_aam
+visualize_aam(aam)
 ```
-
-<video width="100%" autoplay loop>
-  <source src="media/basics_view_aam_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
 
 We can visualize only the multi-scale shape model as:
 
 ```python
-aam.view_shape_models_widget()
+from menpowidgets import visualize_shape_model_2d
+visualize_shape_model_2d([sm.model for sm in aam.shape_models])
 ```
-
-<video width="100%" autoplay loop>
-  <source src="media/view_shape_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
 
 or the appearance models as:
 
 ```python
-aam.view_appearance_models_widget()
+from menpowidgets import visualize_appearance_model
+visualize_appearance_model(aam.appearance_models)
 ```
-
-<video width="100%" autoplay loop>
-  <source src="media/basics_view_appearance_models_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
 
 The same visualization widgets can be found in other models, such as ATM, CLM etc.
 
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+# an AAM and a fitting result to visualize
+from menpo.feature import fast_dsift
+from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter
+from menpo_docs_data import faces
+
+training_images, test_images = faces(n_train=40, n_test=4)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift)
+fitter = LucasKanadeAAMFitter(aam, n_shape=[3, 12], n_appearance=[20, 30])
+image = test_images[0]
+gt_shape = image.landmarks['PTS']
+import numpy as np
+initial_shape = gt_shape.from_vector(gt_shape.as_vector() + 0.04 * np.ptp(gt_shape.points, axis=0).max())
+result = fitter.fit_from_shape(image, initial_shape, max_iters=[15, 15], gt_shape=gt_shape)
+```
 
 <a id="result"></a>
 
@@ -67,37 +79,22 @@ The same visualization widgets can be found in other models, such as ATM, CLM et
 The fitting result objects shown returned by the fitting methods in the [Fitting](fitting.md) section can be easily visualized.
 Specifically, the initial and final shapes can be rendered as:
 
-```python
-result.view(render_initial_shape=True)
+```{code-cell} ipython3
+result.view(render_initial_shape=True);
 ```
-<center>
-  <img src="media/basics_result_view.png" alt="Result visualization">
-</center>
-
 Similarly, the shapes acquired at each iteration can be visualized as:
 
-```python
-result.view_iterations()
+```{code-cell} ipython3
+result.view_iterations();
 ```
-<center>
-  <img src="media/basics_result_view_iterations.png" alt="Result's iterations visualization">
-</center>
-
 and the corresponding errors as:
 
-```python
-result.plot_errors()
+```{code-cell} ipython3
+result.plot_errors();
 ```
-<center>
-  <img src="media/basics_plot_errors.png" alt="Result's error plotting">
-</center>
-
 Finally, a fitting result can also be analysed through an interactive widget as:
 
 ```python
-result.view_widget()
+from menpowidgets import visualize_fitting_results
+visualize_fitting_results(result)
 ```
-<video width="100%" autoplay loop>
-  <source src="media/basics_result_view_widget.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
