@@ -75,3 +75,23 @@ def faces(n_train=40, n_test=4):
         raise RuntimeError(f"need {n_train + n_test} annotated images, found {len(paths)}")
     images = [_load(p) for p in paths[: n_train + n_test]]
     return images[:n_train], images[n_train:]
+
+
+def lfpw_like_directory(n_train=40, n_test=4):
+    """A directory laid out like the LFPW download (``trainset/`` and ``testset/``), made of links to
+    the face set above. The notebooks were written for LFPW: with your own copy, point
+    ``path_to_lfpw`` at it instead."""
+    root = _cache_dir() / "lfpw_like"
+    paths = sorted(
+        p for p in faces_directory().rglob("*") if p.suffix.lower() in IMAGE_SUFFIXES
+    )
+    paths = [p for p in paths if p.with_suffix(".pts").exists()]
+    for name, chosen in (("trainset", paths[:n_train]), ("testset", paths[n_train : n_train + n_test])):
+        folder = root / name
+        folder.mkdir(parents=True, exist_ok=True)
+        for image in chosen:
+            for source in (image, image.with_suffix(".pts")):
+                link = folder / source.name
+                if not link.exists():
+                    link.symlink_to(source)
+    return root

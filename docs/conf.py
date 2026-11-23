@@ -123,7 +123,7 @@ _SECTIONS = {
     "menpowidgets": ("menpowidgets", "menpowidgets/index"),
     "menpo3d": ("menpo3d", "menpo3d/index"),
     "menpodetect": ("menpodetect", "menpodetect/index"),
-    "examples": ("Examples", "examples/index"),
+    "notebooks": ("Notebooks", "notebooks/index"),
 }
 _ABOUT = ("About", "about")
 

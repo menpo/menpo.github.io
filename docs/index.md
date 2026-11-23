@@ -97,8 +97,8 @@ Object detectors (dlib, OpenCV) that return the bounding boxes `menpofit` starts
 Importing, visualizing, rasterizing and registering 3D meshes, with an interactive moderngl viewer.
 :::
 
-:::{grid-item-card} Examples
-:link: examples/index
+:::{grid-item-card} Notebooks
+:link: notebooks/index
 :link-type: doc
 :img-top: _static/logo/menpoproject.png
 :class-card: package-card
@@ -128,6 +128,6 @@ menpofit </menpofit/index>
 menpowidgets </menpowidgets/index>
 menpo3d </menpo3d/index>
 menpodetect </menpodetect/index>
-Examples </examples/index>
+Notebooks </notebooks/index>
 About </about>
 ```
