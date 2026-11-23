@@ -4,15 +4,20 @@ pydata-sphinx-theme
 sphinx-copybutton
 sphinx-design
 ipykernel
-# The packages being documented: the install page, versions and extras are read from
-# their metadata, so the build always describes exactly what is installed here.
-# Until 0.13 is released the site documents the unreleased PCA API (menpo #901, menpofit #135,
-# menpo3d #98); release day swaps these for `menpo>=0.13` and friends (see the plan).
-menpo @ git+https://github.com/menpo/menpo@pca-truncated
-menpofit @ git+https://github.com/menpo/menpofit@menpo-inplace-names
-menpowidgets @ git+https://github.com/menpo/menpowidgets@master
-menpodetect @ git+https://github.com/menpo/menpodetect@master
-# optional dependencies the examples use: dense SIFT (menpo[cyvlfeat]) and the OpenCV detectors (menpodetect[opencv])
+
+# What the Menpo packages need at run time (their own metadata lists these too). They are listed
+# here, and the packages in requirements-packages.txt are installed with --no-deps, because the
+# unreleased branches below report an older version than the packages that depend on them need.
+# On release day this block and requirements-packages.txt are replaced by `-r versions.txt`.
+numpy
+scipy
+matplotlib
+pillow
+pandas
+moderngl
+ipywidgets>=8
+ipyevents>=2
+anywidget>=0.9
+# optional dependencies the examples use: dense SIFT and the OpenCV detectors
 cyvlfeat>=0.8
 opencv-contrib-python-headless>=4.5
-menpo3d @ git+https://github.com/menpo/menpo3d@menpo-inplace-names

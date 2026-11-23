@@ -26,6 +26,8 @@ jobs:
       # menpo3d renders offscreen with moderngl, which needs an OpenGL/EGL driver
       - run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1 libgl1-mesa-dri
       - run: pip install -r docs/requirements.txt
+      # the unreleased packages (see the file): their metadata is checked by the build, not by pip
+      - run: pip install --no-deps -r docs/requirements-packages.txt
       - run: python -m ipykernel install --user --name python3
       # Every code cell on every page is executed (nb_execution_mode=force);
       # a failing sample fails the build. Warnings are errors (-W).
