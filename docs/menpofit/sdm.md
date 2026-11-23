@@ -48,43 +48,51 @@ training_images, test_images = faces(n_train=40, n_test=4)
 ```
 
 ```{code-cell} ipython3
+from menpofit.sdm import RegularizedSDM
+
+fitter = RegularizedSDM(training_images, group='PTS', diagonal=100, scales=(0.5, 1.0),
+                        patch_shape=(9, 9), n_iterations=3, n_perturbations=8,
+                        verbose=True)
+print(fitter)
+```
+
+Training perturbs the bounding box of the ground truth shape `n_perturbations` times per image, unless you give `bounding_box_group_glob`.
+Fit from a bounding box (for example from [menpodetect](../menpodetect/index.md)) or from an initial shape. The number of cascade levels is
+`n_iterations`, so `max_iters` does not apply:
+
+```{code-cell} ipython3
+import numpy as np
+
+initial_errors, final_errors = [], []
+for image in test_images:
+    gt_shape = image.landmarks['PTS']
+    result = fitter.fit_from_bb(image, gt_shape.bounding_box(), gt_shape=gt_shape)
+    initial_errors.append(result.initial_error())
+    final_errors.append(result.final_error())
+
+print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
+    np.mean(initial_errors), np.mean(final_errors)))
+```
+
+(Here the box is that of the ground truth, to keep the example self-contained; in practice it comes from a detector, which is looser.)
+
+## 3. Choosing the regression
+`RegularizedSDM` penalises large regression weights (`l2_weight`). This matters when there are few training images: each regressor has one weight per
+feature (the pixels of all the patches) and the plain least-squares solution that `SDM` and `SupervisedDescentFitter(sd_algorithm_cls=NonParametricNewton)` use
+needs far more perturbed samples than features, or it over-fits and the cascade diverges. On the 40 images of this page, `SDM` makes the error *larger*
+by orders of magnitude; give it hundreds of images and more perturbations, or use the regularised version.
+
+`SupervisedDescentFitter` is the general class: `sd_algorithm_cls` chooses between the non-parametric regressors (the landmarks are the regression target) and the parametric ones
+(the parameters of a shape model are), with Newton, Gauss-Newton, PCR (principal component regression) and optimal regression solvers:
+
+```python
 from menpofit.sdm import SupervisedDescentFitter, NonParametricNewton
 
 fitter = SupervisedDescentFitter(training_images, group='PTS',
                                  sd_algorithm_cls=NonParametricNewton,
                                  diagonal=100, scales=(0.5, 1.0),
                                  patch_shape=(9, 9), n_iterations=3,
-                                 n_perturbations=5, verbose=True)
-print(fitter)
-```
-
-Training perturbs the bounding box of the ground truth shape `n_perturbations` times per image, unless you give `bounding_box_group_glob`.
-Fit from a bounding box (for example from [menpodetect](../menpodetect/index.md)) or from an initial shape:
-
-```{code-cell} ipython3
-import numpy as np
-
-
-def shifted(shape, seed, proportion=0.04):
-    """The ground truth moved by a few percent of the face size, like a detector's box."""
-    span = np.ptp(shape.points, axis=0).max()
-    offset = np.random.RandomState(seed).randn(2) * proportion * span
-    return shape.from_vector(shape.as_vector() + np.tile(offset, shape.n_points))
-
-image = test_images[0]
-gt_shape = image.landmarks['PTS']
-result = fitter.fit_from_shape(image, shifted(gt_shape, 0), gt_shape=gt_shape)
-print("initial error: {:.4f}   final error: {:.4f}".format(result.initial_error(), result.final_error()))
-```
-
-The number of cascade levels is `n_iterations`, so `max_iters` does not apply. `SDM` is the same cascade with the usual choices already made:
-
-```{code-cell} ipython3
-from menpofit.sdm import SDM
-
-sdm = SDM(training_images[:20], group='PTS', diagonal=100, scales=(0.5, 1.0),
-          patch_shape=(9, 9), n_iterations=2, n_perturbations=3)
-sdm.fit_from_shape(image, shifted(gt_shape, 0), gt_shape=gt_shape).final_error()
+                                 n_perturbations=8)
 ```
 
 ```{admonition} Memory

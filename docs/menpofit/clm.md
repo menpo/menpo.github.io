@@ -55,15 +55,16 @@ training_images, test_images = faces(n_train=40, n_test=4)
 ```
 
 ```{code-cell} ipython3
+from menpo.feature import igo
 from menpofit.clm import CLM
 
-clm = CLM(training_images, group='PTS', diagonal=100, scales=(0.5, 1.0),
+clm = CLM(training_images, group='PTS', diagonal=150, scales=(0.5, 1.0),
           patch_shape=(9, 9), context_shape=(18, 18), max_shape_components=20,
-          verbose=True)
+          holistic_features=igo, verbose=True)
 print(clm)
 ```
 
-The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)):
+The correlation filters work on the features of `holistic_features`: gradient orientations (`igo`) are much better than raw pixels. The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)):
 
 ```{code-cell} ipython3
 from menpofit.clm import GradientDescentCLMFitter, RegularisedLandmarkMeanShift
@@ -80,11 +81,18 @@ def shifted(shape, seed, proportion=0.04):
 
 fitter = GradientDescentCLMFitter(clm, gd_algorithm_cls=RegularisedLandmarkMeanShift, n_shape=10)
 
-image = test_images[0]
-gt_shape = image.landmarks['PTS']
-result = fitter.fit_from_shape(image, shifted(gt_shape, 0), max_iters=20, gt_shape=gt_shape)
-print("initial error: {:.4f}   final error: {:.4f}".format(result.initial_error(), result.final_error()))
+initial_errors, final_errors = [], []
+for i, image in enumerate(test_images):
+    gt_shape = image.landmarks['PTS']
+    result = fitter.fit_from_shape(image, shifted(gt_shape, i), max_iters=20, gt_shape=gt_shape)
+    initial_errors.append(result.initial_error())
+    final_errors.append(result.final_error())
+
+print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
+    np.mean(initial_errors), np.mean(final_errors)))
 ```
+
+The last result:
 
 ```{code-cell} ipython3
 result.view(render_initial_shape=True);
