@@ -76,9 +76,9 @@ aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_fea
 fitter = LucasKanadeAAMFitter(aam, lk_algorithm_cls=WibergInverseCompositional, n_shape=[3, 20], n_appearance=[30, 150])
 image = test_images[0]
 gt_shape = image.landmarks["PTS"]
-rng = np.random.RandomState(0)
-initial_shape = gt_shape.from_vector(gt_shape.as_vector() + rng.randn(gt_shape.n_points * 2) * 1.5)
-result = fitter.fit_from_shape(image, initial_shape, max_iters=10, gt_shape=gt_shape)
+offset = np.random.RandomState(0).randn(2) * 0.04 * np.ptp(gt_shape.points, axis=0).max()
+initial_shape = gt_shape.from_vector(gt_shape.as_vector() + np.tile(offset, gt_shape.n_points))
+result = fitter.fit_from_shape(image, initial_shape, max_iters=[15, 15], gt_shape=gt_shape)
 ```
 
 ```{code-cell} ipython3

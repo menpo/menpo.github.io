@@ -126,16 +126,30 @@ Finally, this argument does not apply to all deformable models.
 **kwargs** (`dict`)  
 Additional keyword arguments that can be passed to specific models.
 
-Putting it together, fitting the test image from a perturbed ground truth:
+Putting it together, fitting the test images from a shifted ground truth (the initial shape is moved by 4% of the face size, as a
+detector's box would be off):
 
 ```{code-cell} ipython3
 import numpy as np
 
-image = test_images[0]
-gt_shape = image.landmarks["PTS"]
-rng = np.random.RandomState(0)
-initial_shape = gt_shape.from_vector(gt_shape.as_vector() + rng.randn(gt_shape.n_points * 2) * 1.5)
 
-result = fitter.fit_from_shape(image, initial_shape, max_iters=10, gt_shape=gt_shape)
-print("initial error: {:.4f}   final error: {:.4f}".format(result.initial_error(), result.final_error()))
+def shifted(shape, seed, proportion=0.04):
+    span = np.ptp(shape.points, axis=0).max()
+    offset = np.random.RandomState(seed).randn(2) * proportion * span
+    return shape.from_vector(shape.as_vector() + np.tile(offset, shape.n_points))
+
+
+initial_errors, final_errors = [], []
+for i, image in enumerate(test_images):
+    gt_shape = image.landmarks["PTS"]
+    result = fitter.fit_from_shape(image, shifted(gt_shape, seed=i),
+                                   max_iters=[15, 15], gt_shape=gt_shape)
+    initial_errors.append(result.initial_error())
+    final_errors.append(result.final_error())
+
+print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
+    np.mean(initial_errors), np.mean(final_errors)))
 ```
+
+The error is normalised by the size of the face, so it is comparable between images. This model was trained on only 40 images, so the
+improvement is modest; with a few hundred training images and the number of components of the [Training](training.md) section it is much larger.
