@@ -68,7 +68,8 @@ html_static_path = ["_static"]
 html_css_files = ["menpo.css"]
 html_favicon = "_static/logo/menpo.png"
 html_context = {"default_mode": "light"}
-html_sidebars = {"index": [], "**": ["sidebar-nav-bs"]}
+templates_path = ["_templates"]
+html_sidebars = {"index": [], "**": ["section-title", "sidebar-nav-bs"]}
 html_theme_options = {
     "logo": {"image_light": "_static/logo/menpo.png", "image_dark": "_static/logo/menpo.png", "text": "The Menpo Project"},
     "navbar_start": ["navbar-logo"],
@@ -111,5 +112,30 @@ def _copy_media(app, exception):
                 shutil.copy2(f, dest)
 
 
+# --- Section title in the sidebar ---------------------------------------------
+# page -> (section title, the section's overview page). Pages in the top directories below belong to
+# that package; the loose pages at the root belong to "About".
+_SECTIONS = {
+    "installation": ("Installation", "installation/index"),
+    "menpo": ("menpo", "menpo/index"),
+    "menpofit": ("menpofit", "menpofit/index"),
+    "menpowidgets": ("menpowidgets", "menpowidgets/index"),
+    "menpo3d": ("menpo3d", "menpo3d/index"),
+    "menpodetect": ("menpodetect", "menpodetect/index"),
+    "examples": ("Examples", "examples/index"),
+}
+_ABOUT = ("About", "about")
+
+
+def _section_title(app, pagename, templatename, context, doctree):
+    top = pagename.split("/")[0]
+    title, index = _SECTIONS.get(top, _ABOUT if pagename != "index" else (None, None))
+    if title:
+        context["section_title"] = title
+        context["section_url"] = context["pathto"](index)
+        context["section_is_current"] = pagename == index
+
+
 def setup(app):
     app.connect("build-finished", _copy_media)
+    app.connect("html-page-context", _section_title, priority=100)  # before the theme drops templates that render empty

@@ -94,3 +94,10 @@ button:focus { outline: none; }
 .package-card .sd-card-body { text-align: left; }
 .package-card .sd-card-img-top { height: 120px; width: auto; max-width: 100%; object-fit: contain; margin: 1.1rem auto 0.2rem; }
 .package-card .sd-card-title { text-align: center; font-size: 1.1rem; }
+
+/* ---- the section title that heads the sidebar ---- */
+.section-title { padding: 0 0.6rem 0.4rem; margin-bottom: 0.4rem; border-bottom: 1px solid var(--menpo-line); }
+.section-title a { font-size: 1.05rem; font-weight: 600; color: var(--menpo-text); text-decoration: none; }
+.section-title a:hover, .section-title.current a { color: var(--menpo-blue); }
+.bd-sidebar-primary .sidebar-primary-item .bd-links { margin-top: 0.2rem; }
+.bd-sidebar-primary .bd-links__title { display: none; }
