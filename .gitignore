@@ -3,3 +3,4 @@ docs/_build/
 docs/.jupyter_cache/
 __pycache__/
 .venv/
+tools/face_set/annotate/static/
