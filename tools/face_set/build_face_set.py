@@ -56,8 +56,8 @@ for race in races:
         shape = mediapipe_to_68(pts)
         name = f"fairface_{len(chosen):03d}"
         image.save(out / f"{name}.png")
-        # menpo's pts layout: (x, y) with the first pixel at 0
-        lines = "\n".join(f"{x:.3f} {y:.3f}" for x, y in shape)
+        # .pts files count pixels from 1 (menpo subtracts 1 when it reads them)
+        lines = "\n".join(f"{x + 1:.3f} {y + 1:.3f}" for x, y in shape)
         (out / f"{name}.pts").write_text(f"version: 1\nn_points: 68\n{{\n{lines}\n}}\n")
         chosen.append((name, race, row["age"], row["gender"]))
         kept += 1
