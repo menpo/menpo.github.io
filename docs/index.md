@@ -97,6 +97,15 @@ Object detectors (dlib, OpenCV) that return the bounding boxes `menpofit` starts
 Importing, visualizing, rasterizing and registering 3D meshes, with an interactive moderngl viewer.
 :::
 
+:::{grid-item-card} landmarker.io
+:link: landmarkerio/index
+:link-type: doc
+:img-top: _static/logo/landmarkerio.png
+:class-card: package-card
+
+Annotate images and 3D meshes with landmarks in your browser, to make the training data for your models.
+:::
+
 :::{grid-item-card} Notebooks
 :link: notebooks/index
 :link-type: doc
@@ -128,6 +137,7 @@ menpofit </menpofit/index>
 menpowidgets </menpowidgets/index>
 menpo3d </menpo3d/index>
 menpodetect </menpodetect/index>
+landmarker.io </landmarkerio/index>
 Notebooks </notebooks/index>
 About </about>
 ```

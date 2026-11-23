@@ -21,3 +21,5 @@ anywidget>=0.9
 # optional dependencies the examples use: dense SIFT and the OpenCV detectors
 cyvlfeat>=0.8
 opencv-contrib-python-headless>=4.5
+# the server of landmarker.io: its page reads the version and the options of the command from it
+landmarkerio-server>=0.5

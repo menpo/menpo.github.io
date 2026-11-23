@@ -19,7 +19,7 @@ from docutils.parsers.rst import Directive
 from packaging.requirements import Requirement
 from sphinx.errors import ExtensionError
 
-PACKAGES = ["menpo", "menpofit", "menpo3d", "menpowidgets", "menpodetect"]
+PACKAGES = ["menpo", "menpofit", "menpo3d", "menpowidgets", "menpodetect", "landmarkerio-server"]
 
 
 def _release(v):
@@ -105,8 +105,9 @@ def _substitutions(app, config):
             m = metadata(package)
         except PackageNotFoundError:
             raise ExtensionError(f"{package} must be installed to build the docs")
-        subs[f"{package}_version"] = version(package)
-        subs[f"{package}_requires_python"] = m["Requires-Python"]
+        key = package.replace("-", "_")
+        subs[f"{key}_version"] = version(package)
+        subs[f"{key}_requires_python"] = m["Requires-Python"]
     config.myst_substitutions = subs
     path = Path(app.confdir) / "extras.toml"
     config._menpo_extra_descriptions = tomllib.loads(path.read_text())

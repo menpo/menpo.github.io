@@ -1,12 +1,8 @@
 # Retired projects
 
+(landmarker.io, which used to be listed here, is back: see [landmarker.io](landmarkerio/index.md).)
+
 These projects are no longer maintained and are not part of the current Menpo Project.
-
-## landmarker.io
-
-A web-based tool for manual annotation of 2D images and 3D meshes. The hosted application is no longer available and
-the [source](https://github.com/menpo/landmarker.io) is unmaintained. Menpo reads and writes common landmark formats
-(`.ljson`, `.pts` and others, see `menpo.io`), so any annotation tool that exports one of them works with Menpo.
 
 ## menpocli
 
