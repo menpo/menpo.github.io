@@ -12,6 +12,8 @@ Clicking on a landmark and dragging it still works as expected.
 
 This mode can be disabled by hitting the *e* key or using the switch in the options panel (bottom right). The alternative is similar to how the tool worked before this version by disabling auto-selection and targeting help.
 
+In snap mode the landmark nearest to the mouse is the selected one, and the selection decides what **Space evenly** (`s`) and **Snap to line** (`f`) act on: the curves and loops with a selected landmark. See [Curves](userguide.md) in the user guide. To act on everything, turn snap mode off (`e`) and press `q`.
+
 ## Inserting new landmarks
 
 **Insertion is now strictly a right click action** which will insert the next unset landmark at the specified location. The next landmark is marked by a white underline in the left sidebar.

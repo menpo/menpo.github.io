@@ -25,6 +25,10 @@ The file contains a json object containing the following fields:
    + `connectivity`: (array) - list of tuples `[a, b]` where `a` and `b` are valid indices for 2 points which should appear connected.
 +  `labels` (array of objects) - the `label` field is the name of the group, while the `mask` field is a list of the indices for the points which belong to this group, they do not need to be contiguous.
 +  `version` (integer) - for validation.
++  `reviewed` (boolean, optional) - `true` once a person has saved the file through the landmarker. Models only learn from files that are reviewed.
++  `fitted_by` (string, optional) - the model whose landmarks were saved as they were, or after correcting them.
+
+A prediction that has not been saved yet is served with `"reviewed": false` and `"source": "prefit:<model>"`; the server removes `source` when it is saved.
 
 #### JSON Schema
 Here's a minimal [json schema](http://json-schema.org/) you can use to validate your files (see http://json-schema-validator.herokuapp.com/):
@@ -103,12 +107,26 @@ The file must contain a `groups` array containing dictionaries. Each dictionary 
   + `a b` - a is connected to b
   + `a:b` - a is connected to a+1, which is connected to a+2, and so on until b
 
++ `anchors` - indices of the points that **Space evenly** keeps in place (by default the ends of every chain and the first point of every loop)
++ `spacing` - for the other points, the fraction of the way between the anchors around them (equal steps if left out), for instance `{1: 0.125, 2: 0.251}`
+
 In order to get all points to be connected in a cycle, you can use the shortcut `connectivity: cycle`, which is equivalent to:
 
 ```yaml
 connectivity:
   - 0:size-1
   - size-1 0
+```
+
+A group with anchors and spacing (the `ibug68` template that ships with the server has them for every curve, with the mean spacing of the 300-W annotators; the numbers here are only an example):
+
+```yaml
+groups:
+  - label: jaw
+    points: 17
+    connectivity: ['0:16']
+    anchors: [0, 8, 16]
+    spacing: {1: 0.125, 2: 0.251}
 ```
 
 _`json` files following the same structure are also valid templates for the landmarker client (although not for the server)_
