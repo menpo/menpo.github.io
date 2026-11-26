@@ -36,7 +36,7 @@ from menpo.feature import igo
 from menpofit.aam import HolisticAAM
 from menpo_docs_data import faces
 
-training_images, test_images = faces(n_train=40, n_test=4)
+training_images, test_images = faces()
 aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
 ```
 
@@ -130,6 +130,7 @@ Putting it together, fitting the test images from a shifted ground truth (the in
 detector's box would be off):
 
 ```{code-cell} ipython3
+:tags: [remove-output]
 import numpy as np
 
 
@@ -151,5 +152,26 @@ print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
     np.mean(initial_errors), np.mean(final_errors)))
 ```
 
-The error is normalised by the size of the face, so it is comparable between images. This model was trained on only 40 images, so the
-improvement is modest; with a few hundred training images and the number of components of the [Training](training.md) section it is much larger.
+The error is normalised by the size of the face, so it is comparable between images. What this page *shows* of the result is from
+`HolisticAAM`s trained on the **300-W training set** ({{ fitting_n_train }} images; its licence is for non-commercial research, so it is not
+part of this site: [download it](https://ibug.doc.ic.ac.uk/resources/300-W/) and point the code at it), fitting {{ fitting_detector_n_faces }}
+faces that it has not seen (a hand-annotated set of [FairFace](https://github.com/joojs/fairface) faces, CC BY 4.0). The code of the page runs
+every time the site is built, on a much smaller set, which only shows that it works.
+
+From the ground truth moved by 4% of the face size, the mean error goes from {{ fitting_shifted_initial }} to {{ fitting_shifted_final }}.
+Red is where the fit starts, green where it ends, and cyan is the ground truth:
+
+```{figure} /_static/examples/fitting_shifted.png
+:width: 60%
+:alt: six faces, each with the starting shape and the fitted shape of the AAM from a shifted ground truth
+```
+
+From the box of a detector (`fit_from_bb` with `menpodetect`'s OpenCV detector, whose boxes are looser than the ground truth),
+which is what you have in practice, the start is much worse and the mean error goes from {{ fitting_detector_initial }} to
+{{ fitting_detector_final }}: a model like this one moves the shape towards the face, not onto it, and the detector, the features and
+the number of iterations matter more than the amount of training data.
+
+```{figure} /_static/examples/fitting_detector.png
+:width: 60%
+:alt: six faces, each with the starting shape from a detector box and the fitted shape of the AAM
+```

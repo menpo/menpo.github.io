@@ -1,5 +1,6 @@
 """Sphinx configuration for the Menpo Project website."""
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -31,6 +32,20 @@ root_doc = "index"
 myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence", "attrs_inline", "substitution", "html_image"]
 myst_heading_anchors = 3
 myst_substitutions = {}
+# the numbers of the pages that show models trained on the 300-W training set, made by _tools/render_examples.py
+_results = Path(__file__).parent / "_static" / "examples" / "results.json"
+
+
+def _flatten(prefix, value):
+    if isinstance(value, dict):
+        for key, inner in value.items():
+            yield from _flatten(f"{prefix}_{key}" if prefix else key, inner)
+    else:
+        yield prefix, f"{value:.3f}" if isinstance(value, float) else str(value)
+
+
+if _results.exists():
+    myst_substitutions.update(dict(_flatten("", json.loads(_results.read_text()))))
 myst_dmath_double_inline = True
 mathjax3_config = {
     "tex": {"packages": {"[+]": ["ams"]}},
