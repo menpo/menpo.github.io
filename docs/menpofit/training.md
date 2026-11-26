@@ -89,14 +89,14 @@ training_images, _ = faces()
 
 ```{code-cell} ipython3
 from menpofit.aam import HolisticAAM
-from menpo.feature import igo
+from menpo.feature import fast_dsift
 
 aam = HolisticAAM(training_images, reference_shape=None,
                   diagonal=150, scales=(0.5, 1.0),
-                  holistic_features=igo, verbose=True)
+                  holistic_features=fast_dsift, batch_size=100, verbose=True)
 ```
 
-The `verbose` flag prints the training progress. Information about any trained model can be retrieved by:
+The `verbose` flag prints the training progress. `batch_size` trains the model in batches of images, with an incremental PCA, so that thousands of training images do not have to be in memory at once (the features of a image are several times its size). The images are best given as a `LazyList`, which `mio.import_images` returns, so that they are not loaded either. Information about any trained model can be retrieved by:
 
 ```{code-cell} ipython3
 print(aam)

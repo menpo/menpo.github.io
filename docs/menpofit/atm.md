@@ -133,11 +133,11 @@ Thus, the warp function $\mathbf{t}(\mathcal{W}(\mathbf{p}))$ simply _samples_ t
 Let's now create a `HolisticATM` using IGO features:
 ```{code-cell} ipython3
 from menpofit.atm import HolisticATM
-from menpo.feature import igo
+from menpo.feature import fast_dsift
 
 atm = HolisticATM(template, training_shapes, group='PTS',
                   diagonal=180, scales=(0.25, 1.0),
-                  holistic_features=igo, verbose=True)
+                  holistic_features=fast_dsift, verbose=True)
 ```
 and visualize it:
 ```python

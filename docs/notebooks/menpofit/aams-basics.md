@@ -103,20 +103,20 @@ Deformable models, in general, and AAMs, in particular, are a one of the core co
 
 ```{code-cell}
 from menpofit.aam import HolisticAAM
-from menpo.feature import no_op
+from menpo.feature import fast_dsift
 
 # build AAM
 aam = HolisticAAM(
     training_images,
     group='PTS',
     verbose=True,
-    holistic_features=no_op, 
-    diagonal=120, 
-    scales=1
+    holistic_features=fast_dsift,
+    diagonal=120,
+    scales=(0.5, 1.0)
 )
 ```
 
-Note that here we import a feature to use from `menpo.features`. In this very basic case we actually do not want to use a feature at all - so we use the special `no_op` feature that does nothing. Features are in general required to get good fitting performance, hence the default `feature_type` is actually `igo`.
+Note that here we import a feature to use from `menpo.feature`: dense SIFT descriptors (`fast_dsift`) give much better fitting performance than raw pixels. The model has two `scales`, a coarse one and a full-resolution one, which the fitting goes through in turn (the usual choice).
 
 As first class citizens of `Menpo`, AAMs can be printed just like any other `Menpo` object (e.g. `Images` or `PointClouds)`:
 
@@ -124,7 +124,7 @@ As first class citizens of `Menpo`, AAMs can be printed just like any other `Men
 print(aam)
 ```
 
-Printing an AAM is the easiest way to retrieve its specific characteristics. For example, printing the previous AAM tells us that it was built using pixel intensities (no_op features), amongst several other things.
+Printing an AAM is the easiest way to retrieve its specific characteristics. For example, printing the previous AAM tells us that it was built using dense SIFT features (fast_dsift), amongst several other things.
 
 AAMs also define an instance method that allows us to generate novel AAM instances by applying a set of particular weights to the components of their shape and apperance models:
 

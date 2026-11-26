@@ -66,13 +66,14 @@ For example, with the `result` of the [Fitting](fitting.md) section:
 ```{code-cell} ipython3
 :tags: [remove-input]
 
-from menpo.feature import igo
+from menpo.feature import fast_dsift
 from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter, WibergInverseCompositional
 from menpo_docs_data import faces
 import numpy as np
 
 training_images, test_images = faces()
-aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
+                  batch_size=100)
 fitter = LucasKanadeAAMFitter(aam, lk_algorithm_cls=WibergInverseCompositional, n_shape=[3, 20], n_appearance=[30, 150])
 image = test_images[0]
 gt_shape = image.landmarks["PTS"]

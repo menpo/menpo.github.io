@@ -32,12 +32,13 @@ For example, a Lucas-Kanade AAM fitter (`LucasKanadeAAMFitter`) assumes that you
 :tags: [remove-input]
 
 # the `aam` of the Training section, and an image to fit
-from menpo.feature import igo
+from menpo.feature import fast_dsift
 from menpofit.aam import HolisticAAM
 from menpo_docs_data import faces
 
 training_images, test_images = faces()
-aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
+                  batch_size=100)
 ```
 
 ```{code-cell} ipython3
@@ -167,9 +168,9 @@ Red is where the fit starts, green where it ends, and cyan is the ground truth:
 ```
 
 From the box of a detector (`fit_from_bb` with `menpodetect`'s OpenCV detector, whose boxes are looser than the ground truth),
-which is what you have in practice, the start is much worse and the mean error goes from {{ fitting_detector_initial }} to
-{{ fitting_detector_final }}: a model like this one moves the shape towards the face, not onto it, and the detector, the features and
-the number of iterations matter more than the amount of training data.
+which is what you have in practice, the start is much worse, and the mean error goes from {{ fitting_detector_initial }} to
+{{ fitting_detector_final }}. Most faces converge, and one does not (the fifth): the fitting is local, it finds the minimum near where
+it starts, so a start that is too far off, or a face that does not look like the training faces, can end in the wrong place.
 
 ```{figure} /_static/examples/fitting_detector.png
 :width: 60%

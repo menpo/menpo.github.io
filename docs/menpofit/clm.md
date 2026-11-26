@@ -55,16 +55,16 @@ training_images, test_images = faces()
 ```
 
 ```{code-cell} ipython3
-from menpo.feature import igo
+from menpo.feature import fast_dsift
 from menpofit.clm import CLM
 
 clm = CLM(training_images, group='PTS', diagonal=150, scales=(0.5, 1.0),
           patch_shape=(9, 9), context_shape=(18, 18), max_shape_components=20,
-          holistic_features=igo, verbose=True)
+          holistic_features=fast_dsift, verbose=True)
 print(clm)
 ```
 
-The correlation filters work on the features of `holistic_features`: gradient orientations (`igo`) are much better than raw pixels. The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)):
+The correlation filters work on the features of `holistic_features`: dense SIFT descriptors (`fast_dsift`) are much better than raw pixels. The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)):
 
 ```{code-cell} ipython3
 from menpofit.clm import GradientDescentCLMFitter, RegularisedLandmarkMeanShift
