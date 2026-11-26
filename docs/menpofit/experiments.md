@@ -29,7 +29,7 @@ see [Importing Images](importing.md). Here the set that this website builds on i
 ```{code-cell} ipython3
 from menpo_docs_data import faces
 
-training_images, test_images = faces(n_train=40, n_test=4)
+training_images, test_images = faces()
 len(training_images), len(test_images)
 ```
 

@@ -46,9 +46,11 @@ A detector is a callable: it takes an image and returns a list of bounding boxes
 ```{code-cell} ipython3
 :tags: [remove-input]
 
-from menpo_docs_data import faces
+from menpo_docs_data import builtin_faces
+from menpodetect import load_opencv_frontal_face_detector
 
-image = faces(n_train=1, n_test=1)[1][0]
+# the first of menpo's built-in faces that the detector finds a face in (on a copy: detecting adds a landmark group)
+image = next(i for i in builtin_faces() if len(load_opencv_frontal_face_detector()(i.copy())))
 ```
 
 ```{code-cell} ipython3

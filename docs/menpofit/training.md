@@ -84,7 +84,7 @@ an example of a typical call for training a deformable model using `HolisticAAM`
 # `training_images` as in the Importing Images section: small annotated faces, pre-processed
 from menpo_docs_data import faces
 
-training_images, _ = faces(n_train=40, n_test=4)
+training_images, _ = faces()
 ```
 
 ```{code-cell} ipython3

@@ -71,7 +71,7 @@ from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter, WibergInverseComposi
 from menpo_docs_data import faces
 import numpy as np
 
-training_images, test_images = faces(n_train=40, n_test=4)
+training_images, test_images = faces()
 aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=igo)
 fitter = LucasKanadeAAMFitter(aam, lk_algorithm_cls=WibergInverseCompositional, n_shape=[3, 20], n_appearance=[30, 150])
 image = test_images[0]

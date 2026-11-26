@@ -24,5 +24,9 @@ Maths is written with `$...$` and `$$...$$` (MathJax).
 After that the `releases` workflow checks PyPI every day and opens a pull request when a package has a new release (`docs/_tools/bump_versions.py`).
 The build of that pull request runs every code sample against the new release, so it fails exactly when a release breaks a page.
 
-Face data for the examples that train models is read from `$MENPO_DOCS_FACES` (a directory of images with `.pts` files) or from the archive named in `docs/data.toml`;
-see `docs/_ext/menpo_docs_data.py`.
+The examples that train models run in CI on a small set of annotated FairFace images committed in `docs/_data/faces` (CC BY 4.0, see its
+ATTRIBUTION.txt): enough to check that every example runs, not to train a good model. Their test images are menpo's built-in faces.
+The figures and numbers that the pages show are made from the 300-W training set (3148 images), which is not part of this repository
+(non-commercial licence; download it from https://ibug.doc.ic.ac.uk/resources/300-W/) and are regenerated with
+`MENPO_DOCS_300W=/path/to/300w python docs/_tools/render_examples.py` (see `docs/_ext/menpo_docs_data.py`).
+To change the small set, annotate with `lmio image FOLDER` and run `tools/face_set/export_smoke_set.py FOLDER docs/_data/faces`.

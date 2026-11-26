@@ -70,7 +70,7 @@ Before continuing, let's load the training images (see [Importing Images](import
 :tags: [remove-input]
 
 # The page is built on a small set of annotated faces (see the Importing Images section).
-from menpo_docs_data import faces_directory
+from menpo_docs_data import faces_directory, test_faces
 
 path_to_images = faces_directory()
 ```
@@ -96,7 +96,7 @@ for img in print_progress(mio.import_images(path_to_images, verbose=True)):
     # append to list
     training_images.append(img)
 
-training_images, test_images = training_images[:40], training_images[40:]
+test_images = test_faces()  # faces that are not in the training set, with their landmarks
 len(training_images), training_images[0].landmarks.group_labels
 ```
 Note that we labeled the images using `face_ibug_68_to_face_ibug_68_trimesh`, in order to

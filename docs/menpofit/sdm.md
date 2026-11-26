@@ -44,7 +44,7 @@ takes the choice of regression in `sd_algorithm_cls`; `SDM` and `RegularizedSDM`
 # a small set of annotated faces: the training images and some to fit
 from menpo_docs_data import faces
 
-training_images, test_images = faces(n_train=40, n_test=4)
+training_images, test_images = faces()
 ```
 
 ```{code-cell} ipython3
