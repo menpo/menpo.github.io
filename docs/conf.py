@@ -17,6 +17,7 @@ copyright = "The Menpo Team"
 
 extensions = [
     "menpo_meta",
+    "menpo_recorded",
     "myst_nb",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",

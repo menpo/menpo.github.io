@@ -83,8 +83,13 @@ result = fitter.fit_from_shape(image, initial_shape, max_iters=[15, 15], gt_shap
 ```
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-result]
+
 print(type(result).__name__)
 print("shapes per iteration:", len(result.shapes))
 print("errors per iteration:", np.round(result.errors(), 4))
 result.view();
+```
+
+```{recorded-output} result
 ```
