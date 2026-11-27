@@ -16,10 +16,11 @@ kernelspec:
 
 | If you ... | use | because |
 |:--|:--|:--|
-| want the most accurate fit from a face detector's box | an [AAM](aam.md) (`HolisticAAM` with Lucas-Kanade) or a [CLM](clm.md) | in the test below they reduce the error of the detector's box about fourfold; the AAM also gives you a generative model of the face |
-| need the fastest fit | an [SDM](sdm.md) (`RegularizedSDM`) | a fit is a few matrix products per level: about a hundredth of a second here, against half a second for the AAM. From a close start it is as accurate as the others; from a loose box it was behind in this test, with raw pixels and few perturbations, which are the cheap settings |
+| want the most accurate fit, and have a few hundred annotated images | an [SDM](sdm.md) (`RegularizedSDM`) | in the test below it had the lowest error from both starts (0.019 from a close start, 0.029 from the box of a detector) and a fit takes 0.03 s, about twenty times less than the AAM. It needs its features and the training starts chosen for the task, which the [SDM page](sdm.md) explains |
+| want a model of the appearance of the face, or a good fit from a detector's box with a model that can synthesise faces | an [AAM](aam.md) (`HolisticAAM` with Lucas-Kanade) | it reduced the error of the detector's box about fourfold (0.19 to 0.043), and its appearance model generates faces |
+| want a fit from a detector's box that is close to the AAM and faster | a [CLM](clm.md) | 0.19 to 0.037 in 0.09 s |
 | need a millisecond fit and can install `dlib` | [ERT](ert.md) (`DlibERT`) | a fast cascade of regression trees (not tested here, dlib is optional) |
-| already have a good initial shape (tracking: the previous frame) | an [AAM](aam.md), [CLM](clm.md) or [SDM](sdm.md); [ATM](atm.md) when you have a template of the object | all three reach a similar accuracy from a close start; ATM needs a template that looks like the target |
+| already have a good initial shape (tracking: the previous frame) | an [SDM](sdm.md), an [AAM](aam.md) or a [CLM](clm.md); an [ATM](atm.md) when you have a template of the object | they all improved the shifted start (0.047) to 0.02 to 0.03 in the test; ATM needs a template that looks like the target |
 | want a prior over the relations between landmarks | [APS](aps.md) | it models them with a graph; in this test it refined a good start a little and did not recover from a loose box |
 | are not working with faces | any of them | the models do not depend on the object; give them your landmarks |
 
@@ -44,11 +45,23 @@ import time
 import numpy as np
 from menpo.feature import fast_dsift
 from menpo.shape import UndirectedGraph
+from functools import partial
+from menpo.feature import hellinger_vector_128_dsift
+from menpo.shape import bounding_box
 from menpodetect import load_opencv_frontal_face_detector
+from menpofit.fitter import noisy_shape_from_bounding_box
 from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter, WibergInverseCompositional
 from menpofit.aps import GenerativeAPS, GaussNewtonAPSFitter
 from menpofit.clm import CLM, GradientDescentCLMFitter, RegularisedLandmarkMeanShift
 from menpofit.sdm import RegularizedSDM
+
+
+def perturbed_square_box(gt_box, example_box):
+    """The example box made square, with noise of 20% on its scale and 10% on its translation."""
+    lower, _ = example_box.bounds()
+    edge = np.max(example_box.range())
+    square = bounding_box(lower, lower + np.array((edge, edge)))
+    return noisy_shape_from_bounding_box(gt_box, square, noise_percentage=[0.2, 0, 0.1])
 
 
 def shifted(shape, seed, proportion=0.04):
@@ -97,9 +110,12 @@ rows.append(evaluate('AAM', lambda i, s, **k: fitter.fit_from_shape(i, s, max_it
                      lambda i, b, **k: fitter.fit_from_bb(i, b, max_iters=[15, 5], **k)))
 del aam, fitter
 
-sdm = train('SDM', lambda: RegularizedSDM(training_images, group='PTS', alpha=100.0, diagonal=100, scales=(0.5, 1.0),
-                                          patch_shape=(9, 9), n_iterations=3,
-                                          n_perturbations=8))
+sdm = train('SDM', lambda: RegularizedSDM(training_images, group='PTS', alpha=200.0,
+                                          patch_features=partial(hellinger_vector_128_dsift, dtype=np.float32),
+                                          patch_shape=[(32, 32), (24, 24), (24, 24), (16, 16)],
+                                          diagonal=200, scales=(0.5, 0.5, 1.0, 1.0),
+                                          n_iterations=4, n_perturbations=20,
+                                          perturb_from_gt_bounding_box=perturbed_square_box))
 rows.append(evaluate('SDM', sdm.fit_from_shape, sdm.fit_from_bb))
 del sdm
 

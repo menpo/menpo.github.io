@@ -1,18 +1,18 @@
 {
   "fit": {
-    "hash": "6e4db2e222713c45",
+    "hash": "4f1cd1a9122897e3",
     "outputs": [
       {
-        "text": "mean initial error: 0.0539   mean final error: 0.0281",
+        "text": "from the shifted ground truth (6 faces): mean error 0.0469 -> 0.0186\nfrom the box of the detector (6 faces): mean error 0.1817 -> 0.0292",
         "type": "text"
       }
     ]
   },
   "model": {
-    "hash": "4ec16edf5b32f13c",
+    "hash": "e870fa8f7b85ed66",
     "outputs": [
       {
-        "text": "Supervised Descent Method\n - Regression performed using the NonParametricNewton algorithm\n   - Regression class: IRLRegression\n - Perturbations generated per shape: 8\n - Images scaled to diagonal: 100.00\n - Custom perturbation scheme used: False\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - 2 iterations\n     - Patch shape: (9, 9)\n     - Holistic feature: no_op\n     - Patch feature: no_op\n   - Scale 1.0\n     - 2 iterations\n     - Patch shape: (9, 9)\n     - Holistic feature: no_op\n     - Patch feature: no_op",
+        "text": "Supervised Descent Method\n - Regression performed using the NonParametricNewton algorithm\n   - Regression class: IRLRegression\n - Perturbations generated per shape: 20\n - Images scaled to diagonal: 200.00\n - Custom perturbation scheme used: perturbed_square_box\n - Scales: [0.5, 0.5, 1.0, 1.0]\n   - Scale 0.5\n     - 1 iterations\n     - Patch shape: (32, 32)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 0.5\n     - 1 iterations\n     - Patch shape: (24, 24)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 1.0\n     - 1 iterations\n     - Patch shape: (24, 24)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 1.0\n     - 1 iterations\n     - Patch shape: (16, 16)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift",
         "type": "text"
       }
     ]

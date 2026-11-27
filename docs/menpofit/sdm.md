@@ -47,12 +47,36 @@ from menpo_docs_data import faces
 training_images, test_images = faces()
 ```
 
+The recipe below is a cascade of four stages. Each stage is a regression with its own scale and patch size: the first two work at half the resolution, on a large patch (32 x 32 pixels, then 24 x 24), and the last two at the full
+resolution, on smaller ones (24 x 24, then 16 x 16), so the cascade looks at the whole face first and at the details when it is close. The features are computed on every patch: `hellinger_vector_128_dsift` is
+one SIFT descriptor of 128 values for a whole square patch, normalised with the Hellinger norm [<a href="#2">2</a>]. This is the feature of the paper [<a href="#1">1</a>], and it has 68 x 128 = 8,704 values per sample whatever the size of the patches,
+so large patches are affordable. The training starts are the bounding box of the ground truth, made square (the box of a face detector is square) and perturbed in scale and translation (the noise is that of a detector's box: large in scale). `scales` lists one scale per stage, so `n_iterations=4` is one level of regression per stage:
+
 ```{code-cell} ipython3
 :tags: [remove-output, record-model]
+from functools import partial
+
+import numpy as np
+from menpo.feature import hellinger_vector_128_dsift
+from menpo.shape import bounding_box
+from menpofit.fitter import noisy_shape_from_bounding_box
 from menpofit.sdm import RegularizedSDM
 
-fitter = RegularizedSDM(training_images, group='PTS', alpha=100.0, diagonal=100, scales=(0.5, 1.0),
-                        patch_shape=(9, 9), n_iterations=3, n_perturbations=8)
+
+def perturbed_square_box(gt_box, example_box):
+    """The example box made square, with noise of 20% on its scale and 10% on its translation."""
+    lower, _ = example_box.bounds()
+    edge = np.max(example_box.range())
+    square = bounding_box(lower, lower + np.array((edge, edge)))
+    return noisy_shape_from_bounding_box(gt_box, square, noise_percentage=[0.2, 0, 0.1])
+
+
+fitter = RegularizedSDM(training_images, group='PTS', alpha=200.0,
+                        patch_features=partial(hellinger_vector_128_dsift, dtype=np.float32),
+                        patch_shape=[(32, 32), (24, 24), (24, 24), (16, 16)],
+                        diagonal=200, scales=(0.5, 0.5, 1.0, 1.0),
+                        n_iterations=4, n_perturbations=20,
+                        perturb_from_gt_bounding_box=perturbed_square_box)
 print(fitter)
 ```
 
@@ -61,27 +85,38 @@ print(fitter)
 
 Training perturbs the bounding box of the ground truth shape `n_perturbations` times per image, unless you give `bounding_box_group_glob`.
 Fit from a bounding box (for example from [menpodetect](../menpodetect/index.md)) or from an initial shape. The number of cascade levels is
-`n_iterations`, so `max_iters` does not apply (like `max_iters` of the other fitters, an `int` is the total, shared out over the scales, so the 3 of this model are 2 levels at the coarse scale and 1 at the fine one; give a list for one number per scale):
+`n_iterations`, so `max_iters` does not apply (like `max_iters` of the other fitters, an `int` is the total, shared out over the scales: here one level for each of the four scales). This fits the test faces from the box of a face detector,
+and from the ground truth moved by 4% of the face size:
 
 ```{code-cell} ipython3
 :tags: [remove-output, record-fit]
-import numpy as np
+from menpodetect import load_opencv_frontal_face_detector
 
-initial_errors, final_errors = [], []
-for image in test_images:
+detect = load_opencv_frontal_face_detector()
+
+
+def shifted(shape, seed, proportion=0.04):
+    span = np.ptp(shape.points, axis=0).max()
+    offset = np.random.RandomState(seed).randn(2) * proportion * span
+    return shape.from_vector(shape.as_vector() + np.tile(offset, shape.n_points))
+
+
+shifted_results, box_results = [], []
+for i, image in enumerate(test_images):
     gt_shape = image.landmarks['PTS']
-    result = fitter.fit_from_bb(image, gt_shape.bounding_box(), gt_shape=gt_shape)
-    initial_errors.append(result.initial_error())
-    final_errors.append(result.final_error())
+    shifted_results.append(fitter.fit_from_shape(image, shifted(gt_shape, i), gt_shape=gt_shape))
+    boxes = detect(image.copy())
+    if boxes:
+        box_results.append(fitter.fit_from_bb(image, boxes[0], gt_shape=gt_shape))
 
-print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
-    np.mean(initial_errors), np.mean(final_errors)))
+for name, results in (("the shifted ground truth", shifted_results), ("the box of the detector", box_results)):
+    print("from {} ({} faces): mean error {:.4f} -> {:.4f}".format(
+        name, len(results), np.mean([r.initial_error() for r in results]),
+        np.mean([r.final_error() for r in results])))
 ```
 
 ```{recorded-output} fit
 ```
-
-(Here the box is that of the ground truth, to keep the example self-contained; in practice it comes from a detector, which is looser.)
 
 ## 3. Choosing the regression
 `RegularizedSDM` penalises large regression weights (`alpha`, 0.0001 by default). This matters when there are few training images: each regressor has one weight per
@@ -147,20 +182,26 @@ fitter = SupervisedDescentFitter(training_images, group='PTS',
 
 ```{admonition} Memory
 :class: warning
-The regression matrices have as many rows as the shape has coordinates and as many columns as the features of all the patches
-(landmarks x pixels of a patch x channels), and training holds all the perturbed samples at once. `batch_size` is not available for the supervised descent models, so if you run out of memory use fewer training images, a smaller `n_perturbations`, a smaller `patch_shape`, or fewer scales.
+The regression of a level has as many rows as the shape has coordinates and as many columns as the features of all the patches, and its matrix of normal equations is (features x features): the model of this page has 8,704 features, which is 0.6 GB for that matrix, and training on the 811 images of LFPW peaked at 4.4 GB. Features grow with the number of patches, the size of a patch and the channels of the features, and the matrix with their square: dense SIFT images (8 channels) with 9 x 9 patches have 44,000 features and a matrix of 15 GB. `batch_size` is not available for the supervised descent models in menpofit {{ menpofit_version }}, so if you run out of memory use fewer training images, a smaller `n_perturbations`, smaller features or fewer scales.
 ```
 
 ### Settings to start from
+These are the settings of the example above; the numbers are from our test, on the faces of this page (the errors of 6 faces, see [Which model should I use?](choosing.md)).
+
 | Setting | Value here | What it does |
 |:--|:--|:--|
-| `n_iterations` | `3` (here), `6` (the default of `RegularizedSDM`) | The number of cascade levels, shared out over the scales. |
-| `n_perturbations` | `8` (here), `30` (the default) | How many perturbed starts per training image. More gives the regressors more examples, and multiplies the memory. |
-| `alpha` | `100` (the default is `0.0001`) | The ridge penalty of `RegularizedSDM`. Raw pixel patches have thousands of features, and with the default penalty the regressors over-fit: on the data of this page the default gave a mean error of 0.294 after fitting from a start of 0.047 (8 perturbations; 0.061 with 20), against 0.031 with `alpha=100`. Choose it on held-out images. |
-| `patch_shape` | `(9, 9)` (here), `(17, 17)` (the default) | The patch around each landmark that the features are taken from. |
-| `holistic_features` | `no_op` (default) | Raw pixels. Try `fast_dsift` first when you want better features; it multiplies the number of features by 8. |
+| `patch_features` | `hellinger_vector_128_dsift` | One SIFT descriptor of 128 values per patch, Hellinger normalised: 8,704 features per sample, whatever the patch size. Plain `vector_128_dsift` fitted a close start much less well (0.046 against 0.019 from the ground truth moved by 4% of the face size). A holistic dense SIFT image (`holistic_features=fast_dsift`) with 5 x 5 patches gave 0.052 and 0.055 (from the shifted ground truth and from the detector's box) in our tests, and with 9 x 9 patches 0.100 and 0.079. |
+| `scales`, `patch_shape` | `(0.5, 0.5, 1.0, 1.0)`, 32 x 32 to 16 x 16 | One stage per scale: large patches at half the resolution, smaller ones at the full resolution. |
+| `n_iterations` | `4` | One level per stage. The total is shared out over the scales. |
+| `perturb_from_gt_bounding_box` | square box, noise of 20% on scale and 10% on translation | How the training starts are made. The regressors only learn to correct the errors they were trained on, so the perturbations should look like the starts you will fit from: with noise of 3% on the scale and 5% on the translation the fit from the detector's box ended at 0.098, with 10% and 10% at 0.040 and with 20% and 10% at 0.029; from the ground truth moved by 4% of the face size all three gave 0.018. The box of the detector is square, so the training box is made square. |
+| `n_perturbations` | `20` | How many perturbed starts per training image. The regression needs many more samples than features. |
+| `alpha` | `200` (the default is `0.0001`) | The ridge penalty of `RegularizedSDM`. Choose it on held-out images; it depends on the features. With raw pixel patches the default over-fits (a mean error of 0.294 from a start of 0.047). |
 
 <a id="1"></a>
 
 ## References
 [1] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.
+
+<a id="2"></a>
+
+[2] R. Arandjelovic, and A. Zisserman. "Three things everyone should know to improve object retrieval", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2012.
