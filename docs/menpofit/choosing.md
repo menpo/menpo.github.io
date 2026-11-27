@@ -134,6 +134,6 @@ for name, row in rows:
 ```{recorded-output} compare
 ```
 
-The columns are the mean error of the initial shape and of the fitted shape (the lower the better; see [Fitting Result](result.md) for how it is measured), from each initialisation, and the time that a fit takes on one CPU.
+The columns are, in order: the mean error of the shifted start, and after fitting from it (`shifted` and the `->` after it); the mean error of the detector's box, and after fitting from it (`detector` and the next `->`); and the time that a fit takes on one CPU (the lower the errors the better; see [Fitting Result](result.md) for how the error is measured).
 With so few test faces the differences between models of similar error are not significant: read it as an order of magnitude and as a check that nothing is broken, not as a ranking. The
 [ERT](ert.md) of dlib is left out because it is an optional dependency; install it and add a `DlibERT` row in the same way.
