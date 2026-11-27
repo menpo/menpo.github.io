@@ -1,9 +1,9 @@
 # The packages the site documents, installed with `pip install --no-deps -r docs/requirements-packages.txt`.
-# Until menpo 0.13 is released these are development branches (the unreleased PCA API:
-# menpo #901, menpofit #135, menpo3d #98). The install page, versions and extras are read from
-# their metadata, so the build always describes exactly what is installed here.
-menpo @ git+https://github.com/menpo/menpo@pca-truncated
-menpofit @ git+https://github.com/menpo/menpofit@menpo-inplace-names
+# menpo is the 0.13 release candidate (the PCA API of menpo #901) and the others are their master
+# branches, which already use it, until their 0.13-compatible releases are published. The install page, versions and
+# extras are read from their metadata, so the build always describes exactly what is installed here.
+menpo==0.13.0rc1
+menpofit @ git+https://github.com/menpo/menpofit@master
 menpowidgets @ git+https://github.com/menpo/menpowidgets@master
 menpodetect @ git+https://github.com/menpo/menpodetect@master
-menpo3d @ git+https://github.com/menpo/menpo3d@menpo-inplace-names
+menpo3d @ git+https://github.com/menpo/menpo3d@master
