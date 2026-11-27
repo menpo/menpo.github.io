@@ -74,7 +74,7 @@ class RecordedOutput(Directive):
                            f"docs/_tools/render_examples.py record {env.docname}", location=(env.docname, self.lineno))
         container = nodes.container(classes=["recorded-output"])
         container += nodes.paragraph(
-            "", "Output with the model trained on the 300-W training set (the cell above runs in the build on a "
+            "", "Output with the model trained on the LFPW training set (the cell above runs in the build on a "
             "small set of faces, which only shows that it works):", classes=["recorded-output-caption"])
         for output in recorded["outputs"]:
             if output["type"] == "text":

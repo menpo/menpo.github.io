@@ -1,0 +1,20 @@
+{
+  "fit": {
+    "hash": "6e4db2e222713c45",
+    "outputs": [
+      {
+        "text": "mean initial error: 0.0539   mean final error: 0.0281",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "4ec16edf5b32f13c",
+    "outputs": [
+      {
+        "text": "Supervised Descent Method\n - Regression performed using the NonParametricNewton algorithm\n   - Regression class: IRLRegression\n - Perturbations generated per shape: 8\n - Images scaled to diagonal: 100.00\n - Custom perturbation scheme used: False\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - 2 iterations\n     - Patch shape: (9, 9)\n     - Holistic feature: no_op\n     - Patch feature: no_op\n   - Scale 1.0\n     - 2 iterations\n     - Patch shape: (9, 9)\n     - Holistic feature: no_op\n     - Patch feature: no_op",
+        "type": "text"
+      }
+    ]
+  }
+}

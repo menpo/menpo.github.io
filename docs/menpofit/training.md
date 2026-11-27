@@ -66,10 +66,12 @@ holistic features in order to extract patches and can have two behaviours depend
 <a id="incremental"></a>
 
 ## 3. Incremental Training
-Most deformable models that exist in `menpofit` can be trained in an **incremental** fashion. This can be very useful
+The AAM, ATM and CLM models of `menpofit` can be trained in an **incremental** fashion. This can be very useful
 in case you want to train a very powerful model on a large amount of training images, which would be impossible to
 do at once due to memory constraints. The incremental training can be performed by using the **batch_size**
 parameter, which will split the provided set of training images into batches of the specified size.
+The supervised descent models (`SDM`, `RegularizedSDM`, `SupervisedDescentFitter`, `SupervisedDescentAAMFitter`) and `GenerativeAPS` do not have this yet: they hold their training data
+(perturbed samples for SDM; the whole set of images for APS) in memory at once, so for them use fewer images, fewer perturbations or smaller patches.
 
 
 <a id="example"></a>

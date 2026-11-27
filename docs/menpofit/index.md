@@ -62,6 +62,8 @@ The models that are implemented in `menpofit` are:
   - _Model Variants:_ Non Parametric, Parametric Shape, Parametric Appearance, Fully Parametric
 
 
+If you are not sure which to use, read [Which model should I use?](choosing.md "A comparison of the models").
+
 Finally, please see the [References](references.md "List of implemented papers") for an indicative list of papers that are implemented in `menpofit`.
 
 #### Deformable Objects
@@ -84,6 +86,7 @@ the human body (skeleton), human hand, cat face and car sideview.
 :maxdepth: 2
 
 Basics </menpofit/basics>
+Which model should I use? </menpofit/choosing>
 Every Model, Built and Fitted </menpofit/models>
 Point Distribution Model </menpofit/pdm>
 Affine Image Alignment </menpofit/affine_image_alignment>

@@ -113,8 +113,8 @@ and thus the Hessian matrix inverse remain constant and can be precomputed. This
 ##### Residuals and Features
 Apart from the Sum of Squared Differences (SSD) residual presented above, `menpofit` includes implementations for
 SSD on Fourier domain [<a href="#4">4</a>], Enhanced Correlation Coefficient (ECC) [<a href="#5">5</a>], Image Gradient [<a href="#6">6</a>] and Gradient Correlation [<a href="#6">6</a>] residuals.
-Additionally, all LK implementations can be applied using any kind of features. For a study on the effect of various feature functions on the LK image alignement, please
-refere to [<a href="#7">7</a>].
+Additionally, all LK implementations can be applied using any kind of features. For a study on the effect of various feature functions on the LK image alignment, please
+refer to [<a href="#7">7</a>].
 
 ##### Example
 In `menpofit`, an LK `Fitter` object with Inverse-Compositional optimization can be obtained as:
@@ -130,20 +130,6 @@ where we can define different types of features and scales. Remember that most o
 ```{code-cell} ipython3
 print(fitter)
 ```
-which returns
-```
-Lucas-Kanade Inverse Compositional Algorithm
- - Sum of Squared Differences Residual
- - Images warped with DifferentiableAlignmentAffine transform
- - Images scaled to diagonal: 128.35
- - Scales: [0.5, 1.0]
-   - Scale 0.5
-     - Holistic feature: no_op
-     - Template shape: (44, 48)
-   - Scale 1.0
-     - Holistic feature: no_op
-     - Template shape: (87, 96)
-```
 
 
 <a id="visualization"></a>
@@ -151,22 +137,31 @@ Lucas-Kanade Inverse Compositional Algorithm
 ### 3. Alignment and Visualization
 Fitting a `LucasKanadeFitter` to an image is as simple as calling its `fit_from_bb` method.
 We will attempt to fit the cropped template we created earlier onto a perturbed version of the original image, by adding
-noise to its ground truth bounding box. Note that `noise_percentage` is too large in order to create a very challenging initialization.
+noise to its ground truth bounding box (the random generator is seeded, so that the example is always the same). The template is a crop of this very image, so the best possible fit is an error of zero.
 ```{code-cell} ipython3
+import numpy as np
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 gt_bb = takeo.landmarks['bounding_box']
 # generate perturbed bounding box
+np.random.seed(4)
 init_bb = noisy_shape_from_bounding_box(fitter.reference_shape, gt_bb,
-                                        noise_percentage=0.1,
-                                        allow_alignment_rotation=True)
+                                        noise_percentage=0.05,
+                                        allow_alignment_rotation=False)
 # fit image
 result = fitter.fit_from_bb(takeo, init_bb, gt_shape=gt_bb, max_iters=80)
+print(result)
+```
+
+```{note}
+Whether the fit converges depends on the start, and the start here is random (the generator is seeded, and this seed is one of the good ones). We tried 8 seeds on this image with `noise_percentage=0.05`: the fitter above
+converged to an error of about zero for 5 of them, stopped at 0.09 for 2 and diverged for 1. With `noise_percentage=0.1` and rotation allowed, the Inverse-Compositional fitter ended
+with a smaller error than it started with for half of the 8 seeds, and a Forward-Compositional fitter (`ForwardCompositional`, slower per iteration) for all of them.
 ```
 
 The initial and final bounding boxes can be viewed as:
-```
-result.view(render_initial_shape=True)
+```{code-cell} ipython3
+result.view(render_initial_shape=True);
 ```
 and the alignment error per iteration as:
 ```{code-cell} ipython3
@@ -183,7 +178,22 @@ from menpowidgets import visualize_images
 visualize_images(fitter.warped_images(result.image, result.shapes))
 ```
 
-we can visualize the warped image per iteration as:
+we can visualize the warped image per iteration. Here, the first and the last, next to the template they are aligned to:
+```{code-cell} ipython3
+warped = fitter.warped_images(result.image, result.shapes)
+
+plt.figure(figsize=(9, 3))
+plt.subplot(131)
+template.view()
+plt.gca().set_title('Template')
+plt.subplot(132)
+warped[0].view()
+plt.gca().set_title('Warped, iteration 0')
+plt.subplot(133)
+warped[-1].view()
+plt.gca().set_title('Warped, last iteration');
+```
+
 <a id="references"></a>
 
 ### 4. References

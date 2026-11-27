@@ -55,18 +55,23 @@ training_images, test_images = faces()
 ```
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-model]
 from menpo.feature import fast_dsift
 from menpofit.clm import CLM
 
-clm = CLM(training_images, group='PTS', diagonal=150, scales=(0.5, 1.0),
-          patch_shape=(9, 9), context_shape=(18, 18), max_shape_components=20,
-          holistic_features=fast_dsift, verbose=True)
+clm = CLM(training_images, group='PTS', diagonal=100, scales=(0.5, 1.0),
+          patch_shape=(15, 15), context_shape=(30, 30), max_shape_components=20,
+          holistic_features=fast_dsift, batch_size=100)
 print(clm)
 ```
 
-The correlation filters work on the features of `holistic_features`: dense SIFT descriptors (`fast_dsift`) are much better than raw pixels. The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)):
+```{recorded-output} model
+```
+
+The correlation filters work on the features of `holistic_features`: dense SIFT descriptors (`fast_dsift`) are much better than raw pixels. The fitter takes the number of shape components to use at each scale (on a trimmed copy of the model, see [Fitting](fitting.md)). Use few: the experts are local and noisy, so the shape model has to do most of the work. The experiment code of [<a href="#4">4</a>] uses `[3, 6]` (3 at the coarse scale, 6 at the fine one); `[3, 12]` gave the same error in our test (0.0322, against 0.0327). in our own test on the page's data, 10 or 20 components with smaller patches left the fit worse than its start, and `ActiveShapeModel` was no better than its start either, so the example uses `RegularisedLandmarkMeanShift`:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-fit]
 from menpofit.clm import GradientDescentCLMFitter, RegularisedLandmarkMeanShift
 
 import numpy as np
@@ -79,7 +84,7 @@ def shifted(shape, seed, proportion=0.04):
     return shape.from_vector(shape.as_vector() + np.tile(offset, shape.n_points))
 
 
-fitter = GradientDescentCLMFitter(clm, gd_algorithm_cls=RegularisedLandmarkMeanShift, n_shape=10)
+fitter = GradientDescentCLMFitter(clm, gd_algorithm_cls=RegularisedLandmarkMeanShift, n_shape=[3, 12])
 
 initial_errors, final_errors = [], []
 for i, image in enumerate(test_images):
@@ -92,10 +97,17 @@ print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
     np.mean(initial_errors), np.mean(final_errors)))
 ```
 
+```{recorded-output} fit
+```
+
 The last result:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-view]
 result.view(render_initial_shape=True);
+```
+
+```{recorded-output} view
 ```
 
 The experts can be inspected too, in a notebook with `menpowidgets.visualize_clm` or `visualize_expert_ensemble`.
@@ -117,6 +129,16 @@ from menpofit.clm.expert.ensemble import ConvolutionBasedExpertEnsemble
 
 This is the least documented part of `menpofit`; if you build something with it and would like it to be a documented example, please open an issue.
 
+### Settings to start from
+| Setting | Value here | What it does |
+|:--|:--|:--|
+| `patch_shape`, `context_shape` | `(15, 15)`, `(30, 30)` | The patch each expert is trained to find the landmark in, and the image around it that the filter is trained on. |
+| `holistic_features` | `fast_dsift` | Dense SIFT features, which the experts need (see above). |
+| `diagonal`, `scales` | `100`, `(0.5, 1.0)` | The resolution of the model. |
+| `n_shape` (fitter) | `[3, 12]` | Components of the shape model used while fitting: use few. |
+| `gd_algorithm_cls` | `RegularisedLandmarkMeanShift` | In our test it improved a good start; `ActiveShapeModel` did not. |
+| `max_iters` | `20` | With 3 iterations the improvement was smaller (0.0469 to 0.0419 against 0.0322 with 20). |
+
 <a id="1"></a>
 
 ## References
@@ -129,3 +151,7 @@ This is the least documented part of `menpofit`; if you build something with it 
 <a id="3"></a>
 
 [3] T.F. Cootes, C.J. Taylor, D.H. Cooper, and J. Graham. "Active Shape Models - their training and application", Computer Vision and Image Understanding, vol. 61, no. 1, pp. 38-59, 1995.
+
+<a id="4"></a>
+
+[4] J. Alabort-i-Medina, and S. Zafeiriou. "Unifying holistic and parts-based deformable model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.

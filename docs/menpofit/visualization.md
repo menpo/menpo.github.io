@@ -64,7 +64,7 @@ from menpofit.aam import HolisticAAM, LucasKanadeAAMFitter
 from menpo_docs_data import faces
 
 training_images, test_images = faces()
-aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift)
+aam = HolisticAAM(training_images, diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift, batch_size=100)
 fitter = LucasKanadeAAMFitter(aam, n_shape=[3, 12], n_appearance=[20, 30])
 image = test_images[0]
 gt_shape = image.landmarks['PTS']
@@ -80,17 +80,29 @@ The fitting result objects shown returned by the fitting methods in the [Fitting
 Specifically, the initial and final shapes can be rendered as:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-view]
 result.view(render_initial_shape=True);
+```
+
+```{recorded-output} view
 ```
 Similarly, the shapes acquired at each iteration can be visualized as:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-iterations]
 result.view_iterations();
+```
+
+```{recorded-output} iterations
 ```
 and the corresponding errors as:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-errors]
 result.plot_errors();
+```
+
+```{recorded-output} errors
 ```
 Finally, a fitting result can also be analysed through an interactive widget as:
 

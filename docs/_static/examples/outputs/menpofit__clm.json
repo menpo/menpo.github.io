@@ -1,0 +1,29 @@
+{
+  "fit": {
+    "hash": "255abf525c3593a4",
+    "outputs": [
+      {
+        "text": "mean initial error: 0.0469   mean final error: 0.0322",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "a08e465387de4bf0",
+    "outputs": [
+      {
+        "text": "Constrained Local Model\n - Images scaled to diagonal: 100.00\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: dsift\n     - Ensemble of experts class: CorrelationFilterExpertEnsemble\n       - 68 experts\n       - IncrementalCorrelationFilterThinWrapper class\n       - Patch shape: 15 x 15\n       - Patch normalisation: no_op\n       - Context shape: 30 x 30\n       - Cosine mask: True\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Ensemble of experts class: CorrelationFilterExpertEnsemble\n       - 68 experts\n       - IncrementalCorrelationFilterThinWrapper class\n       - Patch shape: 15 x 15\n       - Patch normalisation: no_op\n       - Context shape: 30 x 30\n       - Cosine mask: True\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters",
+        "type": "text"
+      }
+    ]
+  },
+  "view": {
+    "hash": "0df4929db733d396",
+    "outputs": [
+      {
+        "file": "menpofit__clm__view_0.png",
+        "type": "image"
+      }
+    ]
+  }
+}

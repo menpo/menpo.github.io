@@ -11,8 +11,8 @@ ATTRIBUTION.txt). They are never part of a training set.
 
 1. The rest of that small set. Enough to check that the code of every example runs (what CI does), not to
    train a model that fits well.
-2. ``$MENPO_DOCS_300W``: the folder of the 300-W download (``afw``, ``helen``, ``lfpw``, ...). The 3148
-   images of its training set (``afw``, ``helen/trainset``, ``lfpw/trainset``) are what the figures and numbers
+2. ``$MENPO_DOCS_300W``: the folder of the 300-W download (``afw``, ``helen``, ``lfpw``, ...). The 811
+   images of the LFPW training set in it (``lfpw/trainset``) are what the figures and numbers
    of the pages are made from (``docs/_tools/render_examples.py``). Its licence is for non-commercial research:
    the data and the models trained on it are not part of this repository; get it from
    https://ibug.doc.ic.ac.uk/resources/300-W/.
@@ -31,8 +31,8 @@ from menpo.base import LazyList
 HERE = Path(__file__).resolve().parent
 SMOKE_DIRECTORY = HERE.parent / "_data" / "faces"
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg"}
-# the folders of the 300-W download that make its training set (3148 images)
-TRAINING_FOLDERS_300W = ("afw", "helen/trainset", "lfpw/trainset")
+# the folder of the 300-W download that the pages train on: the training set of LFPW (811 images)
+TRAINING_FOLDERS_300W = ("lfpw/trainset",)
 # built-in faces with 68 landmarks, in the order the examples use them
 BUILTIN_FACES = ("lenna.png", "einstein.jpg", "takeo.ppm", "breakingbad.jpg")
 # how many of the small set are kept for testing
@@ -132,7 +132,7 @@ def faces(n_train=None, n_test=N_TEST):
         paths = paths[:n_train]
     if not paths:
         raise RuntimeError(f"no annotated faces in {faces_directory()}")
-    # loaded one at a time, when a model asks for it: the 3148 images of 300-W do not fit in memory at once
+    # loaded one at a time, when a model asks for it: a few thousand images would not fit in memory at once
     return LazyList.init_from_iterable(paths, f=_load), test_faces(n_test)
 
 

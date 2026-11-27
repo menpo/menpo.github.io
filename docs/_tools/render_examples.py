@@ -6,7 +6,7 @@
 
 The pages that train a model run their code in CI on a small set of faces, which only shows that the code
 runs. What they *show* (the figures, the errors) comes from here: for each page this runs the code cells of
-the page on the 300-W training set (3148 images, `_ext/menpo_docs_data.py`; not part of this repository, its
+the page on the 300-W training set (the 811 images of the LFPW training set, `_ext/menpo_docs_data.py`; not part of this repository, its
 licence is for non-commercial research) and fits menpo's built-in faces (never in the training set), then
 writes pictures to `docs/_static/examples/` and the numbers to `docs/_static/examples/results.json`, which
 `conf.py` makes available to the pages as substitutions (`{{ name }}`).

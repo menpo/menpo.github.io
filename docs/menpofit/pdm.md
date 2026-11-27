@@ -233,4 +233,5 @@ plt.gca().set_title("Reconstructed shape");
 
 <a id="1"></a>
 
+## References
 [1] J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.

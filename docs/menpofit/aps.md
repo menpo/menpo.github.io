@@ -1,5 +1,14 @@
-Active Pictorial Structures
-===========================
+---
+jupytext:
+  text_representation:
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Active Pictorial Structures
 
 1. <a href="#definition">Definition</a>
 2. <a href="#gmrf">Gaussian Markov Random Field</a>
@@ -18,6 +27,15 @@ This can be done by running</br>
 <center><code>%matplotlib inline</code></center>
 in a cell. Note that you only have to run it once and not in every rendering cell.
 </div></p>
+
+```{code-cell} ipython3
+:tags: [remove-input]
+
+# the training and test faces of the page (see the Importing Images section)
+from menpo_docs_data import faces
+
+training_images, test_images = faces()
+```
 
 <a id="definition"></a>
 
@@ -170,6 +188,84 @@ $$
 <a id="fitting"></a>
 
 ### 5. Fitting Example
+An APS needs three things beyond the images: the **graph** of the appearance model, which says which landmarks are modelled together, the patches that describe them, and the weight of the
+deformation prior. The graph matters most. The paper [<a href="#1">1</a>] uses a chain along each facial feature (the jaw, each eyebrow, the nose, each eye and the mouth, the eye and mouth chains closed
+into loops), and so do we. Any `menpo.shape.UndirectedGraph` works, for example the edges of a triangulation, but a dense graph needs many more training images, because every edge has a covariance of its own:
+
+```{code-cell} ipython3
+import numpy as np
+from menpo.shape import UndirectedGraph
+from menpofit.aps import GenerativeAPS, GaussNewtonAPSFitter
+
+
+def chain(indices):
+    return list(zip(indices[:-1], indices[1:]))
+
+
+# one chain per facial feature of the 68 point markup (closed for the eyes and the mouth)
+edges = (chain(list(range(17))) + chain(list(range(17, 22))) + chain(list(range(22, 27)))
+         + chain(list(range(27, 34))) + chain([33, 32, 31, 30]) + chain(list(range(33, 36)))
+         + chain(list(range(36, 42)) + [36]) + chain(list(range(42, 48)) + [42])
+         + chain(list(range(48, 60)) + [48]) + chain(list(range(60, 68)) + [60]))
+appearance_graph = UndirectedGraph.init_from_edges(np.array(edges), 68)
+```
+
+The appearance model is trained on `patch_shape` patches around the landmarks, and `n_appearance_components` is the rank that is kept of every edge's covariance (without it, the covariance of two patches
+needs more images than the patches have pixels). The shape model is a PDM as in the other models, and the deformation prior is trained from the shapes by default.
+Training holds all the images at once (an APS cannot be trained in batches, `batch_size` does not exist here), so it takes the most memory of all the models:
+
+```{code-cell} ipython3
+:tags: [remove-output, record-model]
+aps = GenerativeAPS(training_images, group='PTS', appearance_graph=appearance_graph,
+                    diagonal=100, scales=(0.5, 1.0), patch_shape=(17, 17),
+                    max_shape_components=25, n_appearance_components=150)
+print(aps)
+```
+
+```{recorded-output} model
+```
+
+The fitter takes the number of shape components of each scale, the number of iterations as usual, and a `weight` that is the weight of the appearance cost against the deformation prior of the training shapes
+(the default of 200 is the one of the paper). Like the AAM and the SDM, it is started from a shape; here the ground truth moved by a few percent of the face size:
+
+```{code-cell} ipython3
+:tags: [remove-output, record-fit]
+def shifted(shape, seed, proportion=0.04):
+    span = np.ptp(shape.points, axis=0).max()
+    offset = np.random.RandomState(seed).randn(2) * proportion * span
+    return shape.from_vector(shape.as_vector() + np.tile(offset, shape.n_points))
+
+
+fitter = GaussNewtonAPSFitter(aps, n_shape=[3, 12], weight=200.)
+
+initial_errors, final_errors = [], []
+for i, image in enumerate(test_images):
+    gt_shape = image.landmarks['PTS']
+    result = fitter.fit_from_shape(image, shifted(gt_shape, i), max_iters=30, gt_shape=gt_shape)
+    initial_errors.append(result.initial_error())
+    final_errors.append(result.final_error())
+
+print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
+    np.mean(initial_errors), np.mean(final_errors)))
+```
+
+```{recorded-output} fit
+```
+
+The result has the interface of every other fitting result ([Fitting Result](result.md)). APS is a *local* method: it refines a shape that is already close, like the CLM and unlike
+the AAM with a detector's box, and in our test its gain over this start is modest. Its strengths are the speed of the fixed Jacobian and Hessian and the deformation prior that keeps the shape plausible.
+
+### Settings to start from
+| Setting | Value here | What it does |
+|:--|:--|:--|
+| `appearance_graph` | a chain per facial feature | Which landmarks are modelled together. Needs far fewer images than a dense graph. |
+| `patch_shape` | `(17, 17)` | The default; the one of the paper. |
+| `n_appearance_components` | `150` | The rank kept for the covariance of every edge. Needed with few images, and a good limit with many. |
+| `max_shape_components` | `25` | The size of the shape model. |
+| `n_shape` (fitter) | `[3, 12]` | Components used while fitting. |
+| `weight` | `200` | The weight of the appearance cost against the deformation prior. |
+| `max_iters` | `30` | In our test 30 iterations were slightly better than 10 or 50. |
+
 <a id="references"></a>
 
 ### 6. References

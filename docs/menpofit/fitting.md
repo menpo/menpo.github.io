@@ -154,7 +154,7 @@ print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
 ```
 
 The error is normalised by the size of the face, so it is comparable between images. What this page *shows* of the result is from
-`HolisticAAM`s trained on the **300-W training set** ({{ fitting_n_train }} images; its licence is for non-commercial research, so it is not
+`HolisticAAM`s trained on the **LFPW training set** ({{ fitting_n_train }} images, from the 300-W download; its licence is for non-commercial research, so it is not
 part of this site: [download it](https://ibug.doc.ic.ac.uk/resources/300-W/) and point the code at it), fitting {{ fitting_detector_n_faces }}
 faces that it has not seen (a hand-annotated set of [FairFace](https://github.com/joojs/fairface) faces, CC BY 4.0). The code of the page runs
 every time the site is built, on a much smaller set, which only shows that it works.

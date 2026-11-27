@@ -1,0 +1,20 @@
+{
+  "fit": {
+    "hash": "417db352c7e7a269",
+    "outputs": [
+      {
+        "text": "mean initial error: 0.0469   mean final error: 0.0433",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "de4a2a23a28ae286",
+    "outputs": [
+      {
+        "text": "Generative Active Pictorial Structures\n - Images scaled to diagonal: 100.00\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: no_op\n     - Patch shape: (17, 17)\n     - Appearance model class: GMRFModel\n       - UndirectedGraph: n_vertices: 68, n_edges: 64\n       - 289 features per point (19652 in total)\n       - 150 SVD components\n     - Shape model class: OrthoPDM\n       - Trained using PCA\n       - 25 shape components\n       - 4 similarity transform parameters\n     - Deformation model class: GMRFModel\n       - Tree: n_vertices: 68, n_leaves: 16, maximum_depth: 28\n   - Scale 1.0\n     - Holistic feature: no_op\n     - Patch shape: (17, 17)\n     - Appearance model class: GMRFModel\n       - UndirectedGraph: n_vertices: 68, n_edges: 64\n       - 289 features per point (19652 in total)\n       - 150 SVD components\n     - Shape model class: OrthoPDM\n       - Trained using PCA\n       - 25 shape components\n       - 4 similarity transform parameters\n     - Deformation model class: GMRFModel\n       - Tree: n_vertices: 68, n_leaves: 16, maximum_depth: 28",
+        "type": "text"
+      }
+    ]
+  }
+}

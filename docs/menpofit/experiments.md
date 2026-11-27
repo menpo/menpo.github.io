@@ -42,7 +42,7 @@ from menpofit.aam import HolisticAAM
 
 aam = HolisticAAM(training_images, group='PTS', diagonal=150, scales=(0.5, 1.0),
                   holistic_features=fast_dsift, max_shape_components=20,
-                  max_appearance_components=150, verbose=True)
+                  max_appearance_components=150, batch_size=100)
 ```
 
 The model is trained once and can be saved to disk (`mio.export_pickle(aam, 'aam.pkl')`) to be loaded in the experiments that vary only the fitting.
@@ -82,6 +82,7 @@ Each result knows the error of its initial and of its final shape. The error is 
 compared between images:
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-errors]
 initial_errors = [result.initial_error() for result in results]
 final_errors = [result.final_error() for result in results]
 
@@ -89,13 +90,20 @@ print("initial:", np.round(initial_errors, 4))
 print("final:  ", np.round(final_errors, 4))
 ```
 
+```{recorded-output} errors
+```
+
 Experiments are usually reported as a *cumulative error distribution* (CED): the proportion of images that are fitted with an error smaller than each value.
 
 ```{code-cell} ipython3
+:tags: [remove-output, record-ced]
 from menpofit.visualize import plot_cumulative_error_distribution
 
 plot_cumulative_error_distribution([initial_errors, final_errors], error_range=(0, 0.15, 0.005),
                                    legend_entries=['Initial', 'Final'], figure_size=(6, 4));
+```
+
+```{recorded-output} ced
 ```
 
 With several models or fitters, give one list of errors per curve to compare them in the same figure. To look at the fits one by one, use

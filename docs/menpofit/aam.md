@@ -129,7 +129,7 @@ from menpofit.aam import HolisticAAM
 from menpo.feature import fast_dsift
 
 aam = HolisticAAM(training_images, group='face_ibug_68_trimesh', diagonal=150,
-                  scales=(0.5, 1.0), holistic_features=fast_dsift, verbose=True,
+                  scales=(0.5, 1.0), holistic_features=fast_dsift, verbose=True, batch_size=100,
                   max_shape_components=20, max_appearance_components=150)
 ```
 and visualize it in a notebook with the widgets of `menpowidgets`:
@@ -146,7 +146,7 @@ from menpowidgets import visualize_aam
 visualize_aam(aam)
 ```
 **MaskedAAM**  
-The `MaskedAAM` uses the same warp logic as the `HolsiticAAM`. The only difference between them is that the
+The `MaskedAAM` uses the same warp logic as the `HolisticAAM`. The only difference between them is that the
 reference frame consists of rectangular mask patches centered around the landmarks instead of the convex hull of the mean shape.
 
 **LinearAAM**  
@@ -167,7 +167,7 @@ from menpo.feature import fast_dsift
 patch_aam = PatchAAM(training_images, group='PTS', patch_shape=[(15, 15), (23, 23)],
                      diagonal=150, scales=(0.5, 1.0), holistic_features=fast_dsift,
                      max_shape_components=20, max_appearance_components=150,
-                     verbose=True)
+                     verbose=True, batch_size=100)
 ```
 and visualize it:
 ```python
@@ -291,7 +291,11 @@ fitter = LucasKanadeAAMFitter(patch_aam, lk_algorithm_cls=WibergInverseCompositi
 
 Remember that you can always retrieve information about any trained model by:
 ```{code-cell} ipython3
+:tags: [remove-output, record-fitter]
 print(fitter)
+```
+
+```{recorded-output} fitter
 ```
 
 
@@ -344,6 +348,37 @@ $$
 The above procedure is repeated for each cascade level, i.e. $k=1,\ldots,K$.
 
 
+
+Let's train a supervised descent fitter on top of the `PatchAAM` that we built above. The AAM provides the shape model and the appearance model, and the images
+and their landmarks provide the examples to regress from. `sd_algorithm_cls` chooses the regression features of the table above (here
+`AppearanceWeightsNewton`; the others are `ProjectOutNewton` and `MeanTemplateNewton`, with Gauss-Newton versions of each), `n_iterations` is the number of cascade levels
+and `n_perturbations` the number of perturbed shapes per image that the regressors are trained on:
+```{code-cell} ipython3
+:tags: [remove-output, record-sd]
+import numpy as np
+from menpofit.aam import SupervisedDescentAAMFitter, AppearanceWeightsNewton
+
+sd_fitter = SupervisedDescentAAMFitter(training_images, patch_aam, group='PTS',
+                                       sd_algorithm_cls=AppearanceWeightsNewton,
+                                       n_iterations=4, n_perturbations=10)
+
+initial_errors, final_errors = [], []
+for image in test_images:
+    gt_shape = image.landmarks['PTS']
+    result = sd_fitter.fit_from_bb(image, gt_shape.bounding_box(), gt_shape=gt_shape)
+    initial_errors.append(result.initial_error())
+    final_errors.append(result.final_error())
+
+print(sd_fitter)
+print("mean initial error: {:.4f}   mean final error: {:.4f}".format(
+    np.mean(initial_errors), np.mean(final_errors)))
+```
+
+```{recorded-output} sd
+```
+It is used exactly like the Lucas-Kanade fitter of the previous section (`fit_from_bb`, `fit_from_shape`), except that `max_iters` does not apply, as the number of
+iterations is the number of cascade levels. The box here is that of the ground truth, to keep the example short; in practice it comes from a detector.
+
 <a id="fitting"></a>
 
 ### 4. Fitting Example
@@ -372,6 +407,7 @@ if len(bboxes) > 0:
 ```
 The fitting can be executed as
 ```{code-cell} ipython3
+:tags: [remove-output, record-fit]
 # initial bbox
 initial_bbox = bboxes[0]
 
@@ -383,22 +419,32 @@ result = fitter.fit_from_bb(image, initial_bbox, max_iters=[15, 5],
 print(result)
 ```
 
-```{note}
-This model was trained on only 40 images, so the fit is rough and the improvement over the detector's box is modest. A model trained on a few
-hundred images, with more components and more iterations, reaches a final error several times smaller.
+```{recorded-output} fit
 ```
 
 The fitting result can be visualized as
 ```{code-cell} ipython3
+:tags: [remove-output, record-view]
 result.view(render_initial_shape=True);
+```
+
+```{recorded-output} view
 ```
 and the fitting iterations as
 ```{code-cell} ipython3
+:tags: [remove-output, record-iterations]
 result.view_iterations();
+```
+
+```{recorded-output} iterations
 ```
 Also, you can plot the fitting error per iteration as
 ```{code-cell} ipython3
+:tags: [remove-output, record-errors]
 result.plot_errors();
+```
+
+```{recorded-output} errors
 ```
 and of course the fitting result widget can be called in a notebook as
 ```python
@@ -407,6 +453,7 @@ visualize_fitting_results(result)
 ```
 Let's try an image with a more challenging head pose
 ```{code-cell} ipython3
+:tags: [remove-output, record-challenging]
 import matplotlib.pyplot as plt
 
 # Another test image: detect the face, then crop for a better view of the result
@@ -436,6 +483,9 @@ if len(bboxes) > 0:
     result.final_shape.view(marker_size=4)
     plt.gca().set_title('Final shape')
 ```
+
+```{recorded-output} challenging
+```
 and trigger the widget
 ```python
 visualize_fitting_results(result)
@@ -450,3 +500,49 @@ Similarly, the shape and appearance parameters per iteration can be obtained as:
 print(len(result.shape_parameters), result.shape_parameters[0].shape)
 print(len(result.appearance_parameters), result.appearance_parameters[0].shape)
 ```
+
+### Settings to start from
+These are the values used on this page, and what they control. They are a starting point for faces, not tuned for your data.
+
+| Setting | Value here | What it does |
+|:--|:--|:--|
+| `holistic_features` | `fast_dsift` | The features the appearance is made of. Dense SIFT was better than `igo` in our tests (lower final error from the same starts); the effect of features on LK and AAM fitting is studied in [<a href="#3">3</a>]. Raw pixels (`no_op`) are the default and cheapest. |
+| `scales` | `(0.5, 1.0)` | Coarse to fine. Two scales are enough to widen the convergence basin; more cost training time. |
+| `diagonal` | `150` | The size of the reference face in pixels at the highest scale. Larger is slower and rarely needed. |
+| `max_shape_components`, `max_appearance_components` | `20`, `150` | The size of the models. The fitter can use fewer. |
+| `n_shape`, `n_appearance` (fitter) | `[5, 20]`, `[30, 150]` | The components used at each scale while fitting. The experiment code of the authors' CVPR 2015 papers uses fewer ([3, 12] and [25, 50]); fewer components constrain the fit more. |
+| `max_iters` | `[15, 15]` from a shifted shape, `[15, 5]` from a detector's box | Iterations per scale. |
+| `batch_size` | `100` | Trains in batches of images, so the memory does not grow with the training set. |
+
+<a id="references"></a>
+
+## References
+<p id="1">[1] J. Alabort-i-Medina, and S. Zafeiriou. "A Unified Framework for Compositional Fitting of Active Appearance Models", arXiv:1601.00199.</p>
+
+<p id="2">[2] J. Alabort-i-Medina, and S. Zafeiriou. "Bayesian Active Appearance Models", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
+
+<p id="3">[3] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "Feature-based Lucas-Kanade and Active Appearance Models", IEEE Transactions on Image Processing, vol. 24, no. 9, pp. 2617-2632, 2015.</p>
+
+<p id="4">[4] E. Antonakos, J. Alabort-i-Medina, G. Tzimiropoulos, and S. Zafeiriou. "HOG Active Appearance Models", IEEE International Conference on Image Processing (ICIP), 2014.</p>
+
+<p id="5">[5] S. Baker, and I. Matthews. "Lucas-Kanade 20 years on: A unifying framework", International Journal of Computer Vision, vol. 56, no. 3, pp. 221-255, 2004.</p>
+
+<p id="6">[6] T.F. Cootes, G.J. Edwards, and C.J. Taylor. "Active Appearance Models", IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 23, no. 6, pp. 681–685, 2001.</p>
+
+<p id="7">[7] R. Gross, I. Matthews, and S. Baker. "Generic vs. person specific Active Appearance Models", Image and Vision Computing, vol. 23, no. 12, pp. 1080-1093, 2005.</p>
+
+<p id="8">[8] I. Matthews, and S. Baker. "Active Appearance Models Revisited", International Journal of Computer Vision, vol. 60, no. 2, pp. 135-164, 2004.</p>
+
+<p id="9">[9] G. Papandreou, and P. Maragos. "Adaptive and constrained algorithms for  inverse compositional active appearance model fitting", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2008.</p>
+
+<p id="10">[10] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Active Orientation Models for Face Alignment in-the-wild", IEEE Transactions on Information Forensics and Security, Special Issue on Facial Biometrics in-the-wild, vol. 9, no. 12, pp. 2024-2034, 2014.</p>
+
+<p id="11">[11] G. Tzimiropoulos, and M. Pantic. "Gauss-Newton Deformable Part Models for Face Alignment In-the-Wild", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.</p>
+
+<p id="12">[12] G. Tzimiropoulos, J. Alabort-i-Medina, S. Zafeiriou, and M. Pantic. "Generic Active Appearance Models Revisited", Asian Conference on Computer Vision, Springer, 2012.</p>
+
+<p id="13">[13] G. Tzimiropoulos, M. Pantic. "Optimization problems for fast AAM fitting in-the-wild", IEEE International Conference on Computer Vision (ICCV), 2013.</p>
+
+<p id="14">[14] G. Tzimiropoulos. "Project-Out Cascaded Regression with an application to Face Alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015.</p>
+
+<p id="15">[15] X. Xiong, and F. De la Torre. "Supervised descent method and its applications to face alignment", IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2013.</p>

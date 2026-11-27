@@ -1,0 +1,11 @@
+{
+  "compare": {
+    "hash": "8bc7cb8a0ffbd0cc",
+    "outputs": [
+      {
+        "text": "AAM   trained in   31 s\nSDM   trained in   46 s\nCLM   trained in  345 s\nAPS   trained in  160 s\nfaces: 6 from a shifted ground truth, 6 from the detector's box\nmodel   shifted        ->  detector        ->   sec/face\nAAM      0.0469    0.0281    0.1905    0.0431       0.54\nSDM      0.0469    0.0304    0.1817    0.1085       0.01\nCLM      0.0469    0.0322    0.1905    0.0365       0.10\nAPS      0.0469    0.0433    0.1817    0.1518       0.02",
+        "type": "text"
+      }
+    ]
+  }
+}

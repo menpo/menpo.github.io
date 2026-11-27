@@ -27,10 +27,10 @@ render best with the inline backend (`%matplotlib inline`, the default in Jupyte
 <a id="definition"></a>
 
 # 1. Definition
-The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with rspect to the parameters of a parametric shape model.
+The aim of deformable image alignment is to find the optimal alignment between a constant template and an input image with respect to the parameters of a parametric shape model.
 Active Template Model (ATM) is such method which is inspired by the [Lucas-Kanade Affine Image Alignment](lk.md "Lucas-Kanade Affine Image Alignment") and the [Active Appearance Model](aam.md "Active Appearance Model"). Note that we invented the name "Active Template Model" for the purpose of the Menpo Project. The term is not established in literature. In this page, we provide a basic mathematical definition of an ATM and all its variations that are implemented within `menpofit`.
 
-A shape instance of a deformable object is represented as $\mathbf{s}=\big[x_1,y_1,\ldots,x_L,y_L\big]^{\mathsf{T}}$, a $2L\times 1$ vector consisting of $L$ landmark points coordinates $(x_i,y_i),\forall i=1,\ldots,L$. An ATM is constructed using a template image that is annotated with $L$ landmark points and a set of $N$ shapes $\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$ that are essential for building the hsape model. Specifically, it consists of the following parts:
+A shape instance of a deformable object is represented as $\mathbf{s}=\big[x_1,y_1,\ldots,x_L,y_L\big]^{\mathsf{T}}$, a $2L\times 1$ vector consisting of $L$ landmark points coordinates $(x_i,y_i),\forall i=1,\ldots,L$. An ATM is constructed using a template image that is annotated with $L$ landmark points and a set of $N$ shapes $\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$ that are essential for building the shape model. Specifically, it consists of the following parts:
 
 * **Shape Model**  
   The shape model is trained as explained in the [Point Distributon Model section](pdm.md "Point Distribution Model basics"). The training shapes $\big\lbrace\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\big\rbrace$ are first aligned using Generalized Procrustes Analysis and then an orthonormal basis is created using Principal Component Analysis (PCA) which is further augmented with four eigenvectors that represent the similarity transform (scaling, in-plane rotation and translation). This results in
@@ -48,8 +48,9 @@ $$
   2. Warping the feature-based image into the `reference_shape` in order to get $\mathcal{F}(\mathbf{I}_a)(\mathcal{W}(\mathbf{p}_a))$
   3. Vectorizing the warped image as $\bar{\mathbf{a}} = \mathcal{F}(\mathbf{I}_a)(\mathcal{W}(\mathbf{p}_a))$ where $\bar{\mathbf{a}}\in\mathbb{R}^{M\times 1}$
 
-Let's first load a test image and a template image $\bar{\mathbf{a}}$. We'll load two images of the same person (Amanda Peet, actress)
-from LFPW trainset (see [Importing Images](importing.md "Basics on how to import images") for download instructions).
+Let's first load a test image and a template image $\bar{\mathbf{a}}$. We'll load two annotated faces (see [Importing Images](importing.md "Basics on how to import images") for how to get a dataset): the image that the model will be fitted to, and the template.
+An ATM has no appearance model, so it can only find what *looks like its template*: the same person, in similar conditions. The template normally comes from another image of the subject (for example the previous frame of a video).
+To keep this example self-contained, we take the template from the image itself, as the [Lucas-Kanade](lk.md) example does; the fit then shows how well the shape model and the optimisation work, not how well a template transfers to another face.
 ```{code-cell} ipython3
 :tags: [remove-input]
 
@@ -66,8 +67,7 @@ import menpo.io as mio
 image = mio.import_image(sorted(Path(path_to_images).glob('*.png'))[0])
 image = image.crop_to_landmarks_proportion(0.5)
 
-template = mio.import_image(sorted(Path(path_to_images).glob('*.png'))[1])
-template = template.crop_to_landmarks_proportion(0.5)
+template = image.copy()
 ```
 
 The image and template can be visualized as:
@@ -116,7 +116,7 @@ with a non-linear warp function $\mathcal{W}(\mathbf{p})$. Two such warp functio
 Piecewise Affine Warp and Thin Plate Spline. The reference frame is the mask of the mean shape's convex hull.
 
 **MaskedATM**  
-The `MaskedATM` uses the same warp logic as the `HolsiticATM`. The only difference between them is that the
+The `MaskedATM` uses the same warp logic as the `HolisticATM`. The only difference between them is that the
 reference frame consists of rectangular mask patches centered around the landmarks instead of the convex hull of the mean shape.
 
 **LinearATM**  
@@ -130,7 +130,7 @@ Similar to the relation between `HolisticATM` and `MaskedATM`, a `LinearMaskedAT
 A `PatchATM` represents the appearance in a patch-based fashion, i.e. rectangular patches are extracted around the landmark points.
 Thus, the warp function $\mathbf{t}(\mathcal{W}(\mathbf{p}))$ simply _samples_ the patches centered around the landmarks of the shape instance generated with parameters $\mathbf{p}$.
 
-Let's now create a `HolisticATM` using IGO features:
+Let's now create a `HolisticATM` using Dense SIFT features:
 ```{code-cell} ipython3
 from menpofit.atm import HolisticATM
 from menpo.feature import fast_dsift
@@ -172,38 +172,15 @@ fitter = LucasKanadeATMFitter(atm,
 
 Information about the fitter can be retrieved as:
 ```{code-cell} ipython3
+:tags: [remove-output, record-fitter]
 print(fitter)
 ```
-which returns
-```
-Holistic Active Template Model
- - Images warped with DifferentiablePiecewiseAffine transform
- - Images scaled to diagonal: 180.00
- - Scales: [0.25, 1.0]
-   - Scale 0.25
-     - Holistic feature: igo
-     - Template shape: (38, 38)
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
-   - Scale 1.0
-     - Holistic feature: igo
-     - Template shape: (133, 134)
-     - Shape model class: OrthoPDM
-       - 132 shape components
-       - 4 similarity transform parameters
-Inverse Compositional Algorithm
- - Scales: [0.25, 1.0]
-   - Scale 0.25
-     - 3 active shape components
-     - 4 similarity transform components
-   - Scale 1.0
-     - 20 active shape components
-     - 4 similarity transform components
+
+```{recorded-output} fitter
 ```
 
-Let's know fit the ATM on the `image` we loaded in the beggining.
-We will use the DLib face detector from [`menpodetect`](../menpodetect/index.md), in order to acquire an initial bounding box, as:
+Let's now fit the ATM on the `image` we loaded in the beginning.
+We will use the OpenCV face detector from [`menpodetect`](../menpodetect/index.md), in order to acquire an initial bounding box, as:
 ```{code-cell} ipython3
 from menpodetect import load_opencv_frontal_face_detector
 
@@ -219,28 +196,35 @@ if len(bboxes) > 0:
     image.view_landmarks(group='opencv_0', line_colour='white',
                          render_markers=False, line_width=3);
 ```
-and fit the ATM as:
+and fit the ATM. An ATM has no appearance model to guide it, so it needs a start that is close to the object: compare the box of the detector (loose) with the ground truth moved by 4% of the face size (what you have when you track an object from one frame to the next):
 ```{code-cell} ipython3
-# initial bbox
-initial_bbox = bboxes[0]
+:tags: [remove-output, record-fit]
+import numpy as np
 
-# fit image
-result = fitter.fit_from_bb(image, initial_bbox, max_iters=20,
-                            gt_shape=image.landmarks['PTS'])
+gt_shape = image.landmarks['PTS']
 
-# print result
-print(result)
+# from the box of the detector
+from_box = fitter.fit_from_bb(image, bboxes[0], max_iters=60, gt_shape=gt_shape)
+print("from the detector's box:  {:.4f} -> {:.4f}".format(from_box.initial_error(), from_box.final_error()))
+
+# from the ground truth, moved by 4% of the face size
+span = np.ptp(gt_shape.points, axis=0).max()
+offset = np.random.RandomState(0).randn(2) * 0.04 * span
+initial_shape = gt_shape.from_vector(gt_shape.as_vector() + np.tile(offset, gt_shape.n_points))
+result = fitter.fit_from_shape(image, initial_shape, max_iters=20, gt_shape=gt_shape)
+print("from the shifted shape:   {:.4f} -> {:.4f}".format(result.initial_error(), result.final_error()))
 ```
-which prints
-```
-Fitting result of 68 landmark points.
-Initial error: 0.0877
-Final error: 0.0196
+
+```{recorded-output} fit
 ```
 
 The result can be visualized as:
 ```{code-cell} ipython3
+:tags: [remove-output, record-view]
 result.view(render_initial_shape=True);
+```
+
+```{recorded-output} view
 ```
 or using a widget as:
 ```python
