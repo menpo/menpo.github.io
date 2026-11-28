@@ -1,0 +1,20 @@
+{
+  "fit": {
+    "hash": "7a40aea7b69b8774",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0781\nFinal error: 0.0373\nFitting result of 68 landmark points.\nInitial error: 0.0598\nFinal error: 0.0261\nFitting result of 68 landmark points.\nInitial error: 0.1122\nFinal error: 0.0207\nFitting result of 68 landmark points.\nInitial error: 0.1103\nFinal error: 0.0314\nFitting result of 68 landmark points.\nInitial error: 0.1087\nFinal error: 0.0296",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "ecf1e186bc845766",
+    "outputs": [
+      {
+        "text": "Supervised Descent Method\n - Regression performed using the NonParametricNewton algorithm\n   - Regression class: IRLRegression\n - Perturbations generated per shape: 20\n - Images scaled to diagonal: 200.00\n - Custom perturbation scheme used: perturbed_square_box\n - Scales: [0.5, 0.5, 1.0, 1.0]\n   - Scale 0.5\n     - 1 iterations\n     - Patch shape: (32, 32)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 0.5\n     - 1 iterations\n     - Patch shape: (24, 24)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 1.0\n     - 1 iterations\n     - Patch shape: (24, 24)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift\n   - Scale 1.0\n     - 1 iterations\n     - Patch shape: (16, 16)\n     - Holistic feature: no_op\n     - Patch feature: hellinger_vector_128_dsift",
+        "type": "text"
+      }
+    ]
+  }
+}

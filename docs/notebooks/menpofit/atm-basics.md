@@ -78,7 +78,11 @@ atm = HolisticATM(
 As first class citizens of `Menpo`, AAMs can be printed just like any other `Menpo` object (e.g. `Images` or `PointClouds)`:
 
 ```{code-cell}
+:tags: [remove-output, record-model]
 print(atm)
+```
+
+```{recorded-output} model
 ```
 
 We can also visualize the ATM model
@@ -103,19 +107,20 @@ from menpofit.atm import LucasKanadeATMFitter
 fitter = LucasKanadeATMFitter(atm, n_shape=[6, 12])
 ```
 
-The previous cell has created a `LucasKanadeATMFitter` that will fit images using 3, 6 and 12 shape compenents per level.
+The previous cell has created a `LucasKanadeATMFitter` that will fit images using 6 and 12 shape components at its two scales.
 
 +++
 
-Fitting a `LucasKanadeATMFitter` to an image is as simple as calling its `fit` method. Let's try it by fitting the second image of the LFPW trainset!!!
+Fitting a `LucasKanadeATMFitter` to an image is as simple as calling its `fit` method. An ATM has no model of appearance: it can only find what looks like its template, so the template of a real application comes from another image of the same subject (for example the previous frame of a video). To keep this example self-contained, we fit the image that the template was taken from, starting from a perturbation of its ground truth!!!
 
 ```{code-cell}
-test_image = mio.import_image(sorted((path_to_lfpw / 'trainset').glob('*.png'))[1])
+test_image = template_image
 from menpowidgets import visualize_images
 visualize_images([test_image])
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-fit]
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 # obtain groubnd truth (original) landmarks
@@ -129,6 +134,9 @@ fitting_result = fitter.fit_from_shape(test_image, initial_s, gt_shape=gt_s)
 
 # print fitting error
 print(fitting_result)
+```
+
+```{recorded-output} fit
 ```
 
 Let's visualize the result using the widget

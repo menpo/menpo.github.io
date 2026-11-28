@@ -1,0 +1,38 @@
+{
+  "holistic": {
+    "hash": "8e0057ff674e2d4a",
+    "outputs": [
+      {
+        "text": "Holistic Active Appearance Model\n - Images scaled to diagonal: 120.00\n - Images warped with DifferentiablePiecewiseAffine transform\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: custom_double_igo\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: custom_double_igo\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters",
+        "type": "text"
+      }
+    ]
+  },
+  "holisticfit": {
+    "hash": "10818d4cec633cb6",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0544\nReconstructed initial error: 0.0563\nFinal error: 0.0306\nFitting result of 68 landmark points.\nInitial error: 0.0659\nReconstructed initial error: 0.0680\nFinal error: 0.0524\nFitting result of 68 landmark points.\nInitial error: 0.0595\nReconstructed initial error: 0.0610\nFinal error: 0.0316\nFitting result of 68 landmark points.\nInitial error: 0.0842\nReconstructed initial error: 0.0880\nFinal error: 0.0275\nFitting result of 68 landmark points.\nInitial error: 0.0425\nReconstructed initial error: 0.0447\nFinal error: 0.0299",
+        "type": "text"
+      }
+    ]
+  },
+  "patch": {
+    "hash": "fca872e5daaafdc4",
+    "outputs": [
+      {
+        "text": "Patch-based Active Appearance Model\n - Images scaled to diagonal: 120.00\n - No image warping performed\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: igo\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (17, 17)\n   - Scale 1.0\n     - Holistic feature: igo\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (17, 17)",
+        "type": "text"
+      }
+    ]
+  },
+  "patchfit": {
+    "hash": "10818d4cec633cb6",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0638\nReconstructed initial error: 0.0671\nFinal error: 0.0253\nFitting result of 68 landmark points.\nInitial error: 0.0496\nReconstructed initial error: 0.0542\nFinal error: 0.0185\nFitting result of 68 landmark points.\nInitial error: 0.0518\nReconstructed initial error: 0.0541\nFinal error: 0.0210\nFitting result of 68 landmark points.\nInitial error: 0.0634\nReconstructed initial error: 0.0658\nFinal error: 0.0274\nFitting result of 68 landmark points.\nInitial error: 0.0510\nReconstructed initial error: 0.0588\nFinal error: 0.0251",
+        "type": "text"
+      }
+    ]
+  }
+}

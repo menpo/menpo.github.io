@@ -121,7 +121,11 @@ Note that here we import a feature to use from `menpo.feature`: dense SIFT descr
 As first class citizens of `Menpo`, AAMs can be printed just like any other `Menpo` object (e.g. `Images` or `PointClouds)`:
 
 ```{code-cell}
+:tags: [remove-output, record-model]
 print(aam)
+```
+
+```{recorded-output} model
 ```
 
 Printing an AAM is the easiest way to retrieve its specific characteristics. For example, printing the previous AAM tells us that it was built using dense SIFT features (fast_dsift), amongst several other things.
@@ -129,6 +133,7 @@ Printing an AAM is the easiest way to retrieve its specific characteristics. For
 AAMs also define an instance method that allows us to generate novel AAM instances by applying a set of particular weights to the components of their shape and apperance models:
 
 ```{code-cell}
+:tags: [remove-output, record-instances]
 # using default parameters
 aam.instance().view();
 
@@ -140,6 +145,9 @@ aam.instance(appearance_weights=[2.7, 3.5, 0.9]).view(new_figure=True);
 
 # varying both
 aam.instance(shape_weights=[1.0, 0.5, -2.1], appearance_weights=[2.7, 3.5, 0.9]).view(new_figure=True);
+```
+
+```{recorded-output} instances
 ```
 
 Furthermore, ``menpofit`` is equiped with a powerfull widget that allow us to explore AAMs:
@@ -198,6 +206,7 @@ for i in mio.import_images(path_to_lfpw / 'testset', max_images=5, verbose=True)
 Note that for the purpose of this simple fitting demonstration we will just fit the first 5 images of the LFPW test set.
 
 ```{code-cell}
+:tags: [remove-output, record-fit]
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 fitting_results = []
@@ -218,6 +227,9 @@ for i in test_images:
     print(fr)
 ```
 
+```{recorded-output} fit
+```
+
 `Menpo`'s `Fitter` objects save the result of their fittings using Menpo's `FittingResult` objects. Being a `Fitter` object itself, the `LucasKanadeAAMFitter` is no exception to the rule and, consequently, the result obtained by executing the previous cell is a list of `FittingResult` objects.
 
 `FittingResult` objects are core `Menpo` objects that allow the user to print, visualize and analyse the results produced by `Fitter` objects. Like all `Menpo`'s core objects `FittingResult` are printable. Note that, they were printed inside of the previous fitting  loop in order to display the final fitting error for each fitted image.
@@ -229,11 +241,15 @@ fr = fitting_results[1]
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-fitview]
 fr.image.view(new_figure=True);
 fr.final_shape.view();
 
 fr.image.view(new_figure=True);
 fr.initial_shape.view(marker_face_colour='blue');
+```
+
+```{recorded-output} fitview
 ```
 
 ```{code-cell}

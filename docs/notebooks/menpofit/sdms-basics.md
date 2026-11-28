@@ -56,34 +56,53 @@ from menpowidgets import visualize_images
 visualize_images(training_images)
 ```
 
-## 2. Train a SDM with default parameters
+## 2. Train an SDM
 
 +++
 
-Trainign an SDM using `Menpo` is rather straight forward and can be done using a single line of code.
-As expected, the SDM training takes some time.
+An SDM is a cascade of regressions. Here it has four stages with their own scale and patch size, and a SIFT descriptor of 128 values (`hellinger_vector_128_dsift`) is computed on every patch. The training starts are the box of the ground truth, made square and perturbed, because the regressors only learn to correct the errors they were trained on: they should look like the starts that you will fit from (the [SDM page](../../menpofit/sdm.md) explains every choice). As expected, the SDM training takes some time.
 
 ```{code-cell}
-from menpofit.sdm import RegularizedSDM
-# Note that we use fast dense sift features
-# and thus cyvlfeat must be installed (use conda)
-from menpo.feature import vector_128_dsift
+from functools import partial
 
+import numpy as np
+from menpo.feature import hellinger_vector_128_dsift
+from menpo.shape import bounding_box
+from menpofit.fitter import noisy_shape_from_bounding_box
+from menpofit.sdm import RegularizedSDM
+
+
+def perturbed_square_box(gt_box, example_box):
+    """The example box made square, with noise of 20% on its scale and 10% on its translation."""
+    lower, _ = example_box.bounds()
+    edge = np.max(example_box.range())
+    square = bounding_box(lower, lower + np.array((edge, edge)))
+    return noisy_shape_from_bounding_box(gt_box, square, noise_percentage=[0.2, 0, 0.1])
+
+
+# four stages: each is a regression with its own scale and patch size, from a large patch
+# at half the resolution to a small one at the full resolution
 fitter = RegularizedSDM(
-    training_images, 
+    training_images,
     verbose=True,
     group='PTS',
+    alpha=200.0,
+    patch_features=partial(hellinger_vector_128_dsift, dtype=np.float32),
+    patch_shape=[(32, 32), (24, 24), (24, 24), (16, 16)],
     diagonal=200,
-    n_perturbations=30,
-    n_iterations=2,
-    patch_features=vector_128_dsift,
-    patch_shape=(24, 24),
-    alpha=10
+    scales=(0.5, 0.5, 1.0, 1.0),
+    n_iterations=4,
+    n_perturbations=20,
+    perturb_from_gt_bounding_box=perturbed_square_box,
 )
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-model]
 print(fitter)
+```
+
+```{recorded-output} model
 ```
 
 ## 3. Fit the previous SDM
@@ -112,6 +131,7 @@ Note that for the purpose of this simple fitting demonstration we will just fit 
 Fitting a SDM to an image is as simple as calling its `fit` method:
 
 ```{code-cell}
+:tags: [remove-output, record-fit]
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 fitting_results = []
@@ -127,6 +147,9 @@ for i in test_images:
 
     # print fitting error
     print(fr)
+```
+
+```{recorded-output} fit
 ```
 
 ```{code-cell}

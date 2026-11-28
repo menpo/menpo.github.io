@@ -1,0 +1,54 @@
+{
+  "fit": {
+    "hash": "4f57731d009dcb7a",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0623\nReconstructed initial error: 0.0646\nFinal error: 0.0265\nFitting result of 68 landmark points.\nInitial error: 0.0208\nReconstructed initial error: 0.0239\nFinal error: 0.0187\nFitting result of 68 landmark points.\nInitial error: 0.0495\nReconstructed initial error: 0.0518\nFinal error: 0.0275\nFitting result of 68 landmark points.\nInitial error: 0.0449\nReconstructed initial error: 0.0473\nFinal error: 0.0318\nFitting result of 68 landmark points.\nInitial error: 0.0642\nReconstructed initial error: 0.0662\nFinal error: 0.0331",
+        "type": "text"
+      }
+    ]
+  },
+  "fitview": {
+    "hash": "0bb70dfe51d7ce5f",
+    "outputs": [
+      {
+        "file": "notebooks__menpofit__aams-basics__fitview_0.png",
+        "type": "image"
+      },
+      {
+        "file": "notebooks__menpofit__aams-basics__fitview_1.png",
+        "type": "image"
+      }
+    ]
+  },
+  "instances": {
+    "hash": "d998d1e132b51d31",
+    "outputs": [
+      {
+        "file": "notebooks__menpofit__aams-basics__instances_0.png",
+        "type": "image"
+      },
+      {
+        "file": "notebooks__menpofit__aams-basics__instances_1.png",
+        "type": "image"
+      },
+      {
+        "file": "notebooks__menpofit__aams-basics__instances_2.png",
+        "type": "image"
+      },
+      {
+        "file": "notebooks__menpofit__aams-basics__instances_3.png",
+        "type": "image"
+      }
+    ]
+  },
+  "model": {
+    "hash": "8e0057ff674e2d4a",
+    "outputs": [
+      {
+        "text": "Holistic Active Appearance Model\n - Images scaled to diagonal: 120.00\n - Images warped with DifferentiablePiecewiseAffine transform\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 810 appearance components\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters",
+        "type": "text"
+      }
+    ]
+  }
+}

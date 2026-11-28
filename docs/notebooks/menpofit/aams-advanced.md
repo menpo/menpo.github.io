@@ -138,7 +138,11 @@ aam = HolisticAAM(
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-holistic]
 print(aam)
+```
+
+```{recorded-output} holistic
 ```
 
 Let us now visualize the AAM model
@@ -157,6 +161,7 @@ fitter = LucasKanadeAAMFitter(aam, n_shape=[6, 12], n_appearance=0.5)
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-holisticfit]
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 fitting_results = []
@@ -173,6 +178,9 @@ for i in test_images:
     fitting_results.append(fr)
     
     print(fr)
+```
+
+```{recorded-output} holisticfit
 ```
 
 Let's have a look at the fitting results:
@@ -206,7 +214,11 @@ patch_based_aam = PatchAAM(
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-patch]
 print(patch_based_aam)
+```
+
+```{recorded-output} patch
 ```
 
 ```{code-cell}
@@ -223,6 +235,7 @@ fitter = LucasKanadeAAMFitter(patch_based_aam,
 ```
 
 ```{code-cell}
+:tags: [remove-output, record-patchfit]
 from menpofit.fitter import noisy_shape_from_bounding_box
 
 fitting_results = []
@@ -239,6 +252,9 @@ for i in test_images:
     fitting_results.append(fr)
     
     print(fr)
+```
+
+```{recorded-output} patchfit
 ```
 
 ```{code-cell}
