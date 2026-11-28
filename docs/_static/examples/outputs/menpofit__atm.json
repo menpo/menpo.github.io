@@ -1,0 +1,29 @@
+{
+  "fit": {
+    "hash": "9f52578319b47a47",
+    "outputs": [
+      {
+        "text": "from the detector's box:  0.2067 -> 0.2012\nfrom the shifted shape:   0.0759 -> 0.0095",
+        "type": "text"
+      }
+    ]
+  },
+  "fitter": {
+    "hash": "ecf1e186bc845766",
+    "outputs": [
+      {
+        "text": "Holistic Active Template Model\n - Images warped with DifferentiablePiecewiseAffine transform\n - Images scaled to diagonal: 180.00\n - Scales: [0.25, 1.0]\n   - Scale 0.25\n     - Holistic feature: dsift\n     - Template shape: (38, 38)\n     - Shape model class: OrthoPDM\n       - 5 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Template shape: (133, 134)\n     - Shape model class: OrthoPDM\n       - 15 shape components\n       - 4 similarity transform parameters\nInverse Compositional Algorithm\n - Scales: [0.25, 1.0]\n   - Scale 0.25\n     - 5 active shape components\n     - 4 similarity transform components\n   - Scale 1.0\n     - 15 active shape components\n     - 4 similarity transform components\n    ",
+        "type": "text"
+      }
+    ]
+  },
+  "view": {
+    "hash": "0df4929db733d396",
+    "outputs": [
+      {
+        "file": "menpofit__atm__view_0.png",
+        "type": "image"
+      }
+    ]
+  }
+}

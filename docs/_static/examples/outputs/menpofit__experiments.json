@@ -1,0 +1,20 @@
+{
+  "ced": {
+    "hash": "ee64f5e95e7d2546",
+    "outputs": [
+      {
+        "file": "menpofit__experiments__ced_0.png",
+        "type": "image"
+      }
+    ]
+  },
+  "errors": {
+    "hash": "b14eec77cf576e4a",
+    "outputs": [
+      {
+        "text": "initial: [0.0734 0.0695 0.0174 0.0758 0.0207 0.0245]\nfinal:   [0.0339 0.0168 0.0357 0.0365 0.025  0.028 ]",
+        "type": "text"
+      }
+    ]
+  }
+}

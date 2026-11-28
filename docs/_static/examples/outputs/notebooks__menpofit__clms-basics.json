@@ -1,0 +1,20 @@
+{
+  "fit": {
+    "hash": "45a40d6937480765",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0477\nReconstructed initial error: 0.0523\nFinal error: 0.0421\nFitting result of 68 landmark points.\nInitial error: 0.0525\nReconstructed initial error: 0.0592\nFinal error: 0.0370\nFitting result of 68 landmark points.\nInitial error: 0.0603\nReconstructed initial error: 0.0636\nFinal error: 0.0423\nFitting result of 68 landmark points.\nInitial error: 0.0356\nReconstructed initial error: 0.0440\nFinal error: 0.0349\nFitting result of 68 landmark points.\nInitial error: 0.0694\nReconstructed initial error: 0.0714\nFinal error: 0.0343",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "7974728d777d80b5",
+    "outputs": [
+      {
+        "text": "Constrained Local Model\n - Images scaled to diagonal: 100.00\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: dsift\n     - Ensemble of experts class: CorrelationFilterExpertEnsemble\n       - 68 experts\n       - IncrementalCorrelationFilterThinWrapper class\n       - Patch shape: 15 x 15\n       - Patch normalisation: no_op\n       - Context shape: 30 x 30\n       - Cosine mask: True\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Ensemble of experts class: CorrelationFilterExpertEnsemble\n       - 68 experts\n       - IncrementalCorrelationFilterThinWrapper class\n       - Patch shape: 15 x 15\n       - Patch normalisation: no_op\n       - Context shape: 30 x 30\n       - Cosine mask: True\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters",
+        "type": "text"
+      }
+    ]
+  }
+}

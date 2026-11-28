@@ -1,0 +1,7 @@
+{# The title of the current section, linking to its overview page (the theme's section navigation
+   lists only the pages below it, so without this there is no way back to the overview). #}
+{% if section_title %}
+<nav class="section-title{% if section_is_current %} current{% endif %}" aria-label="Section">
+  <a href="{{ section_url }}">{{ section_title }}</a>
+</nav>
+{% endif %}

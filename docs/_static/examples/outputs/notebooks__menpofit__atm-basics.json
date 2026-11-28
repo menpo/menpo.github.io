@@ -1,0 +1,20 @@
+{
+  "fit": {
+    "hash": "a52a40bce771d966",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.0451\nReconstructed initial error: 0.0452\nFinal error: 0.0126",
+        "type": "text"
+      }
+    ]
+  },
+  "model": {
+    "hash": "744610901fc64390",
+    "outputs": [
+      {
+        "text": "Holistic Active Template Model\n - Images warped with DifferentiablePiecewiseAffine transform\n - Images scaled to diagonal: 150.00\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: no_op\n     - Template shape: (59, 60)\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters\n   - Scale 1.0\n     - Holistic feature: no_op\n     - Template shape: (112, 113)\n     - Shape model class: OrthoPDM\n       - 132 shape components\n       - 4 similarity transform parameters",
+        "type": "text"
+      }
+    ]
+  }
+}

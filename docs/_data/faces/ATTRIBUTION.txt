@@ -1,0 +1,26 @@
+Images: FairFace, K. Karkkainen and J. Joo, CC BY 4.0, https://huggingface.co/datasets/HuggingFaceM4/FairFace
+Landmarks: placed with landmarker.io, starting from MediaPipe Face Landmarker (Apache-2.0), corrected by hand.
+
+fairface_000: East Asian, age 30-39, gender Male
+fairface_001: East Asian, age 30-39, gender Female
+fairface_002: East Asian, age 20-29, gender Female
+fairface_003: East Asian, age 30-39, gender Female
+fairface_004: East Asian, age 20-29, gender Male
+fairface_005: East Asian, age 20-29, gender Female
+fairface_006: East Asian, age 3-9, gender Male
+fairface_007: Indian, age 50-59, gender Male
+fairface_008: Indian, age 30-39, gender Female
+fairface_009: Indian, age 10-19, gender Male
+fairface_010: Indian, age more than 70, gender Male
+fairface_011: Indian, age 50-59, gender Female
+fairface_012: Indian, age 3-9, gender Female
+fairface_013: Indian, age 20-29, gender Male
+fairface_014: Black, age 20-29, gender Female
+fairface_015: Black, age 3-9, gender Male
+fairface_016: Black, age 10-19, gender Male
+fairface_017: Black, age 50-59, gender Female
+fairface_018: Black, age 10-19, gender Female
+fairface_019: Black, age 30-39, gender Male
+fairface_020: Black, age 3-9, gender Female
+fairface_021: White, age 40-49, gender Male
+fairface_022: White, age 3-9, gender Male

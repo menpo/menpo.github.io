@@ -1,0 +1,69 @@
+{
+  "challenging": {
+    "hash": "a312756f9177436a",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.2087\nReconstructed initial error: 0.2087\nFinal error: 0.0945",
+        "type": "text"
+      },
+      {
+        "file": "menpofit__aam__challenging_0.png",
+        "type": "image"
+      }
+    ]
+  },
+  "errors": {
+    "hash": "006cdc297204b868",
+    "outputs": [
+      {
+        "file": "menpofit__aam__errors_0.png",
+        "type": "image"
+      }
+    ]
+  },
+  "fit": {
+    "hash": "f9cd1852cabce925",
+    "outputs": [
+      {
+        "text": "Fitting result of 68 landmark points.\nInitial error: 0.1727\nReconstructed initial error: 0.1726\nFinal error: 0.0807",
+        "type": "text"
+      }
+    ]
+  },
+  "fitter": {
+    "hash": "ecf1e186bc845766",
+    "outputs": [
+      {
+        "text": "Patch-based Active Appearance Model\n - Images scaled to diagonal: 150.00\n - No image warping performed\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 30 appearance components\n     - Shape model class: OrthoPDM\n       - 5 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (15, 15)\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 150 appearance components\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (23, 23)\nWiberg Inverse Compositional Algorithm\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - 5 active shape components\n     - 4 similarity transform components\n     - 30 active appearance components\n   - Scale 1.0\n     - 20 active shape components\n     - 4 similarity transform components\n     - 150 active appearance components\n    ",
+        "type": "text"
+      }
+    ]
+  },
+  "iterations": {
+    "hash": "cbda15e8ce5e1894",
+    "outputs": [
+      {
+        "file": "menpofit__aam__iterations_0.png",
+        "type": "image"
+      }
+    ]
+  },
+  "sd": {
+    "hash": "4c7ee11f98a8f165",
+    "outputs": [
+      {
+        "text": "Patch-based Active Appearance Model\n - Images scaled to diagonal: 150.00\n - No image warping performed\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 150 appearance components\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (15, 15)\n   - Scale 1.0\n     - Holistic feature: dsift\n     - Appearance model class: PCAModel\n       - 150 appearance components\n     - Shape model class: OrthoPDM\n       - 20 shape components\n       - 4 similarity transform parameters\n     - Patch shape: (23, 23)\nSupervised Descent Method\n - Regression performed using the AppearanceWeightsNewton algorithm\n   - Regression class: IRLRegression\n - Perturbations generated per shape: 10\n - Custom perturbation scheme used: False\n - Scales: [0.5, 1.0]\n   - Scale 0.5\n     - 2 iterations\n   - Scale 1.0\n     - 2 iterations\n\nmean initial error: 0.0564   mean final error: 0.0379",
+        "type": "text"
+      }
+    ]
+  },
+  "view": {
+    "hash": "0df4929db733d396",
+    "outputs": [
+      {
+        "file": "menpofit__aam__view_0.png",
+        "type": "image"
+      }
+    ]
+  }
+}
